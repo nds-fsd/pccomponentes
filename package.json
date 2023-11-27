@@ -1,0 +1,17 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "start:frontend": "dotenv -- turbo run dev --scope='frontend'",
+    "start:backend": "dotenv -- turbo run dev --scope='backend'",
+    "dev": "dotenv -- turbo run dev "
+  },
+  "devDependencies": {
+    "dotenv-cli": "^7.0.0",
+    "turbo": "^1.10.16"
+  }
+}

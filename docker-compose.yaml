@@ -1,0 +1,11 @@
+
+version: '3.7'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: monorepo
+      MONGO_INITDB_ROOT_PASSWORD: monorepo
+    ports:
+      - "27035:27017"
