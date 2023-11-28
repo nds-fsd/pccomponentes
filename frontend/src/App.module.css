@@ -1,0 +1,24 @@
+.header {
+    background-color: lightblue;
+}
+
+.headerContent {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--wrapper);
+    max-width: var(--wrapper-max);
+    margin: 0 auto;
+}
+
+nav ul {
+    display: flex;
+    background-color: var(--primary-500);
+    gap: 2rem;
+}
+
+a {
+    text-decoration: none;
+}
+
