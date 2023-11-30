@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Header from "./components/Header/Header"
+import Footer from "./components/Footer/Footer"
 import Home from "./components/Home/Home"
 import ProductList from "./components/ProductList/ProductList"
 import Product from "./components/Product/Product"
@@ -14,31 +16,14 @@ function App() {
 
   return (
   <>
-    <header className={styles.header}>
-      <div className={styles.headerContent}>
-        <div>LOGO</div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link> 
-            </li>
-            <li>
-              <Link to="product-list">Product List</Link> 
-            </li>
-          </ul>
-        </nav>
-        <button>User</button>
-      </div>
-    </header>
-    <>
-      <Routes>
-        <Route path="/" element={ <Home reload={reload}/> } />
-        <Route path="product-list" element={ <ProductList reload={reload}/> }>
-          <Route path=":productId" element={ <Product reload={reload}/> } />
-        </Route>
-        <Route path="*" element={ <NoMatch /> } />
-      </Routes>
-    </>
+    <Header />
+    <Routes>
+      <Route path="/" element={ <Home reload={reload}/> } />
+      <Route path="/product-list" element={ <ProductList reload={reload}/> }/>
+      <Route path="/product/:id" element={ <Product reload={reload}/> } />
+      <Route path="*" element={ <NoMatch /> } />
+    </Routes>
+    <Footer />
   </>
 
 

@@ -1,9 +1,0 @@
-.product {
-    height: 300px;
-    width: 300px;
-    background-color: lightsalmon;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem;
-}

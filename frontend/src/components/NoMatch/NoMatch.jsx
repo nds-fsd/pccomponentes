@@ -1,8 +1,8 @@
-import styles from "./index.module.css";
+import styles from "./noMatch.module.css";
 
 function NoMatch() {
   return (
-  <div>
+  <div className={styles.noMatch}>
     Page not found
   </div>
   )

@@ -1,8 +1,8 @@
-.productList {
-    background-color: rgb(250, 241, 248);
-}
-
 .productContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 100svh;
     padding: 0 var(--wrapper);
     max-width: var(--wrapper-max);
@@ -12,5 +12,6 @@
 .productsContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-row-gap: 40px;
+    grid-row-gap: 24px;
+    grid-column-gap: 24px;
 }
