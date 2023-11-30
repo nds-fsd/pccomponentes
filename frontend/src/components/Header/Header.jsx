@@ -17,10 +17,10 @@ function Header() {
           </ul>
         </nav>
         <div className={styles.icons}>
-          <span class="material-symbols-rounded">search</span>
-          <span class="material-symbols-rounded">shopping_cart</span>
-          <span class="material-symbols-rounded">person</span>
-          <span class="material-symbols-rounded">menu</span>
+          <span className="material-symbols-rounded">search</span>
+          <span className="material-symbols-rounded">shopping_cart</span>
+          <span className="material-symbols-rounded">person</span>
+          <span className="material-symbols-rounded">menu</span>
         </div>
       </div>
     </header>

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "./productCard.module.css";
 
-function ProductCard() {
+function ProductCard({ product }) {
   return (
-  <Link to="/product/:id" className={styles.product}>
-    This is a Product
+  <Link to={`/${product.id}`} className={styles.product}>
+    {product.name}
     <img src="https://picsum.photos/200" alt="random photo" />
   </Link>
   )

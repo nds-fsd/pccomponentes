@@ -1,16 +1,17 @@
 import ProductCard from "../ProductCard/ProductCard"
 import styles from "./productList.module.css";
 
-function ProductList() {
+function ProductList({product}) {
+
   return (
   <div className={styles.productContent}>
     This is the Product List
     <div className={styles.productsContainer}>
-      <ProductCard>Product 1</ProductCard>
-      <ProductCard>Product 1</ProductCard>
-      <ProductCard>Product 1</ProductCard>
-      <ProductCard>Product 1</ProductCard>
-      <ProductCard>Product 1</ProductCard>
+      <ProductCard product={product}></ProductCard>
+      <ProductCard product={product}></ProductCard>
+      <ProductCard product={product}></ProductCard>
+      <ProductCard product={product}></ProductCard>
+      <ProductCard product={product}></ProductCard>
     </div>
   </div>
   )
