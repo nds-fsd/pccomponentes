@@ -6,7 +6,13 @@ function ProductList() {
   <div className={styles.productList}>
     <div className={styles.productContent}>
       This is the Product List
-      <ProductCard>Product 1</ProductCard>
+      <div className={styles.productsContainer}>
+        <ProductCard>Product 1</ProductCard>
+        <ProductCard>Product 1</ProductCard>
+        <ProductCard>Product 1</ProductCard>
+        <ProductCard>Product 1</ProductCard>
+        <ProductCard>Product 1</ProductCard>
+      </div>
     </div>
   </div>
   )

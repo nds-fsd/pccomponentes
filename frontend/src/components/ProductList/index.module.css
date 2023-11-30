@@ -8,3 +8,9 @@
     max-width: var(--wrapper-max);
     margin: 0 auto;
 }
+
+.productsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 40px;
+}
