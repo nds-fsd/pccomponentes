@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./header.module.css";
+import computechLogo from "../../assets/computech-logo.svg"
 
 function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
-        <img src="../../assets/computech-logo.svg" alt="computech logo" />
+        <img src={computechLogo} alt="computech logo" />
         <nav>
           <ul>
             <li>
