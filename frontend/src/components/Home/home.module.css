@@ -1,0 +1,9 @@
+.homeContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
+    padding: 0 var(--wrapper);
+    max-width: var(--wrapper-max);
+    margin: 0 auto;
+}

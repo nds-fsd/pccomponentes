@@ -1,15 +1,130 @@
-#root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  min-height: 100vh;
+/*------------------------------------- RESET --------------------------------------*/
+/*
+1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
 }
+/*
+2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+Typographic tweaks!
+3. Add accessible line-height
+4. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+5. Improve media defaults
+*/
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+6. Remove built-in form typography styles
+*/
+input, button, textarea, select {
+  font: inherit;
+}
+/*
+7. Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+/*
+8. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+/*
+9. Remove unordered lists default styles
+*/
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* ------------------------------------- GENERAL ---------------------------------- */
 
 body {
-  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--neutral-950);
+  color: var(--neutral-50);
+}
+
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+/* Typescale of 1.200 Minor Third */
+h1 {
+  font-size: 2.986rem; /* 47.78px */
+}
+h2 {
+  font-size: 2.488rem; /* 39.81px */
+}
+h3 {
+  font-size: 2.074rem; /* 33.18px */
+}
+h4 {
+  font-size: 1.728rem; /* 27.65px */
+}
+h5 {
+  font-size: 1.44rem; /* 23.04px */
+}
+h6 {
+  font-size: 1.2rem; /* 19.2px */
+}
+small {
+  font-size: 0.833rem; /* 13.33px */
+}
+.xsmall {
+  font-size: 0.694rem; /* 11.11px */
+}
+/* ------------------------------------- VARIABLES ---------------------------------- */
+  
+:root {
+  --neutral-50: #f8f8fc;
+  --neutral-100: #f1f2f9;
+  --neutral-200: #e1e3ef;
+  --neutral-300: #cbd1e1;
+  --neutral-400: #94a0b8;
+  --neutral-500: #65758b;
+  --neutral-600: #48596a;
+  --neutral-700: #344856;
+  --neutral-800: #1d2f3a;
+  --neutral-900: #0f2029;
+  --neutral-950: #020f17;
+
+  --primary-50: #f1f4fd;
+  --primary-100: #dfe6fa;
+  --primary-200: #c5d3f8;
+  --primary-300: #9eb6f2;
+  --primary-400: #7090ea;
+  --primary-500: #4261e1;
+  --primary-600: #394ed7;
+  --primary-700: #303bc5;
+  --primary-800: #2d33a0;
+  --primary-900: #292f7f;
+  --primary-950: #1d1f4e;
+
+  --success-500: #22965C;
+  --warning-500: #DCC825;
+  --error-500: #E72513;
+
+  --wrapper-max: 70rem; /* 1120px */
+  --wrapper: 2rem; /* 32px */
 }
