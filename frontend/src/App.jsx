@@ -20,7 +20,7 @@ function App() {
     <Routes>
       <Route path="/" element={ <Home /> } />
       <Route path="/product-list" element={ <ProductList product={product}/> }/>
-      <Route path="/:id" element={ <Product /> } />
+      <Route path=":id" element={ <Product /> } />
       <Route path="*" element={ <NoMatch /> } />
     </Routes>
     <Footer />
