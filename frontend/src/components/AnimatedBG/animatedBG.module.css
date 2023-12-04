@@ -1,0 +1,36 @@
+.bg {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+}
+.circles {
+    position: relative;
+    border-radius: 100px;
+    filter: blur(100px);
+}
+.circle1 {
+    background-color: #4138E8;
+    height: 100px;
+    width: 100px;
+    top: 180px;
+    left: 16px;
+}
+.circle2 {
+    background-color: #161351;
+    height: 300px;
+    width: 300px;
+    top: -10px;
+    left: 100px;
+}
+.circle3 {
+    background-color: #26218C;
+    height: 300px;
+    width: 300px;
+    top: 100px;
+    right: 200px;
+}
+.circle4 {
+    background-color: #4138E8;
+    top: 200px;
+    left: 300px;
+}

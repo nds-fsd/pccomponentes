@@ -1,0 +1,16 @@
+.section {
+    padding: 2rem var(--wrapper);
+    max-width: var(--wrapper-max);
+    margin: 0 auto;
+}
+
+.accent {
+    color: var(--primary-500);
+}
+
+.categoriesContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 1rem;
+    column-gap: 1rem;
+}

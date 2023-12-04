@@ -1,10 +1,14 @@
 .product {
     height: 200px;
-    width: 150px;
+    min-width: 140px;
     border-radius: 0px 8px;
     background: radial-gradient(52.43% 52.43% at 50% 50%, #0E2145 0%, #021626 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 2rem;
+}
+
+.product img {
+    max-width: 150px;
 }

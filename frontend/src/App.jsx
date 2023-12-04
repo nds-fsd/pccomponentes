@@ -18,7 +18,7 @@ function App() {
   <>
     <Header />
     <Routes>
-      <Route path="/" element={ <Home /> } />
+      <Route path="/" element={ <Home product={product}/> } />
       <Route path="/product-list" element={ <ProductList product={product}/> }/>
       <Route path=":id" element={ <Product /> } />
       <Route path="*" element={ <NoMatch /> } />

@@ -1,11 +1,16 @@
 .header {
-    background-color: rgba(255, 255, 255, 0.05);
+    height: var(--header-height);
+}
+
+.headerContainer {
+    background-color: #0e1b23ef;
+    backdrop-filter: blur(5px);
     position: fixed;
     width: 100%;
 }
 
 .headerContent {
-    height: 80px;
+    height: var(--header-height);
     display: flex;
     justify-content: space-between;
     align-items: center;
