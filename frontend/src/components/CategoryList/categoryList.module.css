@@ -4,6 +4,10 @@
     margin: 0 auto;
 }
 
+.title {
+    padding-bottom: 1rem;
+}
+
 .accent {
     color: var(--primary-500);
 }

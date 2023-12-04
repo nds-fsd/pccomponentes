@@ -5,7 +5,7 @@ function ProductList({product}) {
 
   return (
   <div className={styles.productContent}>
-    <h3>Bestsellers of the <span className={styles.accent}>week</span></h3>
+    <h3 className={styles.title}>Bestsellers of the <span className={styles.accent}>week</span></h3>
     <div className={styles.productsContainer}>
       <ProductCard product={product}></ProductCard>
       <ProductCard product={product}></ProductCard>

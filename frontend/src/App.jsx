@@ -12,7 +12,8 @@ function App() {
 
   const product = {
     id: 1,
-    name: "A product"
+    name: "A product",
+    category: "Headset"
   }
   return (
   <>
