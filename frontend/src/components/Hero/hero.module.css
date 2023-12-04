@@ -11,3 +11,7 @@
 .accent {
     color: var(--primary-500);
 }
+
+.hero img {
+    max-width: 500px;
+}

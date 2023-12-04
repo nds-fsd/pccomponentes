@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./header.module.css";
+// import NavBar from "../NavBar/NavBar"
 import computechLogo from "../../assets/computech-logo.svg"
 
 function Header() {
@@ -22,8 +23,9 @@ function Header() {
             <span className="material-symbols-rounded">search</span>
             <span className="material-symbols-rounded">shopping_cart</span>
             <span className="material-symbols-rounded">person</span>
-            <span className="material-symbols-rounded">menu</span>
           </div>
+            {/* <NavBar /> */}
+            <span className="material-symbols-rounded">menu</span>
         </div>
       </div>
     </header>

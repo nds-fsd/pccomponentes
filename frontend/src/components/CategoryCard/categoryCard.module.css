@@ -7,8 +7,10 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
+    font-size: 500;
 }
 
 .product img {
+    width: 100%;
     max-width: 150px;
 }

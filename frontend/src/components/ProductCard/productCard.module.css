@@ -6,8 +6,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 1rem;
     font-size: .8rem;
+}
+
+.text {
+    width: 100%;
 }
 
 .productBrand {
@@ -38,5 +43,6 @@
 }
 
 .product img {
+    width: 100%;
     max-width: 150px;
 }

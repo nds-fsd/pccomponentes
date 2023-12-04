@@ -7,9 +7,11 @@ function ProductCard({ product }) {
   <Link to={`/${product.id}`} className={styles.product}>
     <span className={styles.chip}>New</span>
     <img src={laptopImage} alt="image of the product" />
-    <p className={styles.productBrand}>Brand</p>
-    <p className={styles.productName}>{product.name}</p>
-    <p className={styles.productPrice}>999€</p>
+    <div className={styles.text}>
+      <p className={styles.productBrand}>Brand</p>
+      <p className={styles.productName}>{product.name}</p>
+      <p className={styles.productPrice}>999€</p>
+    </div>
   </Link>
   )
 }
