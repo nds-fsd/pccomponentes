@@ -8,7 +8,6 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    font-size: .8rem;
 }
 
 .text {
@@ -16,7 +15,6 @@
 }
 
 .productBrand {
-    font-size: .625rem;
     color: var(--neutral-300);
 }
 
@@ -37,7 +35,7 @@
     left: 16px;
     height: 20px;
     padding: 0 12px;
-    font-size: .625rem;
+    font-size: var(--body-xsmall);
     background-color: var(--primary-500);
     border-radius: .5rem;
 }

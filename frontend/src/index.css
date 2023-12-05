@@ -71,31 +71,25 @@ body {
 
 /* Typescale of 1.200 Minor Third */
 h1 {
-  font-size: 2.027rem; /* 32.44px */
-  line-height: 2.375rem; /* 117.139% */
+  font-size: var(--title-large);
+  line-height: normal;
 }
 h2 {
-  font-size: 1.802rem; /* 28.83px */
+  font-size: var(--title-medium); 
 }
 h3 {
-  font-size: 1.602rem; /* 25.63px */
+  font-size: var(--title-small); 
 }
 h4 {
-  font-size: 1.424rem; /* 22.78px */
+  font-size: var(--body-large); 
 }
-h5 {
-  font-size: 1.266rem; /* 20.25px */
-  font-weight: 400;
+
+p {
+  line-height: 1.5rem; /* 150% */
 }
-h6 {
-  font-size: 1.125rem; /* 18px */
-  font-weight: 400;
-}
+
 small {
-  font-size: 0.889rem; /* 14.22px */
-}
-.xsmall {
-  font-size: 0.79rem; /* 12.64px */
+  font-size: var(--body-small); 
 }
 
 strong {
@@ -132,7 +126,15 @@ strong {
   --warning-500: #DCC825;
   --error-500: #E72513;
 
+  --title-large: 2.074rem;  /* h1 32.44px */
+  --title-medium: 1.802rem; /* h2 28.83px */
+  --title-small: 1.602rem;  /* h3 25.63px */
+  --body-large: 1.424rem;   /* h4 22.78px */
+  --body-small: 0.889rem;   /* small 14.22px */
+  --body-xsmall: 0.79rem;   /* 12.64px */
+
   --header-height: 80px;
-  --wrapper-max: 70rem; /* 1120px */
-  --wrapper: 2rem; /* 32px */
+  --footer-height: 96px;
+  --wrapper-max: 70rem;     /* 1120px */
+  --wrapper: 2rem;          /* 32px */
 }

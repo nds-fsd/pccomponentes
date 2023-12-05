@@ -7,6 +7,7 @@
     position: relative;
     border-radius: 100px;
     filter: blur(100px);
+    animation: animate;
 }
 .circle1 {
     background-color: #4138E8;
@@ -33,4 +34,16 @@
     background-color: #4138E8;
     top: 200px;
     left: 300px;
+}
+
+@keyframes animate {
+    0% {
+      transform: rotate(180deg);
+    }
+    50% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
 }

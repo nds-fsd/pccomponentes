@@ -23,9 +23,9 @@ function Header() {
             <span className="material-symbols-rounded">search</span>
             <span className="material-symbols-rounded">shopping_cart</span>
             <span className="material-symbols-rounded">person</span>
+            <span className="material-symbols-rounded">menu</span>
           </div>
             {/* <NavBar /> */}
-            <span className="material-symbols-rounded">menu</span>
         </div>
       </div>
     </header>

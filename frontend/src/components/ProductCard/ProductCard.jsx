@@ -8,7 +8,7 @@ function ProductCard({ product }) {
     <span className={styles.chip}>New</span>
     <img src={laptopImage} alt="image of the product" />
     <div className={styles.text}>
-      <p className={styles.productBrand}>Brand</p>
+      <small className={styles.productBrand}>Brand</small>
       <p className={styles.productName}>{product.name}</p>
       <p className={styles.productPrice}>999€</p>
     </div>

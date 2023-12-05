@@ -1,0 +1,17 @@
+.termsConditions {
+    padding: 4rem var(--wrapper);
+    max-width: var(--wrapper-max);
+    margin: 0 auto;
+}
+
+.termsConditions h1{
+    padding-bottom: 2rem;
+}
+
+.termsConditions li {
+    padding-bottom: 1rem;
+}
+
+.termsConditions h5 {
+    padding-bottom: 1rem;
+}

@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    font-weight: 700;
     padding: 1.5rem var(--wrapper);
     max-width: var(--wrapper-max);
     margin: 0 auto;

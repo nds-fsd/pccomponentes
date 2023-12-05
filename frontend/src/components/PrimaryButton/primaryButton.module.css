@@ -9,4 +9,10 @@
     color: var(--neutral-50);
     border: none;
     border-radius: 2px 32px;
+    font-weight: 700;
+    transition: 500ms;
+}
+
+.button:hover {
+    background: linear-gradient(95deg, #0198FF 0%, #7B34C7 50%);
 }
