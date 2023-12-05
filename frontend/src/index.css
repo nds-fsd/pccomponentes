@@ -95,6 +95,15 @@ small {
 strong {
   font-weight: 900;
 }
+
+/* Change text selection color */
+::-moz-selection { /* Code for Firefox */
+  background: var(--primary-900);
+}
+
+::selection {
+  background: var(--primary-900);
+}
 /* ------------------------------------- VARIABLES ---------------------------------- */
   
 :root {
@@ -126,15 +135,44 @@ strong {
   --warning-500: #DCC825;
   --error-500: #E72513;
 
-  --title-large: 2.074rem;  /* h1 32.44px */
-  --title-medium: 1.802rem; /* h2 28.83px */
-  --title-small: 1.602rem;  /* h3 25.63px */
-  --body-large: 1.424rem;   /* h4 22.78px */
-  --body-small: 0.889rem;   /* small 14.22px */
-  --body-xsmall: 0.79rem;   /* 12.64px */
+  /* Typescale of 1.2 Minor Third */
+  --title-large:  2.074rem;  /* h1 33.18px */
+  --title-medium: 1.728rem; /* h2 27.65px */
+  --title-small: 1.44rem;  /* h3 23.04px */
+  --body-large: 1.2rem;   /* h4 19.2px */
+  --body-medium: 1rem;      /* p 16px */
+  --body-small: 0.833rem;   /* small 13.33px */
+  --body-xsmall: 0.694rem;   /* 11.11px */
 
   --header-height: 80px;
-  --footer-height: 96px;
   --wrapper-max: 70rem;     /* 1120px */
   --wrapper: 2rem;          /* 32px */
+}
+
+@media screen and ( 768px <= width ) { 
+  :root {
+    /* Typescale 1.250 Major Third */
+    font-size: 18px;
+    --title-large:  2.441rem;  /* h1 48.83px */
+    --title-medium: 1.953rem; /* h2 39.06px */
+    --title-small: 1.563rem;  /* h3 31.25px */
+    --body-large: 1.25rem;   /* h4 25px */
+    --body-medium: 1rem;      /* p 18px */
+    --body-small: 0.8rem;   /* small 16px */
+    --body-xsmall: 0.64rem;   /* 12.8px */
+  }
+}
+
+@media screen and (width > 1024px) {
+  :root {
+    /* Typescale 1.333 Perfect Fourth */
+    font-size: 20px;
+    --title-large:  3.157rem;  /* h1 63.15px */
+    --title-medium: 2.369rem; /* h2 47.37px */
+    --title-small: 1.777rem;  /* h3 35.54px */
+    --body-large: 1.333rem;   /* h4 26.66px */
+    --body-medium: 1rem;      /* p 20px */
+    --body-small: 0.75rem;   /* small 15px */
+    --body-xsmall: 0.563rem;   /* 11.26px */
+  }
 }

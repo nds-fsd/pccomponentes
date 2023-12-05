@@ -3,7 +3,6 @@
 }
 
 .footerContent {
-    height: var(--footer-height);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +16,7 @@
 .text {
     width: 100%;
     text-align: center;
-    font-size: var(--body-xsmall);
+    font-size: var(--body-small);
     display: flex;
     justify-content: space-between;
 }

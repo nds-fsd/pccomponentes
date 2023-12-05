@@ -20,3 +20,15 @@
 .accent {
     color: var(--primary-500);
 }
+
+@media screen and ( 768px <= width ) { 
+    .productsContainer {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (width > 1024px) { 
+    .productsContainer {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

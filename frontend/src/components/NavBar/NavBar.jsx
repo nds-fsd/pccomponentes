@@ -10,12 +10,12 @@ function NavBar() {
 
     return (
     <>
-        <span className="material-symbols-rounded">menu</span>
-        <nav className={`${styles.navMenu} ${sidebar ? styles.active : styles.closed}`}>
+        <span className='material-symbols-rounded' onClick={showSidebar}>menu</span>
+        <nav className={`${sidebar ? styles.navMenu + " " + styles.active : styles.navMenu}`}>
+            <span onClick={showSidebar} className="material-symbols-rounded">close</span>
             <ul>
-                <li><span className="material-symbols-rounded">close</span></li>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="product-list">Product List</Link></li>
+                <li onClick={showSidebar}><Link to="/">Home</Link></li>
+                <li onClick={showSidebar}><Link to="product-list">Product List</Link></li>
             </ul>
         </nav>
     </>
