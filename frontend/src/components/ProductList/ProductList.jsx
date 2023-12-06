@@ -5,9 +5,8 @@ function ProductList({product}) {
 
   return (
   <div className={styles.productContent}>
-    This is the Product List
+    <h2 className={styles.title}>Bestsellers of the <span className={styles.accent}>week</span></h2>
     <div className={styles.productsContainer}>
-      <ProductCard product={product}></ProductCard>
       <ProductCard product={product}></ProductCard>
       <ProductCard product={product}></ProductCard>
       <ProductCard product={product}></ProductCard>

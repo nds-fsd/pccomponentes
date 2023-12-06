@@ -1,10 +1,15 @@
+import Hero from "../Hero/Hero";
+import CategoryList from "../CategoryList/CategoryList"
+import ProductList from "../ProductList/ProductList"
 import styles from "./home.module.css";
 
-function Home() {
+function Home( {product} ) {
   return (
-  <div className={styles.homeContent}>
-    This is the Home
-  </div>
+  <main>
+      <Hero />
+      <CategoryList product={product}/>
+      <ProductList product={product}/>
+  </main>
   )
 }
 

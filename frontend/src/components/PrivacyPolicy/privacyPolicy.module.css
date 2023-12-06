@@ -1,0 +1,17 @@
+.privacyPolicy {
+    padding: 4rem var(--wrapper);
+    max-width: var(--wrapper-max);
+    margin: 0 auto;
+}
+
+.privacyPolicy h1{
+    padding-bottom: 2rem;
+}
+
+.privacyPolicy ul li {
+    padding-bottom: .5rem;
+}
+
+.privacyPolicy h4 {
+    padding-bottom: .25rem;
+}

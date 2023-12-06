@@ -71,28 +71,38 @@ body {
 
 /* Typescale of 1.200 Minor Third */
 h1 {
-  font-size: 2.986rem; /* 47.78px */
+  font-size: var(--title-large);
+  line-height: normal;
 }
 h2 {
-  font-size: 2.488rem; /* 39.81px */
+  font-size: var(--title-medium); 
 }
 h3 {
-  font-size: 2.074rem; /* 33.18px */
+  font-size: var(--title-small); 
 }
 h4 {
-  font-size: 1.728rem; /* 27.65px */
+  font-size: var(--body-large); 
 }
-h5 {
-  font-size: 1.44rem; /* 23.04px */
+
+p {
+  line-height: 1.5rem; /* 150% */
 }
-h6 {
-  font-size: 1.2rem; /* 19.2px */
-}
+
 small {
-  font-size: 0.833rem; /* 13.33px */
+  font-size: var(--body-small); 
 }
-.xsmall {
-  font-size: 0.694rem; /* 11.11px */
+
+strong {
+  font-weight: 900;
+}
+
+/* Change text selection color */
+::-moz-selection { /* Code for Firefox */
+  background: var(--primary-900);
+}
+
+::selection {
+  background: var(--primary-900);
 }
 /* ------------------------------------- VARIABLES ---------------------------------- */
   
@@ -125,6 +135,44 @@ small {
   --warning-500: #DCC825;
   --error-500: #E72513;
 
-  --wrapper-max: 70rem; /* 1120px */
-  --wrapper: 2rem; /* 32px */
+  /* Typescale of 1.2 Minor Third */
+  --title-large:  2.074rem;  /* h1 33.18px */
+  --title-medium: 1.728rem; /* h2 27.65px */
+  --title-small: 1.44rem;  /* h3 23.04px */
+  --body-large: 1.2rem;   /* h4 19.2px */
+  --body-medium: 1rem;      /* p 16px */
+  --body-small: 0.833rem;   /* small 13.33px */
+  --body-xsmall: 0.694rem;   /* 11.11px */
+
+  --header-height: 80px;
+  --wrapper-max: 70rem;     /* 1120px */
+  --wrapper: 2rem;          /* 32px */
+}
+
+@media screen and ( 768px <= width ) { 
+  :root {
+    /* Typescale 1.250 Major Third */
+    font-size: 18px;
+    --title-large:  2.441rem;  /* h1 48.83px */
+    --title-medium: 1.953rem; /* h2 39.06px */
+    --title-small: 1.563rem;  /* h3 31.25px */
+    --body-large: 1.25rem;   /* h4 25px */
+    --body-medium: 1rem;      /* p 18px */
+    --body-small: 0.8rem;   /* small 16px */
+    --body-xsmall: 0.64rem;   /* 12.8px */
+  }
+}
+
+@media screen and (width > 1024px) {
+  :root {
+    /* Typescale 1.333 Perfect Fourth */
+    font-size: 20px;
+    --title-large:  3.157rem;  /* h1 63.15px */
+    --title-medium: 2.369rem; /* h2 47.37px */
+    --title-small: 1.777rem;  /* h3 35.54px */
+    --body-large: 1.333rem;   /* h4 26.66px */
+    --body-medium: 1rem;      /* p 20px */
+    --body-small: 0.75rem;   /* small 15px */
+    --body-xsmall: 0.563rem;   /* 11.26px */
+  }
 }

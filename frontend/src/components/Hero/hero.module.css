@@ -1,0 +1,34 @@
+.hero {    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem var(--wrapper);
+    max-width: var(--wrapper-max);
+    margin: 0 auto;
+}
+
+.heroText {
+    width: 100%;
+}
+
+.heroText h1{
+    padding-bottom: 1rem;
+}
+
+.accent {
+    color: var(--primary-500);
+}
+
+.hero img {
+    width: 100%;
+    max-width: 450px;
+    align-self: center;
+}
+
+@media screen and (width >= 1024px) { 
+    .hero {
+        flex-direction: row;
+        gap: 4rem;
+    }
+}
