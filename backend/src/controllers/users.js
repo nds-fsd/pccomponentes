@@ -22,8 +22,6 @@ const postUser = async (req, res) => {
 
     const newUser = new Users(data);
     await newUser.save();
-    console.log(data);
-    console.log(newUser);
     res.status(201).json(newUser);
   } catch (error) {
     res.status(404).json(error);
