@@ -1,5 +1,14 @@
 import axios from 'axios';
 
-export const loadProducts = async () => {
-  return axios.get("http://localhost:3001/products")
-}
+export const api =
+  axios.create(
+    {
+      baseURL:
+        'http://localhost:3001',
+      headers:
+        {
+          'Content-Type':
+            'application/json',
+        },
+    }
+  );
