@@ -38,7 +38,7 @@ const patchCategory = async (req, res) => {
   try {
     const body = req.body;
     const { id } = req.params;
-    const categoryUpsdated = await Categories.findByIdAndUpdate(id, body, {
+    const categoryUpdated = await Categories.findByIdAndUpdate(id, body, {
       new: true
     });
     return res.status(200).json(categoryUpdated);
