@@ -25,7 +25,14 @@ function ProductList({ product }) {
     <div className={styles.productContent}>
       <h2 className={styles.title}>
         Bestsellers of the <span className={styles.accent}>week</span>
+    <div className={styles.productContent}>
+      <h2 className={styles.title}>
+        Bestsellers of the <span className={styles.accent}>week</span>
       </h2>
+      <div className={styles.productsContainer}>
+        {products.map((product) => (
+          <ProductCard key={product._id} product={product}></ProductCard>
+        ))}
       <div className={styles.productsContainer}>
         {products.map((product) => (
           <ProductCard key={product._id} product={product}></ProductCard>
