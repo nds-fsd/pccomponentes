@@ -1,11 +1,12 @@
-const Users = require("../schemas/users");
+const Users = require('../schemas/users');
+require('../schemas/directions'); // para recoger el populate traer todo el schema
 
 const getUsers = async (req, res) => {
   try {
-    const allUsers = await Users.find();
+    const allUsers = await Users.find().populate('direction');
     res.status(200).json(allUsers);
   } catch (error) {
-    res.status(404).json({ message: "There are no users" });
+    res.status(404).json({ message: 'There are no users' });
   }
 };
 
@@ -55,10 +56,20 @@ const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
     await Users.findByIdAndDelete(id);
-    res.status(201).json({ message: "User deleted Succesfully" });
+    res.status(201).json({ message: 'User deleted Succesfully' });
   } catch (error) {
     return res.status(404).json(error);
   }
+};
+
+const addDirection = async (req, res) => {
+  const { directionId, userId } = req.body;
+
+  const body = { $push: { direction: directionId } };
+
+  const updatedUserDirection = await Users.findByIdAndUpdate(userId, body);
+
+  res.status(201).json(updatedUserDirection);
 };
 
 module.exports = {
@@ -66,5 +77,6 @@ module.exports = {
   postUser,
   getUserById,
   patchUser,
-  deleteUser
+  deleteUser,
+  addDirection
 };
