@@ -18,7 +18,7 @@ const postUser = async (req, res) => {
       email: body.email,
       password: body.password,
       phoneNumber: body.phoneNumber,
-      direction: body.direction
+      direction: body.direction,
     };
 
     const newUser = new Users(data);
@@ -32,7 +32,7 @@ const postUser = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const userFound = await Users.findById(id);
+    const userFound = await Users.findById(id).populate('direction');
     return res.status(200).json(userFound);
   } catch (error) {
     return res.status(404).json(error);
@@ -44,7 +44,7 @@ const patchUser = async (req, res) => {
     const body = req.body;
     const { id } = req.params;
     const userUpdated = await Users.findByIdAndUpdate(id, body, {
-      new: true
+      new: true,
     });
     return res.status(200).json(userUpdated);
   } catch (error) {
@@ -78,5 +78,5 @@ module.exports = {
   getUserById,
   patchUser,
   deleteUser,
-  addDirection
+  addDirection,
 };

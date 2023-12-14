@@ -5,6 +5,8 @@ import styles from './Profile.module.css';
 
 function Profile() {
   const [user, setUser] = useState({});
+  const [direction, setDirection] = useState({});
+
   const getUserById = (_id) => {
     api
       .get(`/users/${_id}`)
@@ -15,7 +17,7 @@ function Profile() {
   };
 
   useEffect(() => {
-    getUserById('657b1af56f0a8a2bb088e30c');
+    getUserById('657b2c90d12c0ca283de5839');
   }, []);
   return (
     <section className={styles.profile}>
@@ -29,7 +31,10 @@ function Profile() {
           <p className={styles.username}>{user?.username}</p>
           <div className={styles.userInfo}>
             <p>{user?.email}</p>
-            <p>"Add ID to backend"</p>
+            <p>{user?.phoneNumber}</p>
+            <p>{user.direction.street}</p>
+            <p>{user.direction.postalCode}</p>
+            <p>{user.direction.country}</p>
           </div>
         </div>
         <button disabled>Edit</button>
