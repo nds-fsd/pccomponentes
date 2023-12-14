@@ -31,9 +31,9 @@ function Profile() {
           <div className={styles.userInfo}>
             <p>{user?.email}</p>
             <p>{user?.phoneNumber}</p>
-            <p>{user.direction.street}</p>
-            <p>{user.direction.postalCode}</p>
-            <p>{user.direction.country}</p>
+            <p>{user.direction?.street}</p>
+            <p>{user.direction?.postalCode}</p>
+            <p>{user.direction?.country}</p>
           </div>
         </div>
         <button disabled>Edit</button>
