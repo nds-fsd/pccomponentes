@@ -6,54 +6,22 @@ import Product from './components/Product/Product';
 import TermsConditions from './components/TermsConditions/TermsConditions';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import NoMatch from './components/NoMatch/NoMatch';
-import styles from './app.module.css';
+import styles from './App.module.css';
 
-import {
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <>
       <Header />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home />
-          }
-        />
-        <Route
-          path="/product-list"
-          element={
-            <ProductList />
-          }
-        />
-        <Route
-          path=":id"
-          element={
-            <Product />
-          }
-        />
-        <Route
-          path="/terms-and-conditions"
-          element={
-            <TermsConditions />
-          }
-        />
-        <Route
-          path="/privacy-policy"
-          element={
-            <PrivacyPolicy />
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <NoMatch />
-          }
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/product-list" element={<ProductList />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path=":id" element={<Product />} />
+        <Route path="/terms-and-conditions" element={<TermsConditions />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="*" element={<NoMatch />} />
       </Routes>
       <Footer />
     </>

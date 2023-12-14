@@ -1,0 +1,21 @@
+.container {
+  height: 60vh;
+  width: 80vw;
+  margin-top: 5%;
+  padding: 40px;
+  display: flex;
+}
+
+.productdata {
+  height: 50vh;
+  width: 30vw;
+  margin-left: auto;
+}
+
+.image {
+  border: 1px solid pink;
+}
+
+.accent {
+  color: var(--primary-500);
+}
