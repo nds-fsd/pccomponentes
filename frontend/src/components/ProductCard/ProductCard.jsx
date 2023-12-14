@@ -3,7 +3,6 @@ import styles from './productCard.module.css';
 import laptopImage from '../../assets/img/laptop.png';
 
 function ProductCard({ product }) {
-  console.log(product);
   return (
     <Link to={`/${product._id}`} className={styles.product}>
       <span className={styles.chip}>New</span>
