@@ -1,13 +1,9 @@
 import { Link } from 'react-router-dom';
 import styles from './productCard.module.css';
-import laptopImage from '../../assets/img/laptop.png';
 
 function ProductCard({
   product,
 }) {
-  console.log(
-    product
-  );
   return (
     <Link
       to={`/${product._id}`}
@@ -15,6 +11,18 @@ function ProductCard({
         styles.product
       }
     >
+      <div
+        className={
+          styles.imagecontainer
+        }
+      >
+        <img
+          src={
+            product.image
+          }
+          alt="image of the product"
+        />
+      </div>
       <span
         className={
           styles.chip
@@ -22,12 +30,6 @@ function ProductCard({
       >
         New
       </span>
-      <img
-        src={
-          laptopImage
-        }
-        alt="image of the product"
-      />
       <div
         className={
           styles.text
@@ -56,6 +58,7 @@ function ProductCard({
             styles.productPrice
           }
         >
+          €
           {
             product.price
           }
