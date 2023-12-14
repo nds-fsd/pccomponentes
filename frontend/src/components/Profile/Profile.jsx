@@ -5,7 +5,6 @@ import styles from './Profile.module.css';
 
 function Profile() {
   const [user, setUser] = useState({});
-  const [direction, setDirection] = useState({});
 
   const getUserById = (_id) => {
     api
