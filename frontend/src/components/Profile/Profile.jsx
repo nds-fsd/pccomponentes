@@ -15,20 +15,20 @@ function Profile() {
   };
 
   useEffect(() => {
-    getUserById('656f72ab1b73f99d51da573d');
+    getUserById('657b1af56f0a8a2bb088e30c');
   }, []);
   return (
     <section className={styles.profile}>
       <Link to={'/my-account'}>
         <span className='material-symbols-rounded'>arrow_back</span>
       </Link>
-      <h3>My Profile</h3>
+      <h3 className={styles.title}>My Profile</h3>
       <div className={styles.card}>
         <h4 className={styles.cardTitle}>Personal Information</h4>
         <div>
-          <p className={styles.username}>{user.username}</p>
+          <p className={styles.username}>{user?.username}</p>
           <div className={styles.userInfo}>
-            <p>{user.email}</p>
+            <p>{user?.email}</p>
             <p>"Add ID to backend"</p>
           </div>
         </div>
