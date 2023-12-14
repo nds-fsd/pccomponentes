@@ -1,16 +1,15 @@
-import Hero from "../Hero/Hero";
-import CategoryList from "../CategoryList/CategoryList"
-import ProductList from "../ProductList/ProductList"
-import styles from "./home.module.css";
+import Hero from '../Hero/Hero';
+import CategoryList from '../CategoryList/CategoryList';
+import ProductList from '../ProductList/ProductList';
 
-function Home( {product} ) {
+function Home({ product }) {
   return (
-  <main>
+    <main>
       <Hero />
-      <CategoryList product={product}/>
-      <ProductList product={product}/>
-  </main>
-  )
+      <CategoryList product={product} />
+      <ProductList product={product} />
+    </main>
+  );
 }
 
-export default Home
+export default Home;

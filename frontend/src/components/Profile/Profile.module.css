@@ -1,0 +1,30 @@
+.profile {
+  padding: 1.5rem var(--wrapper);
+  max-width: var(--wrapper-max);
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0px 8px;
+  border: 1px solid var(--neutral-800);
+  background: var(--neutral-900);
+  box-shadow: 0px 6px 8px 0px rgba(15, 23, 42, 0.5);
+}
+
+.cardTitle {
+  font-size: var(--body-large);
+  font-weight: 400;
+}
+
+.username {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+.userInfo {
+  font-size: var(--body-small);
+}

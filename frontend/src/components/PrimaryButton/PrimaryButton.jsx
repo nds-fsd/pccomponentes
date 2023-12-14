@@ -1,9 +1,7 @@
-import styles from "./primaryButton.module.css";
+import styles from './primaryButton.module.css';
 
 function PrimaryButton() {
-  return (
-  <button className={styles.button}>Go to shop</button>
-  )
+  return <button className={styles.button}>Go to shop</button>;
 }
 
-export default PrimaryButton
+export default PrimaryButton;

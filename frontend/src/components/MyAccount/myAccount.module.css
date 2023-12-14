@@ -1,0 +1,18 @@
+.myAccount {
+  padding: 1.5rem var(--wrapper);
+  max-width: var(--wrapper-max);
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 80px;
+  padding: 0rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0rem 0.5rem;
+  border: 1px solid var(--neutral-800);
+  background: var(--neutral-900);
+  box-shadow: 0px 6px 8px 0px rgba(15, 23, 42, 0.5);
+}

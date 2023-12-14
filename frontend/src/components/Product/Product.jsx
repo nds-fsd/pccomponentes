@@ -1,11 +1,7 @@
-import styles from "./product.module.css";
+import styles from './product.module.css';
 
 function Product() {
-  return (
-  <div className={styles.product}>
-    This is a single Product
-  </div>
-  )
+  return <div className={styles.product}>This is a single Product</div>;
 }
 
-export default Product
+export default Product;

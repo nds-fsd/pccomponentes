@@ -1,19 +1,20 @@
-import ProductCard from "../ProductCard/ProductCard"
-import styles from "./productList.module.css";
+import ProductCard from '../ProductCard/ProductCard';
+import styles from './productList.module.css';
 
-function ProductList({product}) {
-
+function ProductList({ product }) {
   return (
-  <div className={styles.productContent}>
-    <h2 className={styles.title}>Bestsellers of the <span className={styles.accent}>week</span></h2>
-    <div className={styles.productsContainer}>
-      <ProductCard product={product}></ProductCard>
-      <ProductCard product={product}></ProductCard>
-      <ProductCard product={product}></ProductCard>
-      <ProductCard product={product}></ProductCard>
+    <div className={styles.productContent}>
+      <h2 className={styles.title}>
+        Bestsellers of the <span className={styles.accent}>week</span>
+      </h2>
+      <div className={styles.productsContainer}>
+        <ProductCard product={product}></ProductCard>
+        <ProductCard product={product}></ProductCard>
+        <ProductCard product={product}></ProductCard>
+        <ProductCard product={product}></ProductCard>
+      </div>
     </div>
-  </div>
-  )
+  );
 }
 
-export default ProductList
+export default ProductList;
