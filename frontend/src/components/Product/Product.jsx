@@ -19,7 +19,7 @@ function Product() {
     fetchProduct();
   }, [id]);
   if (!product) {
-    return <div>Loading...</div>;
+    return <div>The product has not been found</div>;
   }
 
   return (
