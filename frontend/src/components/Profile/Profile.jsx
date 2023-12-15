@@ -16,7 +16,7 @@ function Profile() {
   };
 
   useEffect(() => {
-    getUserById('657b2c90d12c0ca283de5839');
+    getUserById('657b1af56f0a8a2bb088e30c');
   }, []);
   return (
     <section className={styles.profile}>
