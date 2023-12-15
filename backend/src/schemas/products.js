@@ -3,33 +3,33 @@ const { Schema, model } = require('mongoose');
 const productSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   brand: {
     type: String,
-    required: true,
+    required: true
   },
   price: {
     type: Number,
-    required: true,
+    required: true
   },
   image: String,
 
   description: {
     type: String,
-    required: true,
+    required: true
   },
   stock: {
     type: Number,
-    required: true,
+    required: true
   },
   categories: [
     {
-      type: Schema.Types.ObjectId,
+      type: Schema.ObjectId,
       ref: 'category',
-      required: true,
-    },
-  ],
+      required: true
+    }
+  ]
 });
 
 const Product = model('product', productSchema);

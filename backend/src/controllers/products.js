@@ -1,12 +1,12 @@
 const Product = require('../schemas/products');
-
+require('../schemas/categories');
 const getProducts = async (req, res) => {
   try {
-    const allProducts = await Product.find();
+    const allProducts = await Product.find().populate('categories');
     res.status(200).json(allProducts);
   } catch (error) {
     res.status(404).json({
-      message: 'There are no products',
+      message: 'There are no products'
     });
   }
 };
@@ -20,7 +20,7 @@ const postProduct = async (req, res) => {
       price: body.price,
       image: body.image,
       description: body.description,
-      stock: body.stock,
+      stock: body.stock
     };
     const newProduct = new Product(data);
     await newProduct.save();
@@ -33,9 +33,9 @@ const postProduct = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     const { id } = req.params;
-    const ProductFound = await Product.findById(id);
+    const ProductFound = await Product.findById(id).populate('categories');
     return res.status(200).json({
-      ProductFound,
+      ProductFound
     });
   } catch (error) {
     return res.status(404).json(error);
@@ -47,10 +47,10 @@ const patchProduct = async (req, res) => {
     const body = req.body;
     const { id } = req.params;
     const productUpdated = await Product.findByIdAndUpdate(id, body, {
-      new: true,
+      new: true
     });
     return res.status(200).json({
-      productUpdated,
+      productUpdated
     });
   } catch (error) {
     return res.status(500).json(error);
@@ -62,11 +62,24 @@ const deleteProduct = async (req, res) => {
     const { id } = req.params;
     await Product.findByIdAndDelete(id);
     res.status(201).json({
-      message: 'Product deleted Succesfully',
+      message: 'Product deleted Succesfully'
     });
   } catch (error) {
     return res.status(404).json(error);
   }
+};
+
+const addCategory = async (req, res) => {
+  const { categoryId, productId } = req.body;
+
+  const body = { $push: { categories: categoryId } };
+
+  const updatedProductCategories = await Users.findByIdAndUpdate(
+    productId,
+    body
+  );
+
+  res.status(201).json(updatedProductCategories);
 };
 
 module.exports = {
@@ -75,4 +88,5 @@ module.exports = {
   getProductById,
   patchProduct,
   deleteProduct,
+  addCategory
 };
