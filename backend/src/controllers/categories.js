@@ -13,7 +13,7 @@ const postCategories = async (req, res) => {
   try {
     const body = req.body;
     const data = {
-      name: body.name
+      categoryName: body.categoryName
     };
 
     const newCategory = new Categories(data);
