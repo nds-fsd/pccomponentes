@@ -1,8 +1,9 @@
 const Product = require('../schemas/products');
 require('../schemas/categories');
+
 const getProducts = async (req, res) => {
   try {
-    const allProducts = await Product.find().populate('categories');
+    const allProducts = await Product.find().populate('productCategories');
     res.status(200).json(allProducts);
   } catch (error) {
     res.status(404).json({
@@ -20,7 +21,8 @@ const postProduct = async (req, res) => {
       price: body.price,
       image: body.image,
       description: body.description,
-      stock: body.stock
+      stock: body.stock,
+      productCategories: body.productCategories
     };
     const newProduct = new Product(data);
     await newProduct.save();
@@ -33,7 +35,9 @@ const postProduct = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     const { id } = req.params;
-    const ProductFound = await Product.findById(id).populate('categories');
+    const ProductFound = await Product.findById(id).populate(
+      'productCategories'
+    );
     return res.status(200).json({
       ProductFound
     });
@@ -72,9 +76,9 @@ const deleteProduct = async (req, res) => {
 const addCategory = async (req, res) => {
   const { categoryId, productId } = req.body;
 
-  const body = { $push: { categories: categoryId } };
+  const body = { $push: { productCategories: categoryId } };
 
-  const updatedProductCategories = await Users.findByIdAndUpdate(
+  const updatedProductCategories = await Product.findByIdAndUpdate(
     productId,
     body
   );

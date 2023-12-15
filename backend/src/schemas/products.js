@@ -23,10 +23,10 @@ const productSchema = new Schema({
     type: Number,
     required: true
   },
-  categories: [
+  productCategories: [
     {
       type: Schema.ObjectId,
-      ref: 'category',
+      ref: 'categories',
       required: true
     }
   ]
