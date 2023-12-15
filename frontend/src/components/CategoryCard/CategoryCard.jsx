@@ -6,7 +6,7 @@ function CategoryCard({ product }) {
   return (
     <Link to={`/${product?.id}`} className={styles.product}>
       {product?.category}
-      <img src={categoryImage} alt="image of the category" />
+      <img src={categoryImage} alt='image of the category' />
     </Link>
   );
 }

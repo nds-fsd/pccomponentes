@@ -1,47 +1,76 @@
 .header {
-    height: var(--header-height);
+  height: var(--header-height);
 }
 
 .headerContainer {
-    background-color: #0e1b23ef;
-    backdrop-filter: blur(5px);
-    position: fixed;
-    width: 100%;
+  background-color: #0d1a22;
+  /* background-color: #0e1b23ef; <- Change this for when the blurred background filter is applyed to all when opening the nav
+  backdrop-filter: blur(5px); */
+  position: fixed;
+  z-index: 100;
+  width: 100%;
 }
 
 .headerContent {
-    height: var(--header-height);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 var(--wrapper);
-    max-width: var(--wrapper-max);
-    margin: 0 auto;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--wrapper);
+  max-width: var(--wrapper-max);
+  margin: 0 auto;
 }
 
-.nav ul {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+.headerContent > a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.computechLogoText {
+  display: none;
 }
 
 a {
-    text-decoration: none;
-    color: var(--neutral-50);
+  text-decoration: none;
+  color: var(--neutral-50);
 }
 
 .icons {
-    display: flex;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .icons span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    width: 40px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+@media screen and (768px <= width) {
+  .computechLogoText {
+    display: block;
+  }
+}
+
+@media screen and (width >= 1024px) {
+  .icons span:first-child {
+    order: 1;
+  }
+
+  .icons span:nth-child(2) {
+    order: 2;
+  }
+
+  .icons a:nth-child(3) {
+    order: 3;
+  }
 }
