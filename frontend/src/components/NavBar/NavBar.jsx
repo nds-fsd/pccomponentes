@@ -11,11 +11,13 @@ function NavBar() {
       <nav
         className={`${
           sidebar ? styles.navMenu + ' ' + styles.active : styles.navMenu
-        }`}>
+        }`}
+      >
         <span
           className={'material-symbols-rounded'}
           id={styles.closeIcon}
-          onClick={showSidebar}>
+          onClick={showSidebar}
+        >
           close
         </span>
         <ul>
@@ -30,12 +32,14 @@ function NavBar() {
       <span
         className='material-symbols-rounded'
         id={styles.hambIcon}
-        onClick={showSidebar}>
+        onClick={showSidebar}
+      >
         menu
       </span>
       <div
         className={`${styles.bgOverlay} ${sidebar ? styles.active : ''}`}
-        onClick={showSidebar}></div>
+        onClick={showSidebar}
+      ></div>
     </>
   );
 }
