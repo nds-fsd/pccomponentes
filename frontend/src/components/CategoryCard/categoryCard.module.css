@@ -12,6 +12,11 @@
   align-items: center;
   padding: 1rem;
   font-weight: 500;
+  transition: 150ms;
+  box-shadow: 0px 0px 0px 0px var(--primary-900);
+  &:hover {
+    box-shadow: 4px 4px 0px 0px var(--primary-900);
+  }
 }
 
 .product img {
