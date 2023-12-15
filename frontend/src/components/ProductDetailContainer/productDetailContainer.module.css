@@ -1,21 +1,25 @@
+.productImage {
+  width: 100%;
+  max-width: 500px;
+}
+
 .container {
-  height: 60vh;
-  width: 80vw;
-  margin-top: 5%;
-  padding: 40px;
+  padding: 2rem;
   display: flex;
-}
-
-.productdata {
-  height: 50vh;
-  width: 30vw;
-  margin-left: auto;
-}
-
-.image {
-  border: 1px solid pink;
+  gap: 1rem;
+  flex-direction: column;
 }
 
 .accent {
   color: var(--primary-500);
+}
+
+.productDescription {
+  font-size: var(--body-small);
+}
+
+@media screen and (width >= 1024px) {
+  .container {
+    flex-direction: row;
+  }
 }

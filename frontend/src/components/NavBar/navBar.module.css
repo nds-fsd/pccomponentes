@@ -1,28 +1,96 @@
 .navMenu {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--neutral-950);
-    font-size: var(--body-large);
-    width: 80vw;
-    height: 100svh;
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    right: -100%;
-    padding: 2rem;
-    transition: 850ms;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--neutral-950);
+  font-size: var(--body-large);
+  width: 75vw;
+  height: 100svh;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: -100%;
+  padding: 2rem;
+  transition: right 0.85s ease-out;
 }
 
-.navMenu span {
-    height: 40px;
-    width: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: end;
-    cursor: pointer;   
+.navMenu ul {
+  display: flex;
+  flex-direction: column;
+}
+
+#closeIcon {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: end;
+  cursor: pointer;
 }
 
 .navMenu.active {
-    right: 0;
+  right: 0;
+}
+
+.bgOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.bgOverlay.active {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.8s ease, visibility 0s;
+}
+
+@media screen and (768px <= width) {
+}
+@media screen and (width >= 1024px) {
+  #hambIcon {
+    display: none;
+  }
+
+  .navMenu {
+    width: 100%;
+    height: 100%;
+    position: static;
+    background-color: inherit;
+    transition: none;
+    font-size: var(--body-small);
+    font-weight: 500;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navMenu ul {
+    flex-direction: row;
+  }
+
+  .navMenu li {
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 28px;
+    border-bottom: 0px solid var(--primary-900);
+
+    &:hover {
+      border-bottom: 2px solid var(--primary-700);
+      transition: 200ms;
+    }
+  }
+  #closeIcon {
+    display: none;
+  }
+
+  .bgOverlay {
+    display: none;
+  }
 }

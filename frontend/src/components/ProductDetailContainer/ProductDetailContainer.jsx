@@ -6,17 +6,24 @@ const ProductDetailContainer = ({ product }) => {
   return (
     <div className={styles.container}>
       {productData ? (
-        <div className={styles.productdata}>
-          <h2>{productData.name}</h2>
-          <h3>
-            <span className={styles.accent}>{productData.price}€</span>
-          </h3>
-          <br />
-          <p>
+        <>
+          <img
+            className={styles.productImage}
+            src={productData.image}
+            alt='image of the product'
+          />
+          <div className={styles.productdata}>
+            <h2>{productData.name}</h2>
+            <h3>
+              <span className={styles.accent}>{productData.price}€</span>
+            </h3>
+            <br />
             <h4>Description: </h4>
-            {productData.description}
-          </p>
-        </div>
+            <p className={styles.productDescription}>
+              {productData.description}
+            </p>
+          </div>
+        </>
       ) : (
         <p>No product data available</p>
       )}

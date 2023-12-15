@@ -1,7 +1,6 @@
 .product {
   min-height: 176px;
   position: relative;
-  z-index: -1;
   min-width: 120px;
   border-radius: 0px 16px;
   background: radial-gradient(
@@ -20,12 +19,13 @@
   width: 100%;
 }
 
-.productBrand {
+/* .productBrand {
+  font-size: var(--body-small);
   color: var(--neutral-300);
-}
+} */
 
 .productName {
-  font-weight: 400;
+  font-size: var(--body-small);
 }
 
 .productPrice {
@@ -48,5 +48,6 @@
 
 .product img {
   height: 100%;
-  width: 100%;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
 }
