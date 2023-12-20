@@ -5,8 +5,9 @@ const {
   getProductById,
   patchProduct,
   deleteProduct,
-  addCategory
+  addCategory,
 } = require('../../controllers/products');
+
 const productRouter = express.Router();
 
 productRouter.get('/', getProducts);
