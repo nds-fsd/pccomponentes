@@ -7,6 +7,6 @@ const companiesSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
 });
 
-const Companies = mongoose.model('Companies', companiesSchema);
+const Companies = mongoose.model('Company', companiesSchema);
 
 module.exports = Companies;

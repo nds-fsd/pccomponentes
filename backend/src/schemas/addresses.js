@@ -1,11 +1,12 @@
 const { Schema, model } = require('mongoose');
 
-const directionSchema = new Schema({
+const addressSchema = new Schema({
+  user: { type: Schema.ObjectId, required: true, ref: 'user' },
   street: { type: String, required: true },
   country: { type: String, required: true },
   postalCode: { type: Number, required: true },
 });
 
-const Direction = model('directions', directionSchema);
+const Address = model('Address', addressSchema);
 
-module.exports = Direction;
+module.exports = Address;

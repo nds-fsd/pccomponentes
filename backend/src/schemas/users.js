@@ -8,7 +8,6 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   phoneNumber: Number,
-  direction: { type: Schema.ObjectId, ref: 'directions' },
   role: { type: String, enum: ['user', 'admin'], default: 'user', required: true },
 });
 
@@ -57,6 +56,6 @@ userSchema.methods.generateJWT = function () {
   });
 };
 
-const Users = model('users', userSchema);
+const Users = model('User', userSchema);
 
 module.exports = Users;

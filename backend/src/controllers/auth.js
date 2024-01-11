@@ -1,6 +1,4 @@
 const Users = require('../schemas/users');
-const jwt = require('jsonwebtoken');
-const jwtSecret = process.env.JWT_SECRET;
 
 const registerUser = async (req, res) => {
   const email = req.body.email;
