@@ -4,8 +4,9 @@ const {
   postCategories,
   getCategoryById,
   patchCategory,
-  deleteCategory
+  deleteCategory,
 } = require('../../controllers/categories');
+
 const categoriesRouter = express.Router();
 
 categoriesRouter.get('/', getCategories);

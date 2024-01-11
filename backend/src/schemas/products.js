@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const productSchema = new Schema({
+
   name: {
     type: String,
     required: true,
@@ -24,6 +25,7 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
+
   productCategories: [
     {
       type: Schema.ObjectId,
@@ -33,6 +35,6 @@ const productSchema = new Schema({
   ],
 });
 
-const Product = model('product', productSchema);
+const Product = model('Product', productSchema);
 
 module.exports = Product;
