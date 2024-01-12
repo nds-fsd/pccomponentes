@@ -2,11 +2,10 @@ import { Link } from 'react-router-dom';
 import styles from './categoryCard.module.css';
 import categoryImage from '../../assets/img/headset.png';
 
-function CategoryCard({ product }) {
+function CategoryCard({ category }) {
   return (
-    <Link to={`/${product?.id}`} className={styles.product}>
-      {product?.category}
-      <img src={categoryImage} alt='image of the category' />
+    <Link to={`/${category?._id}`} className={styles.product}>
+      {category?.categoryName}
     </Link>
   );
 }
