@@ -1,9 +1,8 @@
 const Users = require('../schemas/users');
-require('../schemas/directions'); // para recoger el populate traer todo el schema
 
 const getUsers = async (req, res) => {
   try {
-    const allUsers = await Users.find().populate('direction');
+    const allUsers = await Users.find();
     res.status(200).json(allUsers);
   } catch (error) {
     res.status(404).json({ message: 'There are no users' });
@@ -18,7 +17,6 @@ const postUser = async (req, res) => {
       email: body.email,
       password: body.password,
       phoneNumber: body.phoneNumber,
-      direction: body.direction,
     };
 
     const newUser = new Users(data);
@@ -32,7 +30,7 @@ const postUser = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const userFound = await Users.findById(id).populate('direction');
+    const userFound = await Users.findById(id);
     return res.status(200).json(userFound);
   } catch (error) {
     return res.status(404).json(error);
@@ -62,21 +60,10 @@ const deleteUser = async (req, res) => {
   }
 };
 
-const addDirection = async (req, res) => {
-  const { directionId, userId } = req.body;
-
-  const body = { $push: { direction: directionId } };
-
-  const updatedUserDirection = await Users.findByIdAndUpdate(userId, body);
-
-  res.status(201).json(updatedUserDirection);
-};
-
 module.exports = {
   getUsers,
   postUser,
   getUserById,
   patchUser,
   deleteUser,
-  addDirection,
 };

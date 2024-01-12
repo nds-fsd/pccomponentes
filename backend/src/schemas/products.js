@@ -24,15 +24,16 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
+
   productCategories: [
     {
       type: Schema.ObjectId,
-      ref: 'categories',
+      ref: 'Category',
       required: true,
     },
   ],
 });
 
-const Product = model('product', productSchema);
+const Product = model('Product', productSchema);
 
 module.exports = Product;

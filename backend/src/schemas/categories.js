@@ -1,9 +1,7 @@
 const { Schema, model } = require('mongoose');
 
-const schema = new Schema({
-  categoryName: String
-});
+const categoriesSchema = new Schema({ categoryName: String });
 
-const Categories = model('categories', schema);
+const Categories = model('Category', categoriesSchema);
 
 module.exports = Categories;
