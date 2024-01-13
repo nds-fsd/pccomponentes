@@ -1,11 +1,8 @@
 .product {
   min-width: 120px;
+  min-height: 250px;
   border-radius: 0px 16px;
-  background: radial-gradient(
-    52.43% 52.43% at 50% 50%,
-    #0e2145 0%,
-    #021626 100%
-  );
+  background: radial-gradient(52.43% 52.43% at 50% 50%, #0e2145 0%, #021626 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,6 +19,7 @@
 }
 
 .product img {
-  width: 100%;
-  max-width: 150px;
+  border: solid 1px greenyellow;
+  /* width: 130px; */
+  max-width: 60%;
 }

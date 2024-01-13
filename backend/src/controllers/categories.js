@@ -13,7 +13,8 @@ const postCategories = async (req, res) => {
   try {
     const body = req.body;
     const data = {
-      categoryName: body.categoryName
+      categoryName: body.categoryName,
+      categoryImage: body.categoryImage,
     };
 
     const newCategory = new Categories(data);
@@ -39,7 +40,7 @@ const patchCategory = async (req, res) => {
     const body = req.body;
     const { id } = req.params;
     const categoryUpdated = await Categories.findByIdAndUpdate(id, body, {
-      new: true
+      new: true,
     });
     return res.status(200).json(categoryUpdated);
   } catch (error) {
@@ -51,7 +52,7 @@ const deleteCategory = async (req, res) => {
   try {
     const { id } = req.params;
     await Categories.findByIdAndDelete(id);
-    res.status(201).json({ message: 'Category deleted Succesfully' });
+    res.status(201).json({ message: 'Category deleted Successfully' });
   } catch (error) {
     return res.status(404).json(error);
   }
@@ -62,5 +63,5 @@ module.exports = {
   postCategories,
   getCategoryById,
   patchCategory,
-  deleteCategory
+  deleteCategory,
 };

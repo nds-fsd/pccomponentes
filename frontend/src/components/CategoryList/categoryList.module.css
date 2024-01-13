@@ -1,4 +1,5 @@
 .section {
+  border: solid 1px red;
   padding: 1.5rem var(--wrapper);
   max-width: var(--wrapper-max);
   margin: 0 auto;
