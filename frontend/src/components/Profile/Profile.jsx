@@ -2,9 +2,11 @@ import { api } from '../../_utils/api';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './Profile.module.css';
+import { LogInRegisterForm } from '../LogInRegisterForm/LogInRegisterForm';
 
 function Profile() {
   const [user, setUser] = useState({});
+  const [registered, setRegistered] = useState(false);
 
   const getUserById = (_id) => {
     api
@@ -16,8 +18,13 @@ function Profile() {
   };
 
   useEffect(() => {
-    getUserById('657b1af56f0a8a2bb088e30c');
+    getUserById('659ef9d9949793d9459558d0');
   }, []);
+
+  if (!registered) {
+    return <LogInRegisterForm />;
+  }
+
   return (
     <section className={styles.profile}>
       <Link to={'/my-account'}>

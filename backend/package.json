@@ -6,8 +6,8 @@
   "homepage": "",
   "license": "ISC",
   "scripts": {
-    "dev": "node --watch src/index.js",
-    "start": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node --watch src/index.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
