@@ -6,8 +6,10 @@ import styles from './navBar.module.css';
 function NavBar() {
   const [navLvl1, setNavLvl1] = useState(false);
   const [navLvl2, setNavLvl2] = useState(false);
+  const [navLvl3, setNavLvl3] = useState(false);
   const showNavLvl1 = () => setNavLvl1(!navLvl1);
   const showNavLvl2 = () => setNavLvl2(!navLvl2);
+  const showNavLvl3 = () => setNavLvl3(!navLvl3);
 
   return (
     <>
@@ -28,9 +30,9 @@ function NavBar() {
           </button>
           <p className={styles.categoryTitle}>Product List</p>
           <ul>
-            <li>
+            <li onClick={showNavLvl3}>
               Headset<span className='material-symbols-rounded'>chevron_right</span>
-              <NavSubCategory />
+              <NavSubCategory navLvl3={navLvl3} showNavLvl3={showNavLvl3} />
             </li>
             <li>
               Mouse<span className='material-symbols-rounded'>chevron_right</span>
@@ -47,7 +49,7 @@ function NavBar() {
         menu
       </span>
       <div className={`${styles.bgOverlay} ${navLvl1 ? styles.active : ''}`} onClick={showNavLvl1}></div>
-      {/* {console.log(`Nav Level 1: ${navLvl1}, Nav Level 2: ${navLvl2}`)} */}
+      {console.log(`Nav Level 1: ${navLvl1}, Nav Level 2: ${navLvl2}, Nav Level 3: ${navLvl3}`)}
     </>
   );
 }

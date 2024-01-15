@@ -1,13 +1,18 @@
 import styles from './navBarSubCategory.module.css';
 
-const NavSubCategory = () => {
+const NavSubCategory = ({ navLvl3, showNavLvl3 }) => {
   return (
     <>
-      <div className={styles.navLvl3}>
+      <div className={`${navLvl3 ? styles.navLvl3 + ' ' + styles.active : styles.navLvl3}`}>
+        <button onClick={showNavLvl3}>
+          <span className='material-symbols-rounded'>chevron_left</span>
+          Back
+        </button>
+        <p className={styles.categoryTitle}>Headset</p>
         <ul>
-          <li>item1</li>
-          <li>item2</li>
-          <li>item3</li>
+          <li>item 1</li>
+          <li>item 2</li>
+          <li>item 3</li>
         </ul>
       </div>
     </>
