@@ -21,7 +21,9 @@ function NavBar() {
           <li onClick={showNavLvl1}>
             <Link to='/'>Home</Link>
           </li>
-          <li onClick={showNavLvl2}>Product List</li>
+          <li onClick={showNavLvl2}>
+            Product List <span className='material-symbols-rounded'>chevron_right</span>
+          </li>
         </ul>
         <div className={`${navLvl2 ? styles.navLvl2 + ' ' + styles.active : styles.navLvl2}`}>
           <button onClick={showNavLvl2}>
@@ -31,15 +33,21 @@ function NavBar() {
           <p className={styles.categoryTitle}>Product List</p>
           <ul>
             <li onClick={showNavLvl3}>
-              Headset<span className='material-symbols-rounded'>chevron_right</span>
+              <p>
+                Headset<span className='material-symbols-rounded'>chevron_right</span>
+              </p>
               <NavSubCategory navLvl3={navLvl3} showNavLvl3={showNavLvl3} />
             </li>
             <li>
-              Mouse<span className='material-symbols-rounded'>chevron_right</span>
+              <p>
+                Mouse<span className='material-symbols-rounded'>chevron_right</span>
+              </p>
               <NavSubCategory />
             </li>
             <li>
-              Potato<span className='material-symbols-rounded'>chevron_right</span>
+              <p>
+                Potato<span className='material-symbols-rounded'>chevron_right</span>
+              </p>
               <NavSubCategory />
             </li>
           </ul>
