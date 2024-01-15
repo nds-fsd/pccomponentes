@@ -1,27 +1,28 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import NavSubCategory from './NavSubCategory/NavBarSubCategory';
 import styles from './navBar.module.css';
 
 function NavBar() {
-  const [sidebar, setSidebar] = useState(false);
-  const [subMenu, setSubMenu] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
-  const showSubMenu = () => setSubMenu(!subMenu);
+  const [navLvl1, setNavLvl1] = useState(false);
+  const [navLvl2, setNavLvl2] = useState(false);
+  const showNavLvl1 = () => setNavLvl1(!navLvl1);
+  const showNavLvl2 = () => setNavLvl2(!navLvl2);
 
   return (
     <>
-      <nav className={`${sidebar ? styles.navMenu + ' ' + styles.active : styles.navMenu}`}>
-        <span className={'material-symbols-rounded'} id={styles.closeIcon} onClick={showSidebar}>
+      <nav className={`${navLvl1 ? styles.navLvl1 + ' ' + styles.active : styles.navLvl1}`}>
+        <span className={'material-symbols-rounded'} id={styles.closeIcon} onClick={showNavLvl1}>
           close
         </span>
         <ul>
-          <li onClick={showSidebar}>
+          <li onClick={showNavLvl1}>
             <Link to='/'>Home</Link>
           </li>
-          <li onClick={showSubMenu}>Product List</li>
+          <li onClick={showNavLvl2}>Product List</li>
         </ul>
-        <div className={`${subMenu ? styles.subMenu + ' ' + styles.active : styles.subMenu}`}>
-          <button onClick={showSubMenu}>
+        <div className={`${navLvl2 ? styles.navLvl2 + ' ' + styles.active : styles.navLvl2}`}>
+          <button onClick={showNavLvl2}>
             <span className='material-symbols-rounded'>chevron_left</span>
             Back
           </button>
@@ -29,20 +30,24 @@ function NavBar() {
           <ul>
             <li>
               Headset<span className='material-symbols-rounded'>chevron_right</span>
+              <NavSubCategory />
             </li>
             <li>
               Mouse<span className='material-symbols-rounded'>chevron_right</span>
+              <NavSubCategory />
             </li>
             <li>
               Potato<span className='material-symbols-rounded'>chevron_right</span>
+              <NavSubCategory />
             </li>
           </ul>
         </div>
       </nav>
-      <span className='material-symbols-rounded' id={styles.hambIcon} onClick={showSidebar}>
+      <span className='material-symbols-rounded' id={styles.hambIcon} onClick={showNavLvl1}>
         menu
       </span>
-      <div className={`${styles.bgOverlay} ${sidebar ? styles.active : ''}`} onClick={showSidebar}></div>
+      <div className={`${styles.bgOverlay} ${navLvl1 ? styles.active : ''}`} onClick={showNavLvl1}></div>
+      {/* {console.log(`Nav Level 1: ${navLvl1}, Nav Level 2: ${navLvl2}`)} */}
     </>
   );
 }
