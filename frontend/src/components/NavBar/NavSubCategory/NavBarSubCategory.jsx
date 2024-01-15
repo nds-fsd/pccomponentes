@@ -1,6 +1,6 @@
 import styles from './navBarSubCategory.module.css';
 
-const NavSubCategory = ({ navLvl3, showNavLvl3 }) => {
+const NavSubCategory = ({ navLvl3, showNavLvl3, hideAll }) => {
   return (
     <>
       <div className={`${navLvl3 ? styles.navLvl3 + ' ' + styles.active : styles.navLvl3}`}>
@@ -10,9 +10,9 @@ const NavSubCategory = ({ navLvl3, showNavLvl3 }) => {
         </button>
         <p className={styles.categoryTitle}>Headset</p>
         <ul>
-          <li>item 1</li>
-          <li>item 2</li>
-          <li>item 3</li>
+          <li onClick={hideAll}>All</li>
+          <li onClick={hideAll}>item 2</li>
+          <li onClick={hideAll}>item 3</li>
         </ul>
       </div>
     </>

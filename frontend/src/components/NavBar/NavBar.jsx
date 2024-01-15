@@ -10,6 +10,11 @@ function NavBar() {
   const showNavLvl1 = () => setNavLvl1(!navLvl1);
   const showNavLvl2 = () => setNavLvl2(!navLvl2);
   const showNavLvl3 = () => setNavLvl3(!navLvl3);
+  const hideAll = () => {
+    setNavLvl1(false);
+    setNavLvl2(false);
+    setNavLvl3(false);
+  };
 
   return (
     <>
@@ -36,7 +41,7 @@ function NavBar() {
               <p>
                 Headset<span className='material-symbols-rounded'>chevron_right</span>
               </p>
-              <NavSubCategory navLvl3={navLvl3} showNavLvl3={showNavLvl3} />
+              <NavSubCategory navLvl3={navLvl3} showNavLvl3={showNavLvl3} hideAll={hideAll} />
             </li>
             <li>
               <p>
@@ -56,7 +61,7 @@ function NavBar() {
       <span className='material-symbols-rounded' id={styles.hambIcon} onClick={showNavLvl1}>
         menu
       </span>
-      <div className={`${styles.bgOverlay} ${navLvl1 ? styles.active : ''}`} onClick={showNavLvl1}></div>
+      <div className={`${styles.bgOverlay} ${navLvl1 ? styles.active : ''}`} onClick={hideAll}></div>
       {console.log(`Nav Level 1: ${navLvl1}, Nav Level 2: ${navLvl2}, Nav Level 3: ${navLvl3}`)}
     </>
   );
