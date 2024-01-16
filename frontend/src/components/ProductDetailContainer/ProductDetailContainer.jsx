@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './productDetailContainer.module.css';
+import ImageCarousel from '../ImageCarousel/ImageCarousel';
 
 const ProductDetailContainer = ({ product }) => {
   const productData = product && product.ProductFound;
@@ -7,11 +8,7 @@ const ProductDetailContainer = ({ product }) => {
     <div className={styles.container}>
       {productData ? (
         <>
-          <img
-            className={styles.productImage}
-            src={productData.image}
-            alt='image of the product'
-          />
+          <ImageCarousel product={productData} />
           <div className={styles.productdata}>
             <h2>{productData.name}</h2>
             <h3>
@@ -19,9 +16,7 @@ const ProductDetailContainer = ({ product }) => {
             </h3>
             <br />
             <h4>Description: </h4>
-            <p className={styles.productDescription}>
-              {productData.description}
-            </p>
+            <p className={styles.productDescription}>{productData.description}</p>
           </div>
         </>
       ) : (
