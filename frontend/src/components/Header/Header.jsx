@@ -11,11 +11,7 @@ function Header() {
         <div className={styles.headerContent}>
           <Link to={'/'}>
             <img src={computechLogo} alt='computech logo' />
-            <img
-              className={styles.computechLogoText}
-              src={computechLogoText}
-              alt='computech text'
-            />
+            <img className={styles.computechLogoText} src={computechLogoText} alt='computech text' />
           </Link>
           <div className={styles.icons}>
             <span className='material-symbols-rounded'>search</span>
@@ -27,6 +23,7 @@ function Header() {
           </div>
         </div>
       </div>
+      {/* <div className={`${styles.bgOverlay} ${propNavLvl2 ? styles.active : ''}`}></div> */}
     </header>
   );
 }
