@@ -7,6 +7,7 @@ import TermsConditions from './components/TermsConditions/TermsConditions';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import MyAccount from './components/MyAccount/MyAccount';
 import Profile from './components/Profile/Profile';
+import Backoffice from './components/Backoffice/Backoffice';
 import NoMatch from './components/NoMatch/NoMatch';
 
 import { Routes, Route } from 'react-router-dom';
@@ -14,6 +15,9 @@ import { Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <>
+      <Routes>
+        <Route path='/backoffice' element={<Backoffice />} />
+      </Routes>
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
