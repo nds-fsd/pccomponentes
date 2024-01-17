@@ -42,7 +42,7 @@
   display: flex;
   margin-top: 20px;
   padding-bottom: 10px;
-  gap: 10px;
+  gap: 16px;
   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: thin; /* For Firefox */
@@ -53,13 +53,15 @@
   /* For Chrome, Safari, and Opera */
   width: 4px;
   height: 4px;
+  display: none;
 }
 
 .thumbnailContainer::-webkit-scrollbar-thumb {
   /* For Chrome, Safari, and Opera */
-  background-color: var(--primary-900);
+  background-color: var(--primary-950);
   height: 4px;
   width: 4px;
+  border-radius: 4px;
 }
 
 .thumbnailContainer::-webkit-scrollbar-track {
@@ -68,17 +70,19 @@
 }
 
 .thumbnail {
-  max-width: 100px;
-  max-height: 100px;
-  margin-right: 5px;
+  max-width: 80px;
+  max-height: 80px;
   border-radius: 0px 16px;
   cursor: pointer;
-}
-
-.selectedThumbnail {
-  max-width: 100px;
-  max-height: 100px;
   border-radius: 0px 16px;
   border: 1px solid var(--primary-900);
   box-shadow: 3px 3px 0px 0px var(--primary-900);
+}
+
+.selectedThumbnail {
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 0px 16px;
+  border: 1px solid var(--primary-500);
+  box-shadow: 3px 3px 0px 0px var(--primary-500);
 }
