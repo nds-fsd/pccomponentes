@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { api } from '../../_utils/api';
 import { setUserSession } from '../../_utils/localStorage.utils';
+import { Link } from 'react-router-dom';
 
 export const Register = ({ forceUpdate, changeAccountCreated }) => {
   const [error, setError] = useState();
@@ -59,13 +60,15 @@ export const Register = ({ forceUpdate, changeAccountCreated }) => {
       <input type='submit' value='Create account' />
       <br />
       <p>or</p>
-      <input
-        type='button'
-        onClick={() => {
-          changeAccountCreated('login');
-        }}
-        value='I have an account'
-      />
+      <Link to='/login'>
+        <input
+          type='button'
+          onClick={() => {
+            changeAccountCreated('login');
+          }}
+          value='I have an account'
+        />
+      </Link>
     </form>
   );
 };

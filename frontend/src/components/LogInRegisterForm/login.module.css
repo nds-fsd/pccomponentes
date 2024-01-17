@@ -1,0 +1,4 @@
+.form {
+  padding: 0 var(--wrapper);
+  max-width: var(--wrapper-max);
+}
