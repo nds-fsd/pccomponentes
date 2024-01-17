@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './Profile.module.css';
 import { LogInRegisterForm } from '../LogInRegisterForm/LogInRegisterForm';
+import { LogOut } from '../Logout/Logout';
 
-function Profile() {
+export const Profile = ({ isLogged }) => {
   const [user, setUser] = useState({});
-  const [registered, setRegistered] = useState(false);
+  const [update, setUpdate] = useState(false);
+
+  const forceUpdate = () => {
+    setUpdate(!update);
+  };
 
   const getUserById = (_id) => {
     api
@@ -21,8 +26,8 @@ function Profile() {
     getUserById('659ef9d9949793d9459558d0');
   }, []);
 
-  if (!registered) {
-    return <LogInRegisterForm />;
+  if (!isLogged) {
+    return <LogInRegisterForm forceUpdate={forceUpdate} />;
   }
 
   return (
@@ -44,9 +49,10 @@ function Profile() {
           </div>
         </div>
         <button disabled>Edit</button>
+        <LogOut forceUpdate={forceUpdate} />
       </div>
     </section>
   );
-}
+};
 
 export default Profile;
