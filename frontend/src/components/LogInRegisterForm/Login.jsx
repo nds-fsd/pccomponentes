@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { api } from '../../_utils/api';
 import { setUserSession } from '../../_utils/localStorage.utils';
+import { Link } from 'react-router-dom';
+import styles from './login.module.css';
 
 export const Login = ({ forceUpdate, changeAccountCreated }) => {
   const [error, setError] = useState();
@@ -26,7 +28,7 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <h3>Log In</h3>
       <input
         type='text'
@@ -45,13 +47,15 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
       <input type='submit' value='Log In' />
       <br />
       <p>or</p>
-      <input
-        type='button'
-        onClick={() => {
-          changeAccountCreated('register');
-        }}
-        value='Create account'
-      />
+      <Link to='/register'>
+        <input
+          type='button'
+          onClick={() => {
+            changeAccountCreated('register');
+          }}
+          value='Create account'
+        />
+      </Link>
     </form>
   );
 };
