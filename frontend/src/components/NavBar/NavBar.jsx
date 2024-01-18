@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { api } from '../../_utils/api';
 import NavSubCategory from './NavSubCategory/NavBarSubCategory';
 import styles from './navBar.module.css';
 
@@ -15,6 +16,20 @@ function NavBar() {
     setNavLvl2(false);
     setNavLvl3(false);
   };
+  const [categories, setCategories] = useState([]);
+  const getAllCategories = async () => {
+    return api.get('/categories');
+  };
+
+  useEffect(() => {
+    getAllCategories()
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.log('Error!');
+      });
+  }, []);
 
   return (
     <>
@@ -37,24 +52,20 @@ function NavBar() {
           </button>
           <p className={styles.categoryTitle}>Product List</p>
           <ul>
-            <li onClick={showNavLvl3}>
-              <p>
-                Headset<span className='material-symbols-rounded'>chevron_right</span>
-              </p>
-              <NavSubCategory navLvl3={navLvl3} showNavLvl3={showNavLvl3} hideAll={hideAll} />
-            </li>
-            <li>
-              <p>
-                Mouse<span className='material-symbols-rounded'>chevron_right</span>
-              </p>
-              <NavSubCategory />
-            </li>
-            <li>
-              <p>
-                Potato<span className='material-symbols-rounded'>chevron_right</span>
-              </p>
-              <NavSubCategory />
-            </li>
+            {categories.map((category) => (
+              <li key={category._id} onClick={showNavLvl3}>
+                <p>
+                  {category.categoryName}
+                  <span className='material-symbols-rounded'>chevron_right</span>
+                </p>
+                <NavSubCategory
+                  navLvl3={navLvl3}
+                  showNavLvl3={showNavLvl3}
+                  hideAll={hideAll}
+                  categoryName={category.categoryName}
+                />
+              </li>
+            ))}
           </ul>
         </div>
       </nav>
@@ -62,7 +73,7 @@ function NavBar() {
         menu
       </span>
       <div className={`${styles.bgOverlay} ${navLvl1 || navLvl2 ? styles.active : ''}`} onClick={hideAll}></div>
-      {console.log(`Nav Level 1: ${navLvl1}, Nav Level 2: ${navLvl2}, Nav Level 3: ${navLvl3}`)}
+      {/* {console.log(`Nav Level 1: ${navLvl1}, Nav Level 2: ${navLvl2}, Nav Level 3: ${navLvl3}`)} */}
     </>
   );
 }
