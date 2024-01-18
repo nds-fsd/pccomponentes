@@ -1,3 +1,4 @@
+import BackofficeCompany from './BackofficeCompany/BackofficeCompany';
 import BackofficeHome from './BackofficeHome/BackofficeHome';
 import BackofficeNav from './BackofficeNav/BackofficeNav';
 import styles from './backoffice.module.css';
@@ -10,7 +11,8 @@ const Backoffice = () => {
     <ConfigProvider theme={{ algorithm: darkAlgorithm }}>
       <div className={styles.body}>
         <BackofficeNav />
-        <BackofficeHome />
+        {/* <BackofficeHome /> */}
+        <BackofficeCompany />
       </div>
     </ConfigProvider>
   );
