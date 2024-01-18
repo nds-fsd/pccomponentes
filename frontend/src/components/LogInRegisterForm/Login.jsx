@@ -15,12 +15,17 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
   } = useForm({});
 
   const doLogin = (data) => {
-    api.post('auth/login', data).then((response) => {
-      if (response?.data.token) {
-        setUserSession(response.data);
-        forceUpdate();
-      }
-    });
+    api
+      .post('auth/login', data)
+      .then((response) => {
+        if (response?.data.token) {
+          setUserSession(response.data);
+          forceUpdate();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const onSubmit = (data) => {

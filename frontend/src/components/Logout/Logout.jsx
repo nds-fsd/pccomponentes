@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { getUserSession, removeSession } from '../../_utils/localStorage.utils';
 
 export const LogOut = ({ forceUpdate }) => {
