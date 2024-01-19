@@ -62,6 +62,7 @@ function NavBar() {
         menu
       </span>
       <div className={`${styles.bgOverlay} ${navLvl1 ? styles.active : ''}`} onClick={hideAll}></div>
+      {console.log(`Nav Level 1: ${navLvl1}, Nav Level 2: ${navLvl2}, Nav Level 3: ${navLvl3}`)}
     </>
   );
 }
