@@ -1,25 +1,34 @@
+.main {
+  align-items: center;
+  display: flex;
+  height: calc(100svh - var(--header-height));
+  justify-content: center;
+}
+
 .form {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  max-width: var(--wrapper-max);
-  padding: 2rem var(--wrapper);
+  max-width: 24rem;
+  padding: 0 var(--wrapper);
   width: 100%;
 }
+
 .errorMessage {
   color: var(--error-500);
   font-size: var(--body-xsmall);
 }
+
 .formInput {
   border: none;
   border-radius: 0.2rem;
   height: 2.5rem;
 }
-input::placeholder {
+
+.formInput::placeholder {
   color: var(--neutral-500);
   padding-left: 0.5rem;
 }
+
 .password {
   font-size: var(--body-small);
   text-decoration: underline;

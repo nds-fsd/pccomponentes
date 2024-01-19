@@ -33,7 +33,7 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
   };
 
   return (
-    <main>
+    <main className={styles.main}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <h2>Log In</h2>
         <br />
@@ -43,7 +43,7 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
           placeholder='Email address'
           {...register('email', {
             required: 'Email is required.',
-            pattern: { value: /^\S+@\S+$/i, message: 'Invalid email format.' },
+            pattern: { value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, message: 'Invalid email format.' },
           })}
         />
         {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
