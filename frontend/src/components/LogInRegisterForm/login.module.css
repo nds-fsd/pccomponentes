@@ -1,0 +1,46 @@
+.main {
+  align-items: center;
+  display: flex;
+  height: calc(100svh - var(--header-height));
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 24rem;
+  padding: 0 var(--wrapper);
+  width: 100%;
+}
+
+.errorMessage {
+  color: var(--error-500);
+  font-size: var(--body-xsmall);
+}
+
+.formInput {
+  border: none;
+  border-radius: 0.2rem;
+  height: 2.5rem;
+}
+
+.formInput::placeholder {
+  color: var(--neutral-500);
+  padding-left: 0.5rem;
+}
+
+.password {
+  font-size: var(--body-small);
+  text-decoration: underline;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stretchBtn {
+  width: 100%;
+}
