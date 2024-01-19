@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber } from 'antd';
 import { api } from '../../../_utils/api';
-import styles from './BackofficeCompany.module.css';
+import styles from './BackofficeCompanies.module.css';
 
 const BackofficeCompany = () => {
   const [companies, setCompanies] = useState([]);
