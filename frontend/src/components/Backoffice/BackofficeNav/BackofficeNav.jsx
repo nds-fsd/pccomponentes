@@ -4,21 +4,27 @@ import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import styles from './backofficeNav.module.css';
 
-function getItem(label, key, icon, children, type) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type,
-  };
-}
-
 const items = [
-  getItem('Products', '1', <span className='material-symbols-rounded'>inventory_2</span>),
-  getItem('Categories', '2', <span className='material-symbols-rounded'>category</span>),
-  getItem('Orders', '3', <span className='material-symbols-rounded'>conveyor_belt</span>),
-  getItem('Users', '4', <span className='material-symbols-rounded'>person</span>),
+  {
+    key: '/products',
+    label: <Link /*to='/backoffice/products'*/>Products</Link>,
+    icon: <span className='material-symbols-rounded'>inventory_2</span>,
+  },
+  {
+    key: '/categories',
+    label: <Link /*to='/backoffice/categories'*/>Categories</Link>,
+    icon: <span className='material-symbols-rounded'>category</span>,
+  },
+  {
+    key: '/orders',
+    label: <Link /*to='/backoffice/orders'*/>Orders</Link>,
+    icon: <span className='material-symbols-rounded'>conveyor_belt</span>,
+  },
+  {
+    key: '/users',
+    label: <Link to='/backoffice/users'>Users</Link>,
+    icon: <span className='material-symbols-rounded'>person</span>,
+  },
 ];
 
 const BackofficeNav = () => {
