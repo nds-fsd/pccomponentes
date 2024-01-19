@@ -33,3 +33,14 @@
   font-size: var(--body-small);
   text-decoration: underline;
 }
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stretchBtn {
+  width: 100%;
+}

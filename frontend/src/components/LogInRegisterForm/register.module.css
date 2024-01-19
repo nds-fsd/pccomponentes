@@ -28,3 +28,41 @@
   color: var(--neutral-500);
   padding-left: 0.5rem;
 }
+
+.inputCheck {
+  margin: 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.privacy {
+  text-decoration: underline;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stretchBtn {
+  width: 100%;
+}
+
+.checks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.groupCheck {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dash {
+  width: calc(100% - 1rem);
+}

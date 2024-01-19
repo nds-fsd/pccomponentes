@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { setUserSession } from '../../_utils/localStorage.utils';
 
 import styles from './register.module.css';
+import PrimaryButton from '../PrimaryButton/PrimaryButton';
+import SecondaryButton from '../SecondaryButton/SecondaryButton';
 
 export const Register = ({ forceUpdate, changeAccountCreated }) => {
   const [error, setError] = useState();
@@ -61,27 +63,47 @@ export const Register = ({ forceUpdate, changeAccountCreated }) => {
         <br />
         {/* <input type='password' placeholder='Repeat password' />
           <br /> */}
-        <input type='checkbox' {...register('privacy', { required: 'Privacy Policy is required.' })} />
-        <label>I have read and accept the Privacy Policy</label>
-        {errors.privacy && <p className={styles.errorMessage}>{errors.privacy.message}</p>}
+        <div className={styles.checks}>
+          <div className={styles.groupCheck}>
+            <input
+              className={styles.inputCheck}
+              type='checkbox'
+              {...register('privacy', { required: 'Privacy Policy is required.' })}
+            />
+            <label>
+              I have read and accept the{' '}
+              <Link to='/privacy-policy' className={styles.privacy}>
+                Privacy Policy
+              </Link>
+              .
+            </label>
+            {errors.privacy && <p className={styles.errorMessage}>{errors.privacy.message}</p>}
+            <br />
+          </div>
+          <br />
+          <div className={styles.groupCheck}>
+            <input className={styles.inputCheck} type='checkbox' {...register('subscribe')} />
+            <label className={styles.dash}>
+              Receive exclusive discounts, news, and trends by email. You can unsubscribe from “My dashboard”.
+            </label>
+          </div>
+        </div>
         <br />
-        <input type='checkbox' {...register('subscribe')} />
-        <label>Receive exclusive discounts, news, and trends by email. You can unsubscribe from “My dashboard”</label>
-        <br />
-        <input className={styles.formInput} type='submit' value='Create account' />
-        <br />
-        <p>or</p>
-        <br />
-        <Link to='/login'>
-          <input
-            className={styles.formInput}
-            type='button'
-            onClick={() => {
-              changeAccountCreated('login');
-            }}
-            value='I have an account'
-          />
-        </Link>
+        <div className={styles.buttons}>
+          <PrimaryButton btnType='submit' value='Create account' />
+          <br />
+          <p>or</p>
+          <br />
+          <Link to='/login' className={styles.stretchBtn}>
+            <SecondaryButton
+              btnType='button'
+              value='I have an account'
+              onClick={() => {
+                changeAccountCreated('login');
+              }}
+            />
+          </Link>
+        </div>
       </form>
     </main>
   );
