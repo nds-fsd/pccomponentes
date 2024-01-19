@@ -20,7 +20,3 @@ input::placeholder {
   color: var(--neutral-500);
   padding-left: 0.5rem;
 }
-.password {
-  font-size: var(--body-small);
-  text-decoration: underline;
-}

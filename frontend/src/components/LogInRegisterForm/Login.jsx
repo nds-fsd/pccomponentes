@@ -33,34 +33,46 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <h3>Log In</h3>
-      <input
-        type='text'
-        placeholder='Email address'
-        {...register('email', {
-          required: 'Email is required.',
-          pattern: { value: /^\S+@\S+$/i, message: 'Invalid email format.' },
-        })}
-      />
-      <br />
-      {errors.email && <p>{errors.email.message}</p>} <br />
-      <input type='password' placeholder='Password' {...register('password', { required: 'Password is required.' })} />
-      <br />
-      {errors.password && <p>{errors.password.message}</p>}
-      <br />
-      <input type='submit' value='Log In' />
-      <br />
-      <p>or</p>
-      <Link to='/register'>
+    <main>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <h2>Log In</h2>
+        <br />
         <input
-          type='button'
-          onClick={() => {
-            changeAccountCreated('register');
-          }}
-          value='Create account'
+          className={styles.formInput}
+          type='text'
+          placeholder='Email address'
+          {...register('email', {
+            required: 'Email is required.',
+            pattern: { value: /^\S+@\S+$/i, message: 'Invalid email format.' },
+          })}
         />
-      </Link>
-    </form>
+        {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
+        <br />
+        <input
+          className={styles.formInput}
+          type='password'
+          placeholder='Password'
+          {...register('password', { required: 'Password is required.' })}
+        />
+        {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
+        <br />
+        <a className={styles.password}>Forgot my password</a>
+        <br />
+        <input className={styles.formInput} type='submit' value='Log In' />
+        <br />
+        <p>or</p>
+        <br />
+        <Link to='/register'>
+          <input
+            className={styles.formInput}
+            type='button'
+            onClick={() => {
+              changeAccountCreated('register');
+            }}
+            value='Create account'
+          />
+        </Link>
+      </form>
+    </main>
   );
 };

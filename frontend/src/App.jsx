@@ -44,7 +44,8 @@ function App() {
         <Route path='/terms-and-conditions' element={<TermsConditions />} />
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
         {isLogged && <Route path='/my-account' element={<MyAccount />} />}
-        <Route path='/profile' element={<Profile isLogged={isLogged} token={token} />} />
+        <Route path='/profile' element={<Profile token={token} />} />
+        
         {!isLogged && !accountCreated && (
           <Route
             path='/register'
