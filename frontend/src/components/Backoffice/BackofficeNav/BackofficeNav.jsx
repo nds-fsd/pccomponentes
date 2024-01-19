@@ -7,7 +7,7 @@ import styles from './backofficeNav.module.css';
 const items = [
   {
     key: '/products',
-    label: <Link /*to='/backoffice/products'*/>Products</Link>,
+    label: <Link to='/backoffice/products'>Products</Link>,
     icon: <span className='material-symbols-rounded'>inventory_2</span>,
   },
   {
@@ -24,6 +24,11 @@ const items = [
     key: '/users',
     label: <Link to='/backoffice/users'>Users</Link>,
     icon: <span className='material-symbols-rounded'>person</span>,
+  },
+  {
+    key: '/companies',
+    label: <Link to='/backoffice/companies'>Companies</Link>,
+    icon: <span className='material-symbols-rounded'>apartment</span>,
   },
 ];
 
