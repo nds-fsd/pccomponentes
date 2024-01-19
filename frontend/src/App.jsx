@@ -20,6 +20,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
+import BackofficeCompany from './components/Backoffice/BackofficeCompany/BackofficeCompany';
 
 const queryClient = new QueryClient();
 
@@ -71,6 +72,7 @@ function App() {
           <Route path='/backoffice' element={<BackofficeHome />} />
           <Route path='/backoffice/users' element={<BackofficeUsers />} />
           <Route path='/backoffice/products' element={<BackofficeProducts />} />
+          <Route path='/backoffice/companies' element={<BackofficeCompany />} />
         </Route>
       </Routes>
     </QueryClientProvider>
