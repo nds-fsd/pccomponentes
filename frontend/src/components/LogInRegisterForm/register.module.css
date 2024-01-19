@@ -15,7 +15,7 @@
 
 .errorMessage {
   color: var(--error-500);
-  font-size: var(--body-xsmall);
+  font-size: var(--body-small);
 }
 
 .formInput {

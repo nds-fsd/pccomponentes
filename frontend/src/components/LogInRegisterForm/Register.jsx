@@ -41,7 +41,7 @@ export const Register = ({ forceUpdate, changeAccountCreated }) => {
           placeholder='Name'
           {...register('username', { required: 'Name is required.' })}
         />
-        {errors.name && <p className={styles.errorMessage}>{errors.username.message}</p>}
+        {errors.username && <p className={styles.errorMessage}>{errors.username.message}</p>}
         <br />
         <input
           className={styles.formInput}
@@ -77,9 +77,9 @@ export const Register = ({ forceUpdate, changeAccountCreated }) => {
               </Link>
               .
             </label>
-            {errors.privacy && <p className={styles.errorMessage}>{errors.privacy.message}</p>}
             <br />
           </div>
+            {errors.privacy && <p className={styles.errorMessage}>{errors.privacy.message}</p>}
           <br />
           <div className={styles.groupCheck}>
             <input className={styles.inputCheck} type='checkbox' {...register('subscribe')} />
