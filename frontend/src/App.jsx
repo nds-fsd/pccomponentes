@@ -11,6 +11,7 @@ import Profile from './components/Profile/Profile';
 import BackofficeLayout from './components/Backoffice/BackofficeLayout';
 import BackofficeHome from './components/Backoffice/BackofficeHome/BackofficeHome';
 import BackofficeUsers from './components/Backoffice/BackofficeUsers/BackofficeUsers';
+import BackofficeProducts from './components/Backoffice/BackofficeProducts/BackofficeProducts';
 import NoMatch from './components/NoMatch/NoMatch';
 
 import { useState } from 'react';
@@ -69,6 +70,7 @@ function App() {
         <Route path='/backoffice' element={<BackofficeLayout />}>
           <Route path='/backoffice' element={<BackofficeHome />} />
           <Route path='/backoffice/users' element={<BackofficeUsers />} />
+          <Route path='/backoffice/products' element={<BackofficeProducts />} />
         </Route>
       </Routes>
     </QueryClientProvider>
