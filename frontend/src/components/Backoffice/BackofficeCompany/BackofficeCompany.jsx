@@ -92,7 +92,7 @@ const BackofficeCompany = () => {
       </Button>
       <Table dataSource={companies} columns={columns} />
 
-      <Modal title='Add New Company' visible={isModalVisible} onCancel={handleCancel} onOk={() => form.submit()}>
+      <Modal title='Add New Company' open={isModalVisible} onCancel={handleCancel} onOk={() => form.submit()}>
         <Form form={form} onFinish={createCompany}>
           <Form.Item name='companyName' label='Company Name' rules={[{ required: true }]}>
             <Input />
