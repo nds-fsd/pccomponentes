@@ -1,4 +1,6 @@
 import Layout from './components/Layout';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import ProductList from './components/ProductList/ProductList';
 import Product from './components/Product/Product';
@@ -7,6 +9,7 @@ import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import MyAccount from './components/MyAccount/MyAccount';
 import Profile from './components/Profile/Profile';
 import BackofficeLayout from './components/Backoffice/BackofficeLayout';
+import BackofficeHome from './components/Backoffice/BackofficeHome/BackofficeHome';
 import BackofficeUsers from './components/Backoffice/BackofficeUsers/BackofficeUsers';
 import NoMatch from './components/NoMatch/NoMatch';
 
@@ -46,7 +49,6 @@ function App() {
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
         {isLogged && <Route path='/my-account' element={<MyAccount />} />}
         <Route path='/profile' element={<Profile token={token} />} />
-
         {!isLogged && !accountCreated && (
           <Route
             path='/register'
@@ -62,6 +64,13 @@ function App() {
         <Route path='*' element={<NoMatch />} />
       </Routes>
       <Footer />
+
+      <Routes>
+        <Route path='/backoffice' element={<BackofficeLayout />}>
+          <Route path='/backoffice' element={<BackofficeHome />} />
+          <Route path='/backoffice/users' element={<BackofficeUsers />} />
+        </Route>
+      </Routes>
     </QueryClientProvider>
   );
 }

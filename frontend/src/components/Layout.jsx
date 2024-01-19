@@ -5,7 +5,7 @@ import Footer from '../components/Footer/Footer';
 const Layout = () => {
   return (
     <>
-      <Header />
+      <Header isLogged={isLogged} accountCreated={accountCreated} />
       <Outlet />
       <Footer />
     </>
