@@ -70,6 +70,7 @@ const BackofficeProducts = () => {
       key: 'name',
       render: (text) => <a>{text}</a>,
     },
+    Table.EXPAND_COLUMN,
     {
       title: 'Brand',
       dataIndex: 'brand',
@@ -84,11 +85,6 @@ const BackofficeProducts = () => {
       title: 'Stock',
       dataIndex: 'stock',
       key: 'stock',
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
     },
     {
       title: 'Actions',
@@ -108,7 +104,13 @@ const BackofficeProducts = () => {
       <Button type='primary' onClick={showModal}>
         Add Product
       </Button>
-      <Table dataSource={formatedProducts} columns={columns} />
+      <Table
+        dataSource={formatedProducts}
+        columns={columns}
+        expandable={{
+          expandedRowRender: (record) => <p style={{ margin: 0 }}>{record.description}</p>,
+        }}
+      />
       <Modal title='Add New Product' open={isModalVisible} onCancel={handleCancel} onOk={() => form.submit()}>
         <Form form={form} onFinish={createProduct}>
           <Form.Item name='name' label='Product Name' rules={[{ required: true }]}>
