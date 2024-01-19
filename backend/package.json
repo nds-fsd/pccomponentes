@@ -12,9 +12,8 @@
     ]
   },
   "scripts": {
-    "dev": "node --watch src/index.js",
-    "start": "nodemon src/index.js",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --coverage"
+    "dev": "nodemon src/index.js",
+    "start": "node --watch src/index.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
