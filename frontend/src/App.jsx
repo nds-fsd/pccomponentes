@@ -23,8 +23,6 @@ function App() {
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
         <Route path='/my-account' element={<MyAccount />} />
         <Route path='/profile' element={<Profile />} />
-        {/* <Route path='purchases' element={<MyPurchases />} />
-          <Route path='wishlist' element={<Wishlist />} /> */}
         <Route path='*' element={<NoMatch />} />
       </Routes>
       <Footer />
