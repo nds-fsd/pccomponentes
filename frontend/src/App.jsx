@@ -58,8 +58,6 @@ function App() {
             element={<Login forceUpdate={forceUpdate} changeAccountCreated={changeAccountCreated} />}
           />
         )}
-        {/* <Route path='purchases' element={<MyPurchases />} />
-          <Route path='wishlist' element={<Wishlist />} /> */}
         <Route path='*' element={<NoMatch />} />
       </Routes>
       <Footer />
