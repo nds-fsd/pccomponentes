@@ -1,44 +1,9 @@
-import { Table } from 'antd';
 import styles from './backofficeHome.module.css';
 
 const BackofficeHome = () => {
-  const dataSource = [
-    {
-      key: '1',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-  ];
-
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ];
-
   return (
     <main className={styles.main}>
-      <h1>Products</h1>
-      <Table dataSource={dataSource} columns={columns} />
+      <h1>This is the Home of Backoffice</h1>
     </main>
   );
 };
