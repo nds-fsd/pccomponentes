@@ -125,7 +125,7 @@ const BackofficeProducts = () => {
           <Form.Item name='stock' label='Stock' rules={[{ required: true, type: 'number' }]}>
             <InputNumber min={0} />
           </Form.Item>
-          <Form.Item name='description' label='Description'>
+          <Form.Item name='description' label='Description' rules={[{ required: true }]}>
             <Input.TextArea />
           </Form.Item>
         </Form>
