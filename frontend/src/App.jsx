@@ -1,4 +1,6 @@
 import Layout from './components/Layout';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import ProductList from './components/ProductList/ProductList';
 import Product from './components/Product/Product';
@@ -47,7 +49,6 @@ function App() {
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
         {isLogged && <Route path='/my-account' element={<MyAccount />} />}
         <Route path='/profile' element={<Profile token={token} />} />
-
         {!isLogged && !accountCreated && (
           <Route
             path='/register'
@@ -62,11 +63,12 @@ function App() {
         )}
         <Route path='*' element={<NoMatch />} />
       </Routes>
+      <Footer />
 
       <Routes>
         <Route path='/backoffice' element={<BackofficeLayout />}>
           <Route path='/backoffice' element={<BackofficeHome />} />
-          <Route path='backoffice/users' element={<BackofficeUsers />} />
+          <Route path='/backoffice/users' element={<BackofficeUsers />} />
         </Route>
       </Routes>
     </QueryClientProvider>
