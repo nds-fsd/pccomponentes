@@ -107,6 +107,9 @@ const BackofficeProducts = () => {
       <Table
         dataSource={formatedProducts}
         columns={columns}
+        size='small'
+        pagination={{ pageSize: 10 }}
+        scroll={{ y: 500 }}
         expandable={{
           expandedRowRender: (record) => <p style={{ margin: 0 }}>{record.description}</p>,
         }}
