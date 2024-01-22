@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ProductDetailContainer from '../ProductDetailContainer/ProductDetailContainer';
+import ProductDetail from '../ProductDetail/ProductDetail';
 import { api } from '../../_utils/api';
-import styles from './product.module.css';
+import styles from './productPage.module.css';
 
 function Product() {
   const { id } = useParams();
@@ -24,7 +24,7 @@ function Product() {
 
   return (
     <div className={styles.product}>
-      <ProductDetailContainer product={product} />
+      <ProductDetail product={product} />
     </div>
   );
 }

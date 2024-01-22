@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './productDetailContainer.module.css';
+import styles from './productDetail.module.css';
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
 
 const ProductDetailContainer = ({ product }) => {
