@@ -1,7 +1,7 @@
 .button {
   align-items: center;
-  background: linear-gradient(95deg, #0198ff 0%, #7b34c7 100%);
-  border: none;
+  background: var(--Neutral-neutral-950, #020617);
+  border: 1px solid var(--Primary-primary-500, #4261e1);
   border-radius: 2px 32px;
   color: var(--neutral-50);
   cursor: pointer;
@@ -16,5 +16,6 @@
 }
 
 .button:hover {
-  background: linear-gradient(95deg, #0198ff 0%, #7b34c7 50%);
+  background: var(--Primary-primary-500, #4261e1);
+  border: none;
 }

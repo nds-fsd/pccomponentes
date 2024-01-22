@@ -72,8 +72,7 @@ function NavBar() {
       <span className='material-symbols-rounded' id={styles.hambIcon} onClick={showNavLvl1}>
         menu
       </span>
-      <div className={`${styles.bgOverlay} ${navLvl1 || navLvl2 ? styles.active : ''}`} onClick={hideAll}></div>
-      {/* {console.log(`Nav Level 1: ${navLvl1}, Nav Level 2: ${navLvl2}, Nav Level 3: ${navLvl3}`)} */}
+      <div className={`${styles.bgOverlay} ${navLvl1 ? styles.active : ''}`} onClick={hideAll}></div>
     </>
   );
 }

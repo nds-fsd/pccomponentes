@@ -1,0 +1,24 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 150px;
+  height: 100svh;
+  background-color: #001529;
+  transition: width 0.2s ease-in-out;
+}
+
+.navbar.collapsed {
+  width: 80px;
+}
+
+.navbar > img {
+  margin: 32px auto 0;
+}
+
+.navbar > button {
+  background-color: inherit;
+  border: none;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 auto 32px;
+}

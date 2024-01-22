@@ -10,6 +10,12 @@ exports.connectDB = async () => {
   mongoose.set('strictQuery', false);
 
   try {
+    if (process.env.NODE_ENV === 'test') {
+      mongod = await MongoMemoryServer.create();
+      dbUrl = mongod.getUri();
+      console.log(dbUrl);
+    }
+
     await mongoose.connect(dbUrl);
     const mongo = mongoose.connection;
     mongo.on('error', (error) => console.error(error));
