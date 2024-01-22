@@ -1,9 +1,8 @@
-import Layout from './components/Layout';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import ProductList from './components/ProductList/ProductList';
-import Product from './components/Product/Product';
+import ProductPage from './components/ProductPage/ProductPage';
 import TermsConditions from './components/TermsConditions/TermsConditions';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import MyAccount from './components/MyAccount/MyAccount';
@@ -46,7 +45,7 @@ function UserLayout({ children }) {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/product-list' element={<ProductList />} />
-        <Route path=':id' element={<Product />} />
+        <Route path=':id' element={<ProductPage />} />
         <Route path='/terms-and-conditions' element={<TermsConditions />} />
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
         {isLogged && <Route path='/my-account' element={<MyAccount />} />}
