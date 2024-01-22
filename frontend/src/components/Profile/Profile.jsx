@@ -68,11 +68,6 @@ import { LogOut } from '../Logout/Logout';
 
 export const Profile = () => {
   const [user, setUser] = useState({});
-  const [update, setUpdate] = useState(false);
-
-  const forceUpdate = () => {
-    setUpdate(!update);
-  };
 
   const getUserById = (_id) => {
     api
@@ -105,7 +100,7 @@ export const Profile = () => {
             <p>{user?.direction?.country}</p>
           </div>
           <button disabled>Edit</button>
-          <LogOut forceUpdate={forceUpdate} />
+          <LogOut />
         </div>
       </div>
     </section>
