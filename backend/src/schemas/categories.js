@@ -1,9 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const schema = new Schema({
-  categoryName: String
+  categoryName: String,
+  categoryImage: String,
 });
 
-const Categories = model('categories', schema);
+const Categories = model('Category', schema);
 
 module.exports = Categories;

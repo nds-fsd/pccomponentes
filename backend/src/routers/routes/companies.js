@@ -1,5 +1,12 @@
 const express = require('express');
-const { getCompanies, postCompany, getCompanyById, patchCompany, deleteCompany } = require('../../controllers/companies');
+const {
+  getCompanies,
+  postCompany,
+  getCompanyById,
+  patchCompany,
+  deleteCompany,
+} = require('../../controllers/companies');
+
 const companiesRouter = express.Router();
 
 companiesRouter.get('/', getCompanies);
