@@ -94,7 +94,7 @@ const BackofficeCategories = () => {
       <Modal title='Add New Product' open={isModalVisible} onCancel={handleCancel} onOk={() => form.submit()}>
         <Form form={form} onFinish={createCategory}>
           <Form.Item name='categoryName' label='Category Name' rules={[{ required: true }]}>
-            <Input />
+            <Input placeholder='Category Name' />
           </Form.Item>
         </Form>
       </Modal>
