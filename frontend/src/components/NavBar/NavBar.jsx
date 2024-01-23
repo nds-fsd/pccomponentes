@@ -4,18 +4,7 @@ import { api } from '../../_utils/api';
 import NavSubCategory from './NavSubCategory/NavBarSubCategory';
 import styles from './navBar.module.css';
 
-function NavBar() {
-  const [navLvl1, setNavLvl1] = useState(false);
-  const [navLvl2, setNavLvl2] = useState(false);
-  const [navLvl3, setNavLvl3] = useState(false);
-  const showNavLvl1 = () => setNavLvl1(!navLvl1);
-  const showNavLvl2 = () => setNavLvl2(!navLvl2);
-  const showNavLvl3 = () => setNavLvl3(!navLvl3);
-  const hideAll = () => {
-    setNavLvl1(false);
-    setNavLvl2(false);
-    setNavLvl3(false);
-  };
+function NavBar({ navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLvl3, hideAll }) {
   const [categories, setCategories] = useState([]);
   const getAllCategories = async () => {
     return api.get('/categories');
@@ -38,11 +27,18 @@ function NavBar() {
           close
         </span>
         <ul>
-          <li onClick={showNavLvl1}>
-            <Link to='/'>Home</Link>
-          </li>
           <li onClick={showNavLvl2}>
-            Product List <span className='material-symbols-rounded'>chevron_right</span>
+            <div>
+              <span className='material-symbols-rounded'>category</span>
+              Categories
+            </div>
+            <span className='material-symbols-rounded'>chevron_right</span>
+          </li>
+          <li onClick={showNavLvl1}>
+            <Link to='/sales'>
+              <span className='material-symbols-rounded'>shoppingmode</span>
+              Sales
+            </Link>
           </li>
         </ul>
         <div className={`${navLvl2 ? styles.navLvl2 + ' ' + styles.active : styles.navLvl2}`}>
@@ -50,7 +46,7 @@ function NavBar() {
             <span className='material-symbols-rounded'>chevron_left</span>
             Back
           </button>
-          <p className={styles.categoryTitle}>Product List</p>
+          <p className={styles.categoryTitle}>Categories</p>
           <ul>
             {categories.map((category) => (
               <li key={category._id} onClick={showNavLvl3}>
@@ -72,7 +68,7 @@ function NavBar() {
       <span className='material-symbols-rounded' id={styles.hambIcon} onClick={showNavLvl1}>
         menu
       </span>
-      <div className={`${styles.bgOverlay} ${navLvl1 ? styles.active : ''}`} onClick={hideAll}></div>
+      {/* <div className={`${styles.bgOverlay} ${navLvl1 ? styles.active : ''}`} onClick={hideAll}></div> */}
     </>
   );
 }

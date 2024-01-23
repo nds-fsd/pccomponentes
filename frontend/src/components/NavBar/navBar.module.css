@@ -1,6 +1,7 @@
 .navLvl1 {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
   background-color: var(--nav-bar);
   width: 320px;
   height: 100svh;
@@ -14,6 +15,7 @@
   & > ul {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 
     & > li {
       display: flex;
@@ -22,6 +24,17 @@
       font-size: var(--body-large);
       font-weight: 500;
       height: 40px;
+
+      & > div,
+      a {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        & > span {
+          color: var(--neutral-500);
+        }
+      }
     }
   }
 
