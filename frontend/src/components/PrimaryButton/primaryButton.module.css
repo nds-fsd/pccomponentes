@@ -13,6 +13,7 @@
   padding: 0 2rem;
   transition: 500ms;
   width: 100%;
+  text-align: center;
 }
 
 .button:hover {

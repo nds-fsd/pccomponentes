@@ -1,5 +1,6 @@
 import { getUserSession, removeSession } from '../../_utils/localStorage.utils';
 import { useNavigate } from 'react-router-dom';
+import SecondaryButton from '../SecondaryButton/SecondaryButton';
 export const LogOut = ({}) => {
   const navigate = useNavigate();
   const isLogged = !!getUserSession();
@@ -12,5 +13,5 @@ export const LogOut = ({}) => {
     navigate('/');
   };
 
-  return <button onClick={doLogout}>Logout</button>;
+  return <SecondaryButton btnType='button' onClick={doLogout} value='Logout' />;
 };
