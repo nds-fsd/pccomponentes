@@ -123,7 +123,7 @@ const BackofficeProducts = () => {
             <Input />
           </Form.Item>
           <Form.Item name='price' label='Price' rules={[{ required: true, type: 'number' }]}>
-            <InputNumber min={0} />
+            <InputNumber min={0} style={{ width: 120 }} addonAfter='€' />
           </Form.Item>
           <Form.Item name='stock' label='Stock' rules={[{ required: true, type: 'number' }]}>
             <InputNumber min={0} />
