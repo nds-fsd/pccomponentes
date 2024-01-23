@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { getUserSession, removeSession } from '../../_utils/localStorage.utils';
 import { useNavigate } from 'react-router-dom';
 export const LogOut = ({}) => {

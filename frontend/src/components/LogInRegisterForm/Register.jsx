@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { api } from '../../_utils/api';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -7,9 +6,10 @@ import { setUserSession } from '../../_utils/localStorage.utils';
 import styles from './register.module.css';
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
 import SecondaryButton from '../SecondaryButton/SecondaryButton';
+import { useNavigate } from 'react-router-dom';
 
 export const Register = ({ forceUpdate, changeAccountCreated }) => {
-  const [error, setError] = useState();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -28,6 +28,11 @@ export const Register = ({ forceUpdate, changeAccountCreated }) => {
 
   const onSubmit = (data) => {
     doRegister(data);
+    navigate('/');
+  };
+
+  const navToLogin = () => {
+    navigate('/login');
   };
 
   return (
@@ -79,7 +84,7 @@ export const Register = ({ forceUpdate, changeAccountCreated }) => {
             </label>
             <br />
           </div>
-            {errors.privacy && <p className={styles.errorMessage}>{errors.privacy.message}</p>}
+          {errors.privacy && <p className={styles.errorMessage}>{errors.privacy.message}</p>}
           <br />
           <div className={styles.groupCheck}>
             <input className={styles.inputCheck} type='checkbox' {...register('subscribe')} />
@@ -94,15 +99,14 @@ export const Register = ({ forceUpdate, changeAccountCreated }) => {
           <br />
           <p>or</p>
           <br />
-          <Link to='/login' className={styles.stretchBtn}>
-            <SecondaryButton
-              btnType='button'
-              value='I have an account'
-              onClick={() => {
-                changeAccountCreated('login');
-              }}
-            />
-          </Link>
+          <SecondaryButton
+            btnType='button'
+            value='I have an account'
+            onClick={() => {
+              changeAccountCreated('login');
+              navToLogin();
+            }}
+          />
         </div>
       </form>
     </main>
