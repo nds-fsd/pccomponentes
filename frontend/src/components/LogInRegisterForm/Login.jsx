@@ -1,14 +1,13 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { api } from '../../_utils/api';
 import { setUserSession } from '../../_utils/localStorage.utils';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './login.module.css';
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
 import SecondaryButton from '../SecondaryButton/SecondaryButton';
 
 export const Login = ({ forceUpdate, changeAccountCreated }) => {
-  const [error, setError] = useState();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -32,6 +31,11 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
 
   const onSubmit = (data) => {
     doLogin(data);
+    navigate('/');
+  };
+
+  const navToRegister = () => {
+    navigate('/register');
   };
 
   return (
@@ -66,15 +70,15 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
           <br />
           <p>or</p>
           <br />
-          <Link to='/register' className={styles.stretchBtn}>
-            <SecondaryButton
-              btnType='button'
-              value='Create account'
-              onClick={() => {
-                changeAccountCreated('register');
-              }}
-            />
-          </Link>
+
+          <SecondaryButton
+            btnType='button'
+            value='Create account'
+            onClick={() => {
+              changeAccountCreated('register');
+              navToRegister();
+            }}
+          />
         </div>
       </form>
     </main>
