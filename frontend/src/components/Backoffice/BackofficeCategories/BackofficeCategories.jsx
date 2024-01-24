@@ -57,6 +57,7 @@ const BackofficeCategories = () => {
   const formatedCategories = categories.map((category) => ({
     key: category._id,
     categoryName: category.categoryName,
+    categoryImage: category.categoryImage,
   }));
 
   const columns = [
@@ -65,6 +66,16 @@ const BackofficeCategories = () => {
       dataIndex: 'categoryName',
       key: 'categoryName',
       render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Category Image',
+      dataIndex: 'categoryImage',
+      key: 'categoryImage',
+      render: (img) => (
+        <a href={img} target='_blank'>
+          <img src={img} width='64' />
+        </a>
+      ),
     },
     {
       title: 'Actions',
@@ -94,7 +105,10 @@ const BackofficeCategories = () => {
       <Modal title='Add New Product' open={isModalVisible} onCancel={handleCancel} onOk={() => form.submit()}>
         <Form form={form} onFinish={createCategory}>
           <Form.Item name='categoryName' label='Category Name' rules={[{ required: true }]}>
-            <Input placeholder='Category Name' />
+            <Input placeholder='Category name' />
+          </Form.Item>
+          <Form.Item name='categoryImage' label='Category Image' rules={[{ required: true }]}>
+            <Input placeholder='Paste img url...' />
           </Form.Item>
         </Form>
       </Modal>
