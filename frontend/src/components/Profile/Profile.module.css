@@ -1,4 +1,5 @@
 .profile {
+  min-height: calc(100svh - var(--header-height));
   padding: 1.5rem var(--wrapper);
   max-width: var(--wrapper-max);
   margin: 0 auto;

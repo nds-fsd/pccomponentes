@@ -24,7 +24,7 @@ export const Profile = () => {
   }, []);
 
   return (
-    <section className={styles.profile}>
+    <main className={styles.profile}>
       <Link to={'/my-account'}>
         <span className='material-symbols-rounded'>arrow_back</span>
       </Link>
@@ -44,7 +44,7 @@ export const Profile = () => {
           <LogOut />
         </div>
       </div>
-    </section>
+    </main>
   );
 };
 
