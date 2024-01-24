@@ -29,17 +29,17 @@ export const Header = ({ isLogged, accountCreated }) => {
             <span className='material-symbols-rounded'>search</span>
             <span className='material-symbols-rounded'>shopping_cart</span>
             {isLogged && (
-              <Link to={'my-account'}>
+              <Link to={'/my-account'}>
                 <span className='material-symbols-rounded'>person</span>
               </Link>
             )}
             {!isLogged && accountCreated && (
-              <Link to={'login'}>
+              <Link to={'/login'}>
                 <span className='material-symbols-rounded'>person</span>
               </Link>
             )}
             {!isLogged && !accountCreated && (
-              <Link to={'register'}>
+              <Link to={'/register'}>
                 <span className='material-symbols-rounded'>person</span>
               </Link>
             )}
