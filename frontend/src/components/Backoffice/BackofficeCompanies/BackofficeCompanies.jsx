@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber } from 'antd';
+import { Table, Popconfirm, Button, Modal, Form, Input, Space } from 'antd';
+// import { runes } from 'runes2';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeCompanies.module.css';
 
@@ -68,7 +69,7 @@ const BackofficeCompany = () => {
       key: 'socials',
     },
     {
-      title: 'Email',
+      title: 'email',
       dataIndex: 'email',
       key: 'email',
     },
@@ -98,7 +99,30 @@ const BackofficeCompany = () => {
             <Input />
           </Form.Item>
           <Form.Item name='phoneNumber' label='Phone Number' rules={[{ required: true, type: 'number' }]}>
-            <InputNumber />
+            <Space.Compact>
+              <Input
+                style={{
+                  width: '20%',
+                }}
+                defaultValue='+34'
+              />
+              <Input
+                style={{
+                  width: '80%',
+                }}
+                count={{
+                  show: true,
+                  max: 9,
+                  strategy: (txt) => runes(txt).length,
+                  exceedFormatter: (txt, { max }) => runes(txt).slice(0, max).join(''),
+                }}
+                onKeyUp={(event) => {
+                  if (!/[0-9]/.test(event.key)) {
+                    event.preventDefault();
+                  }
+                }}
+              />
+            </Space.Compact>
           </Form.Item>
           <Form.Item name='socials' label='Socials'>
             <Input />
