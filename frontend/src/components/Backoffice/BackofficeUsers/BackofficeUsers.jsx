@@ -132,6 +132,7 @@ const BackofficeUsers = () => {
         size='small'
         pagination={{ pageSize: 10 }}
         scroll={{ y: 500 }}
+        className={styles.table}
       />
       <Modal
         title={editingUser ? 'Edit User' : 'Add New User'}
