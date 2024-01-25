@@ -20,6 +20,8 @@ function NavBar({ navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLv
       });
   }, []);
 
+  const isDesktop = window.innerWidth > 1024;
+
   return (
     <>
       <nav className={`${navLvl1 ? styles.navLvl1 + ' ' + styles.active : styles.navLvl1}`}>
@@ -34,7 +36,7 @@ function NavBar({ navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLv
             </div>
             <span className='material-symbols-rounded'>chevron_right</span>
           </li>
-          <li onClick={showNavLvl1}>
+          <li onClick={isDesktop ? null : showNavLvl1}>
             <Link to='/sales'>
               <span className='material-symbols-rounded'>shoppingmode</span>
               Sales
@@ -48,27 +50,29 @@ function NavBar({ navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLv
           </button>
           <p className={styles.categoryTitle}>Categories</p>
           <ul>
-            {categories.map((category) => (
-              <li key={category._id} onClick={showNavLvl3}>
-                <p>
-                  {category.categoryName}
-                  <span className='material-symbols-rounded'>chevron_right</span>
-                </p>
-                <NavSubCategory
-                  navLvl3={navLvl3}
-                  showNavLvl3={showNavLvl3}
-                  hideAll={hideAll}
-                  categoryName={category.categoryName}
-                />
-              </li>
-            ))}
+            {categories.map((category) => {
+              return (
+                <li key={category._id} onClick={showNavLvl3}>
+                  <p>
+                    {category.categoryName}
+                    <span className='material-symbols-rounded'>chevron_right</span>
+                  </p>
+                  <NavSubCategory
+                    navLvl3={navLvl3}
+                    showNavLvl3={showNavLvl3}
+                    hideAll={hideAll}
+                    categoryName={category.categoryName}
+                  />
+                </li>
+              );
+            })}
           </ul>
         </div>
       </nav>
       <span className='material-symbols-rounded' id={styles.hambIcon} onClick={showNavLvl1}>
         menu
       </span>
-      {/* <div className={`${styles.bgOverlay} ${navLvl1 ? styles.active : ''}`} onClick={hideAll}></div> */}
+      <div className={`${styles.bgOverlayMobile} ${navLvl1 ? styles.active : ''}`} onClick={hideAll}></div>
     </>
   );
 }

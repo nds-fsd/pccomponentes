@@ -106,7 +106,7 @@
   font-weight: 500;
 }
 
-.bgOverlay {
+.bgOverlayMobile {
   position: fixed;
   top: 0;
   left: 0;
@@ -118,7 +118,7 @@
   opacity: 0;
 }
 
-.bgOverlay.active {
+.bgOverlayMobile.active {
   visibility: visible;
   opacity: 1;
   transition: opacity 0.8s ease, visibility 0s;

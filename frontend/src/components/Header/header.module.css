@@ -55,24 +55,6 @@ a {
   cursor: pointer;
 }
 
-.bgOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100svh;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  visibility: hidden;
-  opacity: 0;
-}
-
-.bgOverlay.active {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.8s ease, visibility 0s;
-}
-
 @media screen and (768px <= width) {
   .computechLogoText {
     display: block;
@@ -90,5 +72,24 @@ a {
 
   .icons a:nth-child(3) {
     order: 3;
+  }
+
+  .bgOverlayDesktop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100svh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .bgOverlayDesktop.active {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.8s ease, visibility 0s;
+    z-index: 2;
   }
 }

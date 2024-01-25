@@ -55,7 +55,7 @@ export const Header = ({ isLogged, accountCreated }) => {
           </div>
         </div>
       </div>
-      <div className={`${styles.bgOverlay} ${navLvl1 || navLvl2 ? styles.active : ''}`} onClick={hideAll}></div>
+      <div className={`${styles.bgOverlayDesktop} ${navLvl1 || navLvl2 ? styles.active : ''}`} onClick={hideAll}></div>
     </header>
   );
 };
