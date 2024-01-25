@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber } from 'antd';
+import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber, Typography } from 'antd';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeProducts.module.css';
 
 const BackofficeProducts = () => {
   const [products, setProducts] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null); // Track the product being edited
   const [form] = Form.useForm();
+
+  const createProduct = async (values) => {
+    try {
+      const response = await api.post('/products', values);
+      setProducts((prevProducts) => [...prevProducts, response.data]);
+      setIsModalVisible(false);
+      form.resetFields();
+    } catch (error) {
+      console.error('Error creating product', error);
+    }
+  };
 
   const getAllProducts = async () => {
     return api.get('/products');
@@ -22,27 +34,39 @@ const BackofficeProducts = () => {
       });
   }, []);
 
+  const startEditing = (key) => {
+    const productToEdit = products.find((product) => product._id === key);
+    setEditingProduct(productToEdit);
+    form.setFieldsValue(productToEdit);
+    setIsModalVisible(true);
+  };
+
+  const saveEdit = async (values) => {
+    try {
+      const updatedProduct = { ...editingProduct, ...values };
+      await api.patch(`/products/${updatedProduct._id}`, updatedProduct);
+
+      setProducts((prevProducts) =>
+        prevProducts.map((product) => (product._id === updatedProduct._id ? updatedProduct : product))
+      );
+
+      setIsModalVisible(false);
+      form.resetFields();
+      setEditingProduct(null);
+    } catch (error) {
+      console.error('Error updating product:', error);
+    }
+  };
+
   const productDelete = async (key) => {
     try {
       const productId = key;
 
       await api.delete(`/products/${productId}`);
 
-      // Update the products state by filtering out the deleted product
       setProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));
     } catch (error) {
       console.error('Error deleting product:', error);
-    }
-  };
-
-  const createProduct = async (values) => {
-    try {
-      const response = await api.post('/products', values);
-      setProducts((prevProducts) => [...prevProducts, response.data]);
-      setIsModalVisible(false);
-      form.resetFields();
-    } catch (error) {
-      console.error('Error creating product', error);
     }
   };
 
@@ -52,6 +76,8 @@ const BackofficeProducts = () => {
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    form.resetFields();
+    setEditingProduct(null);
   };
 
   const formatedProducts = products.map((product) => ({
@@ -89,12 +115,16 @@ const BackofficeProducts = () => {
     {
       title: 'Actions',
       dataIndex: 'actions',
-      render: (_, record) =>
-        formatedProducts.length >= 1 ? (
+      render: (_, record) => (
+        <>
+          <Button type='primary' onClick={() => startEditing(record.key)}>
+            Edit
+          </Button>
           <Popconfirm title='Sure to delete?' onConfirm={() => productDelete(record.key)}>
-            <Button type='primary'>Delete</Button>
+            <Button type='danger'>Delete</Button>
           </Popconfirm>
-        ) : null,
+        </>
+      ),
     },
   ];
 
@@ -114,8 +144,13 @@ const BackofficeProducts = () => {
           expandedRowRender: (record) => <p style={{ margin: 0 }}>{record.description}</p>,
         }}
       />
-      <Modal title='Add New Product' open={isModalVisible} onCancel={handleCancel} onOk={() => form.submit()}>
-        <Form form={form} onFinish={createProduct}>
+      <Modal
+        title={editingProduct ? 'Edit Product' : 'Add New Product'}
+        open={isModalVisible}
+        onCancel={handleCancel}
+        onOk={() => form.submit()}
+      >
+        <Form form={form} onFinish={editingProduct ? saveEdit : createProduct}>
           <Form.Item name='name' label='Product Name' rules={[{ required: true }]}>
             <Input />
           </Form.Item>
