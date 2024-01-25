@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber, Typography } from 'antd';
+import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeProducts.module.css';
 
@@ -117,11 +118,9 @@ const BackofficeProducts = () => {
       dataIndex: 'actions',
       render: (_, record) => (
         <>
-          <Button type='primary' onClick={() => startEditing(record.key)}>
-            Edit
-          </Button>
+          <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
           <Popconfirm title='Sure to delete?' onConfirm={() => productDelete(record.key)}>
-            <Button type='danger'>Delete</Button>
+            <Button type='icon' icon={<DeleteOutlined />}></Button>
           </Popconfirm>
         </>
       ),
