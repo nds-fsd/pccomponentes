@@ -107,15 +107,18 @@ const BackofficeProducts = () => {
       title: 'Price (€)',
       dataIndex: 'price',
       key: 'price',
+      width: '15%',
     },
     {
       title: 'Stock',
       dataIndex: 'stock',
       key: 'stock',
+      width: '15%',
     },
     {
       title: 'Actions',
       dataIndex: 'actions',
+      width: 80,
       render: (_, record) => (
         <>
           <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>

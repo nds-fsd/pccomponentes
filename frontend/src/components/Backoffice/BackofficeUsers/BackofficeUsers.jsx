@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Popconfirm, Button, Modal, Form, Input, Select } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeUsers.module.css';
 
 const BackofficeUsers = () => {
   const [users, setUsers] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [editingUser, setEditingUser] = useState(null);
   const [form] = Form.useForm();
 
   const getAllUsers = async () => {
@@ -46,12 +48,36 @@ const BackofficeUsers = () => {
     }
   };
 
+  const startEditing = (key) => {
+    const userToEdit = users.find((user) => user._id === key);
+    setEditingUser(userToEdit);
+    form.setFieldsValue(userToEdit);
+    setIsModalVisible(true);
+  };
+
+  const saveEdit = async (values) => {
+    try {
+      const updatedUser = { ...editingUser, ...values };
+      await api.patch(`/users/${updatedUser._id}`, updatedUser);
+
+      setUsers((prevUsers) => prevUsers.map((user) => (user._id === updatedUser._id ? updatedUser : user)));
+
+      setIsModalVisible(false);
+      form.resetFields();
+      setEditingUser(null);
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
+  };
+
   const showModal = () => {
     setIsModalVisible(true);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    form.resetFields();
+    setEditingUser(null);
   };
 
   const formattedUsers = users.map((user) => ({
@@ -77,16 +103,20 @@ const BackofficeUsers = () => {
       title: 'Role',
       dataIndex: 'role',
       key: 'role',
+      width: 100,
     },
     {
       title: 'Actions',
       dataIndex: 'actions',
-      render: (_, record) =>
-        formattedUsers.length >= 1 ? (
-          <Popconfirm title='Sure to delete?' onConfirm={() => userDelete(record.key)}>
-            <Button type='primary'>Delete</Button>
+      width: 80,
+      render: (_, record) => (
+        <>
+          <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
+          <Popconfirm title='Sure to delete?' onConfirm={() => productDelete(record.key)}>
+            <Button type='icon' icon={<DeleteOutlined />}></Button>
           </Popconfirm>
-        ) : null,
+        </>
+      ),
     },
   ];
 
@@ -103,17 +133,27 @@ const BackofficeUsers = () => {
         pagination={{ pageSize: 10 }}
         scroll={{ y: 500 }}
       />
-      <Modal title='Add New User' open={isModalVisible} onCancel={handleCancel} onOk={() => form.submit()}>
-        <Form form={form} initialValues={{ role: 'user' }} onFinish={createUser}>
+      <Modal
+        title={editingUser ? 'Edit User' : 'Add New User'}
+        open={isModalVisible}
+        onCancel={handleCancel}
+        onOk={() => form.submit()}
+      >
+        <Form form={form} initialValues={{ role: 'user' }} onFinish={editingUser ? saveEdit : createUser}>
           <Form.Item name='username' label='Username' rules={[{ required: true }]}>
             <Input />
           </Form.Item>
           <Form.Item name='email' label='Email' rules={[{ required: true }]}>
             <Input />
           </Form.Item>
-          <Form.Item name='password' label='Password' rules={[{ required: true }]}>
-            <Input.Password />
-          </Form.Item>
+          {editingUser ? (
+            ''
+          ) : (
+            <Form.Item name='password' label='Password' rules={[{ required: true }]}>
+              <Input.Password />
+            </Form.Item>
+          )}
+
           <Form.Item name='role' label='Role' rules={[{ required: true }]}>
             <Select
               style={{ width: 120 }}
