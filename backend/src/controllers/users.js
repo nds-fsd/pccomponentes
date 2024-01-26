@@ -17,6 +17,7 @@ const postUser = async (req, res) => {
       email: body.email,
       password: body.password,
       phoneNumber: body.phoneNumber,
+      newsletter: body.newsletter
     };
 
     const newUser = new Users(data);

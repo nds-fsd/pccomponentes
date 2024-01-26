@@ -9,6 +9,7 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   phoneNumber: Number,
   role: { type: String, enum: ['user', 'admin'], default: 'user', required: true },
+  newsletter: {type: Boolean, default: false}
 });
 
 // this function runs before saving any user in Mongo
