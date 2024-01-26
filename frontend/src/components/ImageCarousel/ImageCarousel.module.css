@@ -44,24 +44,18 @@
   padding-bottom: 10px;
   gap: 16px;
   overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: var(--primary-900) inherit; /* For Firefox */
 }
 
 .thumbnailContainer::-webkit-scrollbar {
   /* For Chrome, Safari, and Opera */
-  width: 4px;
-  height: 4px;
-  display: none;
+  height: 6px;
 }
 
 .thumbnailContainer::-webkit-scrollbar-thumb {
   /* For Chrome, Safari, and Opera */
   background-color: var(--primary-950);
-  height: 4px;
-  width: 4px;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .thumbnailContainer::-webkit-scrollbar-track {
