@@ -4,7 +4,7 @@ import { api } from '../../_utils/api';
 import NavSubCategory from './NavSubCategory/NavBarSubCategory';
 import styles from './navBar.module.css';
 
-function NavBar({ navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLvl3, hideAll }) {
+function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLvl3, hideAll }) {
   const [categories, setCategories] = useState([]);
   const getAllCategories = async () => {
     return api.get('/categories');
@@ -20,7 +20,13 @@ function NavBar({ navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLv
       });
   }, []);
 
-  const isDesktop = window.innerWidth > 1024;
+  useEffect(() => {
+    if (navLvl1 || navLvl2 === true) {
+      document.body.classList.add('overflow-y-hidden');
+    } else {
+      document.body.classList.remove('overflow-y-hidden');
+    }
+  }, [navLvl1, navLvl2]);
 
   return (
     <>
@@ -29,14 +35,21 @@ function NavBar({ navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLv
           close
         </span>
         <ul>
-          <li onClick={showNavLvl2}>
+          <li
+            onClick={showNavLvl2}
+            onMouseEnter={() => {
+              if (isDesktop && !navLvl2) {
+                showNavLvl2();
+              }
+            }}
+          >
             <div>
               <span className='material-symbols-rounded'>category</span>
               Categories
             </div>
             <span className='material-symbols-rounded'>chevron_right</span>
           </li>
-          <li onClick={isDesktop ? null : showNavLvl1}>
+          <li onClick={hideAll}>
             <Link to='/sales'>
               <span className='material-symbols-rounded'>shoppingmode</span>
               Sales
@@ -50,22 +63,40 @@ function NavBar({ navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLv
           </button>
           <p className={styles.categoryTitle}>Categories</p>
           <ul>
-            {categories.map((category) => {
-              return (
-                <li key={category._id} onClick={showNavLvl3}>
-                  <p>
-                    {category.categoryName}
-                    <span className='material-symbols-rounded'>chevron_right</span>
-                  </p>
-                  <NavSubCategory
-                    navLvl3={navLvl3}
-                    showNavLvl3={showNavLvl3}
-                    hideAll={hideAll}
-                    categoryName={category.categoryName}
-                  />
-                </li>
-              );
-            })}
+            {isDesktop
+              ? categories.slice(0, 5).map((category) => (
+                  <li key={category._id} onClick={showNavLvl3}>
+                    <p>
+                      {category.categoryName}
+                      <span className='material-symbols-rounded'>chevron_right</span>
+                    </p>
+                    <NavSubCategory
+                      navLvl3={navLvl3}
+                      showNavLvl3={showNavLvl3}
+                      hideAll={hideAll}
+                      categoryName={category.categoryName}
+                    />
+                  </li>
+                ))
+              : categories.map((category) => (
+                  <li key={category._id} onClick={showNavLvl3}>
+                    <p>
+                      {category.categoryName}
+                      <span className='material-symbols-rounded'>chevron_right</span>
+                    </p>
+                    <NavSubCategory
+                      navLvl3={navLvl3}
+                      showNavLvl3={showNavLvl3}
+                      hideAll={hideAll}
+                      categoryName={category.categoryName}
+                    />
+                  </li>
+                ))}
+            {isDesktop && (
+              <li onClick={showNavLvl3}>
+                <Link to={'/products'}>See all</Link>
+              </li>
+            )}
           </ul>
         </div>
       </nav>
@@ -73,6 +104,7 @@ function NavBar({ navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLv
         menu
       </span>
       <div className={`${styles.bgOverlayMobile} ${navLvl1 ? styles.active : ''}`} onClick={hideAll}></div>
+      {console.log(`navLvl1: ${navLvl1}`, `navLvl2: ${navLvl2}`, `navLvl3: ${navLvl3}`)}
     </>
   );
 }

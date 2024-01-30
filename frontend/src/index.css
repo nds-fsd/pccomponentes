@@ -108,6 +108,10 @@ strong {
   font-weight: 900;
 }
 
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
 /* Change text selection color */
 ::-moz-selection {
   /* Code for Firefox */

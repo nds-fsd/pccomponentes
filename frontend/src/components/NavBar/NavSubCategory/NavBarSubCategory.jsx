@@ -1,8 +1,6 @@
 import styles from './navBarSubCategory.module.css';
 
 const NavSubCategory = ({ navLvl3, showNavLvl3, hideAll, categoryName }) => {
-  console.log(categoryName + '3');
-
   return (
     <>
       <div className={`${navLvl3 ? styles.navLvl3 + ' ' + styles.active : styles.navLvl3}`}>
