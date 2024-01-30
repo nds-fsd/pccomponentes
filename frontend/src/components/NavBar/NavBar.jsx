@@ -6,10 +6,16 @@ import styles from './navBar.module.css';
 
 function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLvl3, hideAll }) {
   const [categories, setCategories] = useState([]);
+  const [actualCategory, setActualCategory] = useState('');
+
+  const handleSetActualCategory = (category) => {
+    showNavLvl3();
+    setActualCategory(category);
+  };
+
   const getAllCategories = async () => {
     return api.get('/categories');
   };
-
   useEffect(() => {
     getAllCategories()
       .then((response) => {
@@ -78,20 +84,22 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
                     />
                   </li>
                 ))
-              : categories.map((category) => (
-                  <li key={category._id} onClick={showNavLvl3}>
-                    <p>
-                      {category.categoryName}
-                      <span className='material-symbols-rounded'>chevron_right</span>
-                    </p>
-                    <NavSubCategory
-                      navLvl3={navLvl3}
-                      showNavLvl3={showNavLvl3}
-                      hideAll={hideAll}
-                      categoryName={category.categoryName}
-                    />
-                  </li>
-                ))}
+              : categories.map((category) => {
+                  return (
+                    <li key={category._id} onClick={() => handleSetActualCategory(category)}>
+                      <p>
+                        {category.categoryName}
+                        <span className='material-symbols-rounded'>chevron_right</span>
+                      </p>
+                      <NavSubCategory
+                        navLvl3={navLvl3}
+                        showNavLvl3={showNavLvl3}
+                        hideAll={hideAll}
+                        categoryName={actualCategory.categoryName}
+                      />
+                    </li>
+                  );
+                })}
             {isDesktop && (
               <li onClick={showNavLvl3}>
                 <Link to={'/products'}>See all</Link>
