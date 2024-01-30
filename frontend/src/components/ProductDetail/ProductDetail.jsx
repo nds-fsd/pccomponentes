@@ -15,6 +15,8 @@ const ProductDetailContainer = ({ product }) => {
               <span className={styles.accent}>{productData.price}€</span>
             </h3>
             <br />
+            <button>Add to cart</button>
+            <br />
             <h4>Description: </h4>
             <p className={styles.productDescription}>{productData.description}</p>
           </div>

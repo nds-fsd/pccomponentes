@@ -23,3 +23,22 @@
     flex-direction: row;
   }
 }
+
+button {
+  display: flex;
+  width: 232px;
+  height: 40px;
+  padding: 8px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 2px 32px;
+  background: linear-gradient(95deg, #0198ff 0%, #7b34c7 100%);
+  color: #fff;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+}
