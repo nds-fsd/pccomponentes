@@ -25,13 +25,13 @@
 }
 
 button {
+  cursor: pointer;
   display: flex;
   width: 232px;
   height: 40px;
   padding: 8px 32px;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   border-radius: 2px 32px;
   background: linear-gradient(to right, var(--primary-500) 0%, #7b34c7 100%, #fff 200%);
   color: #fff;
@@ -49,4 +49,9 @@ button {
 button:hover {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
+}
+
+button:active {
+  border: solid 2px #fff;
+  transition: none;
 }
