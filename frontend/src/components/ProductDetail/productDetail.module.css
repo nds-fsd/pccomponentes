@@ -33,7 +33,7 @@ button {
   align-items: center;
   gap: 8px;
   border-radius: 2px 32px;
-  background: linear-gradient(95deg, #0198ff 0%, #7b34c7 100%);
+  background: linear-gradient(to right, var(--primary-500) 0%, #7b34c7 100%, #fff 200%);
   color: #fff;
   font-family: Roboto;
   font-size: 16px;
@@ -41,4 +41,12 @@ button {
   font-weight: 500;
   line-height: normal;
   border: none;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+}
+
+button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
 }

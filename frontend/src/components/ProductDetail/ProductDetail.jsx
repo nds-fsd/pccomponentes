@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './productDetail.module.css';
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 
 const ProductDetailContainer = ({ product }) => {
   const productData = product && product.ProductFound;
@@ -15,7 +16,10 @@ const ProductDetailContainer = ({ product }) => {
               <span className={styles.accent}>{productData.price}€</span>
             </h3>
             <br />
-            <button>Add to cart</button>
+            <button>
+              Add to cart
+              <ShoppingCartOutlined />
+            </button>
             <br />
             <h4>Description: </h4>
             <p className={styles.productDescription}>{productData.description}</p>
