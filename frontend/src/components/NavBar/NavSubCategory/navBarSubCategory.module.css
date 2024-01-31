@@ -14,7 +14,6 @@
   & > ul {
     display: flex;
     flex-direction: column;
-    color: var(--neutral-500);
 
     & > li {
       display: flex;
@@ -25,12 +24,18 @@
 
   & p {
     font-size: var(--body-large);
-    color: var(--neutral-50);
+  }
+  & a {
+    color: var(--neutral-500);
   }
 }
 
 .navLvl3.active {
   right: 0;
+}
+
+.categoryTitle {
+  color: var(--neutral-50);
 }
 
 @media screen and (width >= 1024px) {

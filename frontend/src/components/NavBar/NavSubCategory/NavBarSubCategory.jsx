@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './navBarSubCategory.module.css';
 
 const NavSubCategory = ({ navLvl3, showNavLvl3, hideAll, categoryName }) => {
@@ -9,10 +10,16 @@ const NavSubCategory = ({ navLvl3, showNavLvl3, hideAll, categoryName }) => {
           Back
         </button>
         <p className={styles.categoryTitle}>{categoryName}</p>
-        <ul>
-          <li onClick={hideAll}>All</li>
-          <li onClick={hideAll}>item 2</li>
-          <li onClick={hideAll}>item 3</li>
+        <ul className={styles.lvl3Items}>
+          <li onClick={hideAll}>
+            <Link to={`/${'All'}`}>All</Link>
+          </li>
+          <li onClick={hideAll}>
+            <Link to={`/${'item-2'}`}>item 2</Link>
+          </li>
+          <li onClick={hideAll}>
+            <Link to={`/${'item-3'}`}>item 3</Link>
+          </li>
         </ul>
       </div>
     </>

@@ -40,7 +40,7 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
         <span className={'material-symbols-rounded'} id={styles.closeIcon} onClick={showNavLvl1}>
           close
         </span>
-        <ul>
+        <ul className={styles.lvl1Items}>
           <li
             onClick={showNavLvl2}
             onMouseEnter={() => {
@@ -49,6 +49,7 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
               }
             }}
           >
+            {' '}
             <div>
               <span className='material-symbols-rounded'>category</span>
               Categories
@@ -68,7 +69,7 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
             Back
           </button>
           <p className={styles.categoryTitle}>Categories</p>
-          <ul>
+          <ul className={styles.lvl2Items}>
             {isDesktop
               ? categories.slice(0, 5).map((category) => (
                   <li key={category._id} onClick={showNavLvl3}>
@@ -100,11 +101,9 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
                     </li>
                   );
                 })}
-            {isDesktop && (
-              <li onClick={showNavLvl3}>
-                <Link to={'/products'}>See all</Link>
-              </li>
-            )}
+            <li onClick={showNavLvl3} className={styles.allProductsItem}>
+              <Link to={'/products'}>See all</Link>
+            </li>
           </ul>
         </div>
       </nav>
