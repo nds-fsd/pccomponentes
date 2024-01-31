@@ -1,0 +1,37 @@
+name: Production Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy-to-koyeb:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: './backend'
+    steps:
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@main
+
+      - name: 'Login to GitHub Container Registry'
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
+
+      - name: 'Build Backend Image'
+        run: |
+          docker build . --tag ghcr.io/nds-fsd/pccomponentes:latest
+          docker push ghcr.io/nds-fsd/pccomponentes:latest
+
+      - name: Install and configure the Koyeb CLI
+        uses: koyeb-community/install-koyeb-cli@v2
+        with:
+          api_token: '${{ secrets.KOYEB_TOKEN }}'
+          github_token: '${{ secrets.GITHUB_TOKEN }}'
+
+      - name: Deploy to Koyeb
+        run: koyeb service redeploy twitter/twitter-api
