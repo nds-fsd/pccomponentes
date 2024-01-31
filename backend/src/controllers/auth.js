@@ -16,6 +16,7 @@ const registerUser = async (req, res) => {
         password: data.password,
         username: data.username,
         role: data.role,
+        newsletter: data.newsletter
       });
 
       newUser
@@ -32,6 +33,7 @@ const registerUser = async (req, res) => {
           });
         })
         .catch((err) => {
+          console.log(err)
           return res.status(500).json({ error: { username: 'Error creating new User :(' } });
         });
     });
