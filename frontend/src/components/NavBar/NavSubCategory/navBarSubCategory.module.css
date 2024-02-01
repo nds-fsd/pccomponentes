@@ -19,6 +19,10 @@
       display: flex;
       align-items: center;
       height: 40px;
+      & :hover {
+        text-decoration: underline 2px solid var(--primary-500);
+        text-underline-offset: 6px;
+      }
     }
   }
 
@@ -36,6 +40,10 @@
 
 .categoryTitle {
   color: var(--neutral-50);
+  & :hover {
+    text-decoration: underline 2px solid var(--primary-500);
+    text-underline-offset: 6px;
+  }
 }
 
 @media screen and (width >= 1024px) {

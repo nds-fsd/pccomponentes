@@ -111,7 +111,6 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
         menu
       </span>
       <div className={`${styles.bgOverlayMobile} ${navLvl1 ? styles.active : ''}`} onClick={hideAll}></div>
-      {console.log(`navLvl1: ${navLvl1}`, `navLvl2: ${navLvl2}`, `navLvl3: ${navLvl3}`)}
     </>
   );
 }
