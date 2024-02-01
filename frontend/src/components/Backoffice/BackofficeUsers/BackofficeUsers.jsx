@@ -24,6 +24,8 @@ const BackofficeUsers = () => {
       });
   }, []);
 
+  const showTotal = (total) => `Total ${total} users`;
+
   const userDelete = async (key) => {
     try {
       const userId = key;
@@ -130,8 +132,13 @@ const BackofficeUsers = () => {
         dataSource={formattedUsers}
         columns={columns}
         size='small'
-        pagination={{ pageSize: 10 }}
         scroll={{ y: 500 }}
+        pagination={{
+          total: formattedUsers.length,
+          showTotal: showTotal,
+          showSizeChanger: true,
+          pageSizeOptions: ['50', '100', '500'],
+        }}
         className={styles.table}
       />
       <Modal
