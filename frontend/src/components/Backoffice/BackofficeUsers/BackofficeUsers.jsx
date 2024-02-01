@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Popconfirm, Button, Modal, Form, Input, Select } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
-import styles from './BackofficeUsers.module.css';
+import styles from './backofficeUsers.module.css';
 
 const BackofficeUsers = () => {
   const [users, setUsers] = useState([]);
