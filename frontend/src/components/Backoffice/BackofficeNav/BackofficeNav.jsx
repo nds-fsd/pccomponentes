@@ -12,7 +12,7 @@ const items = [
   },
   {
     key: 'categories',
-    label: <Link /*to='/backoffice/categories'*/>Categories</Link>,
+    label: <Link to='/backoffice/categories'>Categories</Link>,
     icon: <span className='material-symbols-rounded'>category</span>,
   },
   {
