@@ -112,7 +112,7 @@ const BackofficeUsers = () => {
       render: (_, record) => (
         <>
           <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
-          <Popconfirm title='Sure to delete?' onConfirm={() => productDelete(record.key)}>
+          <Popconfirm title='Sure to delete?' onConfirm={() => userDelete(record.key)}>
             <Button type='icon' icon={<DeleteOutlined />}></Button>
           </Popconfirm>
         </>
