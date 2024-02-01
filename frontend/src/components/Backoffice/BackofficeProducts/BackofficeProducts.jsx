@@ -107,15 +107,18 @@ const BackofficeProducts = () => {
       title: 'Price (€)',
       dataIndex: 'price',
       key: 'price',
+      width: '15%',
     },
     {
       title: 'Stock',
       dataIndex: 'stock',
       key: 'stock',
+      width: '15%',
     },
     {
       title: 'Actions',
       dataIndex: 'actions',
+      width: 80,
       render: (_, record) => (
         <>
           <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
@@ -157,7 +160,7 @@ const BackofficeProducts = () => {
             <Input />
           </Form.Item>
           <Form.Item name='price' label='Price' rules={[{ required: true, type: 'number' }]}>
-            <InputNumber min={0} />
+            <InputNumber min={0} style={{ width: 120 }} addonAfter='€' />
           </Form.Item>
           <Form.Item name='stock' label='Stock' rules={[{ required: true, type: 'number' }]}>
             <InputNumber min={0} />

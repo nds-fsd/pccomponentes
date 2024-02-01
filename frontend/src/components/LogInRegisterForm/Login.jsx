@@ -42,7 +42,6 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
     <main className={styles.main}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <h2>Log In</h2>
-        <br />
         <input
           className={styles.formInput}
           type='text'
@@ -53,7 +52,6 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
           })}
         />
         {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
-        <br />
         <input
           className={styles.formInput}
           type='password'
@@ -61,16 +59,10 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
           {...register('password', { required: 'Password is required.' })}
         />
         {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
-        <br />
         <a className={styles.password}>Forgot my password</a>
-        <br />
         <div className={styles.buttons}>
-          <br />
           <PrimaryButton btnType='submit' value='Log In' />
-          <br />
           <p>or</p>
-          <br />
-
           <SecondaryButton
             btnType='button'
             value='Create account'

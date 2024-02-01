@@ -23,9 +23,9 @@ function Product() {
   }
 
   return (
-    <div className={styles.product}>
+    <main className={styles.main}>
       <ProductDetail product={product} />
-    </div>
+    </main>
   );
 }
 

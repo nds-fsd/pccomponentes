@@ -1,6 +1,6 @@
 .main {
   width: 100%;
-  padding: 80px var(--wrapper);
+  padding: 80px 24px;
   & > h1 {
     padding-bottom: 32px;
   }

@@ -68,7 +68,7 @@ const BackofficeCompany = () => {
       key: 'socials',
     },
     {
-      title: 'Email',
+      title: 'email',
       dataIndex: 'email',
       key: 'email',
     },
