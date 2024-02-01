@@ -16,7 +16,7 @@ const ProductDetailContainer = ({ product }) => {
               <span className={styles.accent}>{productData.price}€</span>
             </h3>
             <br />
-            <button>
+            <button className={styles.button}>
               Add to cart
               <ShoppingCartOutlined />
             </button>

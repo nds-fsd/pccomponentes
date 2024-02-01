@@ -20,7 +20,7 @@
   }
 }
 
-button {
+.button {
   cursor: pointer;
   display: flex;
   width: 232px;
@@ -42,12 +42,12 @@ button {
   background-size: 200% auto;
 }
 
-button:hover {
+.button:hover {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
 }
 
-button:active {
+.button:active {
   border: solid 2px #fff;
   transition: none;
 }
