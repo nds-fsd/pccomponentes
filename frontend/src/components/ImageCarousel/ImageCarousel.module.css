@@ -14,54 +14,25 @@
   border-radius: 0px 16px;
 }
 
-.prevbutton,
-.nextbutton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-150%);
-  background-color: inherit;
-  color: #fff;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 100%;
-  height: 40px;
-  width: 40px;
-}
-
-.prevbutton {
-  left: 10px;
-}
-
-.nextbutton {
-  right: 10px;
-}
-
 .thumbnailContainer {
   display: flex;
   margin-top: 20px;
   padding-bottom: 10px;
   gap: 16px;
   overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: var(--primary-900) inherit; /* For Firefox */
 }
 
 .thumbnailContainer::-webkit-scrollbar {
   /* For Chrome, Safari, and Opera */
-  width: 4px;
-  height: 4px;
-  display: none;
+  height: 6px;
+  cursor: pointer;
 }
 
 .thumbnailContainer::-webkit-scrollbar-thumb {
   /* For Chrome, Safari, and Opera */
   background-color: var(--primary-950);
-  height: 4px;
-  width: 4px;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .thumbnailContainer::-webkit-scrollbar-track {

@@ -12,6 +12,8 @@ import BackofficeLayout from './components/Backoffice/BackofficeLayout';
 import BackofficeHome from './components/Backoffice/BackofficeHome/BackofficeHome';
 import BackofficeUsers from './components/Backoffice/BackofficeUsers/BackofficeUsers';
 import BackofficeProducts from './components/Backoffice/BackofficeProducts/BackofficeProducts';
+import BackofficeCompanies from './components/Backoffice/BackofficeCompanies/BackofficeCompanies';
+import BackofficeCategories from './components/Backoffice/BackofficeCategories/BackofficeCategories';
 import NoMatch from './components/NoMatch/NoMatch';
 
 import { useState } from 'react';
@@ -20,7 +22,6 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
-import BackofficeCompanies from './components/Backoffice/BackofficeCompanies/BackofficeCompanies';
 
 const queryClient = new QueryClient();
 
@@ -95,6 +96,7 @@ function Backoffice({ children }) {
           <Route path='/backoffice/users' element={<BackofficeUsers />} />
           <Route path='/backoffice/products' element={<BackofficeProducts />} />
           <Route path='/backoffice/companies' element={<BackofficeCompanies />} />
+          <Route path='/backoffice/categories' element={<BackofficeCategories />} />
         </Route>
       </Routes>
     </QueryClientProvider>

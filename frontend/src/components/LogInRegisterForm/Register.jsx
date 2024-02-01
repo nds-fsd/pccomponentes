@@ -87,7 +87,7 @@ export const Register = ({ forceUpdate, changeAccountCreated }) => {
           {errors.privacy && <p className={styles.errorMessage}>{errors.privacy.message}</p>}
           <br />
           <div className={styles.groupCheck}>
-            <input className={styles.inputCheck} type='checkbox' {...register('subscribe')} />
+            <input className={styles.inputCheck} type='checkbox' {...register('newsletter')} />
             <label className={styles.dash}>
               Receive exclusive discounts, news, and trends by email. You can unsubscribe from “My dashboard”.
             </label>
