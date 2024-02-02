@@ -22,8 +22,6 @@ import { getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
 
-import { getUserRole } from './_utils/localStorage.utils';
-
 const queryClient = new QueryClient();
 
 function UserLayout({ children }) {
