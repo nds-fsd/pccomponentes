@@ -37,3 +37,11 @@ export const setUserSession = (sessionData) => {
 export const removeSession = () => {
   deleteStorageObject('user-session');
 };
+
+export const getUserRole = () => {
+  const session = getStorageObject('user-session');
+  if (session) {
+    return session.user ? session.user.role : null;
+  }
+  return null;
+};

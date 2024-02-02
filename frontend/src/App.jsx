@@ -15,12 +15,14 @@ import BackofficeCompanies from './components/Backoffice/BackofficeCompanies/Bac
 import BackofficeCategories from './components/Backoffice/BackofficeCategories/BackofficeCategories';
 import NoMatch from './components/NoMatch/NoMatch';
 
-import { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Navigate, useNavigate, Routes, Route, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
+
+import { getUserRole } from './_utils/localStorage.utils';
 
 const queryClient = new QueryClient();
 
@@ -71,20 +73,16 @@ function UserLayout({ children }) {
 }
 
 function Backoffice({ children }) {
-  const [accountCreated, setAccountCreated] = useState(true);
-  const [update, setUpdate] = useState(true);
-
-  const changeAccountCreated = (btnType) => {
-    if (btnType == 'login') return setAccountCreated(true);
-    else if (btnType == 'register') return setAccountCreated(false);
-  };
-
-  const forceUpdate = () => {
-    setUpdate(!update);
-  };
-
   const token = getUserToken();
-  const isLogged = !!token;
+  const userRole = getUserRole(); // Obtén el rol del usuario
+
+  // Verificar si el usuario tiene el rol necesario (por ejemplo, "admin")
+  const isAdmin = userRole === 'admin';
+
+  if (!token || !isAdmin) {
+    // Redirigir a otra página o mostrar un mensaje de error
+    return <Navigate to='/' />; // Usa Navigate aquí
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -103,12 +101,20 @@ function Backoffice({ children }) {
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
 
-  if (location.pathname.startsWith('/backoffice')) {
-    return <Backoffice />;
-  } else {
-    return <UserLayout />;
-  }
+  const token = getUserToken();
+  const userRole = getUserRole();
+
+  const isAdmin = userRole === 'admin';
+
+  useEffect(() => {
+    if (location.pathname.startsWith('/backoffice') && (!token || !isAdmin)) {
+      navigate('/');
+    }
+  }, [location.pathname, token, isAdmin, navigate]);
+
+  return <>{location.pathname.startsWith('/backoffice') && token && isAdmin ? <Backoffice /> : <UserLayout />}</>;
 }
 
 export default App;
