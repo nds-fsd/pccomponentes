@@ -15,10 +15,10 @@ import BackofficeCompanies from './components/Backoffice/BackofficeCompanies/Bac
 import BackofficeCategories from './components/Backoffice/BackofficeCategories/BackofficeCategories';
 import NoMatch from './components/NoMatch/NoMatch';
 
-import { useState, useEffect } from 'react';
-import { Navigate, useNavigate, Routes, Route, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { getUserToken } from './_utils/localStorage.utils';
+import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
 
@@ -72,14 +72,17 @@ function UserLayout({ children }) {
 
 function Backoffice({ children }) {
   const token = getUserToken();
-  const userRole = getUserRole(); // Obtén el rol del usuario
+  const isLogged = !!token;
 
-  // Verificar si el usuario tiene el rol necesario (por ejemplo, "admin")
-  const isAdmin = userRole === 'admin';
+  const navigate = useNavigate();
 
-  if (!token || !isAdmin) {
-    // Redirigir a otra página o mostrar un mensaje de error
-    return <Navigate to='/' />; // Usa Navigate aquí
+  // Obtén el rol del usuario desde el localStorage o donde la tengas almacenada
+  const userRole = getUserRole();
+
+  // Verifica el rol del usuario antes de renderizar el componente
+  if (isLogged && userRole !== 'admin') {
+    // Si el usuario no es administrador, redirige a la página de inicio
+    return <Navigate to='/' />;
   }
 
   return (
@@ -99,20 +102,12 @@ function Backoffice({ children }) {
 
 function App() {
   const location = useLocation();
-  const navigate = useNavigate();
 
-  const token = getUserToken();
-  const userRole = getUserRole();
-
-  const isAdmin = userRole === 'admin';
-
-  useEffect(() => {
-    if (location.pathname.startsWith('/backoffice') && (!token || !isAdmin)) {
-      navigate('/');
-    }
-  }, [location.pathname, token, isAdmin, navigate]);
-
-  return <>{location.pathname.startsWith('/backoffice') && token && isAdmin ? <Backoffice /> : <UserLayout />}</>;
+  if (location.pathname.startsWith('/backoffice')) {
+    return <Backoffice />;
+  } else {
+    return <UserLayout />;
+  }
 }
 
 export default App;
