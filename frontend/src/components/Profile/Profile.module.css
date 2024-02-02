@@ -34,3 +34,25 @@
 .userInfo {
   font-size: var(--body-small);
 }
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalCard {
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0px 8px;
+  border: 1px solid var(--neutral-800);
+  background: var(--neutral-900);
+  box-shadow: 0px 6px 8px 0px rgba(15, 23, 42, 0.5);
+  width: 300px; /* Ajusta el ancho según tus necesidades */
+}
