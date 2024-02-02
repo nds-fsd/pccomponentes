@@ -14,6 +14,8 @@ const BackofficeUsers = () => {
     return api.get('/users');
   };
 
+  const showTotal = (total) => `Total ${total} users`;
+
   useEffect(() => {
     getAllUsers()
       .then((response) => {
@@ -23,8 +25,6 @@ const BackofficeUsers = () => {
         console.log('Error!');
       });
   }, []);
-
-  const showTotal = (total) => `Total ${total} users`;
 
   const userDelete = async (key) => {
     try {

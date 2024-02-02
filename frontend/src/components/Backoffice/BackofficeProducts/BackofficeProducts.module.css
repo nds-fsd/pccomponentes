@@ -1,11 +1,10 @@
 .main {
-  width: 100%;
   margin: auto 0;
   padding: 24px;
 
   & > h1 {
     font-size: var(--title-medium);
-    padding-bottom: 16px;
+    padding-bottom: 8px;
   }
 
   & > button {
@@ -13,6 +12,20 @@
   }
 }
 
-.ant-table-body {
-  height: 500px;
+.table {
+  > div {
+    height: 528px;
+
+    > div {
+      height: 528px;
+
+      > div {
+        height: 528px;
+
+        > div {
+          min-height: 489px;
+        }
+      }
+    }
+  }
 }
