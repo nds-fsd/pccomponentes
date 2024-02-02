@@ -76,12 +76,9 @@ function Backoffice({ children }) {
 
   const navigate = useNavigate();
 
-  // Obtén el rol del usuario desde el localStorage o donde la tengas almacenada
   const userRole = getUserRole();
 
-  // Verifica el rol del usuario antes de renderizar el componente
   if (isLogged && userRole !== 'admin') {
-    // Si el usuario no es administrador, redirige a la página de inicio
     return <Navigate to='/' />;
   }
 
