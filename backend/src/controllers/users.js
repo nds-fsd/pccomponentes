@@ -17,7 +17,7 @@ const postUser = async (req, res) => {
       email: body.email,
       password: body.password,
       phoneNumber: body.phoneNumber,
-      newsletter: body.newsletter
+      newsletter: body.newsletter,
     };
 
     const newUser = new Users(data);
@@ -42,9 +42,20 @@ const patchUser = async (req, res) => {
   try {
     const body = req.body;
     const { id } = req.params;
-    const userUpdated = await Users.findByIdAndUpdate(id, body, {
+
+    // Validar que solo se actualicen los campos permitidos
+    const allowedFields = ['username', 'email'];
+    const filteredBody = Object.keys(body).reduce((acc, key) => {
+      if (allowedFields.includes(key)) {
+        acc[key] = body[key];
+      }
+      return acc;
+    }, {});
+
+    const userUpdated = await Users.findByIdAndUpdate(id, filteredBody, {
       new: true,
     });
+
     return res.status(200).json(userUpdated);
   } catch (error) {
     return res.status(500).json(error);
@@ -55,7 +66,7 @@ const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
     await Users.findByIdAndDelete(id);
-    res.status(201).json({ message: 'User deleted Succesfully' });
+    res.status(201).json({ message: 'User deleted Successfully' });
   } catch (error) {
     return res.status(404).json(error);
   }
