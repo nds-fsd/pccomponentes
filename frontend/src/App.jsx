@@ -3,6 +3,7 @@ import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import ProductList from './components/ProductList/ProductList';
 import ProductPage from './components/ProductPage/ProductPage';
+import SalesPage from './components/SalesPage/SalesPage';
 import TermsConditions from './components/TermsConditions/TermsConditions';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import MyAccount from './components/MyAccount/MyAccount';
@@ -49,6 +50,7 @@ function UserLayout({ children }) {
         <Route path=':id' element={<ProductPage />} />
         <Route path='/terms-and-conditions' element={<TermsConditions />} />
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+        <Route path='/sales' element={<SalesPage />} />
         {isLogged && <Route path='/my-account' element={<MyAccount />} />}
         {isLogged && <Route path='/profile' element={<Profile token={token} />} />}
         {!isLogged && !accountCreated && (
