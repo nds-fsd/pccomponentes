@@ -25,10 +25,17 @@ const productSchema = new Schema({
     required: true,
   },
 
-  productCategories: [
+  categories: [
     {
       type: Schema.ObjectId,
       ref: 'Category',
+      required: true,
+    },
+  ],
+  subCategories: [
+    {
+      type: Schema.ObjectId,
+      ref: 'SubCategory',
       required: true,
     },
   ],

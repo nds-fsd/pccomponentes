@@ -13,8 +13,9 @@ const postCategories = async (req, res) => {
   try {
     const body = req.body;
     const data = {
-      categoryName: body.categoryName,
-      categoryImage: body.categoryImage,
+      name: body.name,
+      image: body.image,
+      subcategories: body.subcategories,
     };
 
     const newCategory = new Categories(data);

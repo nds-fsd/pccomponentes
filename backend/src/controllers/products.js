@@ -1,13 +1,14 @@
 const Product = require('../schemas/products');
 require('../schemas/categories');
+require('../schemas/subcategories');
 
 const getProducts = async (req, res) => {
   try {
-    const allProducts = await Product.find().populate('productCategories');
+    const allProducts = await Product.find().populate('Category');
     res.status(200).json(allProducts);
   } catch (error) {
     res.status(404).json({
-      message: 'There are no products'
+      message: 'There are no products',
     });
   }
 };
@@ -22,7 +23,8 @@ const postProduct = async (req, res) => {
       image: body.image,
       description: body.description,
       stock: body.stock,
-      productCategories: body.productCategories
+      categories: body.categories,
+      subCategories: body.subCategories,
     };
     const newProduct = new Product(data);
     await newProduct.save();
@@ -35,11 +37,9 @@ const postProduct = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     const { id } = req.params;
-    const ProductFound = await Product.findById(id).populate(
-      'productCategories'
-    );
+    const ProductFound = await Product.findById(id).populate('categories, subCategories');
     return res.status(200).json({
-      ProductFound
+      ProductFound,
     });
   } catch (error) {
     return res.status(404).json(error);
@@ -51,10 +51,10 @@ const patchProduct = async (req, res) => {
     const body = req.body;
     const { id } = req.params;
     const productUpdated = await Product.findByIdAndUpdate(id, body, {
-      new: true
+      new: true,
     });
     return res.status(200).json({
-      productUpdated
+      productUpdated,
     });
   } catch (error) {
     return res.status(500).json(error);
@@ -66,7 +66,7 @@ const deleteProduct = async (req, res) => {
     const { id } = req.params;
     await Product.findByIdAndDelete(id);
     res.status(201).json({
-      message: 'Product deleted Succesfully'
+      message: 'Product deleted Succesfully',
     });
   } catch (error) {
     return res.status(404).json(error);
@@ -76,14 +76,11 @@ const deleteProduct = async (req, res) => {
 const addCategory = async (req, res) => {
   const { categoryId, productId } = req.body;
 
-  const body = { $push: { productCategories: categoryId } };
+  const body = { $push: { categories: categoryId } };
 
-  const updatedProductCategories = await Product.findByIdAndUpdate(
-    productId,
-    body
-  );
+  const updatedCategories = await Product.findByIdAndUpdate(productId, body);
 
-  res.status(201).json(updatedProductCategories);
+  res.status(201).json(updatedCategories);
 };
 
 module.exports = {
@@ -92,5 +89,5 @@ module.exports = {
   getProductById,
   patchProduct,
   deleteProduct,
-  addCategory
+  addCategory,
 };
