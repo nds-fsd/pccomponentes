@@ -2,6 +2,7 @@ import styles from './Profile.module.css';
 import { api } from '../../_utils/api';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import SecondaryButton from '../SecondaryButton/SecondaryButton';
 
 import { LogOut } from '../Logout/Logout';
 import { getUserSession } from '../../_utils/localStorage.utils';
@@ -9,6 +10,8 @@ import { getUserSession } from '../../_utils/localStorage.utils';
 export const Profile = () => {
   const userSession = getUserSession();
   const [user, setUser] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editedUser, setEditedUser] = useState(null);
 
   const getUserById = (_id) => {
     api
@@ -23,8 +26,42 @@ export const Profile = () => {
     getUserById(userSession.id);
   }, []);
 
+  const openModal = () => {
+    setEditedUser(user);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleInputChange = (e, field) => {
+    setEditedUser((prevUser) => ({
+      ...prevUser,
+      [field]: e.target.value,
+    }));
+  };
+
+  const handleSaveChanges = (e) => {
+    e.preventDefault();
+    const { username, email } = editedUser;
+
+    const updatedUserData = {
+      username,
+      email,
+    };
+
+    api
+      .patch(`/users/${userSession.id}`, updatedUserData)
+      .then((res) => {
+        setUser(res.data);
+        closeModal();
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
-    <section className={styles.profile}>
+    <main className={styles.profile}>
       <Link to={'/my-account'}>
         <span className='material-symbols-rounded'>arrow_back</span>
       </Link>
@@ -35,16 +72,32 @@ export const Profile = () => {
           <p className={styles.username}>{user?.username}</p>
           <div className={styles.userInfo}>
             <p>{user?.email}</p>
-            <p>{user?.phoneNumber}</p>
-            <p>{user?.direction?.street}</p>
-            <p>{user?.direction?.postalCode}</p>
-            <p>{user?.direction?.country}</p>
           </div>
-          <button disabled>Edit</button>
+          <SecondaryButton btnType='button' onClick={openModal} value='Edit' />
+
           <LogOut />
         </div>
       </div>
-    </section>
+
+      {isModalOpen && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalCard}>
+            <form onSubmit={handleSaveChanges}>
+              <label>
+                Username:
+                <input type='text' value={editedUser.username} onChange={(e) => handleInputChange(e, 'username')} />
+              </label>
+              <label>
+                Email:
+                <input type='text' value={editedUser.email} onChange={(e) => handleInputChange(e, 'email')} />
+              </label>
+              <SecondaryButton btnType='submit' value='Save Changes' />
+            </form>
+            <SecondaryButton btnType='button' onClick={closeModal} value='Close' />
+          </div>
+        </div>
+      )}
+    </main>
   );
 };
 

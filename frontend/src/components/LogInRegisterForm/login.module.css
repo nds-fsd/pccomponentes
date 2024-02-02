@@ -11,6 +11,11 @@
   max-width: 24rem;
   padding: 0 var(--wrapper);
   width: 100%;
+
+  & h2,
+  > input {
+    margin-bottom: 1rem;
+  }
 }
 
 .errorMessage {
@@ -22,11 +27,11 @@
   border: none;
   border-radius: 0.2rem;
   height: 2.5rem;
+  padding-left: 1rem;
 }
 
 .formInput::placeholder {
   color: var(--neutral-500);
-  padding-left: 0.5rem;
 }
 
 .password {
@@ -39,6 +44,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
 }
 
 .stretchBtn {

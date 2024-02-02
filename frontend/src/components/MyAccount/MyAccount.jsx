@@ -3,7 +3,7 @@ import styles from './myAccount.module.css';
 
 function MyAccount() {
   return (
-    <main>
+    <main className={styles.main}>
       <section className={styles.myAccount}>
         <h3 className={styles.title}>My Account</h3>
         <div className={styles.cards}>

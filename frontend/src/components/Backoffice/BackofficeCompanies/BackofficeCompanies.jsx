@@ -8,10 +8,6 @@ const BackofficeCompany = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
 
-  useEffect(() => {
-    getAllCompanies();
-  }, []);
-
   const getAllCompanies = async () => {
     try {
       const response = await api.get('/companies');
@@ -20,6 +16,12 @@ const BackofficeCompany = () => {
       console.log('Error fetching companies:', error);
     }
   };
+
+  const showTotal = (total) => `Total ${total} companies`;
+
+  useEffect(() => {
+    getAllCompanies();
+  }, []);
 
   const handleDelete = async (key) => {
     try {
@@ -50,12 +52,19 @@ const BackofficeCompany = () => {
     setIsModalVisible(false);
   };
 
+  const formattedCompanies = companies.map((company) => ({
+    key: company._id,
+    companyName: company.companyName,
+    phoneNumber: company.phoneNumber,
+    socials: company.socials,
+    email: company.email,
+  }));
+
   const columns = [
     {
       title: 'Company Name',
       dataIndex: 'companyName',
       key: 'companyName',
-      render: (text) => <a>{text}</a>,
     },
     {
       title: 'Phone Number',
@@ -68,7 +77,7 @@ const BackofficeCompany = () => {
       key: 'socials',
     },
     {
-      title: 'Email',
+      title: 'email',
       dataIndex: 'email',
       key: 'email',
     },
@@ -90,7 +99,19 @@ const BackofficeCompany = () => {
       <Button type='primary' onClick={showModal}>
         Add Company
       </Button>
-      <Table dataSource={companies} columns={columns} />
+      <Table
+        dataSource={formattedCompanies}
+        columns={columns}
+        size='small'
+        scroll={{ y: 500 }}
+        pagination={{
+          total: formattedCompanies.length,
+          showTotal: showTotal,
+          showSizeChanger: true,
+          pageSizeOptions: ['50', '100', '500'],
+        }}
+        className={styles.table}
+      />
 
       <Modal title='Add New Company' open={isModalVisible} onCancel={handleCancel} onOk={() => form.submit()}>
         <Form form={form} onFinish={createCompany}>

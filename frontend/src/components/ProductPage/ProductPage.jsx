@@ -4,7 +4,7 @@ import ProductDetail from '../ProductDetail/ProductDetail';
 import { api } from '../../_utils/api';
 import styles from './productPage.module.css';
 
-function Product() {
+function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -23,10 +23,10 @@ function Product() {
   }
 
   return (
-    <div className={styles.product}>
+    <main className={styles.main}>
       <ProductDetail product={product} />
-    </div>
+    </main>
   );
 }
 
-export default Product;
+export default ProductPage;

@@ -11,27 +11,34 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({});
 
-  const doLogin = (data) => {
-    api
-      .post('auth/login', data)
-      .then((response) => {
-        if (response?.data.token) {
-          setUserSession(response.data);
-          forceUpdate();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const doLogin = async (data) => {
+    try {
+      const response = await api.post('auth/login', data);
+
+      if (response?.data.token) {
+        setUserSession(response.data);
+        forceUpdate();
+
+        await navigateUser(response.data.user.role);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const navigateUser = async (role) => {
+    if (role === 'admin') {
+      navigate('/backoffice');
+    } else {
+      navigate('/');
+    }
   };
 
   const onSubmit = (data) => {
     doLogin(data);
-    navigate('/');
   };
 
   const navToRegister = () => {
@@ -42,7 +49,6 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
     <main className={styles.main}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <h2>Log In</h2>
-        <br />
         <input
           className={styles.formInput}
           type='text'
@@ -53,7 +59,6 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
           })}
         />
         {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
-        <br />
         <input
           className={styles.formInput}
           type='password'
@@ -61,16 +66,10 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
           {...register('password', { required: 'Password is required.' })}
         />
         {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
-        <br />
         <a className={styles.password}>Forgot my password</a>
-        <br />
         <div className={styles.buttons}>
-          <br />
           <PrimaryButton btnType='submit' value='Log In' />
-          <br />
           <p>or</p>
-          <br />
-
           <SecondaryButton
             btnType='button'
             value='Create account'

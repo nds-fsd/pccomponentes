@@ -19,13 +19,7 @@ const ImageCarousel = ({ product }) => {
 
   return (
     <div className={styles.carousel}>
-      {/* <button onClick={prevImage} className={styles.prevbutton}>
-        <span className={'material-symbols-rounded'}>navigate_before</span>
-      </button> */}
       <img src={images[currentIndex]} alt={`image of the product`} />
-      {/* <button onClick={nextImage} className={styles.nextbutton}>
-        <span className={'material-symbols-rounded'}>navigate_next</span>
-      </button> */}
       <div className={styles.thumbnailContainer}>
         {images.map((image, index) => (
           <img
