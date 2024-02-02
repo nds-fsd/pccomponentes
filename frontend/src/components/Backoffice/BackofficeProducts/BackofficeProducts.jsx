@@ -25,6 +25,8 @@ const BackofficeProducts = () => {
     return api.get('/products');
   };
 
+  const showTotal = (total) => `Total ${total} products`;
+
   useEffect(() => {
     getAllProducts()
       .then((response) => {
@@ -81,7 +83,7 @@ const BackofficeProducts = () => {
     setEditingProduct(null);
   };
 
-  const formatedProducts = products.map((product) => ({
+  const formattedProducts = products.map((product) => ({
     key: product._id,
     name: product.name,
     brand: product.brand,
@@ -91,13 +93,13 @@ const BackofficeProducts = () => {
   }));
 
   const columns = [
+    Table.EXPAND_COLUMN,
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
       render: (text) => <a>{text}</a>,
     },
-    Table.EXPAND_COLUMN,
     {
       title: 'Brand',
       dataIndex: 'brand',
@@ -137,14 +139,20 @@ const BackofficeProducts = () => {
         Add Product
       </Button>
       <Table
-        dataSource={formatedProducts}
+        dataSource={formattedProducts}
         columns={columns}
         size='small'
-        pagination={{ pageSize: 10 }}
+        pagination={{
+          total: formattedProducts.length,
+          showTotal: showTotal,
+          showSizeChanger: true,
+          pageSizeOptions: ['50', '100', '500'],
+        }}
         scroll={{ y: 500 }}
         expandable={{
           expandedRowRender: (record) => <p style={{ margin: 0 }}>{record.description}</p>,
         }}
+        className={styles.table}
       />
       <Modal
         title={editingProduct ? 'Edit Product' : 'Add New Product'}
