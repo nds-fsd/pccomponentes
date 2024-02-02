@@ -11,27 +11,41 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({});
 
-  const doLogin = (data) => {
-    api
-      .post('auth/login', data)
-      .then((response) => {
-        if (response?.data.token) {
-          setUserSession(response.data);
-          forceUpdate();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const doLogin = async (data) => {
+    try {
+      const response = await api.post('auth/login', data);
+
+      if (response?.data.token) {
+        // Almacena la información del usuario en el localStorage
+        setUserSession(response.data);
+        // Forzar la actualización del componente
+        forceUpdate();
+
+        // Espera a que se complete setUserSession antes de redirigir
+        await navigateUser(response.data.user.role);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const navigateUser = async (role) => {
+    // Verifica el rol del usuario después de un inicio de sesión exitoso
+    if (role === 'admin') {
+      // Redirigir a la ruta del Backoffice si es administrador
+      navigate('/backoffice');
+    } else {
+      // Redirigir a la página de inicio si no es administrador
+      navigate('/');
+    }
   };
 
   const onSubmit = (data) => {
     doLogin(data);
-    navigate('/');
+    // No es necesario redirigir aquí, ya que la redirección se maneja en doLogin
   };
 
   const navToRegister = () => {
