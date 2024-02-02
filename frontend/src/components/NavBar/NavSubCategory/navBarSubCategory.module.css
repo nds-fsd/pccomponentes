@@ -14,23 +14,36 @@
   & > ul {
     display: flex;
     flex-direction: column;
-    color: var(--neutral-500);
 
     & > li {
       display: flex;
       align-items: center;
       height: 40px;
+      & :hover {
+        text-decoration: underline 2px solid var(--primary-500);
+        text-underline-offset: 6px;
+      }
     }
   }
 
   & p {
     font-size: var(--body-large);
-    color: var(--neutral-50);
+  }
+  & a {
+    color: var(--neutral-500);
   }
 }
 
 .navLvl3.active {
   right: 0;
+}
+
+.categoryTitle {
+  color: var(--neutral-50);
+  & :hover {
+    text-decoration: underline 2px solid var(--primary-500);
+    text-underline-offset: 6px;
+  }
 }
 
 @media screen and (width >= 1024px) {

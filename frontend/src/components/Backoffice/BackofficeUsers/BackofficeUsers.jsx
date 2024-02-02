@@ -14,6 +14,8 @@ const BackofficeUsers = () => {
     return api.get('/users');
   };
 
+  const showTotal = (total) => `Total ${total} users`;
+
   useEffect(() => {
     getAllUsers()
       .then((response) => {
@@ -130,8 +132,13 @@ const BackofficeUsers = () => {
         dataSource={formattedUsers}
         columns={columns}
         size='small'
-        pagination={{ pageSize: 10 }}
         scroll={{ y: 500 }}
+        pagination={{
+          total: formattedUsers.length,
+          showTotal: showTotal,
+          showSizeChanger: true,
+          pageSizeOptions: ['50', '100', '500'],
+        }}
         className={styles.table}
       />
       <Modal
