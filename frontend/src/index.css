@@ -121,6 +121,7 @@ strong {
 ::selection {
   background: var(--primary-900);
 }
+
 /* ------------------------------------- VARIABLES ---------------------------------- */
 
 :root {

@@ -12,9 +12,13 @@
   transition: 150ms;
   border: 1px solid rgba(0, 0, 255, 0);
   box-shadow: 0px 0px 0px 0px var(--primary-900);
+
   &:hover {
     border: 1px solid var(--primary-900);
     box-shadow: 3px 3px 0px 0px var(--primary-900);
+    img {
+      animation: floating 2s ease-in-out infinite;
+    }
   }
 }
 
@@ -48,4 +52,16 @@
   height: 100%;
   object-fit: contain;
   margin-bottom: 0.5rem;
+}
+
+@keyframes floating {
+  from {
+    transform: translate(0, 0px);
+  }
+  65% {
+    transform: translate(0, 5px);
+  }
+  to {
+    transform: translate(0, -0px);
+  }
 }
