@@ -1,7 +1,7 @@
 const express = require('express');
 const {
   getCategories,
-  postCategories,
+  postCategory,
   getCategoryById,
   patchCategory,
   deleteCategory,
@@ -10,7 +10,7 @@ const {
 const categoriesRouter = express.Router();
 
 categoriesRouter.get('/', getCategories);
-categoriesRouter.post('/', postCategories);
+categoriesRouter.post('/', postCategory);
 categoriesRouter.get('/:id', getCategoryById);
 categoriesRouter.patch('/:id', patchCategory);
 categoriesRouter.delete('/:id', deleteCategory);

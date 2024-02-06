@@ -74,14 +74,14 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
               ? categories.slice(0, 5).map((category) => (
                   <li key={category._id} onClick={showNavLvl3}>
                     <p>
-                      {category.categoryName}
+                      {category.name}
                       <span className='material-symbols-rounded'>chevron_right</span>
                     </p>
                     <NavSubCategory
                       navLvl3={navLvl3}
                       showNavLvl3={showNavLvl3}
                       hideAll={hideAll}
-                      categoryName={category.categoryName}
+                      categoryName={category.name}
                     />
                   </li>
                 ))
@@ -89,14 +89,14 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
                   return (
                     <li key={category._id} onClick={() => handleSetActualCategory(category)}>
                       <p>
-                        {category.categoryName}
+                        {category.name}
                         <span className='material-symbols-rounded'>chevron_right</span>
                       </p>
                       <NavSubCategory
                         navLvl3={navLvl3}
                         showNavLvl3={showNavLvl3}
                         hideAll={hideAll}
-                        categoryName={actualCategory.categoryName}
+                        categoryName={actualCategory.name}
                       />
                     </li>
                   );

@@ -4,9 +4,10 @@ require('../schemas/subcategories');
 
 const getProducts = async (req, res) => {
   try {
-    const allProducts = await Product.find().populate('Category');
+    const allProducts = await Product.find().populate('categories', 'subCategories');
     res.status(200).json(allProducts);
   } catch (error) {
+    console.log(error);
     res.status(404).json({
       message: 'There are no products',
     });
@@ -37,7 +38,7 @@ const postProduct = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     const { id } = req.params;
-    const ProductFound = await Product.findById(id).populate('categories, subCategories');
+    const ProductFound = await Product.findById(id).populate('Category, SubCategory');
     return res.status(200).json({
       ProductFound,
     });
