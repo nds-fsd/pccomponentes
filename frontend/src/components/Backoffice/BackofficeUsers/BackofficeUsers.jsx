@@ -151,7 +151,7 @@ const BackofficeUsers = () => {
           <Form.Item name='username' label='Username' rules={[{ required: true }]}>
             <Input />
           </Form.Item>
-          <Form.Item name='email' label='Email' rules={[{ required: true }]}>
+          <Form.Item name='email' label='Email' rules={[{ required: true, type: 'email' }]}>
             <Input />
           </Form.Item>
           {editingUser ? (
