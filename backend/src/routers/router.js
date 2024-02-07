@@ -4,7 +4,6 @@ const usersRouter = require('./routes/users');
 const addressesRouter = require('./routes/addresses');
 const companiesRouter = require('./routes/companies');
 const categoriesRouter = require('./routes/categories');
-const subCategoriesRouter = require('./routes/subcategories');
 const authRouter = require('./routes/auth');
 const { jwtMiddleware } = require('../security/jwt');
 
@@ -15,7 +14,6 @@ router.use('/companies', companiesRouter);
 router.use('/users', usersRouter);
 router.use('/addresses', addressesRouter);
 router.use('/categories', categoriesRouter);
-router.use('/subcategories', subCategoriesRouter);
 router.use('/auth', authRouter);
 
 module.exports = router;

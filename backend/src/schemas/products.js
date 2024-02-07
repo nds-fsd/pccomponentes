@@ -32,13 +32,6 @@ const productSchema = new Schema({
       required: true,
     },
   ],
-  subCategories: [
-    {
-      type: Schema.ObjectId,
-      ref: 'SubCategory',
-      required: true,
-    },
-  ],
 });
 
 const Product = model('Product', productSchema);

@@ -15,7 +15,6 @@ const postCategory = async (req, res) => {
     const data = {
       name: body.name,
       image: body.image,
-      subCategories: body.subCategories,
     };
 
     const newCategory = new Categories(data);
