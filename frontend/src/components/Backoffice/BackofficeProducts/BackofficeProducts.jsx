@@ -25,6 +25,8 @@ const BackofficeProducts = () => {
     return api.get('/products');
   };
 
+  const showTotal = (total) => `Total ${total} products`;
+
   useEffect(() => {
     getAllProducts()
       .then((response) => {
@@ -81,7 +83,7 @@ const BackofficeProducts = () => {
     setEditingProduct(null);
   };
 
-  const formatedProducts = products.map((product) => ({
+  const formattedProducts = products.map((product) => ({
     key: product._id,
     name: product.name,
     brand: product.brand,
@@ -91,13 +93,13 @@ const BackofficeProducts = () => {
   }));
 
   const columns = [
+    Table.EXPAND_COLUMN,
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
       render: (text) => <a>{text}</a>,
     },
-    Table.EXPAND_COLUMN,
     {
       title: 'Brand',
       dataIndex: 'brand',
@@ -107,15 +109,18 @@ const BackofficeProducts = () => {
       title: 'Price (€)',
       dataIndex: 'price',
       key: 'price',
+      width: '15%',
     },
     {
       title: 'Stock',
       dataIndex: 'stock',
       key: 'stock',
+      width: '15%',
     },
     {
       title: 'Actions',
       dataIndex: 'actions',
+      width: 80,
       render: (_, record) => (
         <>
           <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
@@ -134,14 +139,20 @@ const BackofficeProducts = () => {
         Add Product
       </Button>
       <Table
-        dataSource={formatedProducts}
+        dataSource={formattedProducts}
         columns={columns}
         size='small'
-        pagination={{ pageSize: 10 }}
+        pagination={{
+          total: formattedProducts.length,
+          showTotal: showTotal,
+          showSizeChanger: true,
+          pageSizeOptions: ['50', '100', '500'],
+        }}
         scroll={{ y: 500 }}
         expandable={{
           expandedRowRender: (record) => <p style={{ margin: 0 }}>{record.description}</p>,
         }}
+        className={styles.table}
       />
       <Modal
         title={editingProduct ? 'Edit Product' : 'Add New Product'}
@@ -157,7 +168,7 @@ const BackofficeProducts = () => {
             <Input />
           </Form.Item>
           <Form.Item name='price' label='Price' rules={[{ required: true, type: 'number' }]}>
-            <InputNumber min={0} />
+            <InputNumber min={0} style={{ width: 120 }} addonAfter='€' />
           </Form.Item>
           <Form.Item name='stock' label='Stock' rules={[{ required: true, type: 'number' }]}>
             <InputNumber min={0} />

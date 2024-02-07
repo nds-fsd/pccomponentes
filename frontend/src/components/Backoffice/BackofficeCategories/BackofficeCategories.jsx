@@ -14,6 +14,8 @@ const BackofficeCategories = () => {
     return api.get('/categories');
   };
 
+  const showTotal = (total) => `Total ${total} categories`;
+
   useEffect(() => {
     getAllCategories()
       .then((response) => {
@@ -80,7 +82,7 @@ const BackofficeCategories = () => {
     setIsModalVisible(false);
   };
 
-  const formatedCategories = categories.map((category) => ({
+  const formattedCategories = categories.map((category) => ({
     key: category._id,
     categoryName: category.categoryName,
     categoryImage: category.categoryImage,
@@ -124,11 +126,17 @@ const BackofficeCategories = () => {
         Add Category
       </Button>
       <Table
-        dataSource={formatedCategories}
+        dataSource={formattedCategories}
         columns={columns}
         size='small'
-        pagination={{ pageSize: 10 }}
         scroll={{ y: 500 }}
+        pagination={{
+          total: formattedCategories.length,
+          showTotal: showTotal,
+          showSizeChanger: true,
+          pageSizeOptions: ['50', '100', '500'],
+        }}
+        className={styles.table}
       />
       <Modal
         title={editingCategory ? 'Edit Category' : 'Add New Category'}

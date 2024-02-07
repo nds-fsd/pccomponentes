@@ -6,7 +6,7 @@
   color: var(--neutral-50);
   cursor: pointer;
   display: inline-flex;
-  font-weight: 700;
+  font-weight: 500;
   gap: 0.5rem;
   height: 40px;
   justify-content: center;
