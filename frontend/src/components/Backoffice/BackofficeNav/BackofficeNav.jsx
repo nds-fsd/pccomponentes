@@ -12,13 +12,8 @@ const items = [
   },
   {
     key: 'categories',
-    label: <Link /*to='/backoffice/categories'*/>Categories</Link>,
+    label: <Link to='/backoffice/categories'>Categories</Link>,
     icon: <span className='material-symbols-rounded'>category</span>,
-  },
-  {
-    key: 'orders',
-    label: <Link /*to='/backoffice/orders'*/>Orders</Link>,
-    icon: <span className='material-symbols-rounded'>conveyor_belt</span>,
   },
   {
     key: 'users',
@@ -29,6 +24,12 @@ const items = [
     key: 'companies',
     label: <Link to='/backoffice/companies'>Companies</Link>,
     icon: <span className='material-symbols-rounded'>apartment</span>,
+  },
+  {
+    key: 'orders',
+    label: <Link /*to='/backoffice/orders'*/>Orders</Link>,
+    icon: <span className='material-symbols-rounded'>conveyor_belt</span>,
+    disabled: true,
   },
 ];
 

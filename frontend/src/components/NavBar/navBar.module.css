@@ -1,6 +1,7 @@
 .navLvl1 {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
   background-color: var(--nav-bar);
   width: 320px;
   height: 100svh;
@@ -11,9 +12,10 @@
   padding: 2rem;
   transition: right 300ms ease-out;
 
-  & > ul {
+  & .lvl1Items {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 
     & > li {
       display: flex;
@@ -22,6 +24,17 @@
       font-size: var(--body-large);
       font-weight: 500;
       height: 40px;
+
+      & > div,
+      a {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        & > span {
+          color: var(--neutral-500);
+        }
+      }
     }
   }
 
@@ -93,7 +106,7 @@
   font-weight: 500;
 }
 
-.bgOverlay {
+.bgOverlayMobile {
   position: fixed;
   top: 0;
   left: 0;
@@ -105,14 +118,16 @@
   opacity: 0;
 }
 
-.bgOverlay.active {
+.bgOverlayMobile.active {
   visibility: visible;
   opacity: 1;
   transition: opacity 0.8s ease, visibility 0s;
 }
 
-@media screen and (768px <= width) {
+.allProductsItem {
+  display: none;
 }
+
 @media screen and (width >= 1024px) {
   #hambIcon {
     display: none;
@@ -129,7 +144,7 @@
     justify-content: center;
     align-items: center;
 
-    & > ul {
+    & > .lvl1Items {
       flex-direction: row;
 
       & > li {
@@ -138,11 +153,9 @@
         display: flex;
         flex-direction: column;
         height: 28px;
-        border-bottom: 0px solid var(--primary-900);
-
-        &:hover {
-          border-bottom: 2px solid var(--primary-700);
-          transition: 200ms;
+        & :hover {
+          text-decoration: underline 2px solid var(--primary-500);
+          text-underline-offset: 6px;
         }
 
         & span {
@@ -207,5 +220,9 @@
 
   .navLvl2 li > span {
     display: none;
+  }
+
+  .allProductsItem {
+    display: block;
   }
 }

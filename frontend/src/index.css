@@ -108,6 +108,10 @@ strong {
   font-weight: 900;
 }
 
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
 /* Change text selection color */
 ::-moz-selection {
   /* Code for Firefox */
@@ -117,6 +121,7 @@ strong {
 ::selection {
   background: var(--primary-900);
 }
+
 /* ------------------------------------- VARIABLES ---------------------------------- */
 
 :root {
@@ -150,7 +155,7 @@ strong {
   --warning-500: #dcc825;
   --error-500: #e72513;
 
-  --nav-bar: #0e1b23ef;
+  --nav-bar: #0e1b23;
 
   /* Typescale of 1.2 Minor Third */
   --title-large: 2.074rem; /* h1 33.18px */

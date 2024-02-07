@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ProductDetailContainer from '../ProductDetailContainer/ProductDetailContainer';
+import ProductDetail from '../ProductDetail/ProductDetail';
 import { api } from '../../_utils/api';
-import styles from './product.module.css';
+import styles from './productPage.module.css';
 
-function Product() {
+function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -23,10 +23,10 @@ function Product() {
   }
 
   return (
-    <div className={styles.product}>
-      <ProductDetailContainer product={product} />
-    </div>
+    <main className={styles.main}>
+      <ProductDetail product={product} />
+    </main>
   );
 }
 
-export default Product;
+export default ProductPage;
