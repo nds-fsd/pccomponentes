@@ -12,13 +12,13 @@ const NavSubCategory = ({ navLvl3, showNavLvl3, hideAll, categoryName }) => {
         <p className={styles.categoryTitle}>{categoryName}</p>
         <ul className={styles.lvl3Items}>
           <li onClick={hideAll}>
-            <Link to={`/${categoryName}`}>All</Link>
+            <Link to={`/${categoryName?.toLowerCase()}`}>All</Link>
           </li>
           <li onClick={hideAll}>
-            <Link to={`/${categoryName}/${'item-2'}`}>item 2</Link>
+            <Link to={`/${categoryName?.toLowerCase()}/${'item-2'}`}>item 2</Link>
           </li>
           <li onClick={hideAll}>
-            <Link to={`/${categoryName}/${'item-3'}`}>item 3</Link>
+            <Link to={`/${categoryName?.toLowerCase()}/${'item-3'}`}>item 3</Link>
           </li>
         </ul>
       </div>
