@@ -84,21 +84,21 @@ const BackofficeCategories = () => {
 
   const formattedCategories = categories.map((category) => ({
     key: category._id,
-    categoryName: category.categoryName,
-    categoryImage: category.categoryImage,
+    name: category.name,
+    image: category.image,
   }));
 
   const columns = [
     {
       title: 'Category Name',
-      dataIndex: 'categoryName',
-      key: 'categoryName',
+      dataIndex: 'name',
+      key: 'name',
       render: (text) => <a>{text}</a>,
     },
     {
       title: 'Category Image',
-      dataIndex: 'categoryImage',
-      key: 'categoryImage',
+      dataIndex: 'image',
+      key: 'image',
       render: (img) => (
         <a href={img} target='_blank'>
           <img src={img} width='64' />
@@ -145,10 +145,10 @@ const BackofficeCategories = () => {
         onOk={() => form.submit()}
       >
         <Form form={form} onFinish={editingCategory ? saveEdit : createCategory}>
-          <Form.Item name='categoryName' label='Category Name' rules={[{ required: true }]}>
+          <Form.Item name='name' label='Category Name' rules={[{ required: true }]}>
             <Input placeholder='Category name' />
           </Form.Item>
-          <Form.Item name='categoryImage' label='Category Image' rules={[{ required: true }]}>
+          <Form.Item name='image' label='Category Image' rules={[{ required: true }]}>
             <Input placeholder='Paste img url...' />
           </Form.Item>
         </Form>
