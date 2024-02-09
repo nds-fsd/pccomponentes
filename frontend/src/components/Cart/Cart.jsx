@@ -1,10 +1,10 @@
-import ProductCard from '../CartProduct/CartProduct';
-import styles from './CartProduct.module.css';
+import CartProduct from '../CartProduct/CartProduct';
+import styles from './Cart.module.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { api } from '../../_utils/api';
 
-function CardProducts({ product }) {
+function Cart({ product }) {
   const [products, setProducts] = useState([]);
 
   const getAllProducts = async () => {

@@ -15,6 +15,7 @@ import BackofficeProducts from './components/Backoffice/BackofficeProducts/Backo
 import BackofficeCompanies from './components/Backoffice/BackofficeCompanies/BackofficeCompanies';
 import BackofficeCategories from './components/Backoffice/BackofficeCategories/BackofficeCategories';
 import NoMatch from './components/NoMatch/NoMatch';
+import Cart from './components/Cart/Cart';
 
 import { useState } from 'react';
 import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
