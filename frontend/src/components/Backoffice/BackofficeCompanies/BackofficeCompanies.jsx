@@ -54,7 +54,7 @@ const BackofficeCompany = () => {
 
   const formattedCompanies = companies.map((company) => ({
     key: company._id,
-    companyName: company.companyName,
+    name: company.name,
     phoneNumber: company.phoneNumber,
     socials: company.socials,
     email: company.email,
@@ -63,8 +63,8 @@ const BackofficeCompany = () => {
   const columns = [
     {
       title: 'Company Name',
-      dataIndex: 'companyName',
-      key: 'companyName',
+      dataIndex: 'name',
+      key: 'name',
     },
     {
       title: 'Phone Number',
@@ -115,7 +115,7 @@ const BackofficeCompany = () => {
 
       <Modal title='Add New Company' open={isModalVisible} onCancel={handleCancel} onOk={() => form.submit()}>
         <Form form={form} onFinish={createCompany}>
-          <Form.Item name='companyName' label='Company Name' rules={[{ required: true }]}>
+          <Form.Item name='name' label='Company Name' rules={[{ required: true }]}>
             <Input />
           </Form.Item>
           <Form.Item name='phoneNumber' label='Phone Number' rules={[{ required: true, type: 'number' }]}>

@@ -1,0 +1,22 @@
+{
+  "name": "@monorepo/e2e",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Jose Manuel Cano <jmcano94@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "scripts": {
+    "test:run": "npx cypress run",
+    "test:open": "npx cypress open"
+  },
+  "devDependencies": {
+    "cypress": "^13.6.4"
+  },
+  "dependencies": {}
+}
