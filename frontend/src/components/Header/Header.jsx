@@ -36,7 +36,9 @@ export const Header = ({ isLogged, accountCreated }) => {
             </Link>
             <div className={styles.icons}>
               <span className='material-symbols-rounded'>search</span>
-              <span className='material-symbols-rounded'>shopping_cart</span>
+              <Link to={'/cart'}>
+                <span className='material-symbols-rounded'>shopping_cart</span>
+              </Link>
               {isLogged && (
                 <Link to={'/my-account'}>
                   <span className='material-symbols-rounded'>person</span>
