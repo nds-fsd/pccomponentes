@@ -9,12 +9,28 @@ const getReviews = async (req, res) => {
   }
 };
 
+const getReviewsByProduct = async (req, res) => {
+  try {
+    const productId = req.params.productId; // Assuming productId is passed in the request params
+    const reviews = await Reviews.find({ productId: productId });
+
+    if (reviews.length === 0) {
+      return res.status(404).json({ message: 'There are no reviews for this product' });
+    }
+
+    res.status(200).json(reviews);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
 const postReview = async (req, res) => {
   try {
     const body = req.body;
     const data = {
       user: body.user,
       product: body.product,
+      rate: body.rate,
       commentary: body.commentary,
       date: body.date,
     };
@@ -62,6 +78,7 @@ const deleteReview = async (req, res) => {
 
 module.exports = {
   getReviews,
+  getReviewsByProduct,
   postReview,
   getReviewById,
   patchReview,
