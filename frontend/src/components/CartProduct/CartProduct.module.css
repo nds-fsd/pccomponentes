@@ -38,6 +38,10 @@
   width: 6rem;
 }
 
+.cart_icon {
+  color: white;
+}
+
 @keyframes floating {
   from {
     transform: translate(0, 0px);

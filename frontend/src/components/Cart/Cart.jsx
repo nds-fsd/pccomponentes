@@ -1,42 +1,38 @@
 import CartProduct from '../CartProduct/CartProduct';
 import styles from './Cart.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { Divider, Button } from 'antd';
 
 function Cart() {
   const [cartProducts, setCartProducts] = useState([]);
 
   useEffect(() => {
-    // Fetch cart products from localStorage on component mount
-    const storedCartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
-    setCartProducts(storedCartProducts);
+    const storedCartProducts = localStorage.getItem('CartProducts');
+    if (storedCartProducts) {
+      setCartProducts(JSON.parse(storedCartProducts));
+    }
   }, []);
 
-  // Function to add a product to the cart
-  const addToCart = (product) => {
-    const updatedCartProducts = [...cartProducts, product];
-    setCartProducts(updatedCartProducts);
-    // Store updated cartProducts in localStorage
-    localStorage.setItem('cartProducts', JSON.stringify(updatedCartProducts));
-  };
-
-  // Function to remove a product from the cart
-  const removeFromCart = (productId) => {
-    const updatedCartProducts = cartProducts.filter((product) => product._id !== productId);
-    setCartProducts(updatedCartProducts);
-    // Store updated cartProducts in localStorage
-    localStorage.setItem('cartProducts', JSON.stringify(updatedCartProducts));
-  };
-
   return (
-    <div className={styles.productContent}>
+    <div className={styles.cart}>
       <h2 className={styles.title}>My Cart</h2>
       <div className={styles.cartContainer}>
-        {cartProducts.map((product) => (
-          <CartProduct key={product._id} product={product} removeFromCart={() => removeFromCart(product._id)} />
-        ))}
+        <div className={styles.cartProducts}>
+          {cartProducts.map((product, index) => (
+            <CartProduct key={index} product={product}></CartProduct>
+          ))}
+        </div>
+        <div className={styles.cartOverview}>
+          <h3>Overview</h3>
+          <p>Subtotal</p>
+          <p>Tax</p>
+          <Divider />
+          <p>Total Price</p>
+          <Button className={styles.checkout_button}>Checkout</Button>
+        </div>
       </div>
     </div>
   );
 }
-
 export default Cart;
