@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../_utils/api';
 import CategoryCard from '../CategoryCard/CategoryCard';
-import ProductCard from '../ProductCard/ProductCard'; // Import the ProductCard component
 import styles from './categoryList.module.css';
 
 function CategoryList() {
@@ -50,14 +49,6 @@ function CategoryList() {
             }}
           />
         ))}
-      </div>
-      <div className={styles.productsContainer}>
-        <h3>Products for Selected Category</h3>
-        <div className={styles.productCards}>
-          {products.map((product) => (
-            <ProductCard key={product._id} product={product} />
-          ))}
-        </div>
       </div>
     </section>
   );
