@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { InputNumber, Button, Modal } from 'antd';
-import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import styles from './CartProduct.module.css';
 
 const { confirm } = Modal;
