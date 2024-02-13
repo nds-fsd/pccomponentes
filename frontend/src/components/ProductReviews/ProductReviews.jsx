@@ -3,22 +3,22 @@ import { api } from '../../_utils/api';
 import { useState, useEffect } from 'react';
 import styles from './productReviews.module.css';
 
-const ProductReviews = () => {
+const ProductReviews = ({ productId }) => {
   const [reviews, setReviews] = useState(null);
 
-  const getAllReviews = async () => {
-    return api.get('/reviews');
+  const getReviewsByProductId = async () => {
+    return api.get(`/reviews/product/${productId}`);
   };
 
   useEffect(() => {
-    getAllReviews()
+    getReviewsByProductId()
       .then((response) => {
         setReviews(response.data);
       })
       .catch((error) => {
         console.log('Error!');
       });
-  }, []);
+  }, [productId]);
 
   return (
     <section>

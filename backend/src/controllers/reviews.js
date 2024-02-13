@@ -1,4 +1,5 @@
 const Reviews = require('../schemas/reviews');
+require('../schemas/users');
 
 const getReviews = async (req, res) => {
   try {
@@ -9,18 +10,13 @@ const getReviews = async (req, res) => {
   }
 };
 
-const getReviewsByProduct = async (req, res) => {
+const getReviewsByProductId = async (req, res) => {
   try {
-    const productId = req.params.productId; // Assuming productId is passed in the request params
-    const reviews = await Reviews.find({ productId: productId });
-
-    if (reviews.length === 0) {
-      return res.status(404).json({ message: 'There are no reviews for this product' });
-    }
-
-    res.status(200).json(reviews);
+    const { id } = req.params;
+    const reviewsByProduct = await Reviews.find({ product: id }).populate('user', 'username');
+    res.status(200).json(reviewsByProduct);
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(404).json({ message: 'There are no reviews for this product' });
   }
 };
 
@@ -78,7 +74,7 @@ const deleteReview = async (req, res) => {
 
 module.exports = {
   getReviews,
-  getReviewsByProduct,
+  getReviewsByProductId,
   postReview,
   getReviewById,
   patchReview,

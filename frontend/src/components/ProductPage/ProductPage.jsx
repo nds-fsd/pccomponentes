@@ -26,7 +26,7 @@ function ProductPage() {
   return (
     <main className={styles.main}>
       <ProductDetail product={product} />
-      <ProductReviews />
+      <ProductReviews productId={product.ProductFound._id} />
     </main>
   );
 }

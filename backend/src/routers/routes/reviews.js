@@ -1,7 +1,7 @@
 const express = require('express');
 const {
   getReviews,
-  getReviewsByProduct,
+  getReviewsByProductId,
   postReview,
   getReviewById,
   patchReview,
@@ -11,7 +11,7 @@ const {
 const reviewsRouter = express.Router();
 
 reviewsRouter.get('/', getReviews);
-reviewsRouter.get('/product:id', getReviewsByProduct);
+reviewsRouter.get('/product/:id', getReviewsByProductId);
 reviewsRouter.post('/', postReview);
 reviewsRouter.get('/:id', getReviewById);
 reviewsRouter.patch('/:id', patchReview);
