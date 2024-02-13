@@ -125,7 +125,9 @@ const BackofficeProducts = () => {
         <>
           <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
           <Popconfirm title='Sure to delete?' onConfirm={() => productDelete(record.key)}>
-            <Button type='icon' icon={<DeleteOutlined />}></Button>
+            <Button type='icon'>
+              <span class='material-symbols-rounded'>delete</span>
+            </Button>
           </Popconfirm>
         </>
       ),
