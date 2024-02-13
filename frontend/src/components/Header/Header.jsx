@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './header.module.css';
 import NavBar from '../NavBar/NavBar';
 import computechLogo from '../../assets/computech-logo.svg';
@@ -17,6 +17,14 @@ export const Header = ({ isLogged, accountCreated }) => {
     setNavLvl2(false);
     setNavLvl3(false);
   };
+  const [cartProductsCount, setCartProductsCount] = useState(0);
+
+  useEffect(() => {
+    // Update the cartProductsCount state when component mounts or when cart products change
+    const cartProducts = JSON.parse(localStorage.getItem('CartProducts')) || [];
+    setCartProductsCount(cartProducts.length);
+  }, []);
+
   const isDesktop = window.innerWidth > 1024;
   return (
     <>
@@ -36,8 +44,9 @@ export const Header = ({ isLogged, accountCreated }) => {
             </Link>
             <div className={styles.icons}>
               <span className='material-symbols-rounded'>search</span>
-              <Link to={'/cart'}>
+              <Link to={'/cart'} className={styles.cartElements}>
                 <span className='material-symbols-rounded'>shopping_cart</span>
+                {cartProductsCount > 0 && <div className={styles.cartCount}>{cartProductsCount}</div>}
               </Link>
               {isLogged && (
                 <Link to={'/my-account'}>

@@ -66,7 +66,7 @@ a {
     order: 1;
   }
 
-  .icons span:nth-child(2) {
+  .icons a:nth-child(2) {
     order: 2;
   }
 
@@ -92,4 +92,24 @@ a {
     transition: opacity 0.8s ease, visibility 0s;
     z-index: 2;
   }
+}
+
+.cartElements {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  position: relative;
+}
+
+.cartCount {
+  border-radius: 100%;
+  background-color: var(--primary-700);
+  font-size: var(--body-xsmall);
+  height: 1rem;
+  width: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
 }
