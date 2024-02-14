@@ -9,7 +9,7 @@
   border-radius: 50%;
   font-size: 20px;
   font-weight: bold;
-  /* border: 2px solid #ffffff; */
+  border: 1px solid var(--Primary-primary-500, #4261e1);
 }
 
 .avatar span {
