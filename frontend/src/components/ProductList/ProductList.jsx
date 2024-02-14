@@ -1,25 +1,26 @@
 import ProductCard from '../ProductCard/ProductCard';
 import styles from './productList.module.css';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { api } from '../../_utils/api';
 
-function ProductList({ product }) {
+function ProductList({ categoryId }) {
   const [products, setProducts] = useState([]);
 
-  const getAllProducts = async () => {
-    return api.get('/products');
+  const getProductsByCategory = async (categoryId) => {
+    return api.get(`/products/byCategory/${categoryId}`);
   };
 
   useEffect(() => {
-    getAllProducts()
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((error) => {
-        console.log('Error!');
-      });
-  }, []);
+    if (categoryId) {
+      getProductsByCategory(categoryId)
+        .then((response) => {
+          setProducts(response.data);
+        })
+        .catch((error) => {
+          console.log('Error fetching products by category!');
+        });
+    }
+  }, [categoryId]);
 
   return (
     <div className={styles.productContent}>

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styles from './categoryCard.module.css';
 
 function CategoryCard({ category, onSelectCategory }) {
@@ -9,10 +8,10 @@ function CategoryCard({ category, onSelectCategory }) {
 
   return (
     <div className={styles.product} onClick={handleClick}>
-      <Link to={`/${category?._id}`}>
+      <div>
         <span>{category?.name}</span>
         <img src={category?.image} alt={category?.name} />
-      </Link>
+      </div>
     </div>
   );
 }
