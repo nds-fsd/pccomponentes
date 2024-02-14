@@ -9,6 +9,7 @@ export const Header = ({ isLogged, accountCreated }) => {
   const [navLvl1, setNavLvl1] = useState(false);
   const [navLvl2, setNavLvl2] = useState(false);
   const [navLvl3, setNavLvl3] = useState(false);
+  const [isDesktop, setIsDesktop] = useState();
   const showNavLvl1 = () => setNavLvl1(!navLvl1);
   const showNavLvl2 = () => setNavLvl2(!navLvl2);
   const showNavLvl3 = () => setNavLvl3(!navLvl3);
@@ -17,6 +18,7 @@ export const Header = ({ isLogged, accountCreated }) => {
     setNavLvl2(false);
     setNavLvl3(false);
   };
+
   const [cartProductsCount, setCartProductsCount] = useState(0);
 
   useEffect(() => {
@@ -26,6 +28,7 @@ export const Header = ({ isLogged, accountCreated }) => {
   }, []);
 
   const isDesktop = window.innerWidth > 1024;
+
   return (
     <>
       <header
