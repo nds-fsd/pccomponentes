@@ -26,6 +26,11 @@
   font-weight: 400;
 }
 
+.userData {
+  display: flex;
+  justify-content: space-between;
+}
+
 .username {
   font-weight: 700;
   margin-bottom: 0.5em;

@@ -1,4 +1,5 @@
 import styles from './Profile.module.css';
+import Avatar from './Avatar';
 import { api } from '../../_utils/api';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -67,12 +68,16 @@ export const Profile = () => {
       </Link>
       <h3 className={styles.title}>My Profile</h3>
       <div className={styles.card}>
-        <h4 className={styles.cardTitle}>Personal Information</h4>
         <div>
+          <div className={styles.userData}>
+            <h4 className={styles.cardTitle}>Personal Information</h4>
+            <Avatar username={user?.username} />
+          </div>
           <p className={styles.username}>{user?.username}</p>
           <div className={styles.userInfo}>
             <p>{user?.email}</p>
           </div>
+
           <SecondaryButton btnType='button' onClick={openModal} value='Edit' />
 
           <LogOut />
