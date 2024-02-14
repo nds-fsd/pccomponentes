@@ -9,12 +9,12 @@ const getCategories = async (req, res) => {
   }
 };
 
-const postCategories = async (req, res) => {
+const postCategory = async (req, res) => {
   try {
     const body = req.body;
     const data = {
-      categoryName: body.categoryName,
-      categoryImage: body.categoryImage,
+      name: body.name,
+      image: body.image,
     };
 
     const newCategory = new Categories(data);
@@ -60,7 +60,7 @@ const deleteCategory = async (req, res) => {
 
 module.exports = {
   getCategories,
-  postCategories,
+  postCategory,
   getCategoryById,
   patchCategory,
   deleteCategory,
