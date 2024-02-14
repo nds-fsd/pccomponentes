@@ -27,8 +27,6 @@ export const Header = ({ isLogged, accountCreated }) => {
     setCartProductsCount(cartProducts.length);
   }, []);
 
-  const isDesktop = window.innerWidth > 1024;
-
   return (
     <>
       <header
