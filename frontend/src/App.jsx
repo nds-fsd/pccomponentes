@@ -3,6 +3,7 @@ import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import ProductList from './components/ProductList/ProductList';
 import ProductPage from './components/ProductPage/ProductPage';
+import SalesPage from './components/SalesPage/SalesPage';
 import TermsConditions from './components/TermsConditions/TermsConditions';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import MyAccount from './components/MyAccount/MyAccount';
@@ -14,11 +15,12 @@ import BackofficeProducts from './components/Backoffice/BackofficeProducts/Backo
 import BackofficeCompanies from './components/Backoffice/BackofficeCompanies/BackofficeCompanies';
 import BackofficeCategories from './components/Backoffice/BackofficeCategories/BackofficeCategories';
 import NoMatch from './components/NoMatch/NoMatch';
+import Cart from './components/Cart/Cart';
 
 import { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { getUserToken } from './_utils/localStorage.utils';
+import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
 
@@ -47,8 +49,10 @@ function UserLayout({ children }) {
         <Route path='/' element={<Home />} />
         <Route path='/product-list' element={<ProductList />} />
         <Route path=':id' element={<ProductPage />} />
+        <Route path='/cart' element={<Cart />} />
         <Route path='/terms-and-conditions' element={<TermsConditions />} />
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+        <Route path='/sales' element={<SalesPage />} />
         {isLogged && <Route path='/my-account' element={<MyAccount />} />}
         {isLogged && <Route path='/profile' element={<Profile token={token} />} />}
         {!isLogged && !accountCreated && (
@@ -71,20 +75,16 @@ function UserLayout({ children }) {
 }
 
 function Backoffice({ children }) {
-  const [accountCreated, setAccountCreated] = useState(true);
-  const [update, setUpdate] = useState(true);
-
-  const changeAccountCreated = (btnType) => {
-    if (btnType == 'login') return setAccountCreated(true);
-    else if (btnType == 'register') return setAccountCreated(false);
-  };
-
-  const forceUpdate = () => {
-    setUpdate(!update);
-  };
-
   const token = getUserToken();
   const isLogged = !!token;
+
+  const navigate = useNavigate();
+
+  const userRole = getUserRole();
+
+  if (isLogged && userRole !== 'admin') {
+    return <Navigate to='/' />;
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

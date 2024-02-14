@@ -14,10 +14,11 @@ function Footer() {
             Terms and conditions
           </Link>
           <Link to={'privacy-policy'} onClick={scrollToTop}>
-            Privacy Policy
-          </Link>
+            Privacy Policy </Link>
         </div>
-        <img src={computechLogo} alt='Computech logo' />
+        <Link to={'/'}>
+          <img src={computechLogo} alt='Computech logo' />
+        </Link>
       </div>
     </footer>
   );

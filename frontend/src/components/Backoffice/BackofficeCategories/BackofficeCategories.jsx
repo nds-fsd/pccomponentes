@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber } from 'antd';
+import { Table, Popconfirm, Button, Modal, Form, Input } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeCategories.module.css';
 
 const BackofficeCategories = () => {
   const [categories, setCategories] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [editingCategory, setEditingCategory] = useState(null);
   const [form] = Form.useForm();
 
   const getAllCategories = async () => {
     return api.get('/categories');
   };
+
+  const showTotal = (total) => `Total ${total} categories`;
 
   useEffect(() => {
     getAllCategories()
@@ -21,6 +25,30 @@ const BackofficeCategories = () => {
         console.log('Error!', error);
       });
   }, []);
+
+  const startEditing = (key) => {
+    const categoryToEdit = categories.find((category) => category._id === key);
+    setEditingCategory(categoryToEdit);
+    form.setFieldsValue(categoryToEdit);
+    setIsModalVisible(true);
+  };
+
+  const saveEdit = async (values) => {
+    try {
+      const updatedCategory = { ...editingCategory, ...values };
+      await api.patch(`/categories/${updatedCategory._id}`, updatedCategory);
+
+      setCategories((prevCategories) =>
+        prevCategories.map((category) => (category._id === updatedCategory._id ? updatedCategory : category))
+      );
+
+      setIsModalVisible(false);
+      form.resetFields();
+      setEditingCategory(null);
+    } catch (error) {
+      console.error('Error updating category:', error);
+    }
+  };
 
   const categoryDelete = async (key) => {
     try {
@@ -54,23 +82,23 @@ const BackofficeCategories = () => {
     setIsModalVisible(false);
   };
 
-  const formatedCategories = categories.map((category) => ({
+  const formattedCategories = categories.map((category) => ({
     key: category._id,
-    categoryName: category.categoryName,
-    categoryImage: category.categoryImage,
+    name: category.name,
+    image: category.image,
   }));
 
   const columns = [
     {
       title: 'Category Name',
-      dataIndex: 'categoryName',
-      key: 'categoryName',
+      dataIndex: 'name',
+      key: 'name',
       render: (text) => <a>{text}</a>,
     },
     {
       title: 'Category Image',
-      dataIndex: 'categoryImage',
-      key: 'categoryImage',
+      dataIndex: 'image',
+      key: 'image',
       render: (img) => (
         <a href={img} target='_blank'>
           <img src={img} width='64' />
@@ -80,12 +108,14 @@ const BackofficeCategories = () => {
     {
       title: 'Actions',
       dataIndex: 'actions',
-      render: (_, record) =>
-        formatedCategories.length >= 1 ? (
+      render: (_, record) => (
+        <>
+          <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
           <Popconfirm title='Sure to delete?' onConfirm={() => categoryDelete(record.key)}>
-            <Button type='primary'>Delete</Button>
+            <Button type='icon' icon={<DeleteOutlined />}></Button>
           </Popconfirm>
-        ) : null,
+        </>
+      ),
     },
   ];
 
@@ -96,18 +126,29 @@ const BackofficeCategories = () => {
         Add Category
       </Button>
       <Table
-        dataSource={formatedCategories}
+        dataSource={formattedCategories}
         columns={columns}
         size='small'
-        pagination={{ pageSize: 10 }}
         scroll={{ y: 500 }}
+        pagination={{
+          total: formattedCategories.length,
+          showTotal: showTotal,
+          showSizeChanger: true,
+          pageSizeOptions: ['50', '100', '500'],
+        }}
+        className={styles.table}
       />
-      <Modal title='Add New Product' open={isModalVisible} onCancel={handleCancel} onOk={() => form.submit()}>
-        <Form form={form} onFinish={createCategory}>
-          <Form.Item name='categoryName' label='Category Name' rules={[{ required: true }]}>
+      <Modal
+        title={editingCategory ? 'Edit Category' : 'Add New Category'}
+        open={isModalVisible}
+        onCancel={handleCancel}
+        onOk={() => form.submit()}
+      >
+        <Form form={form} onFinish={editingCategory ? saveEdit : createCategory}>
+          <Form.Item name='name' label='Category Name' rules={[{ required: true }]}>
             <Input placeholder='Category name' />
           </Form.Item>
-          <Form.Item name='categoryImage' label='Category Image' rules={[{ required: true }]}>
+          <Form.Item name='image' label='Category Image' rules={[{ required: true }]}>
             <Input placeholder='Paste img url...' />
           </Form.Item>
         </Form>

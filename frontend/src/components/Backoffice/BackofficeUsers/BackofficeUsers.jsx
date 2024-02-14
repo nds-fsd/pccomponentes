@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Popconfirm, Button, Modal, Form, Input, Select } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
-import styles from './BackofficeUsers.module.css';
+import styles from './backofficeUsers.module.css';
 
 const BackofficeUsers = () => {
   const [users, setUsers] = useState([]);
@@ -13,6 +13,8 @@ const BackofficeUsers = () => {
   const getAllUsers = async () => {
     return api.get('/users');
   };
+
+  const showTotal = (total) => `Total ${total} users`;
 
   useEffect(() => {
     getAllUsers()
@@ -130,8 +132,13 @@ const BackofficeUsers = () => {
         dataSource={formattedUsers}
         columns={columns}
         size='small'
-        pagination={{ pageSize: 10 }}
         scroll={{ y: 500 }}
+        pagination={{
+          total: formattedUsers.length,
+          showTotal: showTotal,
+          showSizeChanger: true,
+          pageSizeOptions: ['50', '100', '500'],
+        }}
         className={styles.table}
       />
       <Modal
@@ -144,7 +151,7 @@ const BackofficeUsers = () => {
           <Form.Item name='username' label='Username' rules={[{ required: true }]}>
             <Input />
           </Form.Item>
-          <Form.Item name='email' label='Email' rules={[{ required: true }]}>
+          <Form.Item name='email' label='Email' rules={[{ required: true, type: 'email' }]}>
             <Input />
           </Form.Item>
           {editingUser ? (

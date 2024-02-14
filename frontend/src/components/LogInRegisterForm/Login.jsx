@@ -11,27 +11,34 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({});
 
-  const doLogin = (data) => {
-    api
-      .post('auth/login', data)
-      .then((response) => {
-        if (response?.data.token) {
-          setUserSession(response.data);
-          forceUpdate();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const doLogin = async (data) => {
+    try {
+      const response = await api.post('auth/login', data);
+
+      if (response?.data.token) {
+        setUserSession(response.data);
+        forceUpdate();
+
+        await navigateUser(response.data.user.role);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const navigateUser = async (role) => {
+    if (role === 'admin') {
+      navigate('/backoffice');
+    } else {
+      navigate('/');
+    }
   };
 
   const onSubmit = (data) => {
     doLogin(data);
-    navigate('/');
   };
 
   const navToRegister = () => {
