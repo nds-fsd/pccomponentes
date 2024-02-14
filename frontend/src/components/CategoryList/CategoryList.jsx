@@ -3,12 +3,10 @@ import { useEffect, useState } from 'react';
 import { api } from '../../_utils/api';
 import CategoryCard from '../CategoryCard/CategoryCard';
 import styles from './categoryList.module.css';
-import ProductList from '../ProductList/ProductList';
 
 function CategoryList() {
   const [categories, setCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
-  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -22,17 +20,6 @@ function CategoryList() {
 
     fetchCategories();
   }, []);
-
-  const fetchProductsByCategory = async (categoryId) => {
-    console.log('Fetching products for category:', categoryId);
-    try {
-      const response = await api.get(`/products/byCategory/${categoryId}`);
-      console.log('Fetched products for category:', response.data);
-      setProducts(response.data);
-    } catch (error) {
-      console.error('Error fetching products by category:', error);
-    }
-  };
 
   return (
     <section className={styles.section}>
@@ -49,15 +36,12 @@ function CategoryList() {
                 onSelectCategory={() => {
                   console.log('Category card clicked:', category._id);
                   setSelectedCategoryId(category._id);
-                  fetchProductsByCategory(category._id);
                 }}
               />
             </Link>
           </div>
         ))}
       </div>
-
-      {selectedCategoryId && <ProductList categoryId={selectedCategoryId} />}
     </section>
   );
 }

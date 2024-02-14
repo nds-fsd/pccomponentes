@@ -1,7 +1,6 @@
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
-import ProductList from './components/ProductList/ProductList';
 import ProductPage from './components/ProductPage/ProductPage';
 import CategoryProductsPage from './components/CategoryProductsPage/CategoryProductsPage';
 import SalesPage from './components/SalesPage/SalesPage';
@@ -49,7 +48,6 @@ function UserLayout({ children }) {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
-        <Route path='/product-list' element={<ProductList />} />
         <Route path=':id' element={<ProductPage />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/terms-and-conditions' element={<TermsConditions />} />

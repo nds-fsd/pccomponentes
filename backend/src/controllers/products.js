@@ -3,7 +3,9 @@ require('../schemas/categories');
 
 const getProducts = async (req, res) => {
   try {
-    const allProducts = await Product.find().populate('categories');
+    const { categoryId } = req.query;
+    const search = categoryId ? { categories: categoryId } : {};
+    const allProducts = await Product.find(search).populate('categories');
     res.status(200).json(allProducts);
   } catch (error) {
     console.log(error);
@@ -84,7 +86,7 @@ const addCategory = async (req, res) => {
 
 const getAllProductsByCategoriesId = async (req, res) => {
   try {
-    const { categoryId } = req.params;
+    const { categoryId } = req.query;
     const productsByCategoryId = await Product.find({ categories: categoryId }).populate('categories');
     res.status(200).json(productsByCategoryId);
   } catch (error) {
