@@ -1,4 +1,5 @@
 import styles from './Profile.module.css';
+import Avatar from './Avatar';
 import { api } from '../../_utils/api';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -70,6 +71,7 @@ export const Profile = () => {
         <h4 className={styles.cardTitle}>Personal Information</h4>
         <div>
           <p className={styles.username}>{user?.username}</p>
+          <Avatar username={user?.username} />
           <div className={styles.userInfo}>
             <p>{user?.email}</p>
           </div>
