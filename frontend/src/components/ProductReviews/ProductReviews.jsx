@@ -7,7 +7,7 @@ const ProductReviews = ({ productId }) => {
   const [reviews, setReviews] = useState(null);
 
   const getReviewsByProductId = async () => {
-    return api.get(`/reviews/product/${productId}`);
+    return api.get(`/reviews?productId=${productId}`);
   };
 
   useEffect(() => {

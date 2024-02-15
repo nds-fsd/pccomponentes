@@ -3,20 +3,12 @@ require('../schemas/users');
 
 const getReviews = async (req, res) => {
   try {
-    const allReviews = await Reviews.find();
+    const { productId } = req.query;
+    const search = productId ? { product: productId } : {};
+    const allReviews = await Reviews.find(search).populate('user', 'username');
     res.status(200).json(allReviews);
   } catch (error) {
     res.status(404).json({ message: 'There are no reviews' });
-  }
-};
-
-const getReviewsByProductId = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const reviewsByProduct = await Reviews.find({ product: id }).populate('user', 'username');
-    res.status(200).json(reviewsByProduct);
-  } catch (error) {
-    res.status(404).json({ message: 'There are no reviews for this product' });
   }
 };
 
@@ -28,7 +20,6 @@ const postReview = async (req, res) => {
       product: body.product,
       rate: body.rate,
       commentary: body.commentary,
-      date: body.date || new Date(),
     };
 
     const newReview = new Reviews(data);
@@ -74,7 +65,6 @@ const deleteReview = async (req, res) => {
 
 module.exports = {
   getReviews,
-  getReviewsByProductId,
   postReview,
   getReviewById,
   patchReview,

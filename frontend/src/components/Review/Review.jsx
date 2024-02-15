@@ -8,6 +8,7 @@ const Review = ({ review }) => {
     <div className={styles.review}>
       <div className={styles.userContainer}>
         <Avatar username={review.user.username} />
+        {console.log(review.user.username)}
         <p>{review.user.username}</p>
       </div>
       <p>{review.commentary}</p>

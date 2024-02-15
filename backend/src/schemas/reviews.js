@@ -5,7 +5,7 @@ const reviewSchema = new Schema({
   product: { type: Schema.ObjectId, required: true, ref: 'Product' },
   rate: { type: Number, required: true },
   commentary: { type: String, required: true },
-  date: { type: Date },
+  date: { type: Date, default: Date.now() },
 });
 
 const Review = model('Review', reviewSchema);
