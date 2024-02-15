@@ -1,7 +1,7 @@
 import Review from '../Review/Review';
 import { api } from '../../_utils/api';
 import { useState, useEffect } from 'react';
-import styles from './productReviews.module.css';
+import styles from './reviewsList.module.css';
 
 const ProductReviews = ({ productId }) => {
   const [reviews, setReviews] = useState(null);

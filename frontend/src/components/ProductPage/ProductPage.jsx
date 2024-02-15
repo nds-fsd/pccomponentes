@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductDetail from '../ProductDetail/ProductDetail';
-import ProductReviews from '../ProductReviews/ProductReviews';
+import ReviewsList from '../ReviewsList/ReviewsList';
 import { api } from '../../_utils/api';
 import styles from './productPage.module.css';
 
@@ -26,7 +26,7 @@ function ProductPage() {
   return (
     <main className={styles.main}>
       <ProductDetail product={product} />
-      <ProductReviews productId={product.ProductFound._id} />
+      <ReviewsList productId={product.ProductFound._id} />
     </main>
   );
 }
