@@ -26,7 +26,6 @@ export const Header = ({ isLogged, accountCreated }) => {
   const [cartProductsCount, setCartProductsCount] = useState(0);
 
   useEffect(() => {
-    // Update the cartProductsCount state when component mounts or when cart products change
     const cartProducts = JSON.parse(localStorage.getItem('CartProducts')) || [];
     setCartProductsCount(cartProducts.length);
   }, []);
