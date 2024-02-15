@@ -3,7 +3,9 @@ require('../schemas/categories');
 
 const getProducts = async (req, res) => {
   try {
-    const allProducts = await Product.find().populate('categories');
+    const { categoryId } = req.query;
+    const search = categoryId ? { categories: categoryId } : {};
+    const allProducts = await Product.find(search).populate('categories');
     res.status(200).json(allProducts);
   } catch (error) {
     console.log(error);
@@ -82,6 +84,19 @@ const addCategory = async (req, res) => {
   res.status(201).json(updatedCategories);
 };
 
+const getAllProductsByCategoriesId = async (req, res) => {
+  try {
+    const { categoryId } = req.query;
+    const productsByCategoryId = await Product.find({ categories: categoryId }).populate('categories');
+    res.status(200).json(productsByCategoryId);
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({
+      message: 'No products found for the given category ID',
+    });
+  }
+};
+
 module.exports = {
   getProducts,
   postProduct,
@@ -89,4 +104,5 @@ module.exports = {
   patchProduct,
   deleteProduct,
   addCategory,
+  getAllProductsByCategoriesId,
 };
