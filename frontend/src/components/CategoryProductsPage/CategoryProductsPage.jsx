@@ -25,7 +25,7 @@ function CategoryProductsPage() {
 
   return (
     <div className={styles.productContent}>
-      <h2 className={styles.title}>Products in Category {categoryId}</h2>
+      {/* <h2 className={styles.title}>Products in Category {categoryId}</h2> */}
       <ProductsList products={products} />
     </div>
   );
