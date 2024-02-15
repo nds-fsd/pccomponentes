@@ -4,7 +4,16 @@ require('../schemas/categories');
 const getProducts = async (req, res) => {
   try {
     const { categoryId } = req.query;
-    const search = categoryId ? { categories: categoryId } : {};
+    let search = categoryId ? { categories: categoryId } : {};
+    const filters = req.query;
+    if (filters && filters.minPrice && filters.maxPrice) {
+      search = {
+        price: {
+          $gt: filters.minPrice,
+          $lt: filters.maxPrice,
+        },
+      };
+    }
     const allProducts = await Product.find(search).populate('categories');
     res.status(200).json(allProducts);
   } catch (error) {
