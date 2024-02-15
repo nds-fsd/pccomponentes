@@ -1,0 +1,21 @@
+.review {
+  padding-bottom: 1rem;
+  > * {
+    padding-bottom: 0.5rem;
+  }
+}
+
+.userContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  & p {
+    font-weight: 500;
+    font-size: var(--body-large);
+  }
+}
+
+.date {
+  color: var(--neutral-500);
+}
