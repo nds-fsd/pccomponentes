@@ -1,0 +1,4 @@
+.filterList {
+  display: flex;
+  flex-direction: column;
+}
