@@ -112,16 +112,6 @@ strong {
   overflow-y: hidden;
 }
 
-/* Change text selection color */
-::-moz-selection {
-  /* Code for Firefox */
-  background: var(--primary-900);
-}
-
-::selection {
-  background: var(--primary-900);
-}
-
 /* ------------------------------------- VARIABLES ---------------------------------- */
 
 :root {

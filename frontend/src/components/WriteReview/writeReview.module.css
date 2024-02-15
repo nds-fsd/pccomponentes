@@ -1,0 +1,50 @@
+.container {
+  border: 1px solid var(--primary-900);
+  border-radius: 0 16px 0 16px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  & h4 > span {
+    margin-right: 1rem;
+  }
+
+  & > * {
+    padding-bottom: 1rem;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+
+  & textarea {
+    background-color: inherit;
+    color: var(--neutral-50);
+    border-color: var(--neutral-700);
+    border-radius: 4px;
+    padding: 0.5rem;
+  }
+}
+
+.userContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  & p {
+    font-weight: 500;
+    font-size: var(--body-large);
+  }
+}
+
+/* WriteReview.module.css */
+.rateContainer {
+  height: 40px; /* Adjust the height as needed */
+}
+
+/* Additional styles for the Rate component */
+.customRate {
+  font-size: 24px; /* Adjust the font size of the Rate component */
+}

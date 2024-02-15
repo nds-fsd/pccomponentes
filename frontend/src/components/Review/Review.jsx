@@ -1,5 +1,5 @@
 import Avatar from '../Profile/Avatar';
-import RateStars from '../RateStars/RateStars';
+import { ConfigProvider, Rate, theme } from 'antd';
 import styles from './review.module.css';
 
 const Review = ({ review }) => {
@@ -11,7 +11,9 @@ const Review = ({ review }) => {
         <p>{review.user.username}</p>
       </div>
       <p>{review.commentary}</p>
-      <RateStars rating={review.rate} />
+      <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
+        <Rate disabled defaultValue={review.rate} />
+      </ConfigProvider>
       <p className={styles.date}>{date}</p>
     </div>
   );
