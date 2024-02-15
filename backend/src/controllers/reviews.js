@@ -28,7 +28,7 @@ const postReview = async (req, res) => {
       product: body.product,
       rate: body.rate,
       commentary: body.commentary,
-      date: body.date,
+      date: body.date || new Date(),
     };
 
     const newReview = new Reviews(data);

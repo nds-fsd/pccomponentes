@@ -1,0 +1,8 @@
+.reviewsSection {
+  padding: 1.5rem var(--wrapper);
+  max-width: var(--wrapper-max);
+
+  & h3 {
+    padding-bottom: 1rem;
+  }
+}

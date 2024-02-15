@@ -16,14 +16,16 @@ const ProductReviews = ({ productId }) => {
         setReviews(response.data);
       })
       .catch((error) => {
-        console.log('Error!');
+        console.log(`Error: ${error}`);
       });
   }, [productId]);
 
   return (
-    <section>
-      <h3>Product Reviews</h3>
-      {reviews ? reviews.map((review) => <Review key={review._id} review={review} />) : <p>No reviews available</p>}
+    <section className={styles.reviewsSection}>
+      <h3>Reviews</h3>
+      <div>
+        {reviews ? reviews.map((review) => <Review key={review._id} review={review} />) : <p>No reviews available</p>}
+      </div>
     </section>
   );
 };
