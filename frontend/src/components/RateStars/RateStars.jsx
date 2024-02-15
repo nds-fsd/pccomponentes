@@ -1,4 +1,4 @@
-import styles from './RateStars.module.css';
+import styles from './rateStars.module.css';
 import { Rate, ConfigProvider, theme } from 'antd';
 
 const RateStars = ({ rating }) => {
