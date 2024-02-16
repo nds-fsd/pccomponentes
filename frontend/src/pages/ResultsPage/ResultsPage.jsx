@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './ResultsPage.module.css';
 import ProductsList from '../../components/ProductsList/ProductsList';
 import Filters from '../../components/Filters/Filters';
 import { api } from '../../_utils/api';
@@ -26,13 +27,13 @@ function ResultsPage() {
 
   return (
     <Layout>
-      <Sider width={200} style={{ display: showSidebar ? 'block' : 'none' }}>
+      <Sider className={styles.sideBar} width={200} style={{ display: showSidebar ? 'block' : 'none' }}>
         <Filters onFilterChange={handleFilterChange} />
       </Sider>
       <Layout>
-        <Content style={{ padding: '0 24px', minHeight: 280 }}>
-          <Button onClick={toggleSidebar} style={{ marginBottom: 16 }}>
-            {showSidebar ? 'Hide Sidebar' : 'Show Sidebar'}
+        <Content className={styles.productsContainer}>
+          <Button onClick={toggleSidebar} className={styles.sideBarButton}>
+            {showSidebar ? 'Hide Filters' : 'Show Filters'}
           </Button>
           <ProductsList products={products} />
         </Content>
