@@ -4,7 +4,7 @@ import { api } from '../../_utils/api';
 import { useState, useEffect } from 'react';
 import styles from './reviewsList.module.css';
 
-const ProductReviews = ({ productId }) => {
+const ProductReviews = ({ productId, isLogged }) => {
   const [reviews, setReviews] = useState(null);
 
   const getReviewsByProductId = async () => {
@@ -24,7 +24,7 @@ const ProductReviews = ({ productId }) => {
   return (
     <section className={styles.reviewsSection}>
       <h3>Reviews</h3>
-      <WriteReview />
+      <WriteReview isLogged={isLogged} />
       <div>
         {reviews ? reviews.map((review) => <Review key={review._id} review={review} />) : <p>No reviews available</p>}
       </div>

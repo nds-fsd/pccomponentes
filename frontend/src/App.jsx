@@ -48,7 +48,7 @@ function UserLayout({ children }) {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
-        <Route path=':id' element={<ProductPage />} />
+        <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/results' element={<ResultsPage />} />
         <Route path='/terms-and-conditions' element={<TermsConditions />} />

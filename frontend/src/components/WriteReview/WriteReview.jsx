@@ -6,7 +6,7 @@ import { getUserSession } from '../../_utils/localStorage.utils';
 import Avatar from '../Profile/Avatar';
 import styles from './WriteReview.module.css';
 
-const WriteReview = () => {
+const WriteReview = ({ isLogged }) => {
   const [commentary, setCommentary] = useState('');
   const [rate, setRate] = useState(0);
   const productId = useParams().id;
@@ -34,8 +34,8 @@ const WriteReview = () => {
         <span className='material-symbols-rounded'>border_color</span>Write your review
       </h4>
       <div className={styles.userContainer}>
-        <Avatar username={user.username} />
-        <p>{user.username}</p>
+        <Avatar username={user?.username} />
+        <p>{user?.username}</p>
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
         <textarea
