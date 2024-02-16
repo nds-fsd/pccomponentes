@@ -1,0 +1,10 @@
+.filterList {
+  display: flex;
+  flex-direction: column;
+}
+
+.applyButton {
+  background-color: var(--primary-500);
+  color: white;
+  border: none;
+}
