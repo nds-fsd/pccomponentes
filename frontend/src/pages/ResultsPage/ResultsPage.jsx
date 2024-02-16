@@ -27,7 +27,7 @@ function ResultsPage() {
 
   return (
     <Layout>
-      <Sider className={styles.sideBar} width={200} style={{ display: showSidebar ? 'block' : 'none' }}>
+      <Sider className={styles.sideBar} style={{ display: showSidebar ? 'block' : 'none' }}>
         <Filters onFilterChange={handleFilterChange} />
       </Sider>
       <Layout>
