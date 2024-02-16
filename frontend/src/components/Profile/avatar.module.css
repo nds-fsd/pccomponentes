@@ -1,0 +1,17 @@
+.avatar {
+  height: 40px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-500);
+  color: var(--neutral-50);
+  border-radius: 50%;
+  font-size: var(--body-medium);
+  font-weight: 500;
+}
+
+.avatar span {
+  text-align: center;
+  user-select: none;
+}

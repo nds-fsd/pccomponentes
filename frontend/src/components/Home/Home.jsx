@@ -1,13 +1,13 @@
 import Hero from '../Hero/Hero';
 import CategoryList from '../CategoryList/CategoryList';
-import ProductList from '../ProductList/ProductList';
+import HomeProductsBestSellers from '../HomeProductsBestSellers/HomeProductsBestSellers';
 
 function Home({ product }) {
   return (
     <main>
       <Hero />
       <CategoryList product={product} />
-      <ProductList product={product} />
+      <HomeProductsBestSellers />
     </main>
   );
 }

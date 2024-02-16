@@ -1,12 +1,18 @@
-import { Link } from 'react-router-dom';
 import styles from './categoryCard.module.css';
 
-function CategoryCard({ category }) {
+function CategoryCard({ category, onSelectCategory }) {
+  const handleClick = () => {
+    console.log('Category card clicked:', category?._id);
+    onSelectCategory(category?._id);
+  };
+
   return (
-    <Link to={`/${category?._id}`} className={styles.product}>
-      <span className={styles.categoryName}>{category?.categoryName}</span>
-      <img src={category?.categoryImage} alt={category?.categoryName} />
-    </Link>
+    <div className={styles.product} onClick={handleClick}>
+      <div>
+        <span>{category?.name}</span>
+        <img src={category?.image} alt={category?.name} />
+      </div>
+    </div>
   );
 }
 

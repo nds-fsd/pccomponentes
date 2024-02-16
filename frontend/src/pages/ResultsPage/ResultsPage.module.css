@@ -1,0 +1,20 @@
+.resutlsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.productsContainer {
+  padding: 1rem;
+  background-color: var(--neutral-950);
+}
+
+.sideBar {
+  padding: 1rem;
+}
+
+.sideBarButton {
+  background-color: var(--neutral-950);
+  border-color: var(--primary-400);
+  color: white;
+  margin-bottom: 1rem;
+}
