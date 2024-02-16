@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber } from 'antd';
+import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber, Select, Tag } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeProducts.module.css';
 
 const BackofficeProducts = () => {
   const [products, setProducts] = useState([]);
+  const [categoryNames, setCategoryNames] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null); // Track the product being edited
   const [form] = Form.useForm();
@@ -25,6 +26,10 @@ const BackofficeProducts = () => {
     return api.get('/products');
   };
 
+  const getAllCategories = async () => {
+    return api.get('/categories');
+  };
+
   const showTotal = (total) => `Total ${total} products`;
 
   useEffect(() => {
@@ -34,6 +39,14 @@ const BackofficeProducts = () => {
       })
       .catch((error) => {
         console.log('Error!');
+      });
+
+    getAllCategories()
+      .then((response) => {
+        setCategoryNames(response.data);
+      })
+      .catch((error) => {
+        console.log('Error!', error);
       });
   }, []);
 
@@ -90,7 +103,12 @@ const BackofficeProducts = () => {
     description: product.description,
     price: product.price,
     stock: product.stock,
+    categories: product.categories,
   }));
+
+  const formattedCategories = categoryNames.map((category, i) => {
+    return { label: categoryNames[i]?.name, value: categoryNames[i]?._id };
+  });
 
   const columns = [
     Table.EXPAND_COLUMN,
@@ -116,6 +134,26 @@ const BackofficeProducts = () => {
       dataIndex: 'stock',
       key: 'stock',
       width: '15%',
+    },
+    {
+      title: 'Categories',
+      dataIndex: 'categories',
+      key: 'categories',
+      width: '15%',
+      render: () => (
+        <>
+          {formattedProducts.map((categories) => {
+            categories.categories.map((category) => {
+              console.log(category.name);
+              return (
+                <Tag color='blue' key={category._id}>
+                  {category.name}
+                </Tag>
+              );
+            });
+          })}
+        </>
+      ),
     },
     {
       title: 'Actions',
@@ -177,6 +215,9 @@ const BackofficeProducts = () => {
           </Form.Item>
           <Form.Item name='description' label='Description' rules={[{ required: true }]}>
             <Input.TextArea />
+          </Form.Item>
+          <Form.Item name='categories' label='Categories' rules={[{ required: true }]}>
+            <Select mode='multiple' placeholder='Select categories' options={formattedCategories} />
           </Form.Item>
         </Form>
       </Modal>
