@@ -3,7 +3,7 @@ import Avatar from './Avatar';
 import { api } from '../../_utils/api';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import SecondaryButton from '../SecondaryButton/SecondaryButton';
+import { SecondaryButton } from '../Button/Button';
 
 import { LogOut } from '../Logout/Logout';
 import { getUserSession } from '../../_utils/localStorage.utils';

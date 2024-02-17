@@ -3,8 +3,7 @@ import { api } from '../../_utils/api';
 import { setUserSession } from '../../_utils/localStorage.utils';
 import { useNavigate } from 'react-router-dom';
 import styles from './login.module.css';
-import PrimaryButton from '../PrimaryButton/PrimaryButton';
-import SecondaryButton from '../SecondaryButton/SecondaryButton';
+import { PrimaryButton, SecondaryButton } from '../Button/Button';
 
 export const Login = ({ forceUpdate, changeAccountCreated }) => {
   const navigate = useNavigate();

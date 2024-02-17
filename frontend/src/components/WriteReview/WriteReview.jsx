@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import PrimaryButton from '../PrimaryButton/PrimaryButton';
-import SecondaryButton from '../SecondaryButton/SecondaryButton';
+import { PrimaryButton, SecondaryButton } from '../Button/Button';
 import { api } from '../../_utils/api';
 import { ConfigProvider, Rate, theme } from 'antd';
 import { getUserSession } from '../../_utils/localStorage.utils';

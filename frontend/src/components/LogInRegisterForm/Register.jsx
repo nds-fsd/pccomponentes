@@ -4,8 +4,7 @@ import { useForm } from 'react-hook-form';
 import { setUserSession } from '../../_utils/localStorage.utils';
 
 import styles from './register.module.css';
-import PrimaryButton from '../PrimaryButton/PrimaryButton';
-import SecondaryButton from '../SecondaryButton/SecondaryButton';
+import { PrimaryButton, SecondaryButton } from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 
 export const Register = ({ forceUpdate, changeAccountCreated }) => {

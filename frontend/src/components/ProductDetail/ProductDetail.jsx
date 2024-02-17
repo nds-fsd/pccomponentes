@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './productDetail.module.css';
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
-import PrimaryButton from '../PrimaryButton/PrimaryButton';
+import { PrimaryButton } from '../Button/Button';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 
 const ProductDetailContainer = ({ product }) => {
