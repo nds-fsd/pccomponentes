@@ -95,12 +95,11 @@ export const Register = ({ forceUpdate, changeAccountCreated }) => {
         </div>
         <br />
         <div className={styles.buttons}>
-          <PrimaryButton btnType='submit' value='Create account' />
+          <PrimaryButton value='Create account' />
           <br />
           <p>or</p>
           <br />
           <SecondaryButton
-            btnType='button'
             value='I have an account'
             onClick={() => {
               changeAccountCreated('login');

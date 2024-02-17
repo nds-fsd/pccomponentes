@@ -4,11 +4,15 @@
   padding: 1rem;
   margin-bottom: 1rem;
 
-  & h4 > span {
-    margin-right: 1rem;
+  & h4 {
+    padding-bottom: 1rem;
+
+    & > span {
+      margin-right: 1rem;
+    }
   }
 
-  & > * {
+  & > *:no-button {
     padding-bottom: 1rem;
   }
 }

@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import PrimaryButton from '../PrimaryButton/PrimaryButton';
+import SecondaryButton from '../SecondaryButton/SecondaryButton';
 import { api } from '../../_utils/api';
 import { ConfigProvider, Rate, theme } from 'antd';
 import { getUserSession } from '../../_utils/localStorage.utils';
@@ -33,28 +36,37 @@ const WriteReview = ({ isLogged }) => {
       <h4>
         <span className='material-symbols-rounded'>border_color</span>Write your review
       </h4>
-      <div className={styles.userContainer}>
-        <Avatar username={user?.username} />
-        <p>{user?.username}</p>
-      </div>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <textarea
-          id='commentary'
-          name='commentary'
-          placeholder='Write here your review'
-          rows='2'
-          cols='50'
-          value={commentary}
-          onChange={(e) => setCommentary(e.target.value)}
-          required
-        ></textarea>
-        <div className={styles.rateContainer}>
-          <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
-            <Rate value={rate} onChange={(value) => setRate(value)} />
-          </ConfigProvider>
-        </div>
-        <button type='submit'>Submit</button>
-      </form>
+
+      {isLogged ? (
+        <>
+          <div className={styles.userContainer}>
+            <Avatar username={user?.username} />
+            <p>{user?.username}</p>
+          </div>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <textarea
+              id='commentary'
+              name='commentary'
+              placeholder='Write here your review'
+              rows='2'
+              cols='50'
+              value={commentary}
+              onChange={(e) => setCommentary(e.target.value)}
+              required
+            ></textarea>
+            <div className={styles.rateContainer}>
+              <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
+                <Rate value={rate} onChange={(value) => setRate(value)} />
+              </ConfigProvider>
+            </div>
+            <PrimaryButton value='Submit' />
+          </form>
+        </>
+      ) : (
+        <Link to={'/login'}>
+          <SecondaryButton value='Log in' leftIcon='person' />
+        </Link>
+      )}
     </div>
   );
 };

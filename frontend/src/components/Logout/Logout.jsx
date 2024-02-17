@@ -13,5 +13,5 @@ export const LogOut = ({}) => {
     navigate('/');
   };
 
-  return <SecondaryButton btnType='button' onClick={doLogout} value='Logout' />;
+  return <SecondaryButton onClick={doLogout} value='Logout' />;
 };

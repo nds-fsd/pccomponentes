@@ -68,10 +68,9 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
         {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
         <a className={styles.password}>Forgot my password</a>
         <div className={styles.buttons}>
-          <PrimaryButton btnType='submit' value='Log In' />
+          <PrimaryButton value='Log In' />
           <p>or</p>
           <SecondaryButton
-            btnType='button'
             value='Create account'
             onClick={() => {
               changeAccountCreated('register');
