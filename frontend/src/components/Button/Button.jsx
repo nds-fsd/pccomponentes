@@ -10,8 +10,6 @@ function PrimaryButton({ value, onClick, leftIcon, rightIcon }) {
   );
 }
 
-export { PrimaryButton };
-
 function SecondaryButton({ value, onClick, leftIcon, rightIcon }) {
   return (
     <button className={`${styles.button} ${styles.secondaryButton}`} type='submit' onClick={onClick}>
@@ -21,8 +19,6 @@ function SecondaryButton({ value, onClick, leftIcon, rightIcon }) {
     </button>
   );
 }
-
-export { SecondaryButton };
 
 function TextButton({ value, onClick, leftIcon, rightIcon }) {
   return (
@@ -34,4 +30,4 @@ function TextButton({ value, onClick, leftIcon, rightIcon }) {
   );
 }
 
-export { TextButton };
+export { PrimaryButton, SecondaryButton, TextButton };

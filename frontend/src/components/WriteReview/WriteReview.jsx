@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { PrimaryButton, SecondaryButton } from '../Button/Button';
 import { api } from '../../_utils/api';
-import { ConfigProvider, Rate, theme } from 'antd';
+import { Rate } from 'antd';
 import { getUserSession } from '../../_utils/localStorage.utils';
 import Avatar from '../Profile/Avatar';
 import styles from './WriteReview.module.css';
@@ -54,9 +54,7 @@ const WriteReview = ({ isLogged }) => {
               required
             ></textarea>
             <div className={styles.rateContainer}>
-              <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
-                <Rate value={rate} onChange={(value) => setRate(value)} />
-              </ConfigProvider>
+              <Rate value={rate} onChange={(value) => setRate(value)} />
             </div>
             <PrimaryButton value='Submit' />
           </form>

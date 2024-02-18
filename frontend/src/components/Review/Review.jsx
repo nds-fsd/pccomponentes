@@ -1,9 +1,11 @@
 import Avatar from '../Profile/Avatar';
-import { ConfigProvider, Rate, theme } from 'antd';
+import { TextButton } from '../Button/Button';
+import { Rate } from 'antd';
 import styles from './review.module.css';
 
-const Review = ({ review }) => {
+const Review = ({ review, deleteReview }) => {
   const date = new Date(review.date).toLocaleDateString('en-GB');
+
   return (
     <div className={styles.review}>
       <div className={styles.reviewHeader}>
@@ -11,12 +13,10 @@ const Review = ({ review }) => {
           <Avatar username={review.user.username} />
           <p>{review.user.username}</p>
         </div>
-        <button>Delete</button>
+        <TextButton value='Delete' rightIcon='delete' onClick={deleteReview} />
       </div>
       <p>{review.commentary}</p>
-      <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
-        <Rate disabled defaultValue={review.rate} />
-      </ConfigProvider>
+      <Rate disabled defaultValue={review.rate} />
       <p className={styles.date}>{date}</p>
     </div>
   );

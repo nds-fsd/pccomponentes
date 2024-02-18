@@ -1,6 +1,5 @@
 .button {
   align-items: center;
-  box-shadow: 0 0 20px var(--neutral-900);
   border: none;
   border-radius: 2px 32px;
   color: var(--neutral-50);
@@ -19,6 +18,8 @@
 .primaryButton {
   background-image: linear-gradient(to right, #4164e2 0%, #4164e2 51%, #7b34c7 100%);
   background-size: 200% auto;
+  box-shadow: 0 0 20px var(--neutral-900);
+
   &:hover {
     background-position: right center; /* change the direction of the change here */
     box-shadow: 0 0 20px var(--neutral-700);
@@ -29,6 +30,7 @@
   background: none;
   background-color: inherit;
   border: 1px solid var(--primary-500);
+  box-shadow: 0 0 20px var(--neutral-900);
 
   &:hover {
     background-color: var(--neutral-950);
@@ -37,11 +39,16 @@
 }
 
 .textButton {
-  background-image: linear-gradient(to right, #4164e2 0%, #4164e2 51%, #7b34c7 100%);
-  background-size: 200% auto;
+  background-color: inherit;
+  width: fit-content;
+  font-weight: 400;
+  padding: 0 1rem;
 
   &:hover {
-    background-position: right center; /* change the direction of the change here */
-    box-shadow: 0 0 20px var(--neutral-700);
+    background-color: var(--neutral-900);
+  }
+
+  & > span {
+    color: var(--neutral-300);
   }
 }
