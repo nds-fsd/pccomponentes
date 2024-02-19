@@ -54,6 +54,10 @@ const BackofficeProducts = () => {
     const productToEdit = products.find((product) => product._id === key);
     setEditingProduct(productToEdit);
     form.setFieldsValue(productToEdit);
+    const categories = productToEdit.categories.map((category) => {
+      return category.name;
+    });
+    form.setFieldValue('categories', categories);
     setIsModalVisible(true);
   };
 
@@ -140,17 +144,14 @@ const BackofficeProducts = () => {
       dataIndex: 'categories',
       key: 'categories',
       width: '15%',
-      render: () => (
+      render: (record) => (
         <>
-          {formattedProducts.map((categories) => {
-            categories.categories.map((category) => {
-              console.log(category.name);
-              return (
-                <Tag color='blue' key={category._id}>
-                  {category.name}
-                </Tag>
-              );
-            });
+          {record.map((category) => {
+            return (
+              <Tag color='blue' key={category._id}>
+                {category.name}
+              </Tag>
+            );
           })}
         </>
       ),
