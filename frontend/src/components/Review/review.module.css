@@ -1,5 +1,7 @@
 .review {
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
   > * {
     padding-bottom: 0.5rem;
   }
@@ -8,7 +10,14 @@
     & span {
       font-size: calc(var(--body-small) + 4px) !important;
     }
+    &:hover {
+      background-color: var(--neutral-800);
+    }
   }
+}
+
+.myReview {
+  background-color: var(--neutral-900);
 }
 
 .reviewHeader {
@@ -30,4 +39,5 @@
 
 .date {
   color: var(--neutral-500);
+  padding-bottom: 0;
 }

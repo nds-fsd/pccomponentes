@@ -11,6 +11,12 @@ const WriteReview = ({ isLogged, onCreateReview, user }) => {
   const [rate, setRate] = useState(0);
   const productId = useParams().id;
 
+  const handleSubmit = () => {
+    onCreateReview({ user: user.id, product: productId, rate: rate, commentary: commentary });
+    setCommentary('');
+    setRate(0);
+  };
+
   return (
     <div className={styles.container}>
       <h4>
@@ -37,10 +43,7 @@ const WriteReview = ({ isLogged, onCreateReview, user }) => {
             <div className={styles.rateContainer}>
               <Rate value={rate} onChange={(value) => setRate(value)} />
             </div>
-            <PrimaryButton
-              value='Submit'
-              onClick={() => onCreateReview({ user: user.id, product: productId, rate: rate, commentary: commentary })}
-            />
+            <PrimaryButton value='Submit' onClick={handleSubmit} />
           </div>
         </>
       ) : (

@@ -5,15 +5,16 @@ import styles from './review.module.css';
 
 const Review = ({ review, deleteReview, user }) => {
   const date = new Date(review.date).toLocaleDateString('en-GB');
+  const isMyReview = review.user._id === user?.id;
 
   return (
-    <div className={styles.review}>
+    <div className={`${styles.review} ${isMyReview ? styles.myReview : ''}`}>
       <div className={styles.reviewHeader}>
         <div className={styles.userContainer}>
           <Avatar username={review.user.username} />
           <p>{review.user.username}</p>
         </div>
-        {review.user._id === user?.id && <TextButton value='Delete' rightIcon='delete' onClick={deleteReview} />}
+        {isMyReview && <TextButton value='Delete' rightIcon='delete' onClick={deleteReview} />}
       </div>
       <p>{review.commentary}</p>
       <Rate disabled defaultValue={review.rate} />
