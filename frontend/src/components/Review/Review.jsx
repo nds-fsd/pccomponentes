@@ -1,18 +1,23 @@
 import Avatar from '../Profile/Avatar';
-import RateStars from '../RateStars/RateStars';
+import { TextButton } from '../Button/Button';
+import { Rate } from 'antd';
 import styles from './review.module.css';
 
-const Review = ({ review }) => {
+const Review = ({ review, deleteReview, user }) => {
   const date = new Date(review.date).toLocaleDateString('en-GB');
+  const isMyReview = review.user._id === user?.id;
+
   return (
-    <div className={styles.review}>
-      <div className={styles.userContainer}>
-        <Avatar username={review.user.username} />
-        {console.log(review.user.username)}
-        <p>{review.user.username}</p>
+    <div className={`${styles.review} ${isMyReview ? styles.myReview : ''}`}>
+      <div className={styles.reviewHeader}>
+        <div className={styles.userContainer}>
+          <Avatar username={review.user.username} />
+          <p>{review.user.username}</p>
+        </div>
+        {isMyReview && <TextButton value='Delete' rightIcon='delete' onClick={deleteReview} />}
       </div>
       <p>{review.commentary}</p>
-      <RateStars rating={review.rate} />
+      <Rate disabled defaultValue={review.rate} />
       <p className={styles.date}>{date}</p>
     </div>
   );

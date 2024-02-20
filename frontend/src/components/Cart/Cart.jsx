@@ -2,6 +2,7 @@ import CartProduct from '../CartProduct/CartProduct';
 import styles from './Cart.module.css';
 import { useState, useEffect } from 'react';
 import { Divider, Button } from 'antd';
+import { PrimaryButton } from '../Button/Button';
 
 function Cart() {
   const [cartProducts, setCartProducts] = useState([]);
@@ -55,7 +56,7 @@ function Cart() {
             <p>Total Price:</p>
             <p>€{totalPrice.toFixed(2)}</p>
           </div>
-          <Button className={styles.checkout_button}>Checkout</Button>
+          <PrimaryButton value='Checkout' leftIcon='shopping_cart' />
         </div>
       </div>
     </div>

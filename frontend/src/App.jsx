@@ -19,12 +19,9 @@ import Cart from './components/Cart/Cart';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
 import { useState } from 'react';
 import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
-
-const queryClient = new QueryClient();
 
 function UserLayout({ children }) {
   const [accountCreated, setAccountCreated] = useState(true);
@@ -43,12 +40,12 @@ function UserLayout({ children }) {
   const isLogged = !!token;
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <Header isLogged={isLogged} accountCreated={accountCreated} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
-        <Route path=':id' element={<ProductPage />} />
+        <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/results' element={<ResultsPage />} />
         <Route path='/terms-and-conditions' element={<TermsConditions />} />
@@ -71,7 +68,7 @@ function UserLayout({ children }) {
         <Route path='*' element={<NoMatch />} />
       </Routes>
       <Footer />
-    </QueryClientProvider>
+    </>
   );
 }
 
@@ -88,17 +85,15 @@ function Backoffice({ children }) {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Routes>
-        <Route path='/backoffice' element={<BackofficeLayout />}>
-          <Route path='/backoffice' element={<BackofficeHome />} />
-          <Route path='/backoffice/users' element={<BackofficeUsers />} />
-          <Route path='/backoffice/products' element={<BackofficeProducts />} />
-          <Route path='/backoffice/companies' element={<BackofficeCompanies />} />
-          <Route path='/backoffice/categories' element={<BackofficeCategories />} />
-        </Route>
-      </Routes>
-    </QueryClientProvider>
+    <Routes>
+      <Route path='/backoffice' element={<BackofficeLayout />}>
+        <Route path='/backoffice' element={<BackofficeHome />} />
+        <Route path='/backoffice/users' element={<BackofficeUsers />} />
+        <Route path='/backoffice/products' element={<BackofficeProducts />} />
+        <Route path='/backoffice/companies' element={<BackofficeCompanies />} />
+        <Route path='/backoffice/categories' element={<BackofficeCategories />} />
+      </Route>
+    </Routes>
   );
 }
 

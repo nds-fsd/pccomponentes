@@ -1,0 +1,51 @@
+.container {
+  border: 1px solid var(--primary-900);
+  border-radius: 0 16px 0 16px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  & h4 {
+    padding-bottom: 1rem;
+
+    & > span {
+      margin-right: 1rem;
+    }
+  }
+
+  & > *:no-button {
+    padding-bottom: 1rem;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+
+  & textarea {
+    background-color: inherit;
+    color: var(--neutral-50);
+    border-color: var(--neutral-700);
+    border-radius: 4px;
+    padding: 0.5rem;
+  }
+}
+
+.userContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  & p {
+    font-weight: 500;
+    font-size: var(--body-large);
+  }
+}
+
+@media (768px <= width) {
+  .container button {
+    max-width: 250px;
+  }
+}
