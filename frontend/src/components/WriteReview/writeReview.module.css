@@ -43,3 +43,9 @@
     font-size: var(--body-large);
   }
 }
+
+@media (768px <= width) {
+  .container button {
+    max-width: 250px;
+  }
+}

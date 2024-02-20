@@ -3,6 +3,12 @@
   > * {
     padding-bottom: 0.5rem;
   }
+  & button {
+    font-size: var(--body-small);
+    & span {
+      font-size: calc(var(--body-small) + 4px) !important;
+    }
+  }
 }
 
 .reviewHeader {

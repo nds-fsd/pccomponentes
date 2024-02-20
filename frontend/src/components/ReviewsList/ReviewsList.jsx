@@ -1,48 +1,60 @@
+import React, { createContext } from 'react';
 import Review from '../Review/Review';
 import WriteReview from '../WriteReview/WriteReview';
+import { getUserSession } from '../../_utils/localStorage.utils';
 import { api } from '../../_utils/api';
-import { useState, useEffect } from 'react';
+import { useQuery, useMutation } from 'react-query';
 import styles from './reviewsList.module.css';
 
-const ProductReviews = ({ productId, isLogged }) => {
-  const [reviews, setReviews] = useState(null);
+const ReviewsList = ({ productId, isLogged }) => {
+  const user = getUserSession();
+  const {
+    data: reviews,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery(['reviews', productId], () => getReviewsByProductId(productId));
 
-  const getReviewsByProductId = async () => {
-    return api.get(`/reviews?productId=${productId}`);
-  };
+  const createReviewMutation = useMutation((newReview) => createReview(newReview), {
+    onSuccess: () => {
+      refetch();
+    },
+  });
 
-  const deleteReview = async (reviewId) => {
+  const deleteReviewMutation = useMutation((reviewId) => deleteReview(reviewId), {
+    onSuccess: () => {
+      refetch();
+    },
+  });
+
+  const handleCreateReview = async (reviewData) => {
     try {
-      await api.delete(`/reviews/${reviewId}`);
-      // After deletion, fetch reviews again to update the list
-      getReviewsByProductId()
-        .then((response) => {
-          setReviews(response.data);
-        })
-        .catch((error) => {
-          console.log(`Error: ${error}`);
-        });
+      await createReviewMutation.mutateAsync(reviewData);
     } catch (error) {
-      console.log(`Error deleting review: ${error}`);
+      console.error('Error creating review:', error);
     }
   };
-  useEffect(() => {
-    getReviewsByProductId()
-      .then((response) => {
-        setReviews(response.data);
-      })
-      .catch((error) => {
-        console.log(`Error: ${error}`);
-      });
-  }, [productId]);
+
+  const handleDeleteReview = async (reviewId) => {
+    try {
+      await deleteReviewMutation.mutateAsync(reviewId);
+    } catch (error) {
+      console.error('Error deleting review:', error);
+    }
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching reviews</div>;
 
   return (
     <section className={styles.reviewsSection}>
       <h3>Reviews</h3>
-      <WriteReview isLogged={isLogged} />
+      <WriteReview isLogged={isLogged} onCreateReview={handleCreateReview} user={user} />
       <div>
-        {reviews ? (
-          reviews.map((review) => <Review key={review._id} review={review} deleteReview={deleteReview(review._id)} />)
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <Review key={review._id} review={review} deleteReview={() => handleDeleteReview(review._id)} user={user} />
+          ))
         ) : (
           <p>No reviews available</p>
         )}
@@ -51,4 +63,17 @@ const ProductReviews = ({ productId, isLogged }) => {
   );
 };
 
-export default ProductReviews;
+const getReviewsByProductId = async (productId) => {
+  const response = await api.get(`/reviews?productId=${productId}`);
+  return response.data;
+};
+
+const createReview = async (newReview) => {
+  await api.post('/reviews', newReview);
+};
+
+const deleteReview = async (reviewId) => {
+  await api.delete(`/reviews/${reviewId}`);
+};
+
+export default ReviewsList;

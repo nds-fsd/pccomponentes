@@ -2,34 +2,15 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { PrimaryButton, SecondaryButton } from '../Button/Button';
-import { api } from '../../_utils/api';
 import { Rate } from 'antd';
-import { getUserSession } from '../../_utils/localStorage.utils';
 import Avatar from '../Profile/Avatar';
 import styles from './WriteReview.module.css';
 
-const WriteReview = ({ isLogged }) => {
+const WriteReview = ({ isLogged, onCreateReview, user }) => {
   const [commentary, setCommentary] = useState('');
   const [rate, setRate] = useState(0);
   const productId = useParams().id;
-  const user = getUserSession();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await api.post('/reviews', {
-        user: user.id,
-        product: productId,
-        rate: rate,
-        commentary: commentary,
-      });
-
-      console.log('Review submitted:', response.data);
-    } catch (error) {
-      console.error('Error submitting review:', error);
-    }
-  };
   return (
     <div className={styles.container}>
       <h4>
@@ -42,7 +23,7 @@ const WriteReview = ({ isLogged }) => {
             <Avatar username={user?.username} />
             <p>{user?.username}</p>
           </div>
-          <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.form}>
             <textarea
               id='commentary'
               name='commentary'
@@ -56,8 +37,11 @@ const WriteReview = ({ isLogged }) => {
             <div className={styles.rateContainer}>
               <Rate value={rate} onChange={(value) => setRate(value)} />
             </div>
-            <PrimaryButton value='Submit' />
-          </form>
+            <PrimaryButton
+              value='Submit'
+              onClick={() => onCreateReview({ user: user.id, product: productId, rate: rate, commentary: commentary })}
+            />
+          </div>
         </>
       ) : (
         <Link to={'/login'}>

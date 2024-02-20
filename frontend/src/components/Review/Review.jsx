@@ -3,7 +3,7 @@ import { TextButton } from '../Button/Button';
 import { Rate } from 'antd';
 import styles from './review.module.css';
 
-const Review = ({ review, deleteReview }) => {
+const Review = ({ review, deleteReview, user }) => {
   const date = new Date(review.date).toLocaleDateString('en-GB');
 
   return (
@@ -13,7 +13,7 @@ const Review = ({ review, deleteReview }) => {
           <Avatar username={review.user.username} />
           <p>{review.user.username}</p>
         </div>
-        <TextButton value='Delete' rightIcon='delete' onClick={deleteReview} />
+        {review.user._id === user?.id && <TextButton value='Delete' rightIcon='delete' onClick={deleteReview} />}
       </div>
       <p>{review.commentary}</p>
       <Rate disabled defaultValue={review.rate} />

@@ -1,6 +1,7 @@
 .reviewsSection {
   padding: 1.5rem var(--wrapper);
   max-width: var(--wrapper-max);
+  margin: 0 auto;
 
   & h3 {
     padding-bottom: 1rem;
