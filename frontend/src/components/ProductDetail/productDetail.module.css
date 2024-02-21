@@ -25,6 +25,9 @@
   left: 0;
   width: 100%;
   z-index: 100;
+  & button {
+    max-width: 250px;
+  }
 }
 
 @media screen and (768px <= width) {

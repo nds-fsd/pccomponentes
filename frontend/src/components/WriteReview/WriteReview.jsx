@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { PrimaryButton, SecondaryButton } from '../Button/Button';
 import { Rate } from 'antd';
-import Avatar from '../Profile/Avatar';
+import Avatar from '../../components/Avatar/Avatar';
 import styles from './WriteReview.module.css';
 
 const WriteReview = ({ isLogged, onCreateReview, user }) => {

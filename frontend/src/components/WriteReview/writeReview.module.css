@@ -46,6 +46,6 @@
 
 @media (768px <= width) {
   .container button {
-    max-width: 250px;
+    max-width: 200px;
   }
 }

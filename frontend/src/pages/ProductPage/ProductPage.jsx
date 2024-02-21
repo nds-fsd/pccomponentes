@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ProductDetail from '../ProductDetail/ProductDetail';
-import ReviewsList from '../ReviewsList/ReviewsList';
+import ProductDetail from '../../components/ProductDetail/ProductDetail';
+import ReviewsList from '../../components/ReviewsList/ReviewsList';
 import { api } from '../../_utils/api';
 import styles from './productPage.module.css';
 

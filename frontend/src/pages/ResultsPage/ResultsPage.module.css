@@ -1,6 +1,7 @@
 .resutlsContainer {
   display: flex;
   flex-direction: row;
+  min-height: var(--view-height);
 }
 
 .productsContainer {

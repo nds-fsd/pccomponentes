@@ -3,6 +3,7 @@
 }
 
 .footerContent {
+  height: var(--footer-height);
   display: flex;
   flex-direction: column;
   align-items: center;

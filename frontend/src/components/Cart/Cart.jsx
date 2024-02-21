@@ -1,7 +1,7 @@
 import CartProduct from '../CartProduct/CartProduct';
 import styles from './Cart.module.css';
 import { useState, useEffect } from 'react';
-import { Divider, Button } from 'antd';
+import { Divider } from 'antd';
 import { PrimaryButton } from '../Button/Button';
 
 function Cart() {
