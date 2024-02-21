@@ -34,20 +34,6 @@
   font-weight: 700;
 }
 
-.chip {
-  display: inline-flex;
-  margin-right: auto;
-  align-items: center;
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  min-height: 20px;
-  padding: 0 12px;
-  font-size: var(--body-small);
-  background-color: var(--primary-500);
-  border-radius: 0.5rem;
-}
-
 .product img {
   height: 100%;
   object-fit: contain;
