@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../../contexts/CartContext';
 import Avatar from '../Avatar/Avatar';
 import { getUserToken, getUserSession } from '../../_utils/localStorage.utils';
 import styles from './header.module.css';
@@ -8,6 +9,7 @@ import computechLogo from '../../assets/computech-logo.svg';
 import computechLogoText from '../../assets/computech-logo-text.svg';
 
 export const Header = ({ isLogged, accountCreated }) => {
+  const { cartProductsCount } = useCart();
   const [username, setUsername] = useState('');
   const [navLvl1, setNavLvl1] = useState(false);
   const [navLvl2, setNavLvl2] = useState(false);
@@ -26,12 +28,8 @@ export const Header = ({ isLogged, accountCreated }) => {
     setIsDesktop(window.innerWidth > 1024);
   });
 
-  const [cartProductsCount, setCartProductsCount] = useState(0);
-
   useEffect(() => {
     const token = getUserToken();
-    const cartProducts = JSON.parse(localStorage.getItem('CartProducts')) || [];
-    setCartProductsCount(cartProducts.length);
     if (isLogged && token) {
       try {
         const userSession = getUserSession();

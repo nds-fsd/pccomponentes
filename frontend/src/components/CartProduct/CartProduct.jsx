@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { InputNumber, Button, Modal, message } from 'antd';
 import styles from './CartProduct.module.css';
 
-function CartProduct({ product, onUpdateCart }) {
+function CartProduct({ product, onUpdateCart, setCartProducts }) {
   const [quantity, setQuantity] = useState(product.quantity);
   const [messageApi, contextHolder] = message.useMessage();
   const deleteCartItemSuccessToast = () => {
@@ -25,6 +25,7 @@ function CartProduct({ product, onUpdateCart }) {
       onOk() {
         handleDelete();
         deleteCartItemSuccessToast();
+        setCartProducts(JSON.parse(localStorage.getItem('CartProducts')).filter((item) => item._id !== product._id));
       },
     });
   };
@@ -37,6 +38,7 @@ function CartProduct({ product, onUpdateCart }) {
       }
       return item;
     });
+    setCartProducts(updatedCart);
     localStorage.setItem('CartProducts', JSON.stringify(updatedCart));
     if (onUpdateCart) {
       onUpdateCart(updatedCart);
