@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Divider } from 'antd';
-import { PrimaryButton } from '../Button/Button';
+import { PrimaryButton } from '../../components/Button/Button';
 import { useCart } from '../../contexts/CartContext';
-import CartProduct from '../CartProduct/CartProduct';
+import CartProduct from '../../components/CartProduct/CartProduct';
 import styles from './Cart.module.css';
 
 function Cart() {
@@ -44,7 +44,12 @@ function Cart() {
       <div className={styles.cartContainer}>
         <div className={styles.cartProducts}>
           {cartProducts.map((product, index) => (
-            <CartProduct key={index} product={product} onUpdateCart={handleUpdateCart}></CartProduct>
+            <CartProduct
+              key={index}
+              product={product}
+              onUpdateCart={handleUpdateCart}
+              setCartProducts={setCartProducts}
+            ></CartProduct>
           ))}
         </div>
         <div className={styles.cartOverview}>

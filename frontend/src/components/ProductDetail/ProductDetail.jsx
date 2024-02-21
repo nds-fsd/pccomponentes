@@ -35,8 +35,6 @@ const ProductDetailContainer = ({ product }) => {
 
       setCartProductsCount(existingCartItems.length);
 
-      alert('Product added to cart!');
-      // Alert the user that the product has been added to the cart (optional)
       addCartSuccessToast();
     }
   };

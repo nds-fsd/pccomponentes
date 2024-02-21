@@ -15,7 +15,7 @@ import BackofficeProducts from './components/Backoffice/BackofficeProducts/Backo
 import BackofficeCompanies from './components/Backoffice/BackofficeCompanies/BackofficeCompanies';
 import BackofficeCategories from './components/Backoffice/BackofficeCategories/BackofficeCategories';
 import NoMatch from './pages/NoMatch/NoMatch';
-import Cart from './components/Cart/Cart';
+import Cart from './pages/Cart/Cart';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
 import { CartProvider } from './contexts/CartContext';
 import { useState } from 'react';
