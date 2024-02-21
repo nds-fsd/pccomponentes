@@ -4,10 +4,11 @@ import { PrimaryButton } from '../Button/Button';
 import { useCart } from '../../contexts/CartContext';
 import CartProduct from '../CartProduct/CartProduct';
 import styles from './Cart.module.css';
+import { Divider } from 'antd';
+import { PrimaryButton } from '../Button/Button';
 
 function Cart() {
   const { setCartProductsCount } = useCart();
-
   const [cartProducts, setCartProducts] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
   const [tax, setTax] = useState(0);

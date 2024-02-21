@@ -3,10 +3,21 @@ import styles from './productDetail.module.css';
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
 import { PrimaryButton } from '../Button/Button';
 import { useCart } from '../../contexts/CartContext';
+import { message } from 'antd';
 
 const ProductDetailContainer = ({ product }) => {
-  const productData = product && product.ProductFound;
   const { setCartProductsCount } = useCart();
+  const productData = product && product.ProductFound;
+  const [messageApi, contextHolder] = message.useMessage();
+  const addCartSuccessToast = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Product added to cart',
+      style: {
+        marginTop: '90px',
+      },
+    });
+  };
 
   const addToCart = () => {
     if (productData) {
@@ -25,11 +36,14 @@ const ProductDetailContainer = ({ product }) => {
       setCartProductsCount(existingCartItems.length);
 
       alert('Product added to cart!');
+      // Alert the user that the product has been added to the cart (optional)
+      addCartSuccessToast();
     }
   };
 
   return (
     <>
+      {contextHolder}
       {productData ? (
         <section className={styles.section}>
           <ImageCarousel product={productData} />
