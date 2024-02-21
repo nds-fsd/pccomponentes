@@ -6,12 +6,12 @@ import styles from './navBar.module.css';
 
 const subCategories = {
   Consoles: ['PlayStation', 'Xbox', 'Nintendo'],
-  Smartphones: ['Apple', 'Samsung', 'Xiaomi'],
+  Smartphones: ['Apple', 'Samsung', 'Xiaomi', 'OnePlus'],
   Gamepads: ['Wireless', 'Scuf'],
   Games: ['PlayStation', 'Xbox', 'Nintendo'],
-  VR: ['PlayStation', 'Meta', 'Valve, Apple'],
+  VR: ['Headset', 'Accessories', 'Controllers'],
   Headsets: ['Logitech', 'Corsair', 'Razer'],
-  Mouses: ['Logitech', 'Corsair', 'Razer'],
+  Mouses: ['Logitech', 'Corsair', 'Razer', 'SteelSeries'],
   Monitors: ['Samsung', 'LG', 'Acer'],
 };
 
