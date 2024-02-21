@@ -38,7 +38,7 @@ const BackofficeProducts = () => {
         setProducts(response.data);
       })
       .catch((error) => {
-        console.log('Error!');
+        console.log('Error!', error);
       });
 
     getAllCategories()
@@ -55,7 +55,7 @@ const BackofficeProducts = () => {
     setEditingProduct(productToEdit);
     form.setFieldsValue(productToEdit);
     const categories = productToEdit.categories.map((category) => {
-      return category.name;
+      return {label: category?.name, value: category?._id};
     });
     form.setFieldValue('categories', categories);
     setIsModalVisible(true);
@@ -73,6 +73,12 @@ const BackofficeProducts = () => {
       setIsModalVisible(false);
       form.resetFields();
       setEditingProduct(null);
+      getAllProducts().then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log('Error!', error);
+      });;
     } catch (error) {
       console.error('Error updating product:', error);
     }
