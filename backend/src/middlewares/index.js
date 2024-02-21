@@ -14,8 +14,8 @@ const validateUser = (req, res, next) => {
   console.log('Request Type:', req.method);
   const user = req.body;
 
-  if (user.name === undefined || user.name.length === 0) {
-    res.status(400).send({ message: 'name required' });
+  if (user.username === undefined || user.username.length === 0) {
+    res.status(400).send({ message: 'username required' });
     return;
   }
   if (user.password === undefined) {
