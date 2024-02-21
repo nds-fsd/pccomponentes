@@ -4,6 +4,7 @@ import { api } from '../../_utils/api';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import SecondaryButton from '../SecondaryButton/SecondaryButton';
+import AddressCard from '../AddressCard/AddressCard';
 
 import { LogOut } from '../Logout/Logout';
 import { getUserSession } from '../../_utils/localStorage.utils';
@@ -13,6 +14,16 @@ export const Profile = () => {
   const [user, setUser] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editedUser, setEditedUser] = useState(null);
+  const [userAddresses, setUserAddresses] = useState([]);
+
+  const getUserAddresses = (userId) => {
+    api
+      .get(`/addresses?userId=${userId}`)
+      .then((res) => {
+        setUserAddresses(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
 
   const getUserById = (_id) => {
     api
@@ -25,6 +36,7 @@ export const Profile = () => {
 
   useEffect(() => {
     getUserById(userSession.id);
+    getUserAddresses(userSession.id);
   }, []);
 
   const openModal = () => {
@@ -77,11 +89,15 @@ export const Profile = () => {
           <div className={styles.userInfo}>
             <p>{user?.email}</p>
           </div>
-
           <SecondaryButton btnType='button' onClick={openModal} value='Edit' />
-
           <LogOut />
         </div>
+      </div>
+
+      <div>
+        {userAddresses.map((address) => (
+          <AddressCard key={address._id} address={address} />
+        ))}
       </div>
 
       {isModalOpen && (
