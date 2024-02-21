@@ -63,10 +63,29 @@ const deleteReview = async (req, res) => {
   }
 };
 
+const getProductRating = async (req, res) => {
+  try {
+    const { productId } = req.query;
+    const reviews = await Reviews.find({ product: productId });
+
+    if (reviews.length === 0) {
+      return res.status(404).json({ message: 'No reviews found for the product' });
+    }
+
+    const totalRatings = reviews.reduce((acc, curr) => acc + curr.rate, 0);
+    const averageRating = totalRatings / reviews.length;
+
+    res.status(200).json({ averageRating });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 module.exports = {
   getReviews,
   postReview,
   getReviewById,
   patchReview,
   deleteReview,
+  getProductRating,
 };

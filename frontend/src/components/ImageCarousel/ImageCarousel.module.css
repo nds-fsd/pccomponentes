@@ -1,17 +1,6 @@
 .carousel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 400px;
-  margin: auto;
-  flex-wrap: wrap;
-  position: relative;
-}
-
-.carousel img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 0px 16px;
+  width: 400px;
+  margin: 0 auto;
 }
 
 .thumbnailContainer {

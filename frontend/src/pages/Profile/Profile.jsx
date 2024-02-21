@@ -1,11 +1,11 @@
 import styles from './Profile.module.css';
-import Avatar from './Avatar';
+import Avatar from '../../components/Avatar/Avatar';
 import { api } from '../../_utils/api';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import SecondaryButton from '../SecondaryButton/SecondaryButton';
+import { SecondaryButton } from '../../components/Button/Button';
 
-import { LogOut } from '../Logout/Logout';
+import { LogOut } from '../../components/Logout/Logout';
 import { getUserSession } from '../../_utils/localStorage.utils';
 
 export const Profile = () => {
@@ -77,9 +77,7 @@ export const Profile = () => {
           <div className={styles.userInfo}>
             <p>{user?.email}</p>
           </div>
-
-          <SecondaryButton btnType='button' onClick={openModal} value='Edit' />
-
+          <SecondaryButton onClick={openModal} value='Edit' leftIcon='edit' />
           <LogOut />
         </div>
       </div>
@@ -96,9 +94,9 @@ export const Profile = () => {
                 Email:
                 <input type='text' value={editedUser.email} onChange={(e) => handleInputChange(e, 'email')} />
               </label>
-              <SecondaryButton btnType='submit' value='Save Changes' />
+              <SecondaryButton value='Save Changes' />
             </form>
-            <SecondaryButton btnType='button' onClick={closeModal} value='Close' />
+            <SecondaryButton onClick={closeModal} value='Close' />
           </div>
         </div>
       )}

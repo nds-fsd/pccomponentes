@@ -4,6 +4,7 @@
   padding: 2rem var(--wrapper);
   max-width: var(--wrapper-max);
   margin: 0 auto;
+  min-height: var(--view-height);
 }
 
 .cartContainer {

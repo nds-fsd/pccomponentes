@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import ProductCard from '../ProductCard/ProductCard';
+import { useEffect, useState } from 'react';
 import { api } from '../../_utils/api';
 import styles from './categoryProductsPage.module.css';
 import { useParams } from 'react-router-dom';
-import ProductsList from '../ProductsList/ProductsList';
+import ProductsList from '../../components/ProductsList/ProductsList';
 
 function CategoryProductsPage() {
   const { categoryId } = useParams();

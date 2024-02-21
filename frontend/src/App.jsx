@@ -1,30 +1,27 @@
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Home from './components/Home/Home';
-import ProductPage from './components/ProductPage/ProductPage';
-import CategoryProductsPage from './components/CategoryProductsPage/CategoryProductsPage';
-import SalesPage from './components/SalesPage/SalesPage';
-import TermsConditions from './components/TermsConditions/TermsConditions';
+import Home from './pages/Home/Home';
+import ProductPage from './pages/ProductPage/ProductPage';
+import CategoryProductsPage from './pages/CategoryProductsPage/CategoryProductsPage';
+import SalesPage from './pages/SalesPage/SalesPage';
+import TermsConditions from './pages/TermsConditions/TermsConditions';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
-import MyAccount from './components/MyAccount/MyAccount';
-import Profile from './components/Profile/Profile';
+import MyAccount from './pages/MyAccount/MyAccount';
+import Profile from './pages/Profile/Profile';
 import BackofficeLayout from './components/Backoffice/BackofficeLayout';
 import BackofficeHome from './components/Backoffice/BackofficeHome/BackofficeHome';
 import BackofficeUsers from './components/Backoffice/BackofficeUsers/BackofficeUsers';
 import BackofficeProducts from './components/Backoffice/BackofficeProducts/BackofficeProducts';
 import BackofficeCompanies from './components/Backoffice/BackofficeCompanies/BackofficeCompanies';
 import BackofficeCategories from './components/Backoffice/BackofficeCategories/BackofficeCategories';
-import NoMatch from './components/NoMatch/NoMatch';
+import NoMatch from './pages/NoMatch/NoMatch';
 import Cart from './components/Cart/Cart';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
 import { useState } from 'react';
 import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
-
-const queryClient = new QueryClient();
 
 function UserLayout({ children }) {
   const [accountCreated, setAccountCreated] = useState(true);
@@ -43,12 +40,12 @@ function UserLayout({ children }) {
   const isLogged = !!token;
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <Header isLogged={isLogged} accountCreated={accountCreated} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
-        <Route path=':id' element={<ProductPage />} />
+        <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/results' element={<ResultsPage />} />
         <Route path='/terms-and-conditions' element={<TermsConditions />} />
@@ -71,7 +68,7 @@ function UserLayout({ children }) {
         <Route path='*' element={<NoMatch />} />
       </Routes>
       <Footer />
-    </QueryClientProvider>
+    </>
   );
 }
 
@@ -88,17 +85,15 @@ function Backoffice({ children }) {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Routes>
-        <Route path='/backoffice' element={<BackofficeLayout />}>
-          <Route path='/backoffice' element={<BackofficeHome />} />
-          <Route path='/backoffice/users' element={<BackofficeUsers />} />
-          <Route path='/backoffice/products' element={<BackofficeProducts />} />
-          <Route path='/backoffice/companies' element={<BackofficeCompanies />} />
-          <Route path='/backoffice/categories' element={<BackofficeCategories />} />
-        </Route>
-      </Routes>
-    </QueryClientProvider>
+    <Routes>
+      <Route path='/backoffice' element={<BackofficeLayout />}>
+        <Route path='/backoffice' element={<BackofficeHome />} />
+        <Route path='/backoffice/users' element={<BackofficeUsers />} />
+        <Route path='/backoffice/products' element={<BackofficeProducts />} />
+        <Route path='/backoffice/companies' element={<BackofficeCompanies />} />
+        <Route path='/backoffice/categories' element={<BackofficeCategories />} />
+      </Route>
+    </Routes>
   );
 }
 

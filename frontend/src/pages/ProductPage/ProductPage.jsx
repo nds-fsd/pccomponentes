@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ProductDetail from '../ProductDetail/ProductDetail';
-import ReviewsList from '../ReviewsList/ReviewsList';
+import ProductDetail from '../../components/ProductDetail/ProductDetail';
+import ReviewsList from '../../components/ReviewsList/ReviewsList';
 import { api } from '../../_utils/api';
 import styles from './productPage.module.css';
 
-function ProductPage() {
+function ProductPage({ isLogged }) {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -26,7 +26,7 @@ function ProductPage() {
   return (
     <main className={styles.main}>
       <ProductDetail product={product} />
-      <ReviewsList productId={product.ProductFound._id} />
+      <ReviewsList productId={product.ProductFound._id} isLogged={isLogged} />
     </main>
   );
 }

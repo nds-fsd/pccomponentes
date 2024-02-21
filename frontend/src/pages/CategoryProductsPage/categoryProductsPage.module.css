@@ -1,4 +1,5 @@
 .productContent {
+  min-height: var(--view-height);
   display: flex;
   flex-direction: column;
   padding: 2rem var(--wrapper);
