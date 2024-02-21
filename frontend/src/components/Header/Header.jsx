@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useCart } from '../../contexts/CartContext';
 import styles from './header.module.css';
 import NavBar from '../NavBar/NavBar';
 import computechLogo from '../../assets/computech-logo.svg';
 import computechLogoText from '../../assets/computech-logo-text.svg';
 
 export const Header = ({ isLogged, accountCreated }) => {
+  const { cartProductsCount } = useCart();
   const [navLvl1, setNavLvl1] = useState(false);
   const [navLvl2, setNavLvl2] = useState(false);
   const [navLvl3, setNavLvl3] = useState(false);
@@ -22,13 +24,6 @@ export const Header = ({ isLogged, accountCreated }) => {
   addEventListener('resize', () => {
     setIsDesktop(window.innerWidth > 1024);
   });
-
-  const [cartProductsCount, setCartProductsCount] = useState(0);
-
-  useEffect(() => {
-    const cartProducts = JSON.parse(localStorage.getItem('CartProducts')) || [];
-    setCartProductsCount(cartProducts.length);
-  }, []);
 
   return (
     <>

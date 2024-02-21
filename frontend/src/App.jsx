@@ -17,6 +17,7 @@ import BackofficeCategories from './components/Backoffice/BackofficeCategories/B
 import NoMatch from './components/NoMatch/NoMatch';
 import Cart from './components/Cart/Cart';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
+import { CartProvider } from './contexts/CartContext';
 import { useState } from 'react';
 import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
@@ -41,33 +42,35 @@ function UserLayout({ children }) {
 
   return (
     <>
-      <Header isLogged={isLogged} accountCreated={accountCreated} />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
-        <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/results' element={<ResultsPage />} />
-        <Route path='/terms-and-conditions' element={<TermsConditions />} />
-        <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-        <Route path='/sales' element={<SalesPage />} />
-        {isLogged && <Route path='/my-account' element={<MyAccount />} />}
-        {isLogged && <Route path='/profile' element={<Profile token={token} />} />}
-        {!isLogged && !accountCreated && (
-          <Route
-            path='/register'
-            element={<Register forceUpdate={forceUpdate} changeAccountCreated={changeAccountCreated} />}
-          />
-        )}
-        {!isLogged && accountCreated && (
-          <Route
-            path='/login'
-            element={<Login forceUpdate={forceUpdate} changeAccountCreated={changeAccountCreated} />}
-          />
-        )}
-        <Route path='*' element={<NoMatch />} />
-      </Routes>
-      <Footer />
+      <CartProvider>
+        <Header isLogged={isLogged} accountCreated={accountCreated} />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
+          <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/results' element={<ResultsPage />} />
+          <Route path='/terms-and-conditions' element={<TermsConditions />} />
+          <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+          <Route path='/sales' element={<SalesPage />} />
+          {isLogged && <Route path='/my-account' element={<MyAccount />} />}
+          {isLogged && <Route path='/profile' element={<Profile token={token} />} />}
+          {!isLogged && !accountCreated && (
+            <Route
+              path='/register'
+              element={<Register forceUpdate={forceUpdate} changeAccountCreated={changeAccountCreated} />}
+            />
+          )}
+          {!isLogged && accountCreated && (
+            <Route
+              path='/login'
+              element={<Login forceUpdate={forceUpdate} changeAccountCreated={changeAccountCreated} />}
+            />
+          )}
+          <Route path='*' element={<NoMatch />} />
+        </Routes>
+        <Footer />
+      </CartProvider>
     </>
   );
 }
