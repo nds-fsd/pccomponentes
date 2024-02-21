@@ -55,6 +55,19 @@ a {
   cursor: pointer;
 }
 
+.avatar {
+  display: grid;
+  place-items: center;
+  margin-left: 0.75rem;
+  height: 40px;
+  width: 40px;
+  & > div {
+    height: 32px;
+    width: 32px;
+    font-size: var(--body-small);
+  }
+}
+
 @media screen and (768px <= width) {
   .computechLogoText {
     display: block;

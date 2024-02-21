@@ -68,7 +68,7 @@ export const Header = ({ isLogged, accountCreated }) => {
                 {cartProductsCount > 0 && <div className={styles.cartCount}>{cartProductsCount}</div>}
               </Link>
               {isLogged && (
-                <Link to={'/my-account'}>
+                <Link to={'/my-account'} className={styles.avatar}>
                   <Avatar username={username} />
                 </Link>
               )}
