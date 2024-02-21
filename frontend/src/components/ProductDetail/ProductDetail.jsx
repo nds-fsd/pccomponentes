@@ -2,9 +2,20 @@ import React from 'react';
 import styles from './productDetail.module.css';
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
 import { PrimaryButton } from '../Button/Button';
+import { message } from 'antd';
 
 const ProductDetailContainer = ({ product }) => {
   const productData = product && product.ProductFound;
+  const [messageApi, contextHolder] = message.useMessage();
+  const addCartSuccessToast = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Product added to cart',
+      style: {
+        marginTop: '90px',
+      },
+    });
+  };
 
   const addToCart = () => {
     // Check if productData exists
@@ -27,12 +38,13 @@ const ProductDetailContainer = ({ product }) => {
       localStorage.setItem('CartProducts', JSON.stringify(existingCartItems));
 
       // Alert the user that the product has been added to the cart (optional)
-      alert('Product added to cart!');
+      addCartSuccessToast();
     }
   };
 
   return (
     <>
+      {contextHolder}
       {productData ? (
         <section className={styles.section}>
           <ImageCarousel product={productData} />

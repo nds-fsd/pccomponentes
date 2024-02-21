@@ -1,4 +1,4 @@
-import Avatar from '../Profile/Avatar';
+import Avatar from '../Avatar/Avatar';
 import { TextButton } from '../Button/Button';
 import { Rate } from 'antd';
 import styles from './review.module.css';

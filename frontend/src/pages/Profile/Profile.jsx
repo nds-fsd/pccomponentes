@@ -1,11 +1,11 @@
 import styles from './Profile.module.css';
-import Avatar from './Avatar';
+import Avatar from '../../components/Avatar/Avatar';
 import { api } from '../../_utils/api';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { SecondaryButton } from '../Button/Button';
+import { SecondaryButton } from '../../components/Button/Button';
 
-import { LogOut } from '../Logout/Logout';
+import { LogOut } from '../../components/Logout/Logout';
 import { getUserSession } from '../../_utils/localStorage.utils';
 
 export const Profile = () => {

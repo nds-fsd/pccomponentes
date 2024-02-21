@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom';
+import { getUserSession } from '../../_utils/localStorage.utils';
 import styles from './myAccount.module.css';
 
 function MyAccount() {
+  const userSession = getUserSession();
   return (
     <main className={styles.main}>
       <section className={styles.myAccount}>
-        <h3 className={styles.title}>My Account</h3>
+        <div className={styles.heading}>
+          <p>Welcome!</p>
+          <h2 className={styles.title}>{userSession.username}</h2>
+          <p className={styles.subtitle}>Here you can find all your information</p>
+        </div>
         <div className={styles.cards}>
           <Link to={'/profile'} className={styles.card}>
             <span className='material-symbols-rounded'>badge</span>

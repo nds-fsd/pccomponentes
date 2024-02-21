@@ -1,7 +1,7 @@
 .main {
   display: grid;
   place-items: center;
-  min-height: calc(100svh - var(--header-height));
+  min-height: var(--view-height);
 }
 .myAccount {
   padding: 1.5rem var(--wrapper);
@@ -9,7 +9,7 @@
   max-width: var(--wrapper-max);
 }
 
-.title {
+.heading {
   padding-bottom: 1rem;
 }
 
