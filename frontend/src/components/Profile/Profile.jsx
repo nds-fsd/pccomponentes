@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import SecondaryButton from '../SecondaryButton/SecondaryButton';
 import AddressCard from '../AddressCard/AddressCard';
-
 import { LogOut } from '../Logout/Logout';
 import { getUserSession } from '../../_utils/localStorage.utils';
+import { Tabs } from 'antd';
 
 export const Profile = () => {
   const userSession = getUserSession();
@@ -73,14 +73,12 @@ export const Profile = () => {
       .catch((error) => console.log(error));
   };
 
-  return (
-    <main className={styles.profile}>
-      <Link to={'/my-account'}>
-        <span className='material-symbols-rounded'>arrow_back</span>
-      </Link>
-      <h3 className={styles.title}>My Profile</h3>
-      <div className={styles.card}>
-        <div>
+  const tabItems = [
+    {
+      key: '1',
+      tab: 'Personal Information',
+      content: (
+        <div className={styles.card}>
           <div className={styles.userData}>
             <h4 className={styles.cardTitle}>Personal Information</h4>
             <Avatar username={user?.username} />
@@ -92,13 +90,35 @@ export const Profile = () => {
           <SecondaryButton btnType='button' onClick={openModal} value='Edit' />
           <LogOut />
         </div>
-      </div>
+      ),
+    },
+    {
+      key: '2',
+      tab: 'Addresses',
+      content: (
+        <div className={styles.addressesCards}>
+          {userAddresses.map((address) => (
+            <AddressCard key={address._id} address={address} />
+          ))}
+        </div>
+      ),
+    },
+  ];
 
-      <div>
-        {userAddresses.map((address) => (
-          <AddressCard key={address._id} address={address} />
+  return (
+    <main className={styles.profile}>
+      <Link to={'/my-account'}>
+        <span className='material-symbols-rounded'>arrow_back</span>
+      </Link>
+      <h3 className={styles.title}>My Profile</h3>
+
+      <Tabs defaultActiveKey='1' tabBarStyle={{ marginBottom: 16 }}>
+        {tabItems.map((item) => (
+          <Tabs.TabPane key={item.key} tab={item.tab}>
+            {item.content}
+          </Tabs.TabPane>
         ))}
-      </div>
+      </Tabs>
 
       {isModalOpen && (
         <div className={styles.modalOverlay}>
