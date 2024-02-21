@@ -13,36 +13,24 @@ const ReviewsList = ({ productId, isLogged }) => {
     messageApi.open({
       type: 'success',
       content: 'Review created successfully!',
-      style: {
-        marginTop: '90px',
-      },
     });
   };
   const deleteSuccessToast = () => {
     messageApi.open({
       type: 'success',
       content: 'Review deleted successfully!',
-      style: {
-        marginTop: '90px',
-      },
     });
   };
   const createReviewError = () => {
     messageApi.open({
       type: 'error',
       content: 'Error creating review, try again later',
-      style: {
-        marginTop: '90px',
-      },
     });
   };
   const deleteReviewError = () => {
     messageApi.open({
       type: 'error',
       content: 'Error deleting review, try again later',
-      style: {
-        marginTop: '90px',
-      },
     });
   };
   const user = getUserSession();
