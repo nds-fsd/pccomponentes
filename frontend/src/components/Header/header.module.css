@@ -58,12 +58,12 @@ a {
 .avatar {
   display: grid;
   place-items: center;
-  margin-left: 0.75rem;
+  margin: 0 0.5rem;
   height: 40px;
   width: 40px;
   & > div {
-    height: 32px;
-    width: 32px;
+    height: 28px;
+    width: 28px;
     font-size: var(--body-small);
   }
 }
