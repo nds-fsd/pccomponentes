@@ -38,6 +38,7 @@ function CartProduct({ product, onUpdateCart, setCartProducts }) {
       }
       return item;
     });
+    setCartProducts(updatedCart);
     localStorage.setItem('CartProducts', JSON.stringify(updatedCart));
     if (onUpdateCart) {
       onUpdateCart(updatedCart);
