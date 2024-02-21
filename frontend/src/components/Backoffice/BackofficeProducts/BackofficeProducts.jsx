@@ -38,7 +38,7 @@ const BackofficeProducts = () => {
         setProducts(response.data);
       })
       .catch((error) => {
-        console.log('Error!');
+        console.log('Error!', error);
       });
 
     getAllCategories()
@@ -54,6 +54,10 @@ const BackofficeProducts = () => {
     const productToEdit = products.find((product) => product._id === key);
     setEditingProduct(productToEdit);
     form.setFieldsValue(productToEdit);
+    const categories = productToEdit.categories.map((category) => {
+      return {label: category?.name, value: category?._id};
+    });
+    form.setFieldValue('categories', categories);
     setIsModalVisible(true);
   };
 
@@ -69,6 +73,12 @@ const BackofficeProducts = () => {
       setIsModalVisible(false);
       form.resetFields();
       setEditingProduct(null);
+      getAllProducts().then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log('Error!', error);
+      });;
     } catch (error) {
       console.error('Error updating product:', error);
     }
@@ -140,17 +150,14 @@ const BackofficeProducts = () => {
       dataIndex: 'categories',
       key: 'categories',
       width: '15%',
-      render: () => (
+      render: (record) => (
         <>
-          {formattedProducts.map((categories) => {
-            categories.categories.map((category) => {
-              console.log(category.name);
-              return (
-                <Tag color='blue' key={category._id}>
-                  {category.name}
-                </Tag>
-              );
-            });
+          {record.map((category) => {
+            return (
+              <Tag color='blue' key={category._id}>
+                {category.name}
+              </Tag>
+            );
           })}
         </>
       ),
