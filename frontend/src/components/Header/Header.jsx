@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { useCart } from '../../contexts/CartContext';
-import Avatar from '../Profile/Avatar';
+import Avatar from '../Avatar/Avatar';
 import { getUserToken, getUserSession } from '../../_utils/localStorage.utils';
 import styles from './header.module.css';
 import NavBar from '../NavBar/NavBar';
@@ -31,8 +30,6 @@ export const Header = ({ isLogged, accountCreated }) => {
 
   useEffect(() => {
     const token = getUserToken();
-    const cartProducts = JSON.parse(localStorage.getItem('CartProducts')) || [];
-    setCartProductsCount(cartProducts.length);
     if (isLogged && token) {
       try {
         const userSession = getUserSession();
