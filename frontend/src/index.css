@@ -112,16 +112,6 @@ strong {
   overflow-y: hidden;
 }
 
-/* Change text selection color */
-::-moz-selection {
-  /* Code for Firefox */
-  background: var(--primary-900);
-}
-
-::selection {
-  background: var(--primary-900);
-}
-
 /* ------------------------------------- VARIABLES ---------------------------------- */
 
 :root {
@@ -167,6 +157,8 @@ strong {
   --body-xsmall: 0.694rem; /* 11.11px */
 
   --header-height: 80px;
+  --footer-height: 112px;
+  --view-height: calc(100svh - (var(--header-height) + var(--footer-height)));
   --wrapper-max: 64rem; /* 1024px */
   --wrapper: 2rem; /* 32px */
 }

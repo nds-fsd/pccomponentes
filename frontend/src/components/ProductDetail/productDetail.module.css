@@ -1,53 +1,44 @@
-.container {
-  padding: 2rem;
+.section {
   display: flex;
-  gap: 1rem;
   flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: var(--wrapper-max);
+  padding: 2rem var(--wrapper);
+  margin: 0 auto;
+}
+.productData > * {
+  padding-bottom: 1rem;
 }
 
-.accent {
-  color: var(--primary-500);
+.price {
+  font-size: var(--title-medium);
+  font-weight: 700;
+  padding-bottom: 1rem;
 }
 
-.productDescription {
-  font-size: var(--body-small);
-}
-
-@media screen and (width >= 1024px) {
-  .container {
-    flex-direction: row;
-    align-items: center;
+.addCartContainer {
+  background: radial-gradient(52.43% 52.43% at 50% 50%, #0e2145 0%, #021626 100%);
+  padding: 2rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  & button {
+    max-width: 250px;
   }
 }
 
-.button {
-  cursor: pointer;
-  display: flex;
-  width: 232px;
-  height: 40px;
-  padding: 8px 32px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 2px 32px;
-  background: linear-gradient(to right, var(--primary-500) 0%, #7b34c7 100%, #fff 200%);
-  color: #fff;
-  font-family: Roboto;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  border: none;
-  text-align: center;
-  transition: 0.5s;
-  background-size: 200% auto;
-}
+@media screen and (768px <= width) {
+  .section {
+    flex-direction: row;
+    align-items: center;
+  }
 
-.button:hover {
-  background-position: right center; /* change the direction of the change here */
-  color: #fff;
-}
-
-.button:active {
-  border: solid 2px #fff;
-  transition: none;
+  .addCartContainer {
+    background: inherit;
+    padding: 0;
+    position: inherit;
+  }
 }

@@ -3,8 +3,7 @@ import { api } from '../../_utils/api';
 import { setUserSession } from '../../_utils/localStorage.utils';
 import { useNavigate } from 'react-router-dom';
 import styles from './login.module.css';
-import PrimaryButton from '../PrimaryButton/PrimaryButton';
-import SecondaryButton from '../SecondaryButton/SecondaryButton';
+import { PrimaryButton, SecondaryButton } from '../Button/Button';
 
 export const Login = ({ forceUpdate, changeAccountCreated }) => {
   const navigate = useNavigate();
@@ -68,10 +67,9 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
         {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
         <a className={styles.password}>Forgot my password</a>
         <div className={styles.buttons}>
-          <PrimaryButton btnType='submit' value='Log In' />
+          <PrimaryButton value='Log In' />
           <p>or</p>
           <SecondaryButton
-            btnType='button'
             value='Create account'
             onClick={() => {
               changeAccountCreated('register');
