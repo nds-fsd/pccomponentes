@@ -25,20 +25,22 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  & button {
-    max-width: 250px;
-  }
 }
 
 @media screen and (768px <= width) {
   .section {
     flex-direction: row;
     align-items: center;
+    justify-content: center;
   }
 
   .addCartContainer {
     background: inherit;
     padding: 0;
     position: inherit;
+
+    & button {
+      max-width: 250px;
+    }
   }
 }

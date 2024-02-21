@@ -11,9 +11,6 @@ const ProductDetailContainer = ({ product }) => {
     messageApi.open({
       type: 'success',
       content: 'Product added to cart',
-      style: {
-        marginTop: '90px',
-      },
     });
   };
 
