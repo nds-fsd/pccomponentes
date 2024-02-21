@@ -1,10 +1,13 @@
+import React, { useState, useEffect } from 'react';
+import { Divider } from 'antd';
+import { PrimaryButton } from '../Button/Button';
+import { useCart } from '../../contexts/CartContext';
 import CartProduct from '../CartProduct/CartProduct';
 import styles from './Cart.module.css';
-import { useState, useEffect } from 'react';
-import { Divider, Button } from 'antd';
-import { PrimaryButton } from '../Button/Button';
 
 function Cart() {
+  const { setCartProductsCount } = useCart();
+
   const [cartProducts, setCartProducts] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
   const [tax, setTax] = useState(0);
@@ -32,13 +35,17 @@ function Cart() {
     setTotalPrice(totalPriceValue);
   };
 
+  const handleUpdateCart = (updatedCart) => {
+    setCartProductsCount(updatedCart.length);
+  };
+
   return (
     <div className={styles.cart}>
       <h2 className={styles.title}>My Cart</h2>
       <div className={styles.cartContainer}>
         <div className={styles.cartProducts}>
           {cartProducts.map((product, index) => (
-            <CartProduct key={index} product={product}></CartProduct>
+            <CartProduct key={index} product={product} onUpdateCart={handleUpdateCart}></CartProduct>
           ))}
         </div>
         <div className={styles.cartOverview}>

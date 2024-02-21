@@ -6,7 +6,6 @@ const { confirm } = Modal;
 
 function CartProduct({ product, onUpdateCart }) {
   const [quantity, setQuantity] = useState(product.quantity);
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     setQuantity(product.quantity);
