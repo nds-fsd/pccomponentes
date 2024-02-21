@@ -4,7 +4,7 @@ import { api } from '../../_utils/api';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { SecondaryButton } from '../../components/Button/Button';
-import AddressCard from '../../AddressCard/AddressCard';
+import AddressCard from '../../components/AddressCard/AddressCard';
 import { LogOut } from '../../components/Logout/Logout';
 import { getUserSession } from '../../_utils/localStorage.utils';
 import { Tabs } from 'antd';
