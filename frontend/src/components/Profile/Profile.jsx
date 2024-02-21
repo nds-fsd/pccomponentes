@@ -73,11 +73,15 @@ export const Profile = () => {
       .catch((error) => console.log(error));
   };
 
-  const tabItems = [
+  const onChange = (key) => {
+    // console.log(key);
+  };
+
+  const items = [
     {
       key: '1',
-      tab: 'Personal Information',
-      content: (
+      label: 'Personal Information',
+      children: (
         <div className={styles.card}>
           <div className={styles.userData}>
             <h4 className={styles.cardTitle}>Personal Information</h4>
@@ -94,8 +98,8 @@ export const Profile = () => {
     },
     {
       key: '2',
-      tab: 'Addresses',
-      content: (
+      label: 'Addresses',
+      children: (
         <div className={styles.addressesCards}>
           {userAddresses.map((address) => (
             <AddressCard key={address._id} address={address} />
@@ -111,15 +115,7 @@ export const Profile = () => {
         <span className='material-symbols-rounded'>arrow_back</span>
       </Link>
       <h3 className={styles.title}>My Profile</h3>
-
-      <Tabs defaultActiveKey='1' tabBarStyle={{ marginBottom: 16 }}>
-        {tabItems.map((item) => (
-          <Tabs.TabPane key={item.key} tab={item.tab}>
-            {item.content}
-          </Tabs.TabPane>
-        ))}
-      </Tabs>
-
+      <Tabs defaultActiveKey='1' items={items} onChange={onChange} className={styles.tabStyle} />
       {isModalOpen && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalCard}>

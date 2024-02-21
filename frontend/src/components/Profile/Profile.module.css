@@ -72,3 +72,7 @@
   margin: 10px;
   width: 100%;
 }
+
+.tabStyle {
+  color: var(--neutral-50);
+}
