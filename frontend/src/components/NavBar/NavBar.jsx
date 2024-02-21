@@ -4,6 +4,17 @@ import { api } from '../../_utils/api';
 import NavSubCategory from './NavSubCategory/NavBarSubCategory';
 import styles from './navBar.module.css';
 
+const subCategories = {
+  Consoles: ['PlayStation', 'Xbox', 'Nintendo'],
+  Smartphones: ['Apple', 'Samsung', 'Xiaomi'],
+  Gamepads: ['Wireless', 'Scuf'],
+  Games: ['PlayStation', 'Xbox', 'Nintendo'],
+  VR: ['PlayStation', 'Meta', 'Valve, Apple'],
+  Headsets: ['Logitech', 'Corsair', 'Razer'],
+  Mouses: ['Logitech', 'Corsair', 'Razer'],
+  Monitors: ['Samsung', 'LG', 'Acer'],
+};
+
 function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLvl3, hideAll }) {
   const [categories, setCategories] = useState([]);
   const [actualCategory, setActualCategory] = useState('');
@@ -82,6 +93,7 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
                       showNavLvl3={showNavLvl3}
                       hideAll={hideAll}
                       categoryName={category.name}
+                      subCategories={subCategories[category.name]}
                     />
                   </li>
                 ))
@@ -97,6 +109,7 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
                         showNavLvl3={showNavLvl3}
                         hideAll={hideAll}
                         categoryName={actualCategory.name}
+                        subCategories={subCategories[category.name]}
                       />
                     </li>
                   );

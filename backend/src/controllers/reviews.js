@@ -65,8 +65,8 @@ const deleteReview = async (req, res) => {
 
 const getProductRating = async (req, res) => {
   try {
-    const { productId } = req.query;
-    const reviews = await Reviews.find({ product: productId });
+    const { id } = req.params;
+    const reviews = await Reviews.find({ product: id });
 
     if (reviews.length === 0) {
       return res.status(404).json({ message: 'No reviews found for the product' });
