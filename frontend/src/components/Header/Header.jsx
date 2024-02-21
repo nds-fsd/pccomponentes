@@ -1,11 +1,14 @@
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import Avatar from '../Profile/Avatar';
+import { getUserToken, getUserSession } from '../../_utils/localStorage.utils';
 import styles from './header.module.css';
 import NavBar from '../NavBar/NavBar';
 import computechLogo from '../../assets/computech-logo.svg';
 import computechLogoText from '../../assets/computech-logo-text.svg';
 
 export const Header = ({ isLogged, accountCreated }) => {
+  const [username, setUsername] = useState('');
   const [navLvl1, setNavLvl1] = useState(false);
   const [navLvl2, setNavLvl2] = useState(false);
   const [navLvl3, setNavLvl3] = useState(false);
@@ -26,9 +29,21 @@ export const Header = ({ isLogged, accountCreated }) => {
   const [cartProductsCount, setCartProductsCount] = useState(0);
 
   useEffect(() => {
+    const token = getUserToken();
     const cartProducts = JSON.parse(localStorage.getItem('CartProducts')) || [];
     setCartProductsCount(cartProducts.length);
-  }, []);
+    if (isLogged && token) {
+      try {
+        const userSession = getUserSession();
+
+        const userUsername = userSession.username;
+
+        setUsername(userUsername);
+      } catch (error) {
+        console.error('Error getting username:', error);
+      }
+    }
+  }, [isLogged]);
 
   return (
     <>
@@ -54,7 +69,7 @@ export const Header = ({ isLogged, accountCreated }) => {
               </Link>
               {isLogged && (
                 <Link to={'/my-account'}>
-                  <span className='material-symbols-rounded'>person</span>
+                  <Avatar username={username} />
                 </Link>
               )}
               {!isLogged && accountCreated && (
