@@ -23,6 +23,7 @@ import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
+import BackLogin from './components/Backoffice/BackLogin/BackLogin';
 
 function UserLayout({ children }) {
   const [accountCreated, setAccountCreated] = useState(true);
@@ -46,6 +47,7 @@ function UserLayout({ children }) {
         <Header isLogged={isLogged} accountCreated={accountCreated} />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/BackofficeLogin' element={<BackLogin />} />
           <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
           <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
           <Route path='/cart' element={<Cart />} />
