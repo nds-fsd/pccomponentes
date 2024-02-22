@@ -27,6 +27,20 @@
   z-index: 100;
 }
 
+.rateContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.rateStars {
+  font-size: 1rem;
+  & svg {
+    max-width: inherit;
+  }
+}
+
 @media screen and (768px <= width) {
   .section {
     flex-direction: row;

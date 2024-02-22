@@ -3,11 +3,10 @@ import styles from './productDetail.module.css';
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
 import { PrimaryButton } from '../Button/Button';
 import { useCart } from '../../contexts/CartContext';
-import { message } from 'antd';
+import { message, Rate } from 'antd';
 
-const ProductDetailContainer = ({ product }) => {
+const ProductDetail = ({ product, rating }) => {
   const { setCartProductsCount } = useCart();
-  const productData = product && product.ProductFound;
   const [messageApi, contextHolder] = message.useMessage();
   const addCartSuccessToast = () => {
     messageApi.open({
@@ -17,15 +16,15 @@ const ProductDetailContainer = ({ product }) => {
   };
 
   const addToCart = () => {
-    if (productData) {
+    if (product) {
       let existingCartItems = JSON.parse(localStorage.getItem('CartProducts')) || [];
 
-      const existingProductIndex = existingCartItems.findIndex((item) => item._id === productData._id);
+      const existingProductIndex = existingCartItems.findIndex((item) => item._id === product._id);
 
       if (existingProductIndex !== -1) {
         existingCartItems[existingProductIndex].quantity += 1;
       } else {
-        existingCartItems.push({ ...productData, quantity: 1 });
+        existingCartItems.push({ ...product, quantity: 1 });
       }
 
       localStorage.setItem('CartProducts', JSON.stringify(existingCartItems));
@@ -39,15 +38,22 @@ const ProductDetailContainer = ({ product }) => {
   return (
     <>
       {contextHolder}
-      {productData ? (
+      {product ? (
         <section className={styles.section}>
-          <ImageCarousel product={productData} />
-          <div className={styles.productData}>
-            <h2>{productData.name}</h2>
-            <p className={styles.rating}>rating</p>
-            <p className={styles.productDescription}>{productData.description}</p>
+          <ImageCarousel product={product} />
+          <div className={styles.product}>
+            <h2>{product.name}</h2>
+            {rating && rating.totalReviews > 0 && (
+              <div className={styles.rateContainer}>
+                <Rate className={styles.rateStars} disabled allowHalf value={rating?.totalRating} />
+                <p className={styles.rating}>
+                  ({rating?.totalReviews} {rating?.totalReviews === 1 ? 'review' : 'reviews'})
+                </p>
+              </div>
+            )}
+            <p className={styles.productDescription}>{product.description}</p>
             <div className={styles.addCartContainer}>
-              <p className={styles.price}>{productData.price}€</p>
+              <p className={styles.price}>{product.price}€</p>
               <PrimaryButton value='Add to cart' onClick={addToCart} rightIcon='shopping_cart' />
             </div>
           </div>
@@ -58,4 +64,4 @@ const ProductDetailContainer = ({ product }) => {
     </>
   );
 };
-export default ProductDetailContainer;
+export default ProductDetail;

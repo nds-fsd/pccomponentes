@@ -27,8 +27,9 @@ function ProductCard({ product }) {
         {rating && rating.totalReviews > 0 && (
           <div className={styles.rateContainer}>
             <Rate className={styles.rateStars} disabled allowHalf value={rating.totalRating} />
-            {console.log(rating.totalRating)}
-            <span className={styles.ratingNum}>({rating.totalReviews} reviews)</span>
+            <span className={styles.ratingNum}>
+              ({rating.totalReviews} {rating?.totalReviews === 1 ? 'review' : 'reviews'})
+            </span>
           </div>
         )}
       </div>
