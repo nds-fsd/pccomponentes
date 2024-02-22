@@ -15,6 +15,7 @@ const productSchema = new Schema({
   },
   sale: {
     type: Number,
+    default: 0,
   },
   image: {
     type: [String],
@@ -27,7 +28,10 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
-
+  creationDate: {
+    type: Date,
+    default: Date.now(),
+  },
   categories: [
     {
       type: Schema.ObjectId,
@@ -35,7 +39,6 @@ const productSchema = new Schema({
       required: true,
     },
   ],
-  creationDate: { type: Date, default: Date.now() },
 });
 
 const Product = model('Product', productSchema);

@@ -54,7 +54,12 @@ const ProductDetail = ({ product, rating }) => {
             <p className={styles.productDescription}>{product.description}</p>
             <div className={styles.addCartContainer}>
               <p className={styles.price}>{product.price}€</p>
-              <PrimaryButton value='Add to cart' onClick={addToCart} rightIcon='shopping_cart' />
+              <PrimaryButton
+                disabled={product.stock === 0}
+                value='Add to cart'
+                onClick={addToCart}
+                rightIcon='shopping_cart'
+              />
             </div>
           </div>
         </section>

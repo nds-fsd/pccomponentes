@@ -29,6 +29,7 @@
   left: 0;
   width: 100%;
   z-index: 100;
+  box-shadow: 0 -4px 10px var(--neutral-950);
 }
 
 .rateContainer {

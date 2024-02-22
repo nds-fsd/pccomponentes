@@ -19,7 +19,7 @@
 
 .new {
   background-color: var(--neutral-50);
-  color: var(--primary-50);
+  color: var(--primary-500);
 }
 
 .sale {

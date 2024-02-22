@@ -1,8 +1,8 @@
 import styles from './button.module.css';
 
-function PrimaryButton({ value, onClick, leftIcon, rightIcon }) {
+function PrimaryButton({ value, onClick, leftIcon, rightIcon, disabled }) {
   return (
-    <button className={`${styles.button} ${styles.primaryButton}`} type='submit' onClick={onClick}>
+    <button className={`${styles.button} ${styles.primaryButton}`} type='submit' onClick={onClick} disabled={disabled}>
       <span className='material-symbols-rounded'>{leftIcon}</span>
       {value}
       <span className='material-symbols-rounded'>{rightIcon}</span>
@@ -10,9 +10,14 @@ function PrimaryButton({ value, onClick, leftIcon, rightIcon }) {
   );
 }
 
-function SecondaryButton({ value, onClick, leftIcon, rightIcon }) {
+function SecondaryButton({ value, onClick, leftIcon, rightIcon, disabled }) {
   return (
-    <button className={`${styles.button} ${styles.secondaryButton}`} type='submit' onClick={onClick}>
+    <button
+      className={`${styles.button} ${styles.secondaryButton}`}
+      type='submit'
+      onClick={onClick}
+      disabled={disabled}
+    >
       <span className='material-symbols-rounded'>{leftIcon}</span>
       {value}
       <span className='material-symbols-rounded'>{rightIcon}</span>
@@ -20,9 +25,9 @@ function SecondaryButton({ value, onClick, leftIcon, rightIcon }) {
   );
 }
 
-function TextButton({ value, onClick, leftIcon, rightIcon }) {
+function TextButton({ value, onClick, leftIcon, rightIcon, disabled }) {
   return (
-    <button className={`${styles.button} ${styles.textButton}`} type='submit' onClick={onClick}>
+    <button className={`${styles.button} ${styles.textButton}`} type='submit' onClick={onClick} disabled={disabled}>
       <span className='material-symbols-rounded'>{leftIcon}</span>
       {value}
       <span className='material-symbols-rounded'>{rightIcon}</span>

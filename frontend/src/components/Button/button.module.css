@@ -24,6 +24,17 @@
     background-position: right center; /* change the direction of the change here */
     box-shadow: 0 0 20px var(--neutral-700);
   }
+
+  &:disabled {
+    background-image: none;
+    background-color: var(--neutral-800);
+    color: var(--neutral-500);
+    font-weight: 400;
+    box-shadow: none;
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
 
 .secondaryButton {
