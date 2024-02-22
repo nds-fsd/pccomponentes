@@ -17,6 +17,10 @@
   padding-bottom: 1rem;
 }
 
+.productDescription {
+  padding-bottom: 1rem;
+}
+
 .addCartContainer {
   background: radial-gradient(52.43% 52.43% at 50% 50%, #0e2145 0%, #021626 100%);
   padding: 2rem;
@@ -55,6 +59,7 @@
 
     & button {
       max-width: 250px;
+      margin-top: 1rem;
     }
   }
 }
