@@ -4,18 +4,24 @@ import ProductsList from '../../components/ProductsList/ProductsList';
 import Filters from '../../components/Filters/Filters';
 import { api } from '../../_utils/api';
 import { Button, Select } from 'antd';
+import { useLocation } from 'react-router-dom';
 
 const { Option } = Select;
 
 function ResultsPage() {
   const [products, setProducts] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
-
   const [filters, setFilters] = useState({});
+  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search).get('query');
 
   useEffect(() => {
-    api.get('/products', { params: filters }).then((res) => setProducts(res.data));
-  }, [filters]);
+    if (searchQuery) {
+      api.get('/products', { params: { ...filters, name: searchQuery } }).then((res) => setProducts(res.data));
+    } else {
+      api.get('/products', { params: filters }).then((res) => setProducts(res.data));
+    }
+  }, [filters, searchQuery]);
 
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters);
