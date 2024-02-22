@@ -40,6 +40,26 @@
   margin-bottom: 0.5rem;
 }
 
+.rateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.rateStars {
+  font-size: 0.8rem;
+  & svg {
+    max-width: inherit;
+  }
+}
+
+.ratingNum {
+  font-size: var(--body-small);
+  color: var(--neutral-400);
+}
+
 @keyframes floating {
   from {
     transform: translate(0, 0px);
@@ -49,5 +69,14 @@
   }
   to {
     transform: translate(0, -0px);
+  }
+}
+
+@media (width >= 768px) {
+  .rateContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
   }
 }

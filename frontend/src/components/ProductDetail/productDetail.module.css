@@ -17,6 +17,10 @@
   padding-bottom: 1rem;
 }
 
+.productDescription {
+  padding-bottom: 1rem;
+}
+
 .addCartContainer {
   background: radial-gradient(52.43% 52.43% at 50% 50%, #0e2145 0%, #021626 100%);
   padding: 2rem;
@@ -25,8 +29,19 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  & button {
-    max-width: 250px;
+}
+
+.rateContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.rateStars {
+  font-size: 1rem;
+  & svg {
+    max-width: inherit;
   }
 }
 
@@ -34,11 +49,17 @@
   .section {
     flex-direction: row;
     align-items: center;
+    justify-content: center;
   }
 
   .addCartContainer {
     background: inherit;
     padding: 0;
     position: inherit;
+
+    & button {
+      max-width: 250px;
+      margin-top: 1rem;
+    }
   }
 }
