@@ -6,15 +6,17 @@ const getProducts = async (req, res) => {
     const { categoryId } = req.query;
     let search = categoryId ? { categories: categoryId } : {};
     const filters = req.query;
+    const sort = req.query.sortBy || ''; // Get sortBy parameter from query string
     if (filters && filters.minPrice && filters.maxPrice) {
       search = {
+        ...search,
         price: {
           $gt: filters.minPrice,
           $lt: filters.maxPrice,
         },
       };
     }
-    const allProducts = await Product.find(search).populate('categories');
+    const allProducts = await Product.find(search).populate('categories').sort(sort); // Apply sorting
     res.status(200).json(allProducts);
   } catch (error) {
     console.log(error);
