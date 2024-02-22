@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './productDetail.module.css';
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
 import { PrimaryButton } from '../Button/Button';
+import LikeButton from '../LikeButton/LikeButton';
 import { useCart } from '../../contexts/CartContext';
 import { message, Rate } from 'antd';
 
@@ -57,6 +58,7 @@ const ProductDetail = ({ product, rating }) => {
                 <p className={product.sale > 0 && styles.oldPrice}>{product.price}€</p>
                 {product.sale > 0 && <p className={styles.sale}>{product.sale}€</p>}
               </div>
+              <LikeButton />
               <PrimaryButton
                 disabled={product.stock === 0}
                 value='Add to cart'
