@@ -1,21 +1,56 @@
-.resutlsContainer {
-  display: flex;
-  flex-direction: row;
-  min-height: var(--view-height);
-}
-
-.productsContainer {
+.resultsPage {
   padding: 1rem;
-  background-color: var(--neutral-950);
 }
 
 .sideBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--neutral-900);
+  transition: transform 0.3s ease-in-out;
+  z-index: 100;
   padding: 1rem;
 }
 
 .sideBarButton {
+  display: block;
   background-color: var(--neutral-950);
-  border-color: var(--primary-400);
+  border-color: var(--primary-500) !important;
   color: white;
   margin-bottom: 1rem;
+  margin-right: 10px;
+}
+
+.sideBarButton:hover {
+  background-color: var(--primary-500);
+  color: white !important;
+}
+
+.resultsContent {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  position: relative;
+  z-index: 1;
+  justify-content: flex-end;
+}
+
+.sortDropdown {
+  background-color: var(--neutral-950) !important;
+  border-color: var(--primary-500) !important;
+  color: white !important;
+}
+
+.filterLabel {
+  font-size: var(--body-small);
+  text-transform: uppercase;
+}
+
+@media screen and (width >= 768px) {
+  .sideBar {
+    top: var(--header-height);
+    width: 20vw;
+  }
 }
