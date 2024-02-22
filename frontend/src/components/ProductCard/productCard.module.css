@@ -30,28 +30,29 @@
   font-size: var(--body-small);
 }
 
+.prices {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .productPrice {
   font-weight: 700;
 }
 
-.chip {
-  display: inline-flex;
-  margin-right: auto;
-  align-items: center;
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  min-height: 20px;
-  padding: 0 12px;
-  font-size: var(--body-small);
-  background-color: var(--primary-500);
-  border-radius: 0.5rem;
+.productOldPrice {
+  color: var(--neutral-500);
+  text-decoration: line-through;
+  font-weight: 500;
 }
 
 .product img {
   height: 100%;
   object-fit: contain;
   margin-bottom: 0.5rem;
+}
+
+.outStockDisabled {
+  filter: opacity(0.3);
 }
 
 .rateContainer {
