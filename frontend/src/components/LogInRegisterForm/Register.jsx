@@ -62,7 +62,14 @@ export const Register = ({ forceUpdate, changeAccountCreated }) => {
           className={styles.formInput}
           type='password'
           placeholder='Password'
-          {...register('password', { required: 'Password is required.' })}
+          {...register('password', {
+            required: 'Password is required.',
+            pattern: {
+              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+              message: 'Password must contain at least one uppercase letter, one lowercase letter and one number.',
+            },
+            minLength: { value: 8, message: 'Password must be at least 8 characters.' },
+          })}
         />
         {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
         <br />
@@ -73,7 +80,9 @@ export const Register = ({ forceUpdate, changeAccountCreated }) => {
             <input
               className={styles.inputCheck}
               type='checkbox'
-              {...register('privacy', { required: 'Privacy Policy is required.' })}
+              {...register('privacy', {
+                required: 'Privacy Policy is required.',
+              })}
             />
             <label>
               I have read and accept the{' '}
