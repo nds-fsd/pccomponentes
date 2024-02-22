@@ -69,9 +69,7 @@ const patchProduct = async (req, res) => {
     const productUpdated = await Product.findByIdAndUpdate(id, body, {
       new: true,
     });
-    return res.status(200).json({
-      productUpdated,
-    });
+    return res.status(200).json(productUpdated);
   } catch (error) {
     return res.status(500).json(error);
   }

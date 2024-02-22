@@ -11,10 +11,22 @@
   padding-bottom: 1rem;
 }
 
-.price {
+.prices {
   font-size: var(--title-medium);
   font-weight: 700;
+  display: flex;
+  align-items: start;
+  gap: 0.5rem;
   padding-bottom: 1rem;
+}
+
+.oldPrice {
+  font-size: var(--body-large);
+  font-weight: 500;
+  color: var(--neutral-500);
+  text-decoration: line-through;
+  position: relative;
+  top: -5px;
 }
 
 .productDescription {
@@ -29,6 +41,7 @@
   left: 0;
   width: 100%;
   z-index: 100;
+  box-shadow: 0 -4px 10px var(--neutral-950);
 }
 
 .rateContainer {
