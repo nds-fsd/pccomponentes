@@ -53,7 +53,10 @@ const ProductDetail = ({ product, rating }) => {
             )}
             <p className={styles.productDescription}>{product.description}</p>
             <div className={styles.addCartContainer}>
-              <p className={styles.price}>{product.price}€</p>
+              <div className={styles.prices}>
+                <p className={product.sale > 0 && styles.oldPrice}>{product.price}€</p>
+                {product.sale > 0 && <p className={styles.sale}>{product.sale}€</p>}
+              </div>
               <PrimaryButton
                 disabled={product.stock === 0}
                 value='Add to cart'
