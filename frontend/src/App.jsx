@@ -46,8 +46,8 @@ function UserLayout({ children }) {
       <CartProvider>
         <Header isLogged={isLogged} accountCreated={accountCreated} />
         <Routes>
+          <Route path='/backofficeLogin' element={<BackLogin />} />
           <Route path='/' element={<Home />} />
-          <Route path='/BackofficeLogin' element={<BackLogin />} />
           <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
           <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
           <Route path='/cart' element={<Cart />} />

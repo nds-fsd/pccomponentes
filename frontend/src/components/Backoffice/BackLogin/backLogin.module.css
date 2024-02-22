@@ -1,0 +1,19 @@
+.leftPanel {
+  border: 1px solid red;
+  width: 50%;
+  height: 100svh;
+  display: grid;
+  place-items: center;
+}
+.loginForm {
+  border: 1px solid orange;
+  width: 50%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.formInput {
+  width: 100%;
+  border-radius: 4px;
+}

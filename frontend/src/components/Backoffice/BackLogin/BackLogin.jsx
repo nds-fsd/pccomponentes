@@ -43,27 +43,40 @@ const BackLogin = ({ forceUpdate }) => {
 
   return (
     <main className={styles.main}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <h2>Backoffice Log In</h2>
-        <input
-          className={styles.formInput}
-          type='text'
-          placeholder='Email address'
-          {...register('email', {
-            required: 'Email is required.',
-            pattern: { value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, message: 'Invalid email format.' },
-          })}
-        />
-        {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
-        <input
-          className={styles.formInput}
-          type='password'
-          placeholder='Password'
-          {...register('password', { required: 'Password is required.' })}
-        />
-        {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
-        <PrimaryButton value='Log In' />
-      </form>
+      <div className={styles.leftPanel}>
+        <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <h2>Log In</h2>
+          </div>
+          <div>
+            <input
+              className={styles.formInput}
+              type='text'
+              placeholder='Email address'
+              {...register('email', {
+                required: 'Email is required.',
+                pattern: { value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, message: 'Invalid email format.' },
+              })}
+            />
+            {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
+          </div>
+          <div>
+            <input
+              className={styles.formInput}
+              type='password'
+              placeholder='Password'
+              {...register('password', { required: 'Password is required.' })}
+            />
+          </div>
+          {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
+          <div>
+            <a className={styles.password}>Forgot my password</a>
+          </div>
+          <div>
+            <PrimaryButton value='Log In' />
+          </div>
+        </form>
+      </div>
     </main>
   );
 };
