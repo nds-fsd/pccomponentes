@@ -65,17 +65,18 @@ const deleteReview = async (req, res) => {
 
 const getProductRating = async (req, res) => {
   try {
-    const { productId } = req.query;
-    const reviews = await Reviews.find({ product: productId });
+    const { id } = req.params;
+    const reviews = await Reviews.find({ product: id });
 
     if (reviews.length === 0) {
-      return res.status(404).json({ message: 'No reviews found for the product' });
+      return res.status(200).json({ totalReviews: reviews.length, message: 'No reviews yet' });
     }
 
     const totalRatings = reviews.reduce((acc, curr) => acc + curr.rate, 0);
     const averageRating = totalRatings / reviews.length;
+    const roundedAverageRating = Math.round(averageRating * 10) / 10;
 
-    res.status(200).json({ averageRating });
+    res.status(200).json({ totalRating: roundedAverageRating, totalReviews: reviews.length });
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }

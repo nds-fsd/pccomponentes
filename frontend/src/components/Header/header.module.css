@@ -116,7 +116,7 @@ a {
 
 .cartCount {
   border-radius: 100%;
-  background-color: var(--primary-700);
+  background-color: var(--primary-500);
   font-size: var(--body-xsmall);
   height: 1rem;
   width: 1rem;

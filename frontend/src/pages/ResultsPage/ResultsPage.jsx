@@ -14,7 +14,6 @@ function ResultsPage() {
 
   useEffect(() => {
     api.get('/products', { params: filters }).then((res) => setProducts(res.data));
-    console.log(filters);
   }, [filters]);
 
   const handleFilterChange = (newFilters) => {
