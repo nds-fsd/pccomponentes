@@ -1,28 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { api } from '../../../_utils/api';
 import { setUserSession } from '../../../_utils/localStorage.utils';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './backLogin.module.css';
 import { PrimaryButton } from '../../Button/Button';
+import logobacklogin from '../../../assets/logobacklogin.svg';
+import ResolutionMessage from '../../ResolutionMessage/ResolutionMessage';
 
 const BackLogin = ({ forceUpdate }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({});
+  const [password, setPassword] = useState('');
+  const [type, setType] = useState('password');
+  const [icon, setIcon] = useState('visibility_off');
 
-  const doBackLogin = async (data) => {
+  useEffect(() => {
+    const userString = localStorage.getItem('user');
+    const user = userString ? JSON.parse(userString) : null;
+
+    if (user && user.role === 'admin') {
+      navigate('/backoffice');
+    }
+  }, []);
+
+  const doBackofficeLogin = async (data) => {
     try {
-      const response = await api.post('auth/back-login', data);
+      const response = await api.post('auth/login', data);
 
       if (response?.data.token) {
         setUserSession(response.data);
         forceUpdate();
 
-        await navigateUser(response.data.user.role);
+        navigateUser(response.data.user.role);
       }
     } catch (error) {
       console.log(error);
@@ -33,20 +48,31 @@ const BackLogin = ({ forceUpdate }) => {
     if (role === 'admin') {
       navigate('/backoffice');
     } else {
-      navigate('/');
+      navigate('/backofficeLogin');
+    }
+  };
+
+  const handleToggle = () => {
+    if (type === 'password') {
+      setIcon('visibility');
+      setType('text');
+    } else {
+      setIcon('visibility_off');
+      setType('password');
     }
   };
 
   const onSubmit = (data) => {
-    doBackLogin(data);
+    doBackofficeLogin(data);
   };
 
   return (
     <main className={styles.main}>
+      <ResolutionMessage />
       <div className={styles.leftPanel}>
         <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <h2>Log In</h2>
+            <h2>Backoffice Log In</h2>
           </div>
           <div>
             <input
@@ -61,12 +87,18 @@ const BackLogin = ({ forceUpdate }) => {
             {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
           </div>
           <div>
-            <input
-              className={styles.formInput}
-              type='password'
-              placeholder='Password'
-              {...register('password', { required: 'Password is required.' })}
-            />
+            <div className='mb-4 flex'>
+              <input
+                className={styles.formInput}
+                type={type}
+                placeholder='Password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <span onClick={handleToggle}>
+                <span className={`material-symbols-rounded ${styles.eyeIcon}`}>{icon}</span>
+              </span>
+            </div>
           </div>
           {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
           <div>
@@ -76,6 +108,11 @@ const BackLogin = ({ forceUpdate }) => {
             <PrimaryButton value='Log In' />
           </div>
         </form>
+      </div>
+      <div className={styles.rightPanel}>
+        <div className={styles.logo}>
+          <img src={logobacklogin} alt='computech logo' />
+        </div>
       </div>
     </main>
   );

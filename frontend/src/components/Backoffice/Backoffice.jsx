@@ -1,20 +1,20 @@
-import BackofficeCompany from './BackofficeCompany/BackofficeCompany';
-import BackofficeProducts from './BackofficeProducts/BackofficeProducts';
-import BackofficeUsers from './BackofficeUsers/BackofficeUsers';
-import BackofficeNav from './BackofficeNav/BackofficeNav';
-import styles from './backoffice.module.css';
-import BackofficeHome from './BackofficeHome/BackofficeHome';
-
 const Backoffice = () => {
-  return (
-    <div className={styles.body}>
-      <BackofficeNav />
-      <BackofficeCompany />
-      <BackofficeHome />
-      <BackofficeProducts />
-      <BackofficeUsers />
-    </div>
-  );
-};
+  const token = getUserToken();
+  const isLogged = !!token;
+  const userRole = getUserRole();
 
-export default Backoffice;
+  if (isLogged && userRole === 'admin') {
+    return (
+      <div className={styles.body}>
+        <BackofficeNav />
+        <BackofficeCompany />
+        <BackofficeHome />
+        <BackofficeProducts />
+        <BackofficeUsers />
+      </div>
+    );
+  } else {
+    navigate('/backofficeLogin');
+    return null;
+  }
+};

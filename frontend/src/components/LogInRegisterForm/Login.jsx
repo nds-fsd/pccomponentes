@@ -28,12 +28,8 @@ export const Login = ({ forceUpdate, changeAccountCreated }) => {
     }
   };
 
-  const navigateUser = async (role) => {
-    if (role === 'admin') {
-      navigate('/backoffice');
-    } else {
-      navigate('/');
-    }
+  const navigateUser = async () => {
+    navigate('/');
   };
 
   const onSubmit = (data) => {
