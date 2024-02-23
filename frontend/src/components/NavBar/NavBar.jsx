@@ -10,6 +10,7 @@ const subCategories = {
   Gamepads: ['Wireless', 'Scuf'],
   Games: ['PlayStation', 'Xbox', 'Nintendo'],
   VR: ['Headset', 'Accessories', 'Controllers'],
+  Laptops: ['Apple', 'Dell', 'HP', 'Lenovo'],
   Headsets: ['Logitech', 'Corsair', 'Razer'],
   Mouses: ['Logitech', 'Corsair', 'Razer', 'SteelSeries'],
   Monitors: ['Samsung', 'LG', 'Acer'],
@@ -83,21 +84,38 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
           </button>
           <p className={styles.categoryTitle}>Categories</p>
           <ul className={styles.lvl2Items}>
-            {categoriesToShow.map((category) => (
-              <li key={category._id} onClick={() => handleSetActualCategory(category)}>
-                <p>
-                  {category.name}
-                  <span className='material-symbols-rounded'>chevron_right</span>
-                </p>
-              </li>
-            ))}
-            <NavSubCategory
-              navLvl3={navLvl3}
-              showNavLvl3={showNavLvl3}
-              hideAll={hideAll}
-              categoryName={actualCategory.name}
-              subCategories={subCategories[actualCategory.name]}
-            />
+            {isDesktop
+              ? categoriesToShow.map((category) => (
+                  <li key={category._id} onClick={showNavLvl3}>
+                    <p>
+                      {category.name}
+                      <span className='material-symbols-rounded'>chevron_right</span>
+                    </p>
+                    <NavSubCategory
+                      navLvl3={navLvl3}
+                      showNavLvl3={showNavLvl3}
+                      hideAll={hideAll}
+                      categoryName={category.name}
+                      subCategories={subCategories[category.name]}
+                    />
+                  </li>
+                ))
+              : categories.map((category) => (
+                  <li key={category._id} onClick={() => handleSetActualCategory(category)}>
+                    <p>
+                      {category.name}
+                      <span className='material-symbols-rounded'>chevron_right</span>
+                    </p>
+                    <NavSubCategory
+                      navLvl3={navLvl3}
+                      showNavLvl3={showNavLvl3}
+                      hideAll={hideAll}
+                      categoryName={actualCategory.name}
+                      subCategories={subCategories[actualCategory.name]}
+                    />
+                  </li>
+                ))}
+
             <li onClick={showNavLvl3} className={styles.allProductsItem}>
               <Link to={'/products'}>See all</Link>
             </li>
