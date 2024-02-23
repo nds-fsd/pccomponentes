@@ -8,13 +8,13 @@ const getProducts = async (req, res) => {
     if (name) {
       search = {
         ...search,
-        name: { $regex: name, $options: 'i' }, // Filter by name with case-insensitive regex
+        name: { $regex: name, $options: 'i' },
       };
     }
     if (categoryId) {
       search = {
         ...search,
-        categories: categoryId, // Filter by category
+        categories: categoryId,
       };
     }
     const filters = req.query;

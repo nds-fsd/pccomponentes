@@ -1,0 +1,11 @@
+.searchBar {
+  border-radius: 1rem;
+  background-color: var(--neutral-800);
+  border: none;
+  font-size: var(--body-small);
+  padding: 0.5rem;
+}
+
+.searchForm {
+  display: flex;
+}
