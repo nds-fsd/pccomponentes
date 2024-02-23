@@ -19,8 +19,8 @@ import NoMatch from './pages/NoMatch/NoMatch';
 import Cart from './pages/Cart/Cart';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
 import { CartProvider } from './contexts/CartContext';
-import { useState } from 'react';
-import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
@@ -78,14 +78,17 @@ function UserLayout({ children }) {
 }
 
 function Backoffice({ children }) {
+  const navigate = useNavigate();
   const token = getUserToken();
   const userRole = getUserRole();
 
-  if (!token || userRole !== 'admin') {
-    return <Navigate to='/backofficeLogin' element={<BackLogin />} />;
-  } else {
-    useNavigate('/');
-  }
+  useEffect(() => {
+    navigate('/backoffice/login');
+  }, [!token, userRole == 'user']);
+
+  useEffect(() => {
+    navigate('/backoffice');
+  }, [userRole == 'admin']);
 
   return (
     <Routes>
@@ -96,6 +99,7 @@ function Backoffice({ children }) {
         <Route path='/backoffice/companies' element={<BackofficeCompanies />} />
         <Route path='/backoffice/categories' element={<BackofficeCategories />} />
       </Route>
+      <Route path='/backoffice/login' element={<BackLogin />} />
     </Routes>
   );
 }
