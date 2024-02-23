@@ -3,10 +3,22 @@ require('../schemas/categories');
 
 const getProducts = async (req, res) => {
   try {
-    const { categoryId } = req.query;
-    let search = categoryId ? { categories: categoryId } : {};
+    const { name, categoryId } = req.query;
+    let search = {};
+    if (name) {
+      search = {
+        ...search,
+        name: { $regex: name, $options: 'i' }, // Filter by name with case-insensitive regex
+      };
+    }
+    if (categoryId) {
+      search = {
+        ...search,
+        categories: categoryId, // Filter by category
+      };
+    }
     const filters = req.query;
-    const sort = req.query.sortBy || ''; // Get sortBy parameter from query string
+    const sort = req.query.sortBy || '';
     if (filters && filters.minPrice && filters.maxPrice) {
       search = {
         ...search,
@@ -16,7 +28,7 @@ const getProducts = async (req, res) => {
         },
       };
     }
-    const allProducts = await Product.find(search).populate('categories').sort(sort); // Apply sorting
+    const allProducts = await Product.find(search).populate('categories').sort(sort);
     res.status(200).json(allProducts);
   } catch (error) {
     console.log(error);
