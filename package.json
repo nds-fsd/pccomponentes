@@ -14,5 +14,9 @@
   "devDependencies": {
     "dotenv-cli": "^7.0.0",
     "turbo": "^1.10.16"
+  },
+  "dependencies": {
+    "@stripe/react-stripe-js": "^2.5.0",
+    "@stripe/stripe-js": "^3.0.5"
   }
 }
