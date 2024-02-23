@@ -17,7 +17,7 @@ const subCategories = {
 
 function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2, showNavLvl3, hideAll }) {
   const [categories, setCategories] = useState([]);
-  const [actualCategory, setActualCategory] = useState('');
+  const [actualCategory, setActualCategory] = useState({});
 
   const handleSetActualCategory = (category) => {
     showNavLvl3();
@@ -44,6 +44,8 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
       document.body.classList.remove('overflow-y-hidden');
     }
   }, [navLvl1, navLvl2]);
+
+  const categoriesToShow = isDesktop ? categories.slice(0, 5) : categories;
 
   return (
     <>
@@ -81,39 +83,21 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
           </button>
           <p className={styles.categoryTitle}>Categories</p>
           <ul className={styles.lvl2Items}>
-            {isDesktop
-              ? categories.slice(0, 5).map((category) => (
-                  <li key={category._id} onClick={showNavLvl3}>
-                    <p>
-                      {category.name}
-                      <span className='material-symbols-rounded'>chevron_right</span>
-                    </p>
-                    <NavSubCategory
-                      navLvl3={navLvl3}
-                      showNavLvl3={showNavLvl3}
-                      hideAll={hideAll}
-                      categoryName={category.name}
-                      subCategories={subCategories[category.name]}
-                    />
-                  </li>
-                ))
-              : categories.map((category) => {
-                  return (
-                    <li key={category._id} onClick={() => handleSetActualCategory(category)}>
-                      <p>
-                        {category.name}
-                        <span className='material-symbols-rounded'>chevron_right</span>
-                      </p>
-                      <NavSubCategory
-                        navLvl3={navLvl3}
-                        showNavLvl3={showNavLvl3}
-                        hideAll={hideAll}
-                        categoryName={actualCategory.name}
-                        subCategories={subCategories[category.name]}
-                      />
-                    </li>
-                  );
-                })}
+            {categoriesToShow.map((category) => (
+              <li key={category._id} onClick={() => handleSetActualCategory(category)}>
+                <p>
+                  {category.name}
+                  <span className='material-symbols-rounded'>chevron_right</span>
+                </p>
+              </li>
+            ))}
+            <NavSubCategory
+              navLvl3={navLvl3}
+              showNavLvl3={showNavLvl3}
+              hideAll={hideAll}
+              categoryName={actualCategory.name}
+              subCategories={subCategories[actualCategory.name]}
+            />
             <li onClick={showNavLvl3} className={styles.allProductsItem}>
               <Link to={'/products'}>See all</Link>
             </li>
