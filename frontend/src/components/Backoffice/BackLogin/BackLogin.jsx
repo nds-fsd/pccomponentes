@@ -67,51 +67,53 @@ const BackLogin = ({ forceUpdate }) => {
   };
 
   return (
-    <main className={styles.main}>
+    <main>
       <ResolutionMessage />
-      <div className={styles.leftPanel}>
-        <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <h2>Backoffice Log In</h2>
-          </div>
-          <div>
-            <input
-              className={styles.formInput}
-              type='text'
-              placeholder='Email address'
-              {...register('email', {
-                required: 'Email is required.',
-                pattern: { value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, message: 'Invalid email format.' },
-              })}
-            />
-            {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
-          </div>
-          <div>
-            <div className='mb-4 flex'>
+      <div className={styles.main}>
+        <div className={styles.leftPanel}>
+          <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <h2>Backoffice Log In</h2>
+            </div>
+            <div>
               <input
                 className={styles.formInput}
-                type={type}
-                placeholder='Password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                type='text'
+                placeholder='Email address'
+                {...register('email', {
+                  required: 'Email is required.',
+                  pattern: { value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, message: 'Invalid email format.' },
+                })}
               />
-              <span onClick={handleToggle}>
-                <span className={`material-symbols-rounded ${styles.eyeIcon}`}>{icon}</span>
-              </span>
+              {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
             </div>
+            <div>
+              <div className='mb-4 flex'>
+                <input
+                  className={styles.formInput}
+                  type={type}
+                  placeholder='Password'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <span onClick={handleToggle}>
+                  <span className={`material-symbols-rounded ${styles.eyeIcon}`}>{icon}</span>
+                </span>
+              </div>
+            </div>
+            {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
+            <div>
+              <a className={styles.password}>Forgot my password</a>
+            </div>
+            <div>
+              <PrimaryButton value='Log In' />
+            </div>
+          </form>
+        </div>
+        <div className={styles.rightPanel}>
+          <div className={styles.logo}>
+            <img src={logobacklogin} alt='computech logo' />
           </div>
-          {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
-          <div>
-            <a className={styles.password}>Forgot my password</a>
-          </div>
-          <div>
-            <PrimaryButton value='Log In' />
-          </div>
-        </form>
-      </div>
-      <div className={styles.rightPanel}>
-        <div className={styles.logo}>
-          <img src={logobacklogin} alt='computech logo' />
         </div>
       </div>
     </main>

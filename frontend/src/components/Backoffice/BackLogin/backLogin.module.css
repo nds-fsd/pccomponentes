@@ -35,3 +35,12 @@
   gap: 1rem;
   flex-direction: column;
 }
+
+.eyeIcon {
+  color: var(--neutral-950);
+  position: relative;
+  float: right;
+  top: -30px;
+  right: 5px;
+  z-index: 2;
+}
