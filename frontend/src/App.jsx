@@ -47,7 +47,7 @@ function UserLayout({ children }) {
         <Header isLogged={isLogged} accountCreated={accountCreated} />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/BackofficeLogin' element={<BackLogin />} />
+          {/* <Route path='/BackofficeLogin' element={<BackLogin />} /> */}
           <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
           <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
           <Route path='/cart' element={<Cart />} />
@@ -82,7 +82,7 @@ function Backoffice({ children }) {
   const userRole = getUserRole();
 
   if (!token || userRole !== 'admin') {
-    return <Navigate to='/backofficeLogin' />;
+    return <Navigate to='/backofficeLogin' element={<BackLogin />} />;
   }
 
   return (

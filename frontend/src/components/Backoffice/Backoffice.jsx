@@ -13,8 +13,9 @@ const Backoffice = () => {
         <BackofficeUsers />
       </div>
     );
-  } else {
-    navigate('/backofficeLogin');
-    return null;
   }
+  // else {
+  //   navigate('/backofficeLogin');
+  //   return null;
+  // }
 };
