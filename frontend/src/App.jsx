@@ -17,6 +17,7 @@ import BackofficeCategories from './components/Backoffice/BackofficeCategories/B
 import NoMatch from './pages/NoMatch/NoMatch';
 import Cart from './pages/Cart/Cart';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
+import PaymentPage from './pages/PaymentPage/PaymentPage';
 import { CartProvider } from './contexts/CartContext';
 import { useState } from 'react';
 import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
@@ -49,6 +50,7 @@ function UserLayout({ children }) {
           <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
           <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/checkout' element={<PaymentPage />} />
           <Route path='/results' element={<ResultsPage />} />
           <Route path='/terms-and-conditions' element={<TermsConditions />} />
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />

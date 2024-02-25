@@ -11,7 +11,8 @@ const WriteReview = ({ isLogged, onCreateReview, user }) => {
   const [rate, setRate] = useState(0);
   const productId = useParams().id;
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onCreateReview({ user: user.id, product: productId, rate: rate, commentary: commentary });
     setCommentary('');
     setRate(0);
@@ -29,7 +30,7 @@ const WriteReview = ({ isLogged, onCreateReview, user }) => {
             <Avatar username={user?.username} />
             <p>{user?.username}</p>
           </div>
-          <div className={styles.form}>
+          <form className={styles.form} onSubmit={handleSubmit}>
             <textarea
               id='commentary'
               name='commentary'
@@ -43,8 +44,8 @@ const WriteReview = ({ isLogged, onCreateReview, user }) => {
             <div className={styles.rateContainer}>
               <Rate value={rate} onChange={(value) => setRate(value)} />
             </div>
-            <PrimaryButton value='Submit' onClick={handleSubmit} />
-          </div>
+            <PrimaryButton value='Submit' />
+          </form>
         </>
       ) : (
         <Link to={'/login'}>

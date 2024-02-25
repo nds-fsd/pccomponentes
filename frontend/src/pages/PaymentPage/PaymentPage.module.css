@@ -1,0 +1,4 @@
+.section {
+  height: var(--view-height);
+  background-color: lightgrey;
+}

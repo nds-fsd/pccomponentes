@@ -112,6 +112,12 @@ strong {
   overflow-y: hidden;
 }
 
+.wrapper {
+  max-width: var(--wrapper-max);
+  padding: 0 var(--wrapper);
+  margin: 0 auto;
+}
+
 /* ------------------------------------- VARIABLES ---------------------------------- */
 
 :root {

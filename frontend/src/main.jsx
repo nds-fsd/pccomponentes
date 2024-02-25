@@ -9,27 +9,22 @@ const { darkAlgorithm } = theme;
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY || 'fallback_stripe_public_key');
-
 const queryClient = new QueryClient();
-
-const options = {
-  // passing the client secret obtained from the server
-  clientSecret: process.env.REACT_APP_STRIPE_SECRET_KEY,
-};
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Elements stripe={stripePromise} options={options}>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <ConfigProvider theme={{ algorithm: darkAlgorithm }}>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ConfigProvider theme={{ algorithm: darkAlgorithm }}>
+          <Elements
+            stripe={loadStripe(
+              'pk_test_51OmfzmJSpZHT2eqbEtIXMKquOEfyOQIw5zOC2V0PGhgUecZaRwLhjvtcgrNX5uDNZ7MhcOw3qG33UNnvZSD200ia00ZcS4inqh'
+            )}
+          >
             <App />
-          </ConfigProvider>
-        </BrowserRouter>
-      </QueryClientProvider>
-    </Elements>
+          </Elements>
+        </ConfigProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
