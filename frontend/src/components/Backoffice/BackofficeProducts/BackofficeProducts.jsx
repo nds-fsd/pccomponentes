@@ -22,7 +22,7 @@ const BackofficeProducts = () => {
     }
   };
 
-  const getAllProducts = async () => {
+  const getProducts = async () => {
     return api.get('/products');
   };
 
@@ -32,15 +32,18 @@ const BackofficeProducts = () => {
 
   const showTotal = (total) => `Total ${total} products`;
 
-  useEffect(() => {
-    getAllProducts()
+  const getAllProducts = () => {
+    getProducts()
       .then((response) => {
         setProducts(response.data);
       })
       .catch((error) => {
         console.log('Error!', error);
       });
+  };
 
+  useEffect(() => {
+    getAllProducts();
     getAllCategories()
       .then((response) => {
         setCategoryNames(response.data);
@@ -55,7 +58,7 @@ const BackofficeProducts = () => {
     setEditingProduct(productToEdit);
     form.setFieldsValue(productToEdit);
     const categories = productToEdit.categories.map((category) => {
-      return {label: category?.name, value: category?._id};
+      return { label: category?.name, value: category?._id };
     });
     form.setFieldValue('categories', categories);
     setIsModalVisible(true);
@@ -73,12 +76,7 @@ const BackofficeProducts = () => {
       setIsModalVisible(false);
       form.resetFields();
       setEditingProduct(null);
-      getAllProducts().then((response) => {
-        setProducts(response.data);
-      })
-      .catch((error) => {
-        console.log('Error!', error);
-      });;
+      getAllProducts();
     } catch (error) {
       console.error('Error updating product:', error);
     }
