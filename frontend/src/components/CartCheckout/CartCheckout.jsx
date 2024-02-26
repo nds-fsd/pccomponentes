@@ -15,9 +15,9 @@ export const CartCheckout = () => {
   const steps = [
     {
       title: 'Review Products',
-      content: products.map((product, index) => {
+      content: products.map((product) => {
         return (
-          <div className={styles.product}>
+          <div key={product._id} className={styles.product}>
             <img src={product.image[0]} alt='image of the product' />
             <div className={styles.text}>
               <p className={styles.productName}>{product.name}</p>
