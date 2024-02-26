@@ -27,9 +27,8 @@ const items = [
   },
   {
     key: 'orders',
-    label: <Link /*to='/backoffice/orders'*/>Orders</Link>,
+    label: <Link to='/backoffice/orders'>Orders</Link>,
     icon: <span className='material-symbols-rounded'>conveyor_belt</span>,
-    disabled: true,
   },
 ];
 
