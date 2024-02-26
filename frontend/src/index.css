@@ -79,6 +79,12 @@ body {
 
 .material-symbols-rounded {
   font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  transition: 100ms;
+}
+
+.material-symbols-rounded.outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  transition: 100ms;
 }
 
 /* Typescale of 1.200 Minor Third */

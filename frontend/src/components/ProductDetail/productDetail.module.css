@@ -20,6 +20,12 @@
   padding-bottom: 1rem;
 }
 
+.buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
 .oldPrice {
   font-size: var(--body-large);
   font-weight: 500;
