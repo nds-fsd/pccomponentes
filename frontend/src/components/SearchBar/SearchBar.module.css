@@ -1,10 +1,16 @@
 .searchBar {
   display: flex;
   border-radius: 1rem;
-  background-color: var(--neutral-800);
+  background-color: var(--neutral-100);
   border: none;
   font-size: var(--body-small);
   padding: 0.5rem;
+}
+
+.searchBar:focus-visible {
+  outline-color: var(--primary-500);
+  outline-style: solid;
+  outline-width: 2px;
 }
 
 .searchForm {
