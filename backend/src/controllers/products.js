@@ -15,11 +15,11 @@ const getProducts = async (req, res) => {
     }
 
     if (categoryName) {
-      const category = await Category.findOne({ name: categoryName }); // Assuming your category model is named Category
+      const category = await Category.findOne({ name: { $regex: categoryName, $options: 'i' } }); // Assuming your category model is named Category
       if (category) {
         search = {
           ...search,
-          categories: category._id,
+          $or: [...search['$or'], { categories: category._id }],
         };
       }
     }
