@@ -1,10 +1,33 @@
 import { Steps, Button } from 'antd';
-import React, { useState } from 'react';
-import Cart from '../../pages/Cart/Cart';
+import { useState, useEffect } from 'react';
+import styles from './CartCheckout.module.css';
 
 export const CartCheckout = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const storedCartProducts = localStorage.getItem('CartProducts');
+    if (storedCartProducts) {
+      const parsedCartProducts = JSON.parse(storedCartProducts);
+      setProducts(parsedCartProducts);
+    }
+  }, []);
+
   const steps = [
-    { title: 'Review Products', content: 'Cart' },
+    {
+      title: 'Review Products',
+      content: products.map((product, index) => {
+        return (
+          <div className={styles.product}>
+            <img src={product.image[0]} alt='image of the product' />
+            <div className={styles.text}>
+              <p className={styles.productName}>{product.name}</p>
+              <p className={styles.productPrice}>{product.price}€</p>
+              <p>{product.quantity}</p>
+            </div>
+          </div>
+        );
+      }),
+    },
     { title: 'Address', content: 'Address' },
     { title: 'Credit Card', content: 'Credit Card' },
   ];
