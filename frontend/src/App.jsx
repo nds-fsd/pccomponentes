@@ -23,6 +23,7 @@ import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
+import { CartCheckout } from './components/CartCheckout/CartCheckout';
 
 function UserLayout({ children }) {
   const [accountCreated, setAccountCreated] = useState(true);
@@ -49,6 +50,7 @@ function UserLayout({ children }) {
           <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
           <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/cart/checkout' element={<CartCheckout />} />
           <Route path='/results' element={<ResultsPage />} />
           <Route path='/terms-and-conditions' element={<TermsConditions />} />
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
