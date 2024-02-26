@@ -58,13 +58,15 @@ const ProductDetail = ({ product, rating }) => {
                 <p className={product.sale > 0 && styles.oldPrice}>{product.price}€</p>
                 {product.sale > 0 && <p className={styles.sale}>{product.sale}€</p>}
               </div>
-              <LikeButton />
-              <PrimaryButton
-                disabled={product.stock === 0}
-                value='Add to cart'
-                onClick={addToCart}
-                rightIcon='shopping_cart'
-              />
+              <div className={styles.buttons}>
+                <PrimaryButton
+                  disabled={product.stock === 0}
+                  value='Add to cart'
+                  onClick={addToCart}
+                  rightIcon='shopping_cart'
+                />
+                <LikeButton />
+              </div>
             </div>
           </div>
         </section>
