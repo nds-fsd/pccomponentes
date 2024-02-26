@@ -1,15 +1,27 @@
 const Product = require('../schemas/products');
+const Category = require('../schemas/categories');
 require('../schemas/categories');
 
 const getProducts = async (req, res) => {
   try {
-    const { name, categoryId } = req.query;
+    const { name, brand, categoryName, categoryId } = req.query;
     let search = {};
+
     if (name) {
       search = {
         ...search,
-        name: { $regex: name, $options: 'i' },
+        $or: [{ name: { $regex: name, $options: 'i' } }, { brand: { $regex: name, $options: 'i' } }],
       };
+    }
+
+    if (categoryName) {
+      const category = await Category.findOne({ name: categoryName }); // Assuming your category model is named Category
+      if (category) {
+        search = {
+          ...search,
+          categories: category._id,
+        };
+      }
     }
     if (categoryId) {
       search = {

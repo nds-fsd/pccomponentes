@@ -75,7 +75,7 @@ a {
 }
 
 @media screen and (width >= 1024px) {
-  .icons span:first-child {
+  .icons form:first-child {
     order: 1;
   }
 

@@ -1,4 +1,5 @@
 .searchBar {
+  display: flex;
   border-radius: 1rem;
   background-color: var(--neutral-800);
   border: none;
@@ -8,4 +9,9 @@
 
 .searchForm {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
 }

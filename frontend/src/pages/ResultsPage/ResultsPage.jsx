@@ -17,7 +17,9 @@ function ResultsPage() {
 
   useEffect(() => {
     if (searchQuery) {
-      api.get('/products', { params: { ...filters, name: searchQuery } }).then((res) => setProducts(res.data));
+      api
+        .get('/products', { params: { ...filters, name: searchQuery, categoryName: searchQuery } })
+        .then((res) => setProducts(res.data));
     } else {
       api.get('/products', { params: filters }).then((res) => setProducts(res.data));
     }
