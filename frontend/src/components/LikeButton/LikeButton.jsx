@@ -10,7 +10,7 @@ const LikeButton = () => {
 
   return (
     <button onClick={handleLike} className={styles.button}>
-      <span className={`material-symbols-rounded ${liked ? 'outlined' : ''}`}>favorite</span>
+      <span className={`material-symbols-rounded ${liked ? '' : 'outlined'}`}>favorite</span>
     </button>
   );
 };

@@ -3,9 +3,9 @@ import ProductCard from '../ProductCard/ProductCard';
 const ProductsList = ({ products }) => {
   return (
     <div className={styles.productsContainer}>
-      {products.map((product) => (
-        <ProductCard key={product._id} product={product}></ProductCard>
-      ))}
+      {products.map((product) => {
+        return <ProductCard key={product._id} id={product._id} product={product} />;
+      })}
     </div>
   );
 };

@@ -4,7 +4,7 @@ require('../schemas/products');
 
 const getWishlists = async (req, res) => {
   try {
-    const allWishlists = await Wishlists.find().populate('products');
+    const allWishlists = await Wishlists.find();
     res.status(200).json(allWishlists);
   } catch (error) {
     console.log(error);
@@ -16,25 +16,16 @@ const getWishlists = async (req, res) => {
 
 const postWishlist = async (req, res) => {
   try {
-    const { user, products } = req.body;
-
-    let wishlist = await Wishlist.findOne({ user });
-
-    if (!wishlist) {
-      wishlist = new Wishlist({ user, products: [products] });
-    } else {
-      if (!wishlist.products.includes(products)) {
-        wishlist.products.push(products);
-      } else {
-        return res.status(400).json({ message: 'Product already exists in wishlist' });
-      }
-    }
-
-    await wishlist.save();
-
-    res.status(201).json(wishlist);
+    const body = req.body;
+    const data = {
+      user: body.user,
+      products: body.products,
+    };
+    const newWishlist = new Wishlists(data);
+    await newWishlist.save();
+    res.status(201).json(newWishlist);
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(404).json(error);
   }
 };
 
