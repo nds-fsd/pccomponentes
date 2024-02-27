@@ -7,6 +7,7 @@ import styles from './productPage.module.css';
 
 function ProductPage({ isLogged }) {
   const { id } = useParams();
+  console.log(id);
 
   const {
     data: product,
