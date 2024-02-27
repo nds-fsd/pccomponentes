@@ -20,6 +20,6 @@ router.use('/categories', categoriesRouter);
 router.use('/reviews', reviewsRouter);
 router.use('/auth', authRouter);
 router.use('/orders', orderRouter);
-router.use('/checkout', checkoutRouter);
+router.use('/create-payment-intent', checkoutRouter);
 
 module.exports = router;

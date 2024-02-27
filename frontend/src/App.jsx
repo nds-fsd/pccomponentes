@@ -19,13 +19,14 @@ import Cart from './pages/Cart/Cart';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
 import PaymentPage from './pages/PaymentPage/PaymentPage';
 import { CartProvider } from './contexts/CartContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
 
-function UserLayout({ children }) {
+// Stripe imports
+function UserLayout() {
   const [accountCreated, setAccountCreated] = useState(true);
   const [update, setUpdate] = useState(true);
 
@@ -77,11 +78,9 @@ function UserLayout({ children }) {
   );
 }
 
-function Backoffice({ children }) {
+function Backoffice() {
   const token = getUserToken();
   const isLogged = !!token;
-
-  const navigate = useNavigate();
 
   const userRole = getUserRole();
 

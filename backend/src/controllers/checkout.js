@@ -2,20 +2,25 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const postCheckout = async (req, res) => {
   try {
-    const { id, amount } = req.body;
-    const payment = await stripe.paymentIntents.create({
-      amount,
+    const paymentIntent = await stripe.paymentIntents.create({
       currency: 'EUR',
-      payment_method: id,
+      amount: 9999,
       automatic_payment_methods: {
         enabled: true,
       },
     });
-    res.status(200).json(payment);
+    res.send({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
     console.log(error);
     res.status(404).json(error);
   }
 };
 
-module.exports = { postCheckout };
+const getStripePublicKey = (req, res) => {
+  res.send({ publicKey: process.env.STRIPE_PUBLIC_KEY });
+};
+const getSecret = (req, res) => {
+  res.send({ publicKey: process.env.STRIPE_PUBLIC_KEY });
+};
+
+module.exports = { postCheckout, getStripePublicKey };

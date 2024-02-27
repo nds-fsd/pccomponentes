@@ -1,0 +1,5 @@
+.form {
+  background-color: var(--neutral-900);
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
