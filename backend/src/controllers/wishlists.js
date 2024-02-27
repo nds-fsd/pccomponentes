@@ -1,4 +1,4 @@
-const Orders = require('../schemas/wishlists');
+const Wishlists = require('../schemas/wishlists');
 require('../schemas/users');
 require('../schemas/products');
 
@@ -18,14 +18,11 @@ const postWishlist = async (req, res) => {
   try {
     const { user, products } = req.body;
 
-    // Check if the user already has a wishlist
     let wishlist = await Wishlist.findOne({ user });
 
     if (!wishlist) {
-      // If the user doesn't have a wishlist, create a new one
       wishlist = new Wishlist({ user, products: [products] });
     } else {
-      // If the user already has a wishlist, add the product to it if not already added
       if (!wishlist.products.includes(products)) {
         wishlist.products.push(products);
       } else {
@@ -33,7 +30,6 @@ const postWishlist = async (req, res) => {
       }
     }
 
-    // Save the wishlist
     await wishlist.save();
 
     res.status(201).json(wishlist);
