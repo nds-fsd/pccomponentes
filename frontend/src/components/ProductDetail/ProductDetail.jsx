@@ -35,19 +35,18 @@ const ProductDetail = ({ product, rating }) => {
       addCartSuccessToast();
     }
   };
-
   return (
-    <>
+    <div>
       {contextHolder}
       {product ? (
         <section className={styles.section}>
           <ImageCarousel product={product} />
-          <div className={styles.product}>
+          <div>
             <h2>{product.name}</h2>
-            {rating && rating.totalReviews > 0 && (
+            {rating && rating?.totalReviews > 0 && (
               <div className={styles.rateContainer}>
                 <Rate className={styles.rateStars} disabled allowHalf value={rating?.totalRating} />
-                <p className={styles.rating}>
+                <p>
                   ({rating?.totalReviews} {rating?.totalReviews === 1 ? 'review' : 'reviews'})
                 </p>
               </div>
@@ -55,7 +54,7 @@ const ProductDetail = ({ product, rating }) => {
             <p className={styles.productDescription}>{product.description}</p>
             <div className={styles.addCartContainer}>
               <div className={styles.prices}>
-                <p className={product.sale > 0 && styles.oldPrice}>{product.price}€</p>
+                <p className={product.sale > 0 ? styles.oldPrice : null}>{product.price}€</p>
                 {product.sale > 0 && <p className={styles.sale}>{product.sale}€</p>}
               </div>
               <div className={styles.buttons}>
@@ -65,7 +64,7 @@ const ProductDetail = ({ product, rating }) => {
                   onClick={addToCart}
                   rightIcon='shopping_cart'
                 />
-                <LikeButton />
+                <LikeButton productId={product._id} />
               </div>
             </div>
           </div>
@@ -73,7 +72,7 @@ const ProductDetail = ({ product, rating }) => {
       ) : (
         <p>No product data available</p>
       )}
-    </>
+    </div>
   );
 };
 export default ProductDetail;

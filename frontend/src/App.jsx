@@ -8,6 +8,7 @@ import TermsConditions from './pages/TermsConditions/TermsConditions';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import MyAccount from './pages/MyAccount/MyAccount';
 import Profile from './pages/Profile/Profile';
+import BackLogin from '../src/components/Backoffice/BackLogin/BackLogin';
 import BackofficeLayout from './components/Backoffice/BackofficeLayout';
 import BackofficeHome from './components/Backoffice/BackofficeHome/BackofficeHome';
 import BackofficeUsers from './components/Backoffice/BackofficeUsers/BackofficeUsers';
@@ -49,6 +50,7 @@ function UserLayout() {
         <Header isLogged={isLogged} accountCreated={accountCreated} />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/BackofficeLogin' element={<BackLogin />} />
           <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
           <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
           <Route path='/cart' element={<Cart />} />
@@ -86,9 +88,17 @@ function Backoffice() {
 
   const userRole = getUserRole();
 
-  if (isLogged && userRole !== 'admin') {
-    return <Navigate to='/' />;
-  }
+  useEffect(() => {
+    if (!token || userRole === 'user') {
+      navigate('/backoffice/login');
+    }
+  }, [token, userRole]);
+
+  useEffect(() => {
+    if (userRole === 'admin') {
+      navigate('/backoffice');
+    }
+  }, [userRole]);
 
   return (
     <Routes>
@@ -99,6 +109,7 @@ function Backoffice() {
         <Route path='/backoffice/companies' element={<BackofficeCompanies />} />
         <Route path='/backoffice/categories' element={<BackofficeCategories />} />
       </Route>
+      <Route path='/backoffice/login' element={<BackLogin />} />
     </Routes>
   );
 }

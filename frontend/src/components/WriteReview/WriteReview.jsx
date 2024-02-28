@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { PrimaryButton, SecondaryButton } from '../Button/Button';
 import { Rate } from 'antd';
 import Avatar from '../../components/Avatar/Avatar';
-import styles from './WriteReview.module.css';
+import styles from './writeReview.module.css';
 
 const WriteReview = ({ isLogged, onCreateReview, user }) => {
   const [commentary, setCommentary] = useState('');

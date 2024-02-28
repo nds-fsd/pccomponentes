@@ -11,8 +11,8 @@ const Review = ({ review, deleteReview, user }) => {
     <div className={`${styles.review} ${isMyReview ? styles.myReview : ''}`}>
       <div className={styles.reviewHeader}>
         <div className={styles.userContainer}>
-          <Avatar username={review.user.username} />
-          <p>{review.user.username}</p>
+          <Avatar username={review.user.username ? review.user.username : 'p'} />
+          <p>{review.user.username ? review.user.username : 'No Username'}</p>
         </div>
         {isMyReview && <TextButton value='Delete' rightIcon='delete' onClick={deleteReview} />}
       </div>
