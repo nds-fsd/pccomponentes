@@ -21,6 +21,15 @@
   }
 }
 
+.steps {
+  padding: 4rem 0;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+}
 .text {
   width: 100%;
 }

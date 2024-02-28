@@ -1,4 +1,4 @@
-import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { PaymentElement, AddressElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { PrimaryButton } from '../Button/Button';
 import styles from './CheckoutForm.module.css';
@@ -21,7 +21,7 @@ function CheckoutForm() {
       //`Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
-        return_url: 'http://localhost:3000/checkout/complete',
+        return_url: 'http://localhost:3000/completed-order',
       },
     });
 
@@ -39,8 +39,14 @@ function CheckoutForm() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <PaymentElement />
-      <br />
+      <div>
+        <h3>Shipping Address</h3>
+        <AddressElement options={{ mode: 'shipping' }} />
+      </div>
+      <div>
+        <h3>Payment</h3>
+        <PaymentElement />
+      </div>
       <PrimaryButton disabled={!stripe} value='Confirm payment' />
       {errorMessage && <div>{errorMessage}</div>}
     </form>

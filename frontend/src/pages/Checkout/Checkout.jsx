@@ -1,8 +1,11 @@
 import { Steps, Button } from 'antd';
 import { useState, useEffect } from 'react';
-import styles from './CartCheckout.module.css';
+import PaymentPage from '../PaymentPage/PaymentPage';
+import styles from './Checkout.module.css';
+import { PrimaryButton, TextButton } from '../../components/Button/Button';
+import { api } from '../../_utils/api';
 
-export const CartCheckout = () => {
+const Checkout = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const storedCartProducts = localStorage.getItem('CartProducts');
@@ -28,8 +31,7 @@ export const CartCheckout = () => {
         );
       }),
     },
-    { title: 'Address', content: 'Address' },
-    { title: 'Credit Card', content: 'Credit Card' },
+    { title: 'Checkout', content: <PaymentPage cartProducts={products} /> },
   ];
 
   const [current, setCurrent] = useState(0);
@@ -45,35 +47,15 @@ export const CartCheckout = () => {
   }));
 
   return (
-    <>
-      <Steps current={current} items={items} />
-      <div>{steps[current].content}</div>
-      <div
-        style={{
-          marginTop: 24,
-        }}
-      >
-        {current > 0 && (
-          <Button
-            style={{
-              margin: '0 8px',
-            }}
-            onClick={() => prev()}
-          >
-            Previous
-          </Button>
-        )}
-        {current < steps.length - 1 && (
-          <Button type='primary' onClick={() => next()}>
-            Next
-          </Button>
-        )}
-        {current === steps.length - 1 && (
-          <Button type='primary' onClick={() => message.success('Processing complete!')}>
-            Done
-          </Button>
-        )}
+    <main className={`wrapper`}>
+      <Steps current={current} items={items} className={styles.steps} />
+      <div className={styles.buttons}>
+        {current > 0 && <TextButton value='Previous' leftIcon='arrow_back' onClick={() => prev()} />}
+        {current < steps.length - 1 && <PrimaryButton value='Next' rightIcon='arrow_forward' onClick={() => next()} />}
       </div>
-    </>
+      <div>{steps[current].content}</div>
+    </main>
   );
 };
+
+export default Checkout;

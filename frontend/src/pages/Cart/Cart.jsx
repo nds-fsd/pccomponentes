@@ -4,7 +4,6 @@ import { PrimaryButton } from '../../components/Button/Button';
 import { useCart } from '../../contexts/CartContext';
 import CartProduct from '../../components/CartProduct/CartProduct';
 import styles from './Cart.module.css';
-import { CartCheckout } from '../../components/CartCheckout/CartCheckout';
 import { useNavigate } from 'react-router-dom';
 
 function Cart() {
@@ -42,7 +41,7 @@ function Cart() {
   };
 
   const handleClickCheckout = () => {
-    navigate('/cart/checkout');
+    navigate('/checkout');
   };
 
   return (

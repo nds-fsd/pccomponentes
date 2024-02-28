@@ -5,13 +5,19 @@ import { useState, useEffect } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from '../../components/CheckoutForm/CheckoutForm';
-import AddressForm from '../../components/CheckoutForm/AddressForm/AddressForm';
 
 import { api } from '../../_utils/api';
 
-function PaymentPage() {
+function PaymentPage({ cartProducts }) {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState('');
+
+  function extractProductInfo(cartProducts) {
+    return cartProducts.map((product) => ({
+      productId: product._id,
+      quantity: product.quantity,
+    }));
+  }
 
   useEffect(() => {
     const getStripePublicKey = async () => {
@@ -29,7 +35,9 @@ function PaymentPage() {
   useEffect(() => {
     const createPaymentIntent = async () => {
       try {
-        const response = await api.post('/create-payment-intent');
+        const productsForCheckout = extractProductInfo(cartProducts);
+        console.log('productsForCheckout', productsForCheckout);
+        const response = await api.post('/create-payment-intent', { products: productsForCheckout });
         const { clientSecret } = response.data;
         setClientSecret(clientSecret);
       } catch (error) {
@@ -51,16 +59,13 @@ function PaymentPage() {
   };
 
   return (
-    <main className={`wrapper ${styles.section}`}>
-      <h1>Payment Page</h1>
-      {/* {console.log(`clientSecret: ${clientSecret}`)} */}
+    <>
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={options}>
-          <AddressForm />
           <CheckoutForm clientSecret={clientSecret} />
         </Elements>
       )}
-    </main>
+    </>
   );
 }
 

@@ -124,6 +124,15 @@ strong {
   margin: 0 auto;
 }
 
+.center {
+  display: grid;
+  place-content: center;
+}
+
+.fullvh {
+  min-height: var(--view-height);
+}
+
 /* ------------------------------------- VARIABLES ---------------------------------- */
 
 :root {
