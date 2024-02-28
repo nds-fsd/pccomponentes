@@ -22,9 +22,32 @@ const BackofficeUsers = () => {
         setUsers(response.data);
       })
       .catch((error) => {
-        console.log('Error!');
+        console.log('Error!', error);
       });
   }, []);
+
+  const startEditing = (key) => {
+    const userToEdit = users.find((user) => user._id === key);
+    setEditingUser(userToEdit);
+    form.setFieldsValue(userToEdit);
+    setIsModalVisible(true);
+  };
+
+  const saveEdit = async (values) => {
+    try {
+      const updatedUser = { ...editingUser, ...values };
+      await api.patch(`/users/${updatedUser._id}`, updatedUser);
+
+      setUsers((prevUsers) => prevUsers.map((user) => (user._id === updatedUser._id ? updatedUser : user)));
+
+      setIsModalVisible(false);
+      form.resetFields();
+      console.log(updatedUser);
+      setEditingUser(null);
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
+  };
 
   const userDelete = async (key) => {
     try {
@@ -50,28 +73,6 @@ const BackofficeUsers = () => {
     }
   };
 
-  const startEditing = (key) => {
-    const userToEdit = users.find((user) => user._id === key);
-    setEditingUser(userToEdit);
-    form.setFieldsValue(userToEdit);
-    setIsModalVisible(true);
-  };
-
-  const saveEdit = async (values) => {
-    try {
-      const updatedUser = { ...editingUser, ...values };
-      await api.patch(`/users/${updatedUser._id}`, updatedUser);
-
-      setUsers((prevUsers) => prevUsers.map((user) => (user._id === updatedUser._id ? updatedUser : user)));
-
-      setIsModalVisible(false);
-      form.resetFields();
-      setEditingUser(null);
-    } catch (error) {
-      console.error('Error updating user:', error);
-    }
-  };
-
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -87,6 +88,7 @@ const BackofficeUsers = () => {
     username: user.username,
     email: user.email,
     role: user.role,
+    newsletter: user.newsletter,
   }));
 
   const columns = [
@@ -106,6 +108,19 @@ const BackofficeUsers = () => {
       dataIndex: 'role',
       key: 'role',
       width: 100,
+      render: (role) => {
+        let capitalizedRole = capitalizeFirstLetter(role);
+        return <p>{capitalizedRole}</p>;
+      },
+    },
+    {
+      title: 'Newsletter',
+      dataIndex: 'newsletter',
+      key: 'newsletter',
+      width: 100,
+      render: (newsletter) => {
+        return newsletter ? <p>✅</p> : <p>❌</p>;
+      },
     },
     {
       title: 'Actions',
@@ -121,6 +136,10 @@ const BackofficeUsers = () => {
       ),
     },
   ];
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
   return (
     <main className={styles.main}>

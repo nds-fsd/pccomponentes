@@ -72,10 +72,6 @@ const BackofficeOrders = () => {
     }
   };
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
@@ -132,7 +128,7 @@ const BackofficeOrders = () => {
       key: 'status',
       render: (status) => {
         let capitalizedStatus = capitalizeFirstLetter(status);
-        return <p>{capitalizedStatus}</p>
+        return <p>{capitalizedStatus}</p>;
       },
     },
     {
@@ -149,9 +145,10 @@ const BackofficeOrders = () => {
     },
   ];
 
-  function capitalizeFirstLetter(string) {
+  const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  };
+
   return (
     <main className={styles.main}>
       <h1>Orders</h1>
