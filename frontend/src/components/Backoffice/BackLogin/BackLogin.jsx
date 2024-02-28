@@ -18,6 +18,7 @@ const BackLogin = ({}) => {
   const [password, setPassword] = useState('');
   const [type, setType] = useState('password');
   const [icon, setIcon] = useState('visibility_off');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const userString = localStorage.getItem('user');
@@ -36,15 +37,20 @@ const BackLogin = ({}) => {
         setUserSession(response.data);
 
         navigateUser(response.data.user.role);
+      } else {
+        setErrorMessage('Login failed. Please check your credentials.');
       }
     } catch (error) {
       console.log(error);
+      setErrorMessage('An error occurred during login. Please try again.');
     }
   };
 
   const navigateUser = async (role) => {
     if (role === 'admin') {
       navigate('/backoffice');
+    } else if (role === 'user') {
+      setErrorMessage('You do not have permission to access the backoffice.');
     } else {
       navigate('/backofficeLogin');
     }
@@ -98,6 +104,7 @@ const BackLogin = ({}) => {
               </div>
             </div>
             {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
+            {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
             <div>
               <a className={styles.password}>Forgot my password</a>
             </div>

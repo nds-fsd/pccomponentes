@@ -44,3 +44,7 @@
   right: 5px;
   z-index: 2;
 }
+
+.errorMessage {
+  color: var(--error-500);
+}
