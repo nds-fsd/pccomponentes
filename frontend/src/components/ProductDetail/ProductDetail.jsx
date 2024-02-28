@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './productDetail.module.css';
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
 import { PrimaryButton } from '../Button/Button';
+import LikeButton from '../LikeButton/LikeButton';
 import { useCart } from '../../contexts/CartContext';
 import { message, Rate } from 'antd';
 
@@ -34,19 +35,18 @@ const ProductDetail = ({ product, rating }) => {
       addCartSuccessToast();
     }
   };
-
   return (
-    <>
+    <div>
       {contextHolder}
       {product ? (
         <section className={styles.section}>
           <ImageCarousel product={product} />
-          <div className={styles.product}>
+          <div>
             <h2>{product.name}</h2>
-            {rating && rating.totalReviews > 0 && (
+            {rating && rating?.totalReviews > 0 && (
               <div className={styles.rateContainer}>
                 <Rate className={styles.rateStars} disabled allowHalf value={rating?.totalRating} />
-                <p className={styles.rating}>
+                <p>
                   ({rating?.totalReviews} {rating?.totalReviews === 1 ? 'review' : 'reviews'})
                 </p>
               </div>
@@ -54,22 +54,25 @@ const ProductDetail = ({ product, rating }) => {
             <p className={styles.productDescription}>{product.description}</p>
             <div className={styles.addCartContainer}>
               <div className={styles.prices}>
-                <p className={product.sale > 0 && styles.oldPrice}>{product.price}€</p>
+                <p className={product.sale > 0 ? styles.oldPrice : null}>{product.price}€</p>
                 {product.sale > 0 && <p className={styles.sale}>{product.sale}€</p>}
               </div>
-              <PrimaryButton
-                disabled={product.stock === 0}
-                value='Add to cart'
-                onClick={addToCart}
-                rightIcon='shopping_cart'
-              />
+              <div className={styles.buttons}>
+                <PrimaryButton
+                  disabled={product.stock === 0}
+                  value='Add to cart'
+                  onClick={addToCart}
+                  rightIcon='shopping_cart'
+                />
+                <LikeButton productId={product._id} />
+              </div>
             </div>
           </div>
         </section>
       ) : (
         <p>No product data available</p>
       )}
-    </>
+    </div>
   );
 };
 export default ProductDetail;

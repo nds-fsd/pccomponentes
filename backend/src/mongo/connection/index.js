@@ -11,8 +11,8 @@ exports.connectDB = async () => {
 
   try {
     if (process.env.NODE_ENV === 'test') {
-      mongod = await MongoMemoryServer.create();
-      dbUrl = mongod.getUri();
+      mongodb = await MongoMemoryServer.create();
+      dbUrl = mongodb.getUri();
       console.log(dbUrl);
     }
 

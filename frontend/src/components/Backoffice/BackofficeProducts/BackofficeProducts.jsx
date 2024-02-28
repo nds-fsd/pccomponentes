@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber, Select, Tag } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeProducts.module.css';
 
@@ -8,7 +8,7 @@ const BackofficeProducts = () => {
   const [products, setProducts] = useState([]);
   const [categoryNames, setCategoryNames] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [editingProduct, setEditingProduct] = useState(null); // Track the product being edited
+  const [editingProduct, setEditingProduct] = useState(null);
   const [form] = Form.useForm();
 
   const createProduct = async (values) => {
@@ -58,7 +58,7 @@ const BackofficeProducts = () => {
     setEditingProduct(productToEdit);
     form.setFieldsValue(productToEdit);
     const categories = productToEdit.categories.map((category) => {
-      return { label: category?.name, value: category?._id };
+      return {  label: category?.name, value: category?._id  };
     });
     form.setFieldValue('categories', categories);
     setIsModalVisible(true);
@@ -67,6 +67,9 @@ const BackofficeProducts = () => {
   const saveEdit = async (values) => {
     try {
       const updatedProduct = { ...editingProduct, ...values };
+      updatedProduct.categories = updatedProduct.categories.map((category) => {
+        return category.value;
+      });
       await api.patch(`/products/${updatedProduct._id}`, updatedProduct);
 
       setProducts((prevProducts) =>

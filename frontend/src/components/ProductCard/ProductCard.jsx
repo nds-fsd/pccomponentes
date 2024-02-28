@@ -5,21 +5,20 @@ import { Rate } from 'antd';
 import ProductChip from '../ProductChip/ProductChip';
 import styles from './productCard.module.css';
 
-function ProductCard({ product }) {
+function ProductCard({ id, product }) {
   const [rating, setRating] = useState(null);
   const getRating = async () => {
     try {
-      const response = await api.get(`/reviews/${product._id}/rating`);
+      const response = await api.get(`/reviews/${id}/rating`);
       setRating(response.data);
     } catch (error) {}
   };
 
   useEffect(() => {
     getRating();
-  }, [product._id]);
-
+  }, [id]);
   return (
-    <Link to={`/${product._id}`} className={styles.product}>
+    <Link to={`/${id}`} className={styles.product}>
       <img
         src={product.image[0]}
         alt='image of the product'
