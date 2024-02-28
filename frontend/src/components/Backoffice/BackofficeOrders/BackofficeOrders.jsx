@@ -7,7 +7,9 @@ import styles from './BackofficeOrders.module.css';
 const BackofficeOrders = () => {
   const [orders, setOrders] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isUserVisible, setIsUserVisible] = useState(false);
   const [editingOrder, setEditingOrder] = useState(null);
+  const [orderOwner, setOrderOwner] = useState([]);
   const [form] = Form.useForm();
 
   const getAllOrders = async () => {
@@ -76,6 +78,14 @@ const BackofficeOrders = () => {
     setIsModalVisible(false);
   };
 
+  const showUserModal = () => {
+    setIsUserVisible(true);
+  };
+
+  const handleUserCancel = () => {
+    setIsUserVisible(false);
+  };
+
   const formattedOrder = orders.map((order) => ({
     key: order._id,
     user: order.user,
@@ -83,6 +93,10 @@ const BackofficeOrders = () => {
     address: order.address,
     status: order.status,
   }));
+
+  const showUser = (key) => {
+    setOrderOwner(key);
+  };
 
   const columns = [
     {
@@ -95,7 +109,18 @@ const BackofficeOrders = () => {
       title: 'Username',
       dataIndex: 'user',
       key: 'user',
-      render: (user) => <a>{user.username}</a>,
+      render: (user) => {
+        return (
+          <a
+            onClick={() => {
+              showUser(user);
+              showUserModal();
+            }}
+          >
+            {user.username}
+          </a>
+        );
+      },
     },
     {
       title: 'Products',
@@ -196,6 +221,16 @@ const BackofficeOrders = () => {
             />
           </Form.Item>
         </Form>
+      </Modal>
+      <Modal title='User info' closeIcon='' open={isUserVisible} footer='' onCancel={handleUserCancel}>
+        <h4>User</h4>
+        <p>{orderOwner.username}</p>
+        <h4>Email</h4>
+        <p>{orderOwner.email}</p>
+        <h4>Role</h4>
+        <p>{orderOwner.role}</p>
+        <h4>Newsletter</h4>
+        {orderOwner.newsletter ? <p>✅</p> : <p>❌</p>}
       </Modal>
     </main>
   );
