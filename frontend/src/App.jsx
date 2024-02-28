@@ -83,12 +83,16 @@ function Backoffice({ children }) {
   const userRole = getUserRole();
 
   useEffect(() => {
-    navigate('/backoffice/login');
-  }, [!token, userRole == 'user']);
+    if (!token || userRole === 'user') {
+      navigate('/backoffice/login');
+    }
+  }, [token, userRole]);
 
   useEffect(() => {
-    navigate('/backoffice');
-  }, [userRole == 'admin']);
+    if (userRole === 'admin') {
+      navigate('/backoffice');
+    }
+  }, [userRole]);
 
   return (
     <Routes>

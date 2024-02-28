@@ -6,9 +6,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './backLogin.module.css';
 import { PrimaryButton } from '../../Button/Button';
 import logobacklogin from '../../../assets/logobacklogin.svg';
-import ResolutionMessage from '../../ResolutionMessage/ResolutionMessage';
 
-const BackLogin = ({ forceUpdate }) => {
+const BackLogin = ({}) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const {
@@ -35,7 +34,6 @@ const BackLogin = ({ forceUpdate }) => {
 
       if (response?.data.token) {
         setUserSession(response.data);
-        forceUpdate();
 
         navigateUser(response.data.user.role);
       }
@@ -68,7 +66,6 @@ const BackLogin = ({ forceUpdate }) => {
 
   return (
     <main>
-      <ResolutionMessage />
       <div className={styles.main}>
         <div className={styles.leftPanel}>
           <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
@@ -93,8 +90,7 @@ const BackLogin = ({ forceUpdate }) => {
                   className={styles.formInput}
                   type={type}
                   placeholder='Password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  {...register('password', { required: 'Password is required.' })}
                 />
                 <span onClick={handleToggle}>
                   <span className={`material-symbols-rounded ${styles.eyeIcon}`}>{icon}</span>
