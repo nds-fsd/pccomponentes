@@ -77,6 +77,26 @@ const getWishlistsByUserId = async (req, res) => {
   }
 };
 
+const addToWishlist = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { productId } = req.body;
+    const wishlist = await Wishlists.findById(id);
+
+    if (!wishlist) {
+      return res.status(404).json({ message: 'Wishlist not found' });
+    }
+
+    wishlist.products.push(productId);
+    await wishlist.save();
+
+    res.status(200).json({ message: 'Product added to wishlist successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 module.exports = {
   getWishlists,
   postWishlist,
@@ -84,4 +104,5 @@ module.exports = {
   patchWishlist,
   deleteWishlist,
   getWishlistsByUserId,
+  addToWishlist,
 };
