@@ -4,12 +4,25 @@ const Product = require('../schemas/products');
 const postCheckout = async (req, res) => {
   try {
     const { products } = req.body;
-    const productsInfo = await Product.findById(products.productId);
-    console.log('product', productsInfo);
+    const productsPriceQuantity = await Promise.all(
+      products.map(async (product) => {
+        const productData = await Product.findById(product.productId);
+        return {
+          price: productData.price,
+          quantity: product.quantity,
+        };
+      })
+    );
+    const totalAmount = productsPriceQuantity.reduce((total, product) => {
+      const totalPrice = product.price * product.quantity;
+      return total + totalPrice;
+    }, 0);
+    const totalAmountCents = totalAmount * 100;
+    console.log('product', totalAmountCents);
 
     const paymentIntent = await stripe.paymentIntents.create({
       currency: 'EUR',
-      amount: 123456,
+      amount: totalAmountCents,
       automatic_payment_methods: {
         enabled: true,
       },
