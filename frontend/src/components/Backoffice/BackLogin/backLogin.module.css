@@ -1,0 +1,50 @@
+.main {
+  display: flex;
+}
+
+.leftPanel {
+  width: 50%;
+  height: 100svh;
+  display: grid;
+  place-items: center;
+}
+.loginForm {
+  width: 50%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.formInput {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.rightPanel {
+  width: 50%;
+  height: 100svh;
+  display: grid;
+  place-items: center;
+  background-size: cover;
+  background-image: url('../../../assets/img/backgroundBacklogin.png');
+}
+
+.logo {
+  width: 50%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.eyeIcon {
+  color: var(--neutral-950);
+  position: relative;
+  float: right;
+  top: -30px;
+  right: 5px;
+  z-index: 2;
+}
+
+.errorMessage {
+  color: var(--error-500);
+}
