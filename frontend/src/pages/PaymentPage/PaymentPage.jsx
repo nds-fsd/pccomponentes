@@ -36,7 +36,6 @@ function PaymentPage({ cartProducts }) {
     const createPaymentIntent = async () => {
       try {
         const productsForCheckout = extractProductInfo(cartProducts);
-        console.log('productsForCheckout', productsForCheckout);
         const response = await api.post('/create-payment-intent', { products: productsForCheckout });
         const { clientSecret } = response.data;
         setClientSecret(clientSecret);

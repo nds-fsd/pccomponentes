@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import PaymentPage from '../PaymentPage/PaymentPage';
 import styles from './Checkout.module.css';
 import { PrimaryButton, TextButton } from '../../components/Button/Button';
-import { api } from '../../_utils/api';
 
 const Checkout = () => {
   const [products, setProducts] = useState([]);
@@ -25,7 +24,7 @@ const Checkout = () => {
             <div className={styles.text}>
               <p className={styles.productName}>{product.name}</p>
               <p className={styles.productPrice}>{product.price}€</p>
-              <p>{product.quantity}</p>
+              <p>{product.quantity} Units</p>
             </div>
           </div>
         );
@@ -47,13 +46,13 @@ const Checkout = () => {
   }));
 
   return (
-    <main className={`wrapper`}>
+    <main className={`wrapper fullvh`}>
       <Steps current={current} items={items} className={styles.steps} />
+      <div>{steps[current].content}</div>
       <div className={styles.buttons}>
         {current > 0 && <TextButton value='Previous' leftIcon='arrow_back' onClick={() => prev()} />}
         {current < steps.length - 1 && <PrimaryButton value='Next' rightIcon='arrow_forward' onClick={() => next()} />}
       </div>
-      <div>{steps[current].content}</div>
     </main>
   );
 };

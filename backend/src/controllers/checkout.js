@@ -18,7 +18,6 @@ const postCheckout = async (req, res) => {
       return total + totalPrice;
     }, 0);
     const totalAmountCents = totalAmount * 100;
-    console.log('product', totalAmountCents);
 
     const paymentIntent = await stripe.paymentIntents.create({
       currency: 'EUR',
