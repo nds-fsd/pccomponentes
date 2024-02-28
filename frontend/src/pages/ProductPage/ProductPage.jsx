@@ -7,6 +7,7 @@ import styles from './productPage.module.css';
 
 function ProductPage({ isLogged }) {
   const { id } = useParams();
+  console.log(id);
 
   const {
     data: product,
@@ -17,6 +18,7 @@ function ProductPage({ isLogged }) {
     return response.data;
   });
 
+  console.log('El producto es', product);
   const { data: rating, isLoading: ratingLoading } = useQuery(['rating', id], async () => {
     const response = await api.get(`/reviews/${id}/rating`);
     return response.data;
