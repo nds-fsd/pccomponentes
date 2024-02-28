@@ -3,12 +3,15 @@ import { Table, Popconfirm, Button, Modal, Form, Input, Select } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeAddresses.module.css';
+import Title from 'antd/es/typography/Title';
 
 const BackofficeAddresses = () => {
   const [addresses, setAddresses] = useState([]);
   const [users, setUsers] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isUserVisible, setIsUserVisible] = useState(false);
   const [editingAddress, setEditingAddress] = useState(null);
+  const [addressUser, setAddressUser] = useState([]);
   const [form] = Form.useForm();
 
   const getAddresses = async () => {
@@ -104,6 +107,14 @@ const BackofficeAddresses = () => {
     setIsModalVisible(false);
   };
 
+  const showUserModal = () => {
+    setIsUserVisible(true);
+  };
+
+  const handleUserCancel = () => {
+    setIsUserVisible(false);
+  };
+
   const formattedAddresses = addresses.map((address) => ({
     key: address._id,
     user: address.user,
@@ -112,16 +123,31 @@ const BackofficeAddresses = () => {
     postalCode: address.postalCode,
   }));
 
-  const formattedUsers = users.map((user, i) => {
+  const formUsers = users.map((user, i) => {
     return { label: users[i]?.username, value: users[i]?._id };
   });
+
+  const showUser = (key) => {
+    setAddressUser(key);
+  };
 
   const columns = [
     {
       title: 'User',
       dataIndex: 'user',
       key: 'user',
-      render: (text) => <a>{text.username}</a>,
+      render: (user) => {
+        return (
+          <a
+            onClick={() => {
+              showUser(user);
+              showUserModal();
+            }}
+          >
+            {user.username}
+          </a>
+        );
+      },
     },
     {
       title: 'Street',
@@ -143,7 +169,14 @@ const BackofficeAddresses = () => {
       dataIndex: 'actions',
       render: (_, record) => (
         <>
-          <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
+          <Button
+            type='icon'
+            icon={<EditOutlined />}
+            onClick={() => {
+              console.log('EDIT', record.key);
+              startEditing(record.key);
+            }}
+          ></Button>
           <Popconfirm title='Sure to delete?' onConfirm={() => addressDelete(record.key)}>
             <Button type='icon' icon={<DeleteOutlined />}></Button>
           </Popconfirm>
@@ -179,7 +212,7 @@ const BackofficeAddresses = () => {
       >
         <Form form={form} onFinish={editingAddress ? saveEdit : createAddress}>
           <Form.Item name='user' label='User' rules={[{ required: true }]}>
-            <Select placeholder='Select user' options={formattedUsers} />
+            <Select placeholder='Select user' options={formUsers} />
           </Form.Item>
           <Form.Item name='street' label='Street' rules={[{ required: true }]}>
             <Input placeholder='Enter street...' />
@@ -191,6 +224,16 @@ const BackofficeAddresses = () => {
             <Input placeholder='Enter postal code...' />
           </Form.Item>
         </Form>
+      </Modal>
+      <Modal title='User info' closeIcon='' open={isUserVisible} footer='' onCancel={handleUserCancel}>
+        <h4>User</h4>
+        <p>{addressUser.username}</p>
+        <h4>Email</h4>
+        <p>{addressUser.email}</p>
+        <h4>Role</h4>
+        <p>{addressUser.role}</p>
+        <h4>Newsletter</h4>
+        <p>{`${addressUser.newsletter}`}</p>
       </Modal>
     </main>
   );

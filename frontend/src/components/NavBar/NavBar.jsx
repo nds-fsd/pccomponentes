@@ -115,7 +115,7 @@ function NavBar({ isDesktop, navLvl1, navLvl2, navLvl3, showNavLvl1, showNavLvl2
                   );
                 })}
             <li onClick={showNavLvl3} className={styles.allProductsItem}>
-              <Link to={'/products'}>See all</Link>
+              <Link to={'/results'}>See all</Link>
             </li>
           </ul>
         </div>

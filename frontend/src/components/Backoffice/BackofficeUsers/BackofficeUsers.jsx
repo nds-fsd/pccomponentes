@@ -97,7 +97,7 @@ const BackofficeUsers = () => {
     },
 
     {
-      title: 'email',
+      title: 'Email',
       dataIndex: 'email',
       key: 'email',
     },
