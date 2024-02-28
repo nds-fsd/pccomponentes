@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber, Select, Tag } from 'antd';
-import { EditOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeProducts.module.css';
+import ImageUpload from '../../ImageUpload/ImageUpload';
 
 const BackofficeProducts = () => {
   const [products, setProducts] = useState([]);
@@ -20,6 +21,10 @@ const BackofficeProducts = () => {
     } catch (error) {
       console.error('Error creating product', error);
     }
+  };
+
+  const addPhoto = (photoData) => {
+    console.log('Photo added:', photoData);
   };
 
   const getAllProducts = async () => {
@@ -64,9 +69,6 @@ const BackofficeProducts = () => {
   const saveEdit = async (values) => {
     try {
       const updatedProduct = { ...editingProduct, ...values };
-      updatedProduct.categories = updatedProduct.categories.map((category) => {
-        return category.value;
-      });
       await api.patch(`/products/${updatedProduct._id}`, updatedProduct);
 
       setProducts((prevProducts) =>
@@ -175,7 +177,7 @@ const BackofficeProducts = () => {
           <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
           <Popconfirm title='Sure to delete?' onConfirm={() => productDelete(record.key)}>
             <Button type='icon'>
-              <span class='material-symbols-rounded'>delete</span>
+              <span className='material-symbols-rounded'>delete</span>
             </Button>
           </Popconfirm>
         </>
@@ -230,7 +232,10 @@ const BackofficeProducts = () => {
           <Form.Item name='categories' label='Categories' rules={[{ required: true }]}>
             <Select mode='multiple' placeholder='Select categories' options={formattedCategories} />
           </Form.Item>
+          {/* <Form.Item label='Product Image'></Form.Item> */}
         </Form>
+
+        <ImageUpload productId={editingProduct ? editingProduct._id : null} addPhoto={addPhoto} />
       </Modal>
     </main>
   );
