@@ -5,6 +5,7 @@ const {
   getWishlistById,
   patchWishlist,
   deleteWishlist,
+  getWishlistsByUserId,
 } = require('../../controllers/wishlists');
 
 const wishlistRouter = express.Router();
@@ -14,5 +15,6 @@ wishlistRouter.post('/', postWishlist);
 wishlistRouter.get('/:id', getWishlistById);
 wishlistRouter.patch('/:id', patchWishlist);
 wishlistRouter.delete('/:id', deleteWishlist);
+wishlistRouter.get('/user/:userId', getWishlistsByUserId);
 
 module.exports = wishlistRouter;

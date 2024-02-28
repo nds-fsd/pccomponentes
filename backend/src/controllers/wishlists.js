@@ -64,10 +64,24 @@ const deleteWishlist = async (req, res) => {
   }
 };
 
+const getWishlistsByUserId = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const userWishlists = await Wishlists.find({ user: userId });
+    res.status(200).json(userWishlists);
+  } catch (error) {
+    console.error(error);
+    res.status(404).json({
+      message: 'Wishlists not found for this user',
+    });
+  }
+};
+
 module.exports = {
   getWishlists,
   postWishlist,
   getWishlistById,
   patchWishlist,
   deleteWishlist,
+  getWishlistsByUserId,
 };
