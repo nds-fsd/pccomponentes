@@ -6,7 +6,7 @@ import { api } from '../../_utils/api';
 const LikeButton = ({ productId }) => {
   const [liked, setLiked] = useState(false);
   const [wishlistId, setWishlistId] = useState(null);
-  const [loggedUser, setLoggedUser] = useState(null); // Changed to null instead of empty string
+  const [loggedUser, setLoggedUser] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
