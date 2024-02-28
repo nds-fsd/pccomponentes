@@ -35,8 +35,6 @@ const ProductDetail = ({ product, rating }) => {
       addCartSuccessToast();
     }
   };
-
-  console.log(product);
   return (
     <div>
       {contextHolder}
@@ -66,7 +64,7 @@ const ProductDetail = ({ product, rating }) => {
                   onClick={addToCart}
                   rightIcon='shopping_cart'
                 />
-                <LikeButton />
+                <LikeButton productId={product._id} />
               </div>
             </div>
           </div>
