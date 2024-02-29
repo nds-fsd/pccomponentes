@@ -6,6 +6,11 @@ import styles from './backofficeNav.module.css';
 
 const items = [
   {
+    key: 'home',
+    label: <Link to='/backoffice'>Home</Link>,
+    icon: <span className='material-symbols-rounded'>home</span>,
+  },
+  {
     key: 'products',
     label: <Link to='/backoffice/products'>Products</Link>,
     icon: <span className='material-symbols-rounded'>inventory_2</span>,
