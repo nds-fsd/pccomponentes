@@ -20,7 +20,7 @@ import Cart from './pages/Cart/Cart';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
 import { CartProvider } from './contexts/CartContext';
 import { useState } from 'react';
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
@@ -86,9 +86,8 @@ function UserLayout() {
 }
 
 function Backoffice() {
+  const navigate = useNavigate();
   const token = getUserToken();
-  const isLogged = !!token;
-
   const userRole = getUserRole();
 
   useEffect(() => {
