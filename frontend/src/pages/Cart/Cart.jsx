@@ -4,6 +4,7 @@ import { PrimaryButton } from '../../components/Button/Button';
 import { useCart } from '../../contexts/CartContext';
 import CartProduct from '../../components/CartProduct/CartProduct';
 import styles from './Cart.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
   const { setCartProductsCount } = useCart();
@@ -11,6 +12,7 @@ function Cart() {
   const [subtotal, setSubtotal] = useState(0);
   const [tax, setTax] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedCartProducts = localStorage.getItem('CartProducts');
@@ -36,6 +38,10 @@ function Cart() {
 
   const handleUpdateCart = (updatedCart) => {
     setCartProductsCount(updatedCart.length);
+  };
+
+  const handleClickCheckout = () => {
+    navigate('/checkout');
   };
 
   return (
@@ -67,7 +73,7 @@ function Cart() {
             <p>Total Price:</p>
             <p>€{totalPrice.toFixed(2)}</p>
           </div>
-          <PrimaryButton value='Checkout' leftIcon='shopping_cart' />
+          <PrimaryButton value='Checkout' leftIcon='shopping_cart' onClick={handleClickCheckout} />
         </div>
       </div>
     </div>

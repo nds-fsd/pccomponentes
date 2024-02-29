@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ProductChip from '../ProductChip/ProductChip';
 import styles from './ImageCarousel.module.css';
 
 const ImageCarousel = ({ product }) => {
@@ -11,6 +12,7 @@ const ImageCarousel = ({ product }) => {
 
   return (
     <div className={styles.carousel}>
+      <ProductChip product={product} />
       <img src={images[currentIndex]} alt={`image of the product`} />
       <div className={styles.thumbnailContainer}>
         {images.map((image, index) => (
