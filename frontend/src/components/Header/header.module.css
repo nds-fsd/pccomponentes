@@ -19,6 +19,7 @@
   padding: 0 var(--wrapper);
   max-width: var(--wrapper-max);
   margin: 0 auto;
+  gap: 1rem;
 }
 
 .headerContent > a {
@@ -69,13 +70,17 @@ a {
 }
 
 @media screen and (768px <= width) {
+  .icons {
+    gap: 0.5rem;
+  }
+
   .computechLogoText {
     display: block;
   }
 }
 
 @media screen and (width >= 1024px) {
-  .icons span:first-child {
+  .icons form:first-child {
     order: 1;
   }
 
