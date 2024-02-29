@@ -61,7 +61,7 @@ export const Header = ({ isLogged, accountCreated }) => {
               <img className={styles.computechLogoText} src={computechLogoText} alt='computech text' />
             </Link>
             <div className={styles.icons}>
-              <SearchBar placeholder={'Start typing to search for a product'} />
+              <SearchBar placeholder={'Search'} />
               <Link to={'/cart'} className={styles.cartElements}>
                 <span className='material-symbols-rounded'>shopping_cart</span>
                 {cartProductsCount > 0 && <div className={styles.cartCount}>{cartProductsCount}</div>}

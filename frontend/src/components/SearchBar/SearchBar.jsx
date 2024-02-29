@@ -17,16 +17,16 @@ function SearchBar({ placeholder }) {
 
   return (
     <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
+      <span className={`material-symbols-rounded ${styles.icon}`} type='submit'>
+        search
+      </span>
       <input
-        className={styles.searchBar}
+        className={styles.input}
         type='text'
         placeholder={placeholder}
         value={searchQuery}
         onChange={handleSearchInputChange}
       />
-      <span className='material-symbols-rounded' type='submit'>
-        search
-      </span>
     </form>
   );
 }
