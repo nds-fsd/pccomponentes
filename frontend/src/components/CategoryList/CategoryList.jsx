@@ -34,7 +34,6 @@ function CategoryList() {
               <CategoryCard
                 category={category}
                 onSelectCategory={() => {
-                  console.log('Category card clicked:', category._id);
                   setSelectedCategoryId(category._id);
                 }}
               />

@@ -28,6 +28,7 @@ import Checkout from './pages/Checkout/Checkout';
 import CompletedOrder from './pages/CompletedOrder/CompletedOrder';
 import BackofficeOrders from './components/Backoffice/BackofficeOrders/BackofficeOrders';
 import BackofficeAddresses from './components/Backoffice/BackofficeAddresses/BackofficeAddresses';
+import Wishlist from './pages/Wishlist/Wishlist';
 
 function UserLayout() {
   const [accountCreated, setAccountCreated] = useState(true);
@@ -62,6 +63,7 @@ function UserLayout() {
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
           <Route path='/sales' element={<SalesPage />} />
           {isLogged && <Route path='/my-account' element={<MyAccount />} />}
+          {isLogged && <Route path='/my-wishlist' element={<Wishlist />} />}
           {isLogged && <Route path='/profile' element={<Profile token={token} />} />}
           {!isLogged && !accountCreated && (
             <Route

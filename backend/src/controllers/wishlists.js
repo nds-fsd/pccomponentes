@@ -97,6 +97,30 @@ const addToWishlist = async (req, res) => {
   }
 };
 
+const removeFromWishlist = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { productId } = req.body;
+    const wishlist = await Wishlists.findById(id);
+
+    if (!wishlist) {
+      return res.status(404).json({ message: 'Wishlist not found' });
+    }
+    const index = wishlist.products.indexOf(productId);
+    if (index === -1) {
+      return res.status(400).json({ message: 'Product does not exist in the wishlist' });
+    }
+
+    wishlist.products.splice(index, 1);
+    await wishlist.save();
+
+    res.status(200).json({ message: 'Product removed from wishlist successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 module.exports = {
   getWishlists,
   postWishlist,
@@ -105,4 +129,5 @@ module.exports = {
   deleteWishlist,
   getWishlistsByUserId,
   addToWishlist,
+  removeFromWishlist,
 };
