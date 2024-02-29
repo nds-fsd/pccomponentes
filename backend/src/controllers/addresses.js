@@ -2,10 +2,15 @@ const Addresses = require('../schemas/addresses');
 
 const getAddresses = async (req, res) => {
   try {
-    const allAddresses = await Addresses.find();
+    const { userId } = req.query;
+    let search = userId ? { user: userId } : {};
+    const allAddresses = await Addresses.find(search).populate('user');
     res.status(200).json(allAddresses);
   } catch (error) {
-    res.status(404).json({ message: 'There are no addresses' });
+    console.log(error);
+    res.status(404).json({
+      message: 'There are no addresses',
+    });
   }
 };
 
@@ -30,7 +35,7 @@ const postAddress = async (req, res) => {
 const getAddressById = async (req, res) => {
   try {
     const { id } = req.params;
-    const addressFound = await Addresses.findById(id);
+    const addressFound = await Addresses.findById(id).populate('user');
     return res.status(200).json(addressFound);
   } catch (error) {
     return res.status(404).json(error);

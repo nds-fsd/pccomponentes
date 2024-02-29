@@ -19,6 +19,7 @@
   padding: 0 var(--wrapper);
   max-width: var(--wrapper-max);
   margin: 0 auto;
+  gap: 1rem;
 }
 
 .headerContent > a {
@@ -55,14 +56,31 @@ a {
   cursor: pointer;
 }
 
+.avatar {
+  display: grid;
+  place-items: center;
+  margin: 0 0.5rem;
+  height: 40px;
+  width: 40px;
+  & > div {
+    height: 28px;
+    width: 28px;
+    font-size: var(--body-small);
+  }
+}
+
 @media screen and (768px <= width) {
+  .icons {
+    gap: 0.5rem;
+  }
+
   .computechLogoText {
     display: block;
   }
 }
 
 @media screen and (width >= 1024px) {
-  .icons span:first-child {
+  .icons form:first-child {
     order: 1;
   }
 
@@ -103,7 +121,7 @@ a {
 
 .cartCount {
   border-radius: 100%;
-  background-color: var(--primary-700);
+  background-color: var(--primary-500);
   font-size: var(--body-xsmall);
   height: 1rem;
   width: 1rem;

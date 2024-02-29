@@ -49,7 +49,7 @@
 @media screen and (width >= 1024px) {
   .navLvl3 {
     position: relative;
-    justify-content: center;
+    justify-content: start;
     position: static;
     font-size: var(--body-small);
     padding: 0;

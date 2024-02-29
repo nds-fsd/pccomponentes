@@ -1,32 +1,36 @@
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Home from './components/Home/Home';
-import ProductPage from './components/ProductPage/ProductPage';
-import CategoryProductsPage from './components/CategoryProductsPage/CategoryProductsPage';
-import SalesPage from './components/SalesPage/SalesPage';
-import TermsConditions from './components/TermsConditions/TermsConditions';
+import Home from './pages/Home/Home';
+import ProductPage from './pages/ProductPage/ProductPage';
+import CategoryProductsPage from './pages/CategoryProductsPage/CategoryProductsPage';
+import SalesPage from './pages/SalesPage/SalesPage';
+import TermsConditions from './pages/TermsConditions/TermsConditions';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
-import MyAccount from './components/MyAccount/MyAccount';
-import Profile from './components/Profile/Profile';
+import MyAccount from './pages/MyAccount/MyAccount';
+import Profile from './pages/Profile/Profile';
+import BackLogin from '../src/components/Backoffice/BackLogin/BackLogin';
 import BackofficeLayout from './components/Backoffice/BackofficeLayout';
 import BackofficeHome from './components/Backoffice/BackofficeHome/BackofficeHome';
 import BackofficeUsers from './components/Backoffice/BackofficeUsers/BackofficeUsers';
 import BackofficeProducts from './components/Backoffice/BackofficeProducts/BackofficeProducts';
 import BackofficeCompanies from './components/Backoffice/BackofficeCompanies/BackofficeCompanies';
 import BackofficeCategories from './components/Backoffice/BackofficeCategories/BackofficeCategories';
-import NoMatch from './components/NoMatch/NoMatch';
-import Cart from './components/Cart/Cart';
+import NoMatch from './pages/NoMatch/NoMatch';
+import Cart from './pages/Cart/Cart';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
-import { useState } from 'react';
-import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { CartProvider } from './contexts/CartContext';
+import { useState, useEffect } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
+import Checkout from './pages/Checkout/Checkout';
+import CompletedOrder from './pages/CompletedOrder/CompletedOrder';
+import BackofficeOrders from './components/Backoffice/BackofficeOrders/BackofficeOrders';
+import BackofficeAddresses from './components/Backoffice/BackofficeAddresses/BackofficeAddresses';
+import Wishlist from './pages/Wishlist/Wishlist';
 
-const queryClient = new QueryClient();
-
-function UserLayout({ children }) {
+function UserLayout() {
   const [accountCreated, setAccountCreated] = useState(true);
   const [update, setUpdate] = useState(true);
 
@@ -43,62 +47,74 @@ function UserLayout({ children }) {
   const isLogged = !!token;
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Header isLogged={isLogged} accountCreated={accountCreated} />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
-        <Route path=':id' element={<ProductPage />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/results' element={<ResultsPage />} />
-        <Route path='/terms-and-conditions' element={<TermsConditions />} />
-        <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-        <Route path='/sales' element={<SalesPage />} />
-        {isLogged && <Route path='/my-account' element={<MyAccount />} />}
-        {isLogged && <Route path='/profile' element={<Profile token={token} />} />}
-        {!isLogged && !accountCreated && (
-          <Route
-            path='/register'
-            element={<Register forceUpdate={forceUpdate} changeAccountCreated={changeAccountCreated} />}
-          />
-        )}
-        {!isLogged && accountCreated && (
-          <Route
-            path='/login'
-            element={<Login forceUpdate={forceUpdate} changeAccountCreated={changeAccountCreated} />}
-          />
-        )}
-        <Route path='*' element={<NoMatch />} />
-      </Routes>
-      <Footer />
-    </QueryClientProvider>
+    <>
+      <CartProvider>
+        <Header isLogged={isLogged} accountCreated={accountCreated} />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/BackofficeLogin' element={<BackLogin />} />
+          <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
+          <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/checkout' element={<Checkout />} />
+          <Route path='/completed-order' element={<CompletedOrder />} />
+          <Route path='/results' element={<ResultsPage />} />
+          <Route path='/terms-and-conditions' element={<TermsConditions />} />
+          <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+          <Route path='/sales' element={<SalesPage />} />
+          {isLogged && <Route path='/my-account' element={<MyAccount />} />}
+          {isLogged && <Route path='/my-wishlist' element={<Wishlist />} />}
+          {isLogged && <Route path='/profile' element={<Profile token={token} />} />}
+          {!isLogged && !accountCreated && (
+            <Route
+              path='/register'
+              element={<Register forceUpdate={forceUpdate} changeAccountCreated={changeAccountCreated} />}
+            />
+          )}
+          {!isLogged && accountCreated && (
+            <Route
+              path='/login'
+              element={<Login forceUpdate={forceUpdate} changeAccountCreated={changeAccountCreated} />}
+            />
+          )}
+          <Route path='*' element={<NoMatch />} />
+        </Routes>
+        <Footer />
+      </CartProvider>
+    </>
   );
 }
 
-function Backoffice({ children }) {
-  const token = getUserToken();
-  const isLogged = !!token;
-
+function Backoffice() {
   const navigate = useNavigate();
-
+  const token = getUserToken();
   const userRole = getUserRole();
 
-  if (isLogged && userRole !== 'admin') {
-    return <Navigate to='/' />;
-  }
+  useEffect(() => {
+    if (!token || userRole === 'user') {
+      navigate('/backoffice/login');
+    }
+  }, [token, userRole]);
+
+  useEffect(() => {
+    if (userRole === 'admin') {
+      navigate('/backoffice');
+    }
+  }, [userRole]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Routes>
-        <Route path='/backoffice' element={<BackofficeLayout />}>
-          <Route path='/backoffice' element={<BackofficeHome />} />
-          <Route path='/backoffice/users' element={<BackofficeUsers />} />
-          <Route path='/backoffice/products' element={<BackofficeProducts />} />
-          <Route path='/backoffice/companies' element={<BackofficeCompanies />} />
-          <Route path='/backoffice/categories' element={<BackofficeCategories />} />
-        </Route>
-      </Routes>
-    </QueryClientProvider>
+    <Routes>
+      <Route path='/backoffice' element={<BackofficeLayout />}>
+        <Route path='/backoffice' element={<BackofficeHome />} />
+        <Route path='/backoffice/users' element={<BackofficeUsers />} />
+        <Route path='/backoffice/addresses' element={<BackofficeAddresses />} />
+        <Route path='/backoffice/products' element={<BackofficeProducts />} />
+        <Route path='/backoffice/companies' element={<BackofficeCompanies />} />
+        <Route path='/backoffice/categories' element={<BackofficeCategories />} />
+        <Route path='/backoffice/orders' element={<BackofficeOrders />} />
+      </Route>
+      <Route path='/backoffice/login' element={<BackLogin />} />
+    </Routes>
   );
 }
 

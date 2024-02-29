@@ -8,3 +8,8 @@
   color: white;
   border: none;
 }
+
+.filterLabel {
+  font-size: var(--body-small);
+  text-transform: uppercase;
+}

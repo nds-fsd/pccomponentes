@@ -1,0 +1,27 @@
+.chip {
+  display: inline-flex;
+  margin-right: auto;
+  align-items: center;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  min-height: 32px;
+  padding: 0 12px;
+  font-size: var(--body-small);
+
+  border-radius: 0.5rem;
+}
+
+.outOfStock {
+  background-color: var(--neutral-700);
+  color: var(--neutral-300);
+}
+
+.new {
+  background-color: var(--neutral-50);
+  color: var(--primary-500);
+}
+
+.sale {
+  background-color: var(--primary-500);
+}

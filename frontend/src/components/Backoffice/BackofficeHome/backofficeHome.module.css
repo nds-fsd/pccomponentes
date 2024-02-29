@@ -1,7 +1,28 @@
 .main {
   width: 100%;
-  padding: 80px var(--wrapper);
-  & > h1 {
-    padding-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card {
+  min-width: 275px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: var(--neutral-900);
+  border-radius: 1rem;
+  & > span {
+    font-size: var(--title-small);
+    color: var(--neutral-300);
+    aspect-ratio: 1/1;
+  }
+  & > div {
+    width: 100%;
   }
 }

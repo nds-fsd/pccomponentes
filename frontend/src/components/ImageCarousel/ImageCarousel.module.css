@@ -1,17 +1,5 @@
 .carousel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   max-width: 400px;
-  margin: auto;
-  flex-wrap: wrap;
-  position: relative;
-}
-
-.carousel img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 0px 16px;
 }
 
 .thumbnailContainer {
@@ -56,4 +44,8 @@
   border-radius: 0px 16px;
   border: 1px solid var(--primary-500);
   box-shadow: 3px 3px 0px 0px var(--primary-500);
+}
+
+.carousel span {
+  position: relative;
 }

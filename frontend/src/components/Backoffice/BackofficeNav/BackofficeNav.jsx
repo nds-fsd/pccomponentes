@@ -6,6 +6,11 @@ import styles from './backofficeNav.module.css';
 
 const items = [
   {
+    key: 'home',
+    label: <Link to='/backoffice'>Home</Link>,
+    icon: <span className='material-symbols-rounded'>home</span>,
+  },
+  {
     key: 'products',
     label: <Link to='/backoffice/products'>Products</Link>,
     icon: <span className='material-symbols-rounded'>inventory_2</span>,
@@ -21,15 +26,19 @@ const items = [
     icon: <span className='material-symbols-rounded'>person</span>,
   },
   {
+    key: 'addresses',
+    label: <Link to='/backoffice/addresses'>Addresses</Link>,
+    icon: <span className='material-symbols-rounded'>location_on</span>,
+  },
+  {
     key: 'companies',
     label: <Link to='/backoffice/companies'>Companies</Link>,
     icon: <span className='material-symbols-rounded'>apartment</span>,
   },
   {
     key: 'orders',
-    label: <Link /*to='/backoffice/orders'*/>Orders</Link>,
+    label: <Link to='/backoffice/orders'>Orders</Link>,
     icon: <span className='material-symbols-rounded'>conveyor_belt</span>,
-    disabled: true,
   },
 ];
 

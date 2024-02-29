@@ -1,0 +1,50 @@
+.main {
+  display: grid;
+  place-items: center;
+  min-height: var(--view-height);
+}
+.myAccount {
+  padding: 1.5rem var(--wrapper);
+  width: 100%;
+  max-width: var(--wrapper-max);
+}
+
+.heading {
+  padding-bottom: 1rem;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 80px;
+  width: 100%;
+  padding: 0rem 1rem;
+  border-radius: 0rem 0.5rem;
+  border: 1px solid var(--neutral-800);
+  background: var(--neutral-900);
+  box-shadow: 0px 6px 8px 0px rgba(15, 23, 42, 0.5);
+}
+
+@media screen and (width >= 1024px) {
+  .cards {
+    flex-direction: row;
+  }
+
+  .card {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    height: 200px;
+  }
+
+  .card span {
+    font-size: var(--title-medium);
+  }
+}

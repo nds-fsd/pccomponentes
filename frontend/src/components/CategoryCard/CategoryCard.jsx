@@ -2,7 +2,6 @@ import styles from './categoryCard.module.css';
 
 function CategoryCard({ category, onSelectCategory }) {
   const handleClick = () => {
-    console.log('Category card clicked:', category?._id);
     onSelectCategory(category?._id);
   };
 

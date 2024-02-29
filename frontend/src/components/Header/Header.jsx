@@ -1,11 +1,17 @@
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useCart } from '../../contexts/CartContext';
+import Avatar from '../Avatar/Avatar';
+import { getUserToken, getUserSession } from '../../_utils/localStorage.utils';
 import styles from './header.module.css';
 import NavBar from '../NavBar/NavBar';
 import computechLogo from '../../assets/computech-logo.svg';
 import computechLogoText from '../../assets/computech-logo-text.svg';
+import SearchBar from '../SearchBar/SearchBar';
 
 export const Header = ({ isLogged, accountCreated }) => {
+  const { cartProductsCount } = useCart();
+  const [username, setUsername] = useState('');
   const [navLvl1, setNavLvl1] = useState(false);
   const [navLvl2, setNavLvl2] = useState(false);
   const [navLvl3, setNavLvl3] = useState(false);
@@ -23,12 +29,20 @@ export const Header = ({ isLogged, accountCreated }) => {
     setIsDesktop(window.innerWidth > 1024);
   });
 
-  const [cartProductsCount, setCartProductsCount] = useState(0);
-
   useEffect(() => {
-    const cartProducts = JSON.parse(localStorage.getItem('CartProducts')) || [];
-    setCartProductsCount(cartProducts.length);
-  }, []);
+    const token = getUserToken();
+    if (isLogged && token) {
+      try {
+        const userSession = getUserSession();
+
+        const userUsername = userSession.username;
+
+        setUsername(userUsername);
+      } catch (error) {
+        console.error('Error getting username:', error);
+      }
+    }
+  }, [isLogged]);
 
   return (
     <>
@@ -47,14 +61,14 @@ export const Header = ({ isLogged, accountCreated }) => {
               <img className={styles.computechLogoText} src={computechLogoText} alt='computech text' />
             </Link>
             <div className={styles.icons}>
-              <span className='material-symbols-rounded'>search</span>
+              <SearchBar placeholder={'Search'} />
               <Link to={'/cart'} className={styles.cartElements}>
                 <span className='material-symbols-rounded'>shopping_cart</span>
                 {cartProductsCount > 0 && <div className={styles.cartCount}>{cartProductsCount}</div>}
               </Link>
               {isLogged && (
-                <Link to={'/my-account'}>
-                  <span className='material-symbols-rounded'>person</span>
+                <Link to={'/my-account'} className={styles.avatar}>
+                  <Avatar username={username} />
                 </Link>
               )}
               {!isLogged && accountCreated && (

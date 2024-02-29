@@ -3,12 +3,13 @@ import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber, Select, Tag
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeProducts.module.css';
+import ImageUpload from '../../ImageUpload/ImageUpload';
 
 const BackofficeProducts = () => {
   const [products, setProducts] = useState([]);
   const [categoryNames, setCategoryNames] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [editingProduct, setEditingProduct] = useState(null); // Track the product being edited
+  const [editingProduct, setEditingProduct] = useState(null);
   const [form] = Form.useForm();
 
   const createProduct = async (values) => {
@@ -22,7 +23,11 @@ const BackofficeProducts = () => {
     }
   };
 
-  const getAllProducts = async () => {
+  const addPhoto = (photoData) => {
+    console.log('Photo added:', photoData);
+  };
+
+  const getProducts = async () => {
     return api.get('/products');
   };
 
@@ -32,15 +37,18 @@ const BackofficeProducts = () => {
 
   const showTotal = (total) => `Total ${total} products`;
 
-  useEffect(() => {
-    getAllProducts()
+  const getAllProducts = () => {
+    getProducts()
       .then((response) => {
         setProducts(response.data);
       })
       .catch((error) => {
-        console.log('Error!');
+        console.log('Error!', error);
       });
+  };
 
+  useEffect(() => {
+    getAllProducts();
     getAllCategories()
       .then((response) => {
         setCategoryNames(response.data);
@@ -54,6 +62,10 @@ const BackofficeProducts = () => {
     const productToEdit = products.find((product) => product._id === key);
     setEditingProduct(productToEdit);
     form.setFieldsValue(productToEdit);
+    const categories = productToEdit.categories.map((category) => {
+      return { label: category?.name, value: category?._id };
+    });
+    form.setFieldValue('categories', categories);
     setIsModalVisible(true);
   };
 
@@ -69,6 +81,7 @@ const BackofficeProducts = () => {
       setIsModalVisible(false);
       form.resetFields();
       setEditingProduct(null);
+      getAllProducts();
     } catch (error) {
       console.error('Error updating product:', error);
     }
@@ -140,17 +153,14 @@ const BackofficeProducts = () => {
       dataIndex: 'categories',
       key: 'categories',
       width: '15%',
-      render: () => (
+      render: (record) => (
         <>
-          {formattedProducts.map((categories) => {
-            categories.categories.map((category) => {
-              console.log(category.name);
-              return (
-                <Tag color='blue' key={category._id}>
-                  {category.name}
-                </Tag>
-              );
-            });
+          {record.map((category) => {
+            return (
+              <Tag color='blue' key={category._id}>
+                {category.name}
+              </Tag>
+            );
           })}
         </>
       ),
@@ -163,9 +173,7 @@ const BackofficeProducts = () => {
         <>
           <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
           <Popconfirm title='Sure to delete?' onConfirm={() => productDelete(record.key)}>
-            <Button type='icon'>
-              <span class='material-symbols-rounded'>delete</span>
-            </Button>
+            <Button type='icon' icon={<DeleteOutlined />} />
           </Popconfirm>
         </>
       ),
@@ -220,6 +228,8 @@ const BackofficeProducts = () => {
             <Select mode='multiple' placeholder='Select categories' options={formattedCategories} />
           </Form.Item>
         </Form>
+
+        <ImageUpload productId={editingProduct ? editingProduct._id : null} addPhoto={addPhoto} />
       </Modal>
     </main>
   );

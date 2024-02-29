@@ -1,20 +1,46 @@
 const Product = require('../schemas/products');
+const Category = require('../schemas/categories');
 require('../schemas/categories');
 
 const getProducts = async (req, res) => {
   try {
-    const { categoryId } = req.query;
-    let search = categoryId ? { categories: categoryId } : {};
+    const { name, brand, categoryName, categoryId } = req.query;
+    let search = {};
+
+    if (name) {
+      search = {
+        ...search,
+        $or: [{ name: { $regex: name, $options: 'i' } }, { brand: { $regex: name, $options: 'i' } }],
+      };
+    }
+
+    if (categoryName) {
+      const category = await Category.findOne({ name: { $regex: categoryName, $options: 'i' } }); // Assuming your category model is named Category
+      if (category) {
+        search = {
+          ...search,
+          $or: [...search['$or'], { categories: category._id }],
+        };
+      }
+    }
+    if (categoryId) {
+      search = {
+        ...search,
+        categories: categoryId,
+      };
+    }
     const filters = req.query;
+    const sort = req.query.sortBy || '';
     if (filters && filters.minPrice && filters.maxPrice) {
       search = {
+        ...search,
         price: {
           $gt: filters.minPrice,
           $lt: filters.maxPrice,
         },
       };
     }
-    const allProducts = await Product.find(search).populate('categories');
+    const allProducts = await Product.find(search).populate('categories').sort(sort);
     res.status(200).json(allProducts);
   } catch (error) {
     console.log(error);
@@ -47,12 +73,16 @@ const postProduct = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     const { id } = req.params;
-    const ProductFound = await Product.findById(id).populate('categories');
-    return res.status(200).json({
-      ProductFound,
-    });
+    const product = await Product.findById(id).populate('categories');
+
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    return res.status(200).json(product);
   } catch (error) {
-    return res.status(404).json(error);
+    console.error('Error fetching product by ID:', error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -63,9 +93,7 @@ const patchProduct = async (req, res) => {
     const productUpdated = await Product.findByIdAndUpdate(id, body, {
       new: true,
     });
-    return res.status(200).json({
-      productUpdated,
-    });
+    return res.status(200).json(productUpdated);
   } catch (error) {
     return res.status(500).json(error);
   }
@@ -93,19 +121,6 @@ const addCategory = async (req, res) => {
   res.status(201).json(updatedCategories);
 };
 
-const getAllProductsByCategoriesId = async (req, res) => {
-  try {
-    const { categoryId } = req.query;
-    const productsByCategoryId = await Product.find({ categories: categoryId }).populate('categories');
-    res.status(200).json(productsByCategoryId);
-  } catch (error) {
-    console.log(error);
-    res.status(404).json({
-      message: 'No products found for the given category ID',
-    });
-  }
-};
-
 module.exports = {
   getProducts,
   postProduct,
@@ -113,5 +128,4 @@ module.exports = {
   patchProduct,
   deleteProduct,
   addCategory,
-  getAllProductsByCategoriesId,
 };

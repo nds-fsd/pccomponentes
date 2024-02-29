@@ -13,6 +13,10 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
+  sale: {
+    type: Number,
+    default: 0,
+  },
   image: {
     type: [String],
   },
@@ -24,7 +28,10 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
-
+  creationDate: {
+    type: Date,
+    default: Date.now(),
+  },
   categories: [
     {
       type: Schema.ObjectId,

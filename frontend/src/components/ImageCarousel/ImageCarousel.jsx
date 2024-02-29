@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
+import ProductChip from '../ProductChip/ProductChip';
 import styles from './ImageCarousel.module.css';
 
 const ImageCarousel = ({ product }) => {
   const images = Array.isArray(product.image) ? product.image : [];
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
-  };
 
   const setMainImage = (index) => {
     setCurrentIndex(index);
@@ -19,6 +12,7 @@ const ImageCarousel = ({ product }) => {
 
   return (
     <div className={styles.carousel}>
+      <ProductChip product={product} />
       <img src={images[currentIndex]} alt={`image of the product`} />
       <div className={styles.thumbnailContainer}>
         {images.map((image, index) => (
