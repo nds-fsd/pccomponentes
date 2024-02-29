@@ -21,7 +21,7 @@ function MyAccount() {
             <span className='material-symbols-rounded'>local_mall</span>
             My purchases
           </Link>
-          <Link className={styles.card}>
+          <Link to={'/my-wishlist'} className={styles.card}>
             <span className='material-symbols-rounded'>favorite</span>
             Wishlist
           </Link>
