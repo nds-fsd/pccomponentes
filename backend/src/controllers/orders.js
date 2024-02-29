@@ -5,7 +5,7 @@ require('../schemas/addresses');
 
 const getOrders = async (req, res) => {
   try {
-    const allOrders = await Orders.find().populate('products');
+    const allOrders = await Orders.find().populate('user').populate('products').populate('address');
     res.status(200).json(allOrders);
   } catch (error) {
     console.log(error);
@@ -22,6 +22,7 @@ const postOrder = async (req, res) => {
       user: body.user,
       products: body.products,
       address: body.address,
+      status: body.status,
     };
     const newOrder = new Orders(data);
     await newOrder.save();
@@ -34,7 +35,7 @@ const postOrder = async (req, res) => {
 const getOrderById = async (req, res) => {
   try {
     const { id } = req.params;
-    const OrderFound = await Orders.findById(id).populate('user', 'products', 'address');
+    const OrderFound = await Orders.findById(id).populate('user').populate('products').populate('address');
     return res.status(200).json(OrderFound);
   } catch (error) {
     return res.status(404).json(error);

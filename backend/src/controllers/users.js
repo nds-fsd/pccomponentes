@@ -17,6 +17,7 @@ const postUser = async (req, res) => {
       email: body.email,
       password: body.password,
       phoneNumber: body.phoneNumber,
+      role: body.role,
       newsletter: body.newsletter,
     };
 
@@ -44,7 +45,7 @@ const patchUser = async (req, res) => {
     const { id } = req.params;
 
     // Validar que solo se actualicen los campos permitidos
-    const allowedFields = ['username', 'email'];
+    const allowedFields = ['username', 'email', 'role'];
     const filteredBody = Object.keys(body).reduce((acc, key) => {
       if (allowedFields.includes(key)) {
         acc[key] = body[key];

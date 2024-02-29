@@ -1,0 +1,31 @@
+.main {
+  margin: auto 0;
+  padding: 24px;
+
+  & > h1 {
+    font-size: var(--title-medium);
+    padding-bottom: 8px;
+  }
+
+  & > button {
+    margin-bottom: 1rem;
+  }
+}
+
+.table {
+  > div {
+    height: 528px;
+
+    > div {
+      height: 528px;
+
+      > div {
+        height: 528px;
+
+        > div {
+          min-height: 489px;
+        }
+      }
+    }
+  }
+}

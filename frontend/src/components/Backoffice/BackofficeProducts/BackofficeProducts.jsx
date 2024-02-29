@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber, Select, Tag } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeProducts.module.css';
 import ImageUpload from '../../ImageUpload/ImageUpload';
@@ -27,7 +27,11 @@ const BackofficeProducts = () => {
     console.log('Photo added:', photoData);
   };
 
-  const getAllProducts = async () => {
+  const addPhoto = (photoData) => {
+    console.log('Photo added:', photoData);
+  };
+
+  const getProducts = async () => {
     return api.get('/products');
   };
 
@@ -37,15 +41,18 @@ const BackofficeProducts = () => {
 
   const showTotal = (total) => `Total ${total} products`;
 
-  useEffect(() => {
-    getAllProducts()
+  const getAllProducts = () => {
+    getProducts()
       .then((response) => {
         setProducts(response.data);
       })
       .catch((error) => {
         console.log('Error!', error);
       });
+  };
 
+  useEffect(() => {
+    getAllProducts();
     getAllCategories()
       .then((response) => {
         setCategoryNames(response.data);
@@ -78,13 +85,7 @@ const BackofficeProducts = () => {
       setIsModalVisible(false);
       form.resetFields();
       setEditingProduct(null);
-      getAllProducts()
-        .then((response) => {
-          setProducts(response.data);
-        })
-        .catch((error) => {
-          console.log('Error!', error);
-        });
+      getAllProducts();
     } catch (error) {
       console.error('Error updating product:', error);
     }
@@ -176,6 +177,7 @@ const BackofficeProducts = () => {
         <>
           <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
           <Popconfirm title='Sure to delete?' onConfirm={() => productDelete(record.key)}>
+            <Button type='icon' icon={<DeleteOutlined />} />
             <Button type='icon'>
               <span className='material-symbols-rounded'>delete</span>
             </Button>
