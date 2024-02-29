@@ -24,6 +24,8 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
+import BackofficeOrders from './components/Backoffice/BackofficeOrders/BackofficeOrders';
+import BackofficeAddresses from './components/Backoffice/BackofficeAddresses/BackofficeAddresses';
 
 function UserLayout({ children }) {
   const [accountCreated, setAccountCreated] = useState(true);
@@ -99,9 +101,11 @@ function Backoffice({ children }) {
       <Route path='/backoffice' element={<BackofficeLayout />}>
         <Route path='/backoffice' element={<BackofficeHome />} />
         <Route path='/backoffice/users' element={<BackofficeUsers />} />
+        <Route path='/backoffice/addresses' element={<BackofficeAddresses />} />
         <Route path='/backoffice/products' element={<BackofficeProducts />} />
         <Route path='/backoffice/companies' element={<BackofficeCompanies />} />
         <Route path='/backoffice/categories' element={<BackofficeCategories />} />
+        <Route path='/backoffice/orders' element={<BackofficeOrders />} />
       </Route>
       <Route path='/backoffice/login' element={<BackLogin />} />
     </Routes>
