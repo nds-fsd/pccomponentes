@@ -12,19 +12,19 @@ function CheckoutForm() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [stripeAddress, setStripeAddress] = useState({});
   const [address, setAddress] = useState({});
-  const { addressId, setAddressId } = useState('');
 
   const user = getUserSession();
   const productsLocalStorage = localStorage.getItem('CartProducts');
   const products = JSON.parse(productsLocalStorage);
-  const order = products.map((product) => ({
-    productId: product._id,
-    quantity: product.quantity,
-  }));
+  // const order = products.map((product) => ({
+  //   productId: product._id,
+  //   quantity: product.quantity,
+  // }));
+  const order = products.map((product) => product._id);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    postAddress();
+    postAddressAndOrder();
     // postOrder(order);
 
     if (!stripe || !elements) {
@@ -36,7 +36,7 @@ function CheckoutForm() {
       //`Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
-        // return_url: 'http://localhost:3000/completed-order',
+        return_url: 'http://localhost:3000/completed-order',
       },
     });
 
@@ -52,7 +52,7 @@ function CheckoutForm() {
     }
   };
 
-  const postAddress = async () => {
+  const postAddressAndOrder = async () => {
     const newAddress = {
       street: stripeAddress.line1,
       user: user.id,
@@ -62,7 +62,12 @@ function CheckoutForm() {
     setAddress(newAddress);
     try {
       const response = await api.post('/addresses', newAddress);
-      console.log(response.data._id);
+      const addressId = response.data._id;
+      try {
+        await api.post('/orders', { user: user.id, products: order, address: addressId });
+      } catch (error) {
+        console.log(error);
+      }
     } catch (error) {
       console.log(error);
     }

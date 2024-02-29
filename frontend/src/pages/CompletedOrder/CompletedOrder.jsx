@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { api } from '../../_utils/api';
 
 const CompletedPayment = () => {
-  // localStorage.removeItem('CartProducts');
+  localStorage.removeItem('CartProducts');
 
   return (
     <main className={`wrapper fullvh ${styles.main}`}>
