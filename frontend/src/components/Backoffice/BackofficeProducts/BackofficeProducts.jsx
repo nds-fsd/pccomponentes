@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber, Select, Tag } from 'antd';
-import { EditOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeProducts.module.css';
 
@@ -22,7 +22,7 @@ const BackofficeProducts = () => {
     }
   };
 
-  const getAllProducts = async () => {
+  const getProducts = async () => {
     return api.get('/products');
   };
 
@@ -32,15 +32,18 @@ const BackofficeProducts = () => {
 
   const showTotal = (total) => `Total ${total} products`;
 
-  useEffect(() => {
-    getAllProducts()
+  const getAllProducts = () => {
+    getProducts()
       .then((response) => {
         setProducts(response.data);
       })
       .catch((error) => {
         console.log('Error!', error);
       });
+  };
 
+  useEffect(() => {
+    getAllProducts();
     getAllCategories()
       .then((response) => {
         setCategoryNames(response.data);
@@ -76,13 +79,7 @@ const BackofficeProducts = () => {
       setIsModalVisible(false);
       form.resetFields();
       setEditingProduct(null);
-      getAllProducts()
-        .then((response) => {
-          setProducts(response.data);
-        })
-        .catch((error) => {
-          console.log('Error!', error);
-        });
+      getAllProducts();
     } catch (error) {
       console.error('Error updating product:', error);
     }
@@ -174,9 +171,7 @@ const BackofficeProducts = () => {
         <>
           <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
           <Popconfirm title='Sure to delete?' onConfirm={() => productDelete(record.key)}>
-            <Button type='icon'>
-              <span class='material-symbols-rounded'>delete</span>
-            </Button>
+            <Button type='icon' icon={<DeleteOutlined />} />
           </Popconfirm>
         </>
       ),

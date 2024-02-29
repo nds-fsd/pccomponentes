@@ -1,5 +1,3 @@
-// Filters.js
-
 import React, { useState } from 'react';
 import styles from './Filters.module.css';
 import { Slider, Button } from 'antd';
@@ -17,7 +15,7 @@ function Filters({ onFilterChange, toggleFilters }) {
 
   const applyFilters = () => {
     handleFilterChange();
-    toggleFilters(); // Hide filters after applying
+    toggleFilters();
   };
 
   return (

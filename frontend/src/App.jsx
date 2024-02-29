@@ -26,6 +26,9 @@ import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
 import Checkout from './pages/Checkout/Checkout';
 import CompletedOrder from './pages/CompletedOrder/CompletedOrder';
+import BackofficeOrders from './components/Backoffice/BackofficeOrders/BackofficeOrders';
+import BackofficeAddresses from './components/Backoffice/BackofficeAddresses/BackofficeAddresses';
+
 
 // Stripe imports
 function UserLayout() {
@@ -105,9 +108,11 @@ function Backoffice() {
       <Route path='/backoffice' element={<BackofficeLayout />}>
         <Route path='/backoffice' element={<BackofficeHome />} />
         <Route path='/backoffice/users' element={<BackofficeUsers />} />
+        <Route path='/backoffice/addresses' element={<BackofficeAddresses />} />
         <Route path='/backoffice/products' element={<BackofficeProducts />} />
         <Route path='/backoffice/companies' element={<BackofficeCompanies />} />
         <Route path='/backoffice/categories' element={<BackofficeCategories />} />
+        <Route path='/backoffice/orders' element={<BackofficeOrders />} />
       </Route>
       <Route path='/backoffice/login' element={<BackLogin />} />
     </Routes>
