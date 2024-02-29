@@ -19,15 +19,17 @@ import NoMatch from './pages/NoMatch/NoMatch';
 import Cart from './pages/Cart/Cart';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
 import { CartProvider } from './contexts/CartContext';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
 import { Login } from './components/LogInRegisterForm/Login';
+import Checkout from './pages/Checkout/Checkout';
+import CompletedOrder from './pages/CompletedOrder/CompletedOrder';
 import BackofficeOrders from './components/Backoffice/BackofficeOrders/BackofficeOrders';
 import BackofficeAddresses from './components/Backoffice/BackofficeAddresses/BackofficeAddresses';
 
-function UserLayout({ children }) {
+function UserLayout() {
   const [accountCreated, setAccountCreated] = useState(true);
   const [update, setUpdate] = useState(true);
 
@@ -53,6 +55,8 @@ function UserLayout({ children }) {
           <Route path='/category/:categoryId' element={<CategoryProductsPage />} />
           <Route path=':id' element={<ProductPage isLogged={isLogged} />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/checkout' element={<Checkout />} />
+          <Route path='/completed-order' element={<CompletedOrder />} />
           <Route path='/results' element={<ResultsPage />} />
           <Route path='/terms-and-conditions' element={<TermsConditions />} />
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
@@ -79,7 +83,7 @@ function UserLayout({ children }) {
   );
 }
 
-function Backoffice({ children }) {
+function Backoffice() {
   const navigate = useNavigate();
   const token = getUserToken();
   const userRole = getUserRole();
