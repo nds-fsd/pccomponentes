@@ -19,30 +19,32 @@ function WishlistCard({ id, product }) {
     getRating();
   }, [id]);
   return (
-    <Link to={`/${id}`} className={styles.product}>
-      <img
-        src={product.image[0]}
-        alt='image of the product'
-        className={product?.stock === 0 ? styles.outStockDisabled : ''}
-      />
-      <ProductChip product={product} />
-      <div className={`${styles.text} ${product.stock === 0 ? styles.outStockDisabled : ''}`}>
-        <p className={styles.productName}>{product.name}</p>
-        <div className={styles.prices}>
-          <p className={`${styles.productPrice} ${product.sale > 0 && styles.productOldPrice}`}>{product.price}€</p>
-          {product.sale > 0 && <p className={styles.productPrice}>{product.sale}€</p>}
-        </div>
-        {rating && rating.totalReviews > 0 && (
-          <div className={styles.rateContainer}>
-            <Rate className={styles.rateStars} disabled allowHalf value={rating.totalRating} />
-            <span className={styles.ratingNum}>
-              ({rating.totalReviews} {rating?.totalReviews === 1 ? 'review' : 'reviews'})
-            </span>
-            <LikeButton productId={product._id} />
+    <div className={styles.product}>
+      <Link to={`/${id}`}>
+        <img
+          src={product.image[0]}
+          alt='image of the product'
+          className={product?.stock === 0 ? styles.outStockDisabled : ''}
+        />
+        <ProductChip product={product} />
+        <div className={`${styles.text} ${product.stock === 0 ? styles.outStockDisabled : ''}`}>
+          <p className={styles.productName}>{product.name}</p>
+          <div className={styles.prices}>
+            <p className={`${styles.productPrice} ${product.sale > 0 && styles.productOldPrice}`}>{product.price}€</p>
+            {product.sale > 0 && <p className={styles.productPrice}>{product.sale}€</p>}
           </div>
-        )}
-      </div>
-    </Link>
+        </div>
+      </Link>
+      {rating && rating.totalReviews > 0 && (
+        <div className={styles.rateContainer}>
+          <Rate className={styles.rateStars} disabled allowHalf value={rating.totalRating} />
+          <span className={styles.ratingNum}>
+            ({rating.totalReviews} {rating?.totalReviews === 1 ? 'review' : 'reviews'})
+          </span>
+          <LikeButton productId={product._id} />
+        </div>
+      )}
+    </div>
   );
 }
 

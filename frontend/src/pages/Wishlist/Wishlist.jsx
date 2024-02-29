@@ -47,16 +47,18 @@ function Wishlist() {
   }, []);
 
   return (
-    <div className={styles.wishlistContainer}>
-      <h1>My Wishlist</h1>
-      {loading ? (
-        <p>Loading...</p>
-      ) : wishlistId ? (
-        <WishlistProducts products={wishlistProducts} />
-      ) : (
-        <p>You have no items in your wishlist.</p>
-      )}
-    </div>
+    <main className='wrapper fullvh'>
+      <div className={styles.wishlistContainer}>
+        <h1>My Wishlist</h1>
+        {loading ? (
+          <p>Loading...</p>
+        ) : wishlistId ? (
+          <WishlistProducts products={wishlistProducts} />
+        ) : (
+          <p>You have no items in your wishlist.</p>
+        )}
+      </div>
+    </main>
   );
 }
 
