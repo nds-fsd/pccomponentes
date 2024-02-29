@@ -16,16 +16,18 @@ function CheckoutForm() {
   const user = getUserSession();
   const productsLocalStorage = localStorage.getItem('CartProducts');
   const products = JSON.parse(productsLocalStorage);
+
+  //Recover this code if we want to add the quantity of the products to the order
   // const order = products.map((product) => ({
   //   productId: product._id,
   //   quantity: product.quantity,
   // }));
+
   const order = products.map((product) => product._id);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     postAddressAndOrder();
-    // postOrder(order);
 
     if (!stripe || !elements) {
       // Make sure to disable form submission until Stripe.js has loaded.
@@ -73,25 +75,6 @@ function CheckoutForm() {
     }
   };
 
-  // const postOrder = async (order, address) => {
-  //   const newAddress = {
-  //     street: address.line1,
-  //     user: user.id,
-  //     postalCode: address.postal_code,
-  //     country: address.country,
-  //   };
-  //   const newOrder = {
-  //     user: user.id,
-  //     products: order.productId,
-  //     address: address,
-  //   };
-  //   try {
-  //     await api.post('/orders', newOrder);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <div>
@@ -100,10 +83,8 @@ function CheckoutForm() {
           options={{ mode: 'shipping' }}
           onChange={(event) => {
             if (event.complete) {
-              // Extract potentially complete address
               const stripeAddressData = event.value.address;
               setStripeAddress(stripeAddressData);
-              console.log(address);
             }
           }}
         />
