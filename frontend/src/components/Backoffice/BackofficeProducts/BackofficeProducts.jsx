@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber, Select, Tag } from 'antd';
-import { EditOutlined, DeleteOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeProducts.module.css';
 import ImageUpload from '../../ImageUpload/ImageUpload';
@@ -21,10 +21,6 @@ const BackofficeProducts = () => {
     } catch (error) {
       console.error('Error creating product', error);
     }
-  };
-
-  const addPhoto = (photoData) => {
-    console.log('Photo added:', photoData);
   };
 
   const addPhoto = (photoData) => {
@@ -178,9 +174,6 @@ const BackofficeProducts = () => {
           <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
           <Popconfirm title='Sure to delete?' onConfirm={() => productDelete(record.key)}>
             <Button type='icon' icon={<DeleteOutlined />} />
-            <Button type='icon'>
-              <span className='material-symbols-rounded'>delete</span>
-            </Button>
           </Popconfirm>
         </>
       ),
@@ -234,7 +227,6 @@ const BackofficeProducts = () => {
           <Form.Item name='categories' label='Categories' rules={[{ required: true }]}>
             <Select mode='multiple' placeholder='Select categories' options={formattedCategories} />
           </Form.Item>
-          {/* <Form.Item label='Product Image'></Form.Item> */}
         </Form>
 
         <ImageUpload productId={editingProduct ? editingProduct._id : null} addPhoto={addPhoto} />
