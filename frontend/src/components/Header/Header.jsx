@@ -7,6 +7,7 @@ import styles from './header.module.css';
 import NavBar from '../NavBar/NavBar';
 import computechLogo from '../../assets/computech-logo.svg';
 import computechLogoText from '../../assets/computech-logo-text.svg';
+import SearchBar from '../SearchBar/SearchBar';
 
 export const Header = ({ isLogged, accountCreated }) => {
   const { cartProductsCount } = useCart();
@@ -60,7 +61,7 @@ export const Header = ({ isLogged, accountCreated }) => {
               <img className={styles.computechLogoText} src={computechLogoText} alt='computech text' />
             </Link>
             <div className={styles.icons}>
-              <span className='material-symbols-rounded'>search</span>
+              <SearchBar placeholder={'Search'} />
               <Link to={'/cart'} className={styles.cartElements}>
                 <span className='material-symbols-rounded'>shopping_cart</span>
                 {cartProductsCount > 0 && <div className={styles.cartCount}>{cartProductsCount}</div>}
