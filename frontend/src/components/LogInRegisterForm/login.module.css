@@ -46,6 +46,9 @@
   align-items: center;
   gap: 1rem;
   padding-top: 1rem;
+  & button {
+    width: 100%;
+  }
 }
 
 .stretchBtn {
