@@ -1,0 +1,13 @@
+.form {
+  background-color: var(--neutral-900);
+  padding: 2rem;
+  border-radius: 0.5rem;
+
+  & > div:not(:last-child) {
+    padding-bottom: 2rem;
+  }
+
+  & h3 {
+    padding-bottom: 0.5rem;
+  }
+}

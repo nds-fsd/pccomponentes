@@ -45,3 +45,7 @@
   border: 1px solid var(--primary-500);
   box-shadow: 3px 3px 0px 0px var(--primary-500);
 }
+
+.carousel span {
+  position: relative;
+}
