@@ -1,10 +1,10 @@
 import styles from './WishlistProducts.module.css';
-import ProductCard from '../ProductCard/ProductCard';
+import WishlistCard from '../WishlistCard/WishlistCard';
 const WishlistProducts = ({ products }) => {
   return (
     <div className={styles.productsContainer}>
       {products.map((product) => {
-        return <ProductCard key={product._id} id={product._id} product={product} />;
+        return <WishlistCard key={product._id} id={product._id} product={product} />;
       })}
     </div>
   );

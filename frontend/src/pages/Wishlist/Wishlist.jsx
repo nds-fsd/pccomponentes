@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../_utils/api';
 import WishlistProducts from '../../components/WishlistProducts/WishlistProducts';
-
+import styles from './Wishlist.module.css';
 function Wishlist() {
   const [loggedUser, setLoggedUser] = useState(null);
   const [wishlistId, setWishlistId] = useState(null);
@@ -24,8 +24,6 @@ function Wishlist() {
             const productIds = wishlistData.products;
             setWishlistId(wishlistId);
             setWishlistProductIds(productIds);
-
-            // Fetch details of products based on their IDs
             const productDetailsPromises = productIds.map(async (productId) => {
               const productResponse = await api.get(`/products/${productId}`);
               return productResponse.data;
@@ -49,7 +47,8 @@ function Wishlist() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.wishlistContainer}>
+      <h1>My Wishlist</h1>
       {loading ? (
         <p>Loading...</p>
       ) : wishlistId ? (
