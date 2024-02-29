@@ -44,7 +44,7 @@ function ResultsPage() {
   };
 
   return (
-    <div className={styles.resultsPage}>
+    <main className={`${styles.resultsPage} wrapper fullvh `}>
       <div className={styles.sideBar} style={{ transform: showSidebar ? 'translateX(0)' : 'translateX(-100%)' }}>
         <Filters onFilterChange={handleFilterChange} toggleFilters={() => setShowSidebar(false)} />
       </div>
@@ -68,7 +68,7 @@ function ResultsPage() {
         </div>
       </div>
       <ProductsList products={products} />
-    </div>
+    </main>
   );
 }
 
