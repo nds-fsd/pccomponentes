@@ -45,13 +45,10 @@ const LikeButton = ({ productId }) => {
           const wishlistId = wishlistData._id;
           setWishlistId(wishlistId);
 
-          // Check if the product is already in the wishlist
           if (wishlistData.products.includes(productId)) {
-            // If the product is already in the wishlist, remove it
             await api.post(`/wishlist/${wishlistId}/remove`, { productId });
             setLiked(false);
           } else {
-            // If the product is not in the wishlist, add it
             await api.post(`/wishlist/${wishlistId}/add`, { productId });
             setLiked(true);
           }
