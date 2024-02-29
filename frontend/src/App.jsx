@@ -29,8 +29,6 @@ import CompletedOrder from './pages/CompletedOrder/CompletedOrder';
 import BackofficeOrders from './components/Backoffice/BackofficeOrders/BackofficeOrders';
 import BackofficeAddresses from './components/Backoffice/BackofficeAddresses/BackofficeAddresses';
 
-
-// Stripe imports
 function UserLayout() {
   const [accountCreated, setAccountCreated] = useState(true);
   const [update, setUpdate] = useState(true);
