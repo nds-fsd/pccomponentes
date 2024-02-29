@@ -3,6 +3,7 @@ import completedCheck from '../../assets/lottie/completed-check.json';
 import styles from './completedOrder.module.css';
 
 const CompletedPayment = () => {
+  localStorage.removeItem('CartProducts');
   return (
     <main className={`wrapper fullvh ${styles.main}`}>
       <h3>Order Completed!</h3>
