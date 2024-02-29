@@ -21,15 +21,19 @@ const items = [
     icon: <span className='material-symbols-rounded'>person</span>,
   },
   {
+    key: 'addresses',
+    label: <Link to='/backoffice/addresses'>Addresses</Link>,
+    icon: <span className='material-symbols-rounded'>location_on</span>,
+  },
+  {
     key: 'companies',
     label: <Link to='/backoffice/companies'>Companies</Link>,
     icon: <span className='material-symbols-rounded'>apartment</span>,
   },
   {
     key: 'orders',
-    label: <Link /*to='/backoffice/orders'*/>Orders</Link>,
+    label: <Link to='/backoffice/orders'>Orders</Link>,
     icon: <span className='material-symbols-rounded'>conveyor_belt</span>,
-    disabled: true,
   },
 ];
 

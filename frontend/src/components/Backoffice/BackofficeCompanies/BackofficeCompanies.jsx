@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeCompanies.module.css';
 
 const BackofficeCompany = () => {
   const [companies, setCompanies] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [editingCompany, setEditingCompany] = useState(null);
   const [form] = Form.useForm();
 
   const getAllCompanies = async () => {
@@ -23,7 +25,31 @@ const BackofficeCompany = () => {
     getAllCompanies();
   }, []);
 
-  const handleDelete = async (key) => {
+  const startEditing = (key) => {
+    const companyToEdit = companies.find((company) => company._id === key);
+    setEditingCompany(companyToEdit);
+    form.setFieldsValue(companyToEdit);
+    setIsModalVisible(true);
+  };
+
+  const saveEdit = async (values) => {
+    try {
+      const updatedCompany = { ...editingCompany, ...values };
+      await api.patch(`/companies/${updatedCompany._id}`, updatedCompany);
+
+      setCompanies((prevCompanies) =>
+        prevCompanies.map((order) => (order._id === updatedCompany._id ? updatedCompany : order))
+      );
+
+      setIsModalVisible(false);
+      form.resetFields();
+      setEditingCompany(null);
+    } catch (error) {
+      console.error('Error updating company:', error);
+    }
+  };
+
+  const companyDelete = async (key) => {
     try {
       const companyId = key;
       await api.delete(`/companies/${companyId}`);
@@ -82,14 +108,16 @@ const BackofficeCompany = () => {
       key: 'email',
     },
     {
-      title: 'Operation',
-      dataIndex: 'operation',
-      render: (_, record) =>
-        companies.length >= 1 ? (
-          <Popconfirm title='Sure to delete?' onConfirm={() => handleDelete(record._id)}>
-            <a>Delete</a>
+      title: 'Actions',
+      dataIndex: 'actions',
+      render: (_, record) => (
+        <>
+          <Button type='icon' icon={<EditOutlined />} onClick={() => startEditing(record.key)}></Button>
+          <Popconfirm title='Sure to delete?' onConfirm={() => companyDelete(record.key)}>
+            <Button type='icon' icon={<DeleteOutlined />}></Button>
           </Popconfirm>
-        ) : null,
+        </>
+      ),
     },
   ];
 
@@ -113,8 +141,13 @@ const BackofficeCompany = () => {
         className={styles.table}
       />
 
-      <Modal title='Add New Company' open={isModalVisible} onCancel={handleCancel} onOk={() => form.submit()}>
-        <Form form={form} onFinish={createCompany}>
+      <Modal
+        title={editingCompany ? 'Edit Company' : 'Add New Company'}
+        open={isModalVisible}
+        onCancel={handleCancel}
+        onOk={() => form.submit()}
+      >
+        <Form form={form} onFinish={editingCompany ? saveEdit : createCompany}>
           <Form.Item name='name' label='Company Name' rules={[{ required: true }]}>
             <Input />
           </Form.Item>
