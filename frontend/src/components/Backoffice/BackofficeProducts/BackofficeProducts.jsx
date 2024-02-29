@@ -3,6 +3,7 @@ import { Table, Popconfirm, Button, Modal, Form, Input, InputNumber, Select, Tag
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeProducts.module.css';
+import ImageUpload from '../../ImageUpload/ImageUpload';
 
 const BackofficeProducts = () => {
   const [products, setProducts] = useState([]);
@@ -20,6 +21,10 @@ const BackofficeProducts = () => {
     } catch (error) {
       console.error('Error creating product', error);
     }
+  };
+
+  const addPhoto = (photoData) => {
+    console.log('Photo added:', photoData);
   };
 
   const getProducts = async () => {
@@ -67,9 +72,6 @@ const BackofficeProducts = () => {
   const saveEdit = async (values) => {
     try {
       const updatedProduct = { ...editingProduct, ...values };
-      updatedProduct.categories = updatedProduct.categories.map((category) => {
-        return category.value;
-      });
       await api.patch(`/products/${updatedProduct._id}`, updatedProduct);
 
       setProducts((prevProducts) =>
@@ -226,6 +228,8 @@ const BackofficeProducts = () => {
             <Select mode='multiple' placeholder='Select categories' options={formattedCategories} />
           </Form.Item>
         </Form>
+
+        <ImageUpload productId={editingProduct ? editingProduct._id : null} addPhoto={addPhoto} />
       </Modal>
     </main>
   );

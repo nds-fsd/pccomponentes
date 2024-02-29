@@ -19,7 +19,7 @@ import NoMatch from './pages/NoMatch/NoMatch';
 import Cart from './pages/Cart/Cart';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
 import { CartProvider } from './contexts/CartContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { getUserRole, getUserToken } from './_utils/localStorage.utils';
 import { Register } from './components/LogInRegisterForm/Register';
