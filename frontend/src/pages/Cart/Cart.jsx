@@ -28,8 +28,12 @@ function Cart() {
   }, [cartProducts]);
 
   const updatePrices = (products) => {
-    const subtotalValue = products.reduce((total, product) => total + product.price * product.quantity, 0);
-    const taxValue = subtotalValue * 0.21;
+    const taxRate = 0.21;
+    const subtotalValue = products.reduce(
+      (total, product) => total + (product.price / (1 + taxRate)) * product.quantity,
+      0
+    );
+    const taxValue = subtotalValue * taxRate;
     const totalPriceValue = subtotalValue + taxValue;
     setSubtotal(subtotalValue);
     setTax(taxValue);
