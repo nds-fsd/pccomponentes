@@ -34,4 +34,4 @@ jobs:
           github_token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Deploy to Koyeb
-        run: koyeb service redeploy computech-backend/pccomponentes-api
+        run: koyeb service redeploy significant-alvira/pccomponentes
