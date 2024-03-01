@@ -49,7 +49,7 @@ function Wishlist() {
   return (
     <main className='wrapper fullvh'>
       <div className={styles.wishlistContainer}>
-        <h1>My Wishlist</h1>
+        <h1 className={styles.wishlistTitle}>My Wishlist</h1>
         {loading ? (
           <p>Loading...</p>
         ) : wishlistId ? (
