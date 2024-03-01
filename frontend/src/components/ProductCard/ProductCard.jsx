@@ -22,7 +22,7 @@ function ProductCard({ id, product }) {
       <img
         src={product.image[0]}
         alt='image of the product'
-        className={product?.stock === 0 ? styles.outStockDisabled : ''}
+        className={`drop-shadow ${product?.stock === 0 ? styles.outStockDisabled : ''}`}
       />
       <ProductChip product={product} />
       <div className={`${styles.text} ${product.stock === 0 ? styles.outStockDisabled : ''}`}>
