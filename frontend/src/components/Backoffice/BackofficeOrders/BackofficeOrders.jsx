@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Table, Popconfirm, Button, Modal, Form, Input, Select } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Table, Popconfirm, Button, Modal, Form, Input, Select, Tag } from 'antd';
+import {
+  EditOutlined,
+  DeleteOutlined,
+  CheckCircleOutlined,
+  ClockCircleOutlined,
+  CloseCircleOutlined,
+  SendOutlined,
+  SyncOutlined,
+} from '@ant-design/icons';
 import { api } from '../../../_utils/api';
 import styles from './BackofficeOrders.module.css';
 
@@ -8,8 +16,10 @@ const BackofficeOrders = () => {
   const [orders, setOrders] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isUserVisible, setIsUserVisible] = useState(false);
+  const [isProductVisible, setIsProductVisible] = useState(false);
   const [editingOrder, setEditingOrder] = useState(null);
   const [orderOwner, setOrderOwner] = useState([]);
+  const [productOrder, setProductOrder] = useState([]);
   const [form] = Form.useForm();
 
   const getAllOrders = async () => {
@@ -86,6 +96,14 @@ const BackofficeOrders = () => {
     setIsUserVisible(false);
   };
 
+  const showProductModal = () => {
+    setIsProductVisible(true);
+  };
+
+  const handleProductCancel = () => {
+    setIsProductVisible(false);
+  };
+
   const formattedOrder = orders.map((order) => ({
     key: order._id,
     user: order.user,
@@ -98,12 +116,15 @@ const BackofficeOrders = () => {
     setOrderOwner(key);
   };
 
+  const showProduct = (key) => {
+    setProductOrder(key);
+  };
+
   const columns = [
     {
       title: 'Order ID',
       dataIndex: 'key',
       key: 'key',
-      render: (orderId) => <a>{orderId}</a>,
     },
     {
       title: 'Username',
@@ -112,6 +133,7 @@ const BackofficeOrders = () => {
       render: (user) => {
         return (
           <a
+            key={user.key}
             onClick={() => {
               showUser(user);
               showUserModal();
@@ -126,25 +148,35 @@ const BackofficeOrders = () => {
       title: 'Products',
       dataIndex: 'products',
       key: 'products',
-      render: (products) => (
-        <>
-          {products.map((product) => {
-            return <p key={product._id}>{product.name}</p>;
-          })}
-        </>
-      ),
+      render: (products) =>
+        products.map((product) => {
+          return (
+            <div key={product.key}>
+              <a
+                key={product._id}
+                onClick={() => {
+                  showProduct(product);
+                  showProductModal();
+                }}
+              >
+                {product.name}
+              </a>
+              <br />
+            </div>
+          );
+        }),
     },
     {
       title: 'Address ID',
       dataIndex: 'address',
       key: 'address',
       render: (addressId) => (
-        <>
+        <div key={addressId.key}>
           <p>{addressId.street}</p>
           <p>
             {addressId.country} {addressId.postalCode}
           </p>
-        </>
+        </div>
       ),
     },
     {
@@ -153,7 +185,34 @@ const BackofficeOrders = () => {
       key: 'status',
       render: (status) => {
         let capitalizedStatus = capitalizeFirstLetter(status);
-        return <p>{capitalizedStatus}</p>;
+        switch (status) {
+          case 'created':
+            return <Tag icon={<ClockCircleOutlined />}>{capitalizedStatus}</Tag>;
+          case 'preparing':
+            return (
+              <Tag icon={<SyncOutlined />} color='#fc9403'>
+                {capitalizedStatus}
+              </Tag>
+            );
+          case 'sent':
+            return (
+              <Tag icon={<SendOutlined />} color='#4261e1'>
+                {capitalizedStatus}
+              </Tag>
+            );
+          case 'delivered':
+            return (
+              <Tag icon={<CheckCircleOutlined />} color='#22965c'>
+                {capitalizedStatus}
+              </Tag>
+            );
+          case 'cancelled':
+            return (
+              <Tag icon={<CloseCircleOutlined />} color='#e72513'>
+                {capitalizedStatus}
+              </Tag>
+            );
+        }
       },
     },
     {
@@ -206,8 +265,8 @@ const BackofficeOrders = () => {
                   label: 'Created',
                 },
                 {
-                  value: 'processing',
-                  label: 'Processing',
+                  value: 'preparing',
+                  label: 'Preparing',
                 },
                 {
                   value: 'sent',
@@ -216,6 +275,10 @@ const BackofficeOrders = () => {
                 {
                   value: 'delivered',
                   label: 'Delivered',
+                },
+                {
+                  value: 'cancelled',
+                  label: 'Cancelled',
                 },
               ]}
             />
@@ -231,6 +294,25 @@ const BackofficeOrders = () => {
         <p>{orderOwner.role}</p>
         <h4>Newsletter</h4>
         {orderOwner.newsletter ? <p>✅</p> : <p>❌</p>}
+      </Modal>
+      <Modal title='Product info' closeIcon='' open={isProductVisible} footer='' onCancel={handleProductCancel}>
+        <h4>Product Name</h4>
+        <p>{productOrder.name}</p>
+        <h4>Description</h4>
+        <p>{productOrder.description}</p>
+        <h4>Brand</h4>
+        <p>{productOrder.brand}</p>
+        <h4>Stock</h4>
+        <p>{productOrder.stock}</p>
+        <h4>Price</h4>
+        {productOrder.sale ? (
+          <>
+            <del>{productOrder.price}€</del>
+            <p>{productOrder.sale}€</p>
+          </>
+        ) : (
+          <p>{productOrder.price}€</p>
+        )}
       </Modal>
     </main>
   );

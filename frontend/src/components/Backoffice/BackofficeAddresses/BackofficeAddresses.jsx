@@ -233,7 +233,7 @@ const BackofficeAddresses = () => {
         <h4>Role</h4>
         <p>{addressUser.role}</p>
         <h4>Newsletter</h4>
-        <p>{`${addressUser.newsletter}`}</p>
+        {addressUser.newsletter ? <p>✅</p> : <p>❌</p>}
       </Modal>
     </main>
   );

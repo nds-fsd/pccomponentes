@@ -8,6 +8,6 @@ describe('Login flow', () => {
     cy.get('header a[href*="login"]').click();
     cy.get('input[name="email"]').type(email);
     cy.get('input[name="password"]').type(password);
-    cy.get('input[type="submit"]').click();
+    cy.get('button').contains('Log In').click();
   });
 });
