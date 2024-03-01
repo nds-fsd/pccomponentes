@@ -105,6 +105,12 @@ The product backoffice allows us to do CRUD-type management of the data.
 
 ![Backoffice_Products](https://res.cloudinary.com/computech/image/upload/v1709304492/xlc87nnhkcuuoeaibtpt.png)
 
+## Next Steps
+
+- Edit the cart product (color, amount of RAM, etc.)
+- Filters, by brand, by color, etc.
+- Product comparator
+- Support chat 
 
 ## Installation
 
