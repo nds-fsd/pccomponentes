@@ -105,6 +105,9 @@ The product backoffice allows us to do CRUD-type management of the data.
 
 ![Backoffice_Products](https://res.cloudinary.com/computech/image/upload/v1709304492/xlc87nnhkcuuoeaibtpt.png)
 
+## DB Relationships
+![DB_Relationships](https://cdn.discordapp.com/attachments/1202642794217476111/1213191554349670411/entities-schema.png?ex=65f493ae&is=65e21eae&hm=492c72090179519ad0feb93b3f48a349e4b0f17b3bce7c873588760de99fb618&)
+
 ## Next Steps
 
 - Edit the cart product (color, amount of RAM, etc.)
