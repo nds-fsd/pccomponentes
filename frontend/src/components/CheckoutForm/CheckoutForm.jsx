@@ -38,7 +38,7 @@ function CheckoutForm() {
       //`Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
-        return_url: `${window.location.href}/completed-order`,
+        return_url: `${window.location.origin}/completed-order`,
       },
     });
 
