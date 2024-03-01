@@ -20,6 +20,9 @@ function WishlistCard({ id, product }) {
   }, [id]);
   return (
     <div className={styles.product}>
+      <div className={styles.likeButton}>
+        <LikeButton productId={product._id} />
+      </div>
       <Link to={`/${id}`}>
         <img
           src={product.image[0]}
@@ -41,7 +44,6 @@ function WishlistCard({ id, product }) {
           <span className={styles.ratingNum}>
             ({rating.totalReviews} {rating?.totalReviews === 1 ? 'review' : 'reviews'})
           </span>
-          <LikeButton productId={product._id} />
         </div>
       )}
     </div>
