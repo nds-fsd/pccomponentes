@@ -15,5 +15,7 @@
     "dotenv-cli": "^7.0.0",
     "turbo": "^1.10.16"
   },
-  "dependencies": {}
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }

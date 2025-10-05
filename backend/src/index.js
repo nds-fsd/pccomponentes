@@ -4,7 +4,16 @@ const cors = require('cors');
 const app = express();
 const router = require('./routers/router');
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://computech-store.netlify.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  })
+);
+
+app.options('*', cors());
+
 app.use(express.json());
 
 app.use('/', router);
